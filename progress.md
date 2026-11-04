@@ -5,7 +5,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ## Current State
 
 **Last Updated:** 2026-11-04
-**Active Feature:** none — next up feat-003 (Session builder) or feat-004 (Local database)
+**Active Feature:** none — next up feat-004 (Local database + word bank)
 **Branch:** main
 
 ### What's Done
@@ -17,6 +17,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] Android: Android Studio + SDK installed; cmdline-tools added at `~/Library/Android/sdk/cmdline-tools/latest`; debug APK built and app boots on emulator `Medium_Phone_API_37.0` (API 37)
 - [x] iOS: Xcode 27.2 + CocoaPods 1.17.0; app boots on iPhone 18 Pro simulator (iOS 27.2) → feat-001 done
 - [x] feat-002: SM-2 scheduler in `lib/core/srs/` (`Sm2Scheduler`, `WordSchedule`, `resolveAnswer`), 25 tests green
+- [x] feat-003: session builder in `lib/core/session/` (`SessionBuilder`, immutable `StudySession`, `SessionCard`), 43 tests green
 
 ### What's In Progress
 
@@ -25,11 +26,12 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ### What's Next
 
 1. ~~First git commit~~ done
-2. feat-003 (Session builder, test-first) — depends on feat-002 only
-3. feat-004 (Drift DB + word bank) — can run independently
+2. feat-004 (Drift DB + word bank) — needs content source decision for the Pre-A1/A1 list
+3. feat-005 (Parent account + profiles) after feat-004
 
 ## Blockers / Risks
 
+- [ ] Review backlog: reviews are uncapped, so a child back after a long break could face a very long session. Revisit with a review cap once real usage data exists.
 - [ ] System Java is 1.8; sdkmanager needs `JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"` (Flutter/Gradle already use Android Studio's JDK).
 - [ ] Word-list licensing (Cambridge YLE, Oxford 3000) unconfirmed — fine for family use, check before store release.
 
@@ -44,11 +46,21 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
   - Same-session re-queue of misses belongs to the session builder (feat-003), not the scheduler.
   - Times are UTC; callers pass `now`.
 
+- **Session rules not fixed by SPEC** (feat-003):
+  - A missed word is re-queued at the end at most once per session (no loops for a struggling child).
+  - Only the first answer per word in a session goes to the scheduler; the retry is practice.
+  - Daily new-word goal is per day across sessions (`newIntroducedToday`).
+  - Due reviews are not capped.
+
 ## Evidence of Completion
 
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-04 — feat-003 Session builder
+
+- Tests first (red), then `session_builder.dart` + `study_session.dart`. `./init.sh` green, 43/43 tests.
 
 ### 2026-11-04 — feat-002 SM-2 scheduler
 

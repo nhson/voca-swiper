@@ -26,8 +26,8 @@
       "dependencies": [
         "feat-002"
       ],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-04: ./init.sh green — format 0 changed, analyze no issues, 43/43 tests. test/core/session/session_builder_test.dart covers due-first oldest-first ordering (+ id tie-break), not-yet-due excluded, Mastered resurfacing, daily-goal cap incl. earlier sessions today, reviews uncapped, skip candidates with progress/duplicates, miss re-queue once at end, first-answer-only scheduling, immutability."
     },
     {
       "id": "feat-004",
