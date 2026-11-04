@@ -20,6 +20,10 @@ Future<void> pumpApp(
   tester.view.physicalSize = size * 2;
   tester.view.devicePixelRatio = 2;
   addTearDown(tester.view.reset);
+  // Unmount the app (and its live DB queries) before the test's tearDown
+  // closes the database. Without this, a test that fails with a pushed route
+  // on screen makes db.close() hang until the runner times out (minutes).
+  addTearDown(() => tester.pumpWidget(const SizedBox()));
   await tester.pumpWidget(
     ProviderScope(
       overrides: [
