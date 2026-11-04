@@ -1,0 +1,22 @@
+name: voca_swiper
+description: Kids English vocabulary app — swipeable flashcards with spaced repetition.
+publish_to: none
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.5.0
+
+# Runtime packages (flutter_riverpod, drift, go_router, flutter_card_swiper,
+# flutter_tts, flutter_local_notifications) are added by the feature that first
+# needs them, with versions checked on pub.dev at that time (see docs/SPEC.md).
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

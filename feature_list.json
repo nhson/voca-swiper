@@ -1,0 +1,95 @@
+{
+  "$comment": "Source of truth for feature state. Mirrors Phase 1 (MVP) in docs/SPEC.md. Status: not-started | in-progress | blocked | done. Only one feature in-progress at a time. 'done' requires evidence (command + result).",
+  "features": [
+    {
+      "id": "feat-001",
+      "name": "Project setup",
+      "description": "Install Flutter SDK, run `flutter create --org com.vocaswiper --platforms=android,ios .` to generate platform folders, git init. Done when: ./init.sh passes and the app boots on an iOS simulator and an Android emulator.",
+      "dependencies": [],
+      "status": "done",
+      "evidence": "2026-11-04: ./init.sh green (format 0 changed, analyze no issues, 1/1 test). Android: flutter build apk --debug OK, boots on Medium_Phone_API_37.0 emulator. iOS: flutter build ios --simulator OK (Xcode 27.2, CocoaPods 1.17.0), boots on iPhone 18 Pro simulator (iOS 27.2). Screenshots checked."
+    },
+    {
+      "id": "feat-002",
+      "name": "SM-2 scheduler (domain)",
+      "description": "Pure-Dart SRS in lib/core/srs/: word states New → Learning → Review → Mastered, intervals 1d → 3d → prev × ease (default 2.5, lowered by misses), Mastered at interval ≥ 21d, any miss → Learning, quiz wrong overrides 'knew it'. Done when: unit tests cover every transition and interval rule.",
+      "dependencies": [
+        "feat-001"
+      ],
+      "status": "in-progress",
+      "evidence": ""
+    },
+    {
+      "id": "feat-003",
+      "name": "Session builder (domain)",
+      "description": "Builds a daily session: due reviews oldest first, then new words up to the profile's daily goal, 'didn't know' cards re-queued at the end. Done when: unit tests cover ordering, daily-goal cap and re-queue.",
+      "dependencies": [
+        "feat-002"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-004",
+      "name": "Local database + word bank",
+      "description": "Drift schema for Word, Translation, ParentAccount, Profile, WordProgress, SessionLog. Bundled read-only word bank (asset SQLite) for Pre-A1 + A1 with Vietnamese translations; content_pipeline script builds it. Done when: repository tests read words and write progress against an in-memory DB; bundled DB loads on device.",
+      "dependencies": [
+        "feat-001"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-005",
+      "name": "Parent account + child profiles",
+      "description": "PIN-protected parent area; create/edit/delete child profiles (name, avatar, age, native language, level, daily goal, swipe direction); profile picker on home. Done when: two profiles keep independent settings across app restarts; PIN stored hashed.",
+      "dependencies": [
+        "feat-004"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-006",
+      "name": "Swipe flashcard session",
+      "description": "Swipe right = knew, left = didn't know (parent can flip), optional up = almost; tap to flip showing picture, word, device-TTS audio, example, translation; session summary with stars. Answers feed the SM-2 scheduler. Done when: a full session updates WordProgress correctly, verified by widget test + manual run on phone and tablet.",
+      "dependencies": [
+        "feat-003",
+        "feat-005"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-007",
+      "name": "Daily reminder notification",
+      "description": "One local notification per day at a parent-picked time, only when reviews are due, kid-friendly wording, respects quiet hours. Done when: notification fires on device when reviews are due and is skipped when none are.",
+      "dependencies": [
+        "feat-006"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-008",
+      "name": "Progress screen per profile",
+      "description": "Words mastered / learning, accuracy, minutes per day for each profile. Done when: numbers match SessionLog and WordProgress data in a widget test.",
+      "dependencies": [
+        "feat-006"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-009",
+      "name": "Phase 1 gate — real-use trial",
+      "description": "Owner's child uses the app 5 days a week for 2 weeks without being pushed. Human gate: only the owner can mark this done.",
+      "dependencies": [
+        "feat-007",
+        "feat-008"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    }
+  ]
+}

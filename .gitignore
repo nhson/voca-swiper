@@ -1,0 +1,25 @@
+# Flutter / Dart
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+.idea/
+.vscode/
+coverage/
+
+# Platform build output
+/android/app/debug
+/android/app/profile
+/android/app/release
+/ios/Pods/
+/ios/.symlinks/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+
+# Content pipeline
+content_pipeline/.venv/
+content_pipeline/out/
+
+.DS_Store
