@@ -18,9 +18,9 @@ class WordBankImporter {
   static const versionKey = 'wordBankVersion';
 
   Future<int?> importedVersion() async {
-    final row = await (db.select(db.appMeta)
-          ..where((m) => m.key.equals(versionKey)))
-        .getSingleOrNull();
+    final row = await (db.select(
+      db.appMeta,
+    )..where((m) => m.key.equals(versionKey))).getSingleOrNull();
     return row == null ? null : int.parse(row.value);
   }
 

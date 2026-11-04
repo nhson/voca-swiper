@@ -17,8 +17,12 @@ import '../support/test_db.dart';
 
 void main() {
   final now = DateTime.utc(2026, 11, 4, 9);
-  const kid =
-      ProfileDraft(name: 'Bi', avatar: '🐯', age: 6, level: CefrLevel.preA1);
+  const kid = ProfileDraft(
+    name: 'Bi',
+    avatar: '🐯',
+    age: 6,
+    level: CefrLevel.preA1,
+  );
 
   group('WordRepository.newWordCandidates', () {
     late AppDatabase db;
@@ -37,36 +41,44 @@ void main() {
 
     test('current level first, then lower levels, in teaching order', () async {
       final ids = await WordRepository(db).newWordCandidates(
-          profileId: profile,
-          levelIndex: CefrLevel.a1.index,
-          age: 12,
-          limit: 10);
+        profileId: profile,
+        levelIndex: CefrLevel.a1.index,
+        age: 12,
+        limit: 10,
+      );
       expect(ids, ['a1', 'a2', 'p1', 'p2', 'p3']);
     });
 
-    test('excludes higher levels, words above the age, and seen words',
-        () async {
-      await ProgressRepository(db).save(
-        profile,
-        'p1',
-        const Sm2Scheduler()
-            .schedule(WordSchedule.initial(), AnswerQuality.knew, now: now),
-        now: now,
-      );
-      final ids = await WordRepository(db).newWordCandidates(
+    test(
+      'excludes higher levels, words above the age, and seen words',
+      () async {
+        await ProgressRepository(db).save(
+          profile,
+          'p1',
+          const Sm2Scheduler().schedule(
+            WordSchedule.initial(),
+            AnswerQuality.knew,
+            now: now,
+          ),
+          now: now,
+        );
+        final ids = await WordRepository(db).newWordCandidates(
           profileId: profile,
           levelIndex: CefrLevel.preA1.index,
           age: 6,
-          limit: 10);
-      expect(ids, ['p2']);
-    });
+          limit: 10,
+        );
+        expect(ids, ['p2']);
+      },
+    );
 
     test('respects the limit', () async {
       final ids = await WordRepository(db).newWordCandidates(
-          profileId: profile,
-          levelIndex: CefrLevel.a1.index,
-          age: 12,
-          limit: 2);
+        profileId: profile,
+        levelIndex: CefrLevel.a1.index,
+        age: 12,
+        limit: 2,
+      );
       expect(ids, ['a1', 'a2']);
     });
   });
@@ -83,8 +95,11 @@ void main() {
     tearDown(() => db.close());
 
     test('save and read back a schedule', () async {
-      final s = const Sm2Scheduler()
-          .schedule(WordSchedule.initial(), AnswerQuality.almost, now: now);
+      final s = const Sm2Scheduler().schedule(
+        WordSchedule.initial(),
+        AnswerQuality.almost,
+        now: now,
+      );
       await repo.save(profile, 'cat', s, now: now);
       final back = (await repo.schedules(profile))['cat']!;
       expect(back.state, WordState.learning);
@@ -96,8 +111,11 @@ void main() {
 
     test('firstSeenAt is kept on later saves', () async {
       const sch = Sm2Scheduler();
-      var s =
-          sch.schedule(WordSchedule.initial(), AnswerQuality.knew, now: now);
+      var s = sch.schedule(
+        WordSchedule.initial(),
+        AnswerQuality.knew,
+        now: now,
+      );
       await repo.save(profile, 'cat', s, now: now);
       final later = now.add(const Duration(days: 1));
       s = sch.schedule(s, AnswerQuality.knew, now: later);
@@ -113,8 +131,11 @@ void main() {
       await repo.save(
         profile,
         'cat',
-        const Sm2Scheduler()
-            .schedule(WordSchedule.initial(), AnswerQuality.knew, now: now),
+        const Sm2Scheduler().schedule(
+          WordSchedule.initial(),
+          AnswerQuality.knew,
+          now: now,
+        ),
         now: now,
       );
       expect(await repo.schedules(other), isEmpty);
@@ -123,12 +144,13 @@ void main() {
     test('deleting a profile deletes its progress and logs', () async {
       await repo.save(profile, 'cat', WordSchedule.initial(), now: now);
       await repo.logSession(
-          profileId: profile,
-          startedAt: now,
-          durationSec: 60,
-          reviewed: 1,
-          newLearned: 1,
-          accuracy: 1);
+        profileId: profile,
+        startedAt: now,
+        durationSec: 60,
+        reviewed: 1,
+        newLearned: 1,
+        accuracy: 1,
+      );
       await ProfileRepository(db).delete(profile);
       expect(await db.select(db.wordProgress).get(), isEmpty);
       expect(await db.select(db.sessionLogs).get(), isEmpty);
@@ -144,70 +166,69 @@ void main() {
 
   group('ProfileRepository + ParentRepository persistence', () {
     test(
-        'two profiles keep independent settings across restarts; PIN is hashed',
-        () async {
-      final dir = await Directory.systemTemp.createTemp('voca');
-      addTearDown(() => dir.delete(recursive: true));
-      final file = File('${dir.path}/app.sqlite');
+      'two profiles keep independent settings across restarts; PIN is hashed',
+      () async {
+        final dir = await Directory.systemTemp.createTemp('voca');
+        addTearDown(() => dir.delete(recursive: true));
+        final file = File('${dir.path}/app.sqlite');
 
-      var db = AppDatabase(NativeDatabase(file));
-      final profiles = ProfileRepository(db);
-      final a = await profiles.create(kid, now: now);
-      final b = await profiles.create(
-        const ProfileDraft(
-          name: 'Na',
-          avatar: '🦄',
-          age: 9,
-          level: CefrLevel.a1,
-          dailyNewWords: 12,
-          translationMode: TranslationMode.tap,
-          swipeKnownRight: false,
-        ),
-        now: now,
-      );
-      await ParentRepository(db, hasher: const PinHasher(iterations: 10))
-          .create('2468', now: now);
-      await db.close();
+        var db = AppDatabase(NativeDatabase(file));
+        final profiles = ProfileRepository(db);
+        final a = await profiles.create(kid, now: now);
+        final b = await profiles.create(
+          const ProfileDraft(
+            name: 'Na',
+            avatar: '🦄',
+            age: 9,
+            level: CefrLevel.a1,
+            dailyNewWords: 12,
+            translationMode: TranslationMode.tap,
+            swipeKnownRight: false,
+          ),
+          now: now,
+        );
+        await ParentRepository(
+          db,
+          hasher: const PinHasher(iterations: 10),
+        ).create('2468', now: now);
+        await db.close();
 
-      db = AppDatabase(NativeDatabase(file)); // "restart"
-      addTearDown(db.close);
-      final ra = (await ProfileRepository(db).get(a))!;
-      final rb = (await ProfileRepository(db).get(b))!;
-      expect([
-        ra.name,
-        ra.age,
-        ra.currentLevel,
-        ra.dailyNewWords,
-        ra.swipeKnownRight
-      ], [
-        'Bi',
-        6,
-        'preA1',
-        5,
-        true
-      ]);
-      expect([
-        rb.name,
-        rb.age,
-        rb.currentLevel,
-        rb.dailyNewWords,
-        rb.swipeKnownRight
-      ], [
-        'Na',
-        9,
-        'A1',
-        12,
-        false
-      ]);
-      expect(rb.translationMode, TranslationMode.tap);
+        db = AppDatabase(NativeDatabase(file)); // "restart"
+        addTearDown(db.close);
+        final ra = (await ProfileRepository(db).get(a))!;
+        final rb = (await ProfileRepository(db).get(b))!;
+        expect(
+          [
+            ra.name,
+            ra.age,
+            ra.currentLevel,
+            ra.dailyNewWords,
+            ra.swipeKnownRight,
+          ],
+          ['Bi', 6, 'preA1', 5, true],
+        );
+        expect(
+          [
+            rb.name,
+            rb.age,
+            rb.currentLevel,
+            rb.dailyNewWords,
+            rb.swipeKnownRight,
+          ],
+          ['Na', 9, 'A1', 12, false],
+        );
+        expect(rb.translationMode, TranslationMode.tap);
 
-      final parent =
-          ParentRepository(db, hasher: const PinHasher(iterations: 10));
-      final account = (await parent.account())!;
-      expect(account.pinHash, isNot(contains('2468')));
-      expect(await parent.verifyPin('2468'), isTrue);
-      expect(await parent.verifyPin('0000'), isFalse);
-    });
+        final parent = ParentRepository(
+          db,
+          hasher: const PinHasher(iterations: 10),
+        );
+        final account = (await parent.account())!;
+        expect(account.pinHash, isNot(contains('2468')));
+        expect(await parent.verifyPin('2468'), isTrue);
+        expect(await parent.verifyPin('0000'), isFalse);
+      },
+    );
 
     test('update changes only that profile', () async {
       final db = memoryDb();
@@ -216,7 +237,9 @@ void main() {
       final a = await repo.create(kid, now: now);
       final b = await repo.create(kid, now: now);
       await repo.update(
-          a, ProfileDraft.fromRow((await repo.get(a))!).copyWithName('Bo'));
+        a,
+        ProfileDraft.fromRow((await repo.get(a))!).copyWithName('Bo'),
+      );
       expect((await repo.get(a))!.name, 'Bo');
       expect((await repo.get(b))!.name, 'Bi');
     });
@@ -226,8 +249,10 @@ void main() {
     test('rejects bad PINs and a second account', () async {
       final db = memoryDb();
       addTearDown(db.close);
-      final repo =
-          ParentRepository(db, hasher: const PinHasher(iterations: 10));
+      final repo = ParentRepository(
+        db,
+        hasher: const PinHasher(iterations: 10),
+      );
       expect(() => repo.create('12', now: now), throwsArgumentError);
       await repo.create('1234', now: now);
       expect(() => repo.create('5678', now: now), throwsStateError);
@@ -236,8 +261,10 @@ void main() {
     test('changePin replaces the PIN', () async {
       final db = memoryDb();
       addTearDown(db.close);
-      final repo =
-          ParentRepository(db, hasher: const PinHasher(iterations: 10));
+      final repo = ParentRepository(
+        db,
+        hasher: const PinHasher(iterations: 10),
+      );
       await repo.create('1234', now: now);
       await repo.changePin('9999');
       expect(await repo.verifyPin('1234'), isFalse);
@@ -248,14 +275,14 @@ void main() {
 
 extension on ProfileDraft {
   ProfileDraft copyWithName(String name) => ProfileDraft(
-        name: name,
-        avatar: avatar,
-        age: age,
-        level: level,
-        nativeLanguage: nativeLanguage,
-        dailyNewWords: dailyNewWords,
-        dailyMinutes: dailyMinutes,
-        translationMode: translationMode,
-        swipeKnownRight: swipeKnownRight,
-      );
+    name: name,
+    avatar: avatar,
+    age: age,
+    level: level,
+    nativeLanguage: nativeLanguage,
+    dailyNewWords: dailyNewWords,
+    dailyMinutes: dailyMinutes,
+    translationMode: translationMode,
+    swipeKnownRight: swipeKnownRight,
+  );
 }

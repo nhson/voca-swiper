@@ -136,11 +136,11 @@ void main() {
 
   group('StudySession', () {
     StudySession session(List<String> words) => builder.build(
-          schedules: const {},
-          newWordIds: words,
-          dailyNewWords: 10,
-          now: now,
-        );
+      schedules: const {},
+      newWordIds: words,
+      dailyNewWords: 10,
+      now: now,
+    );
 
     test('walks the queue card by card', () {
       var s = session(['a', 'b']);

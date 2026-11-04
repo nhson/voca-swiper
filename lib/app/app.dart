@@ -1,42 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-import 'providers.dart';
+import 'router.dart';
+import 'theme.dart';
 
-/// Root widget. Routing (go_router) arrives with feat-005.
-class VocaSwiperApp extends StatelessWidget {
+class VocaSwiperApp extends StatefulWidget {
   const VocaSwiperApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Voca Swiper',
-      theme: ThemeData(colorSchemeSeed: Colors.orange, useMaterial3: true),
-      home: const _Home(),
-    );
-  }
+  State<VocaSwiperApp> createState() => _VocaSwiperAppState();
 }
 
-class _Home extends ConsumerWidget {
-  const _Home();
+class _VocaSwiperAppState extends State<VocaSwiperApp> {
+  late final GoRouter _router = buildRouter();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final count = ref.watch(wordCountProvider);
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Voca Swiper'),
-            Text(count.when(
-              data: (n) => '$n words ready',
-              loading: () => '…',
-              error: (e, _) => 'Error: $e',
-            )),
-          ],
-        ),
-      ),
-    );
+  void dispose() {
+    _router.dispose();
+    super.dispose();
   }
+
+  @override
+  Widget build(BuildContext context) => MaterialApp.router(
+    title: 'Voca Swiper',
+    theme: buildTheme(),
+    routerConfig: _router,
+  );
 }

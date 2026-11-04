@@ -46,8 +46,8 @@
       "dependencies": [
         "feat-004"
       ],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-04: ./init.sh green — analyze no issues, 78/78 tests. test/data/repositories_test.dart: two profiles keep independent settings across a file-DB restart; PIN stored salted+hashed, verify/changePin. test/features/profiles_flow_test.dart: first-run PIN setup → add child → picker; PIN gate rejects wrong PIN, locks on exit; editing one profile leaves the other; delete with confirm; picker opens child home. Device (Android API 37 emulator): fresh install → create PIN → add 'Bi' → force-stop + relaunch → profile still listed → PIN unlocks parent area."
     },
     {
       "id": "feat-006",

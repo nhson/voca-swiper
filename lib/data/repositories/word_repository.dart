@@ -44,14 +44,19 @@ class WordRepository {
   }
 
   /// Cards for [ids] in the same order; unknown ids are skipped.
-  Future<List<WordCard>> cards(List<String> ids,
-      {required String language}) async {
+  Future<List<WordCard>> cards(
+    List<String> ids, {
+    required String language,
+  }) async {
     if (ids.isEmpty) return const [];
-    final words =
-        await (db.select(db.words)..where((w) => w.id.isIn(ids))).get();
-    final translations = await (db.select(db.translations)
-          ..where((t) => t.wordId.isIn(ids) & t.languageCode.equals(language)))
-        .get();
+    final words = await (db.select(
+      db.words,
+    )..where((w) => w.id.isIn(ids))).get();
+    final translations =
+        await (db.select(db.translations)..where(
+              (t) => t.wordId.isIn(ids) & t.languageCode.equals(language),
+            ))
+            .get();
     final byId = {for (final w in words) w.id: w};
     final tr = {for (final t in translations) t.wordId: t.translation};
     return [

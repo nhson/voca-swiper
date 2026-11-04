@@ -32,9 +32,9 @@ class SessionBuilder {
     final fresh = newBudget <= 0
         ? const <String>[]
         : newWordIds
-            .where((id) => !schedules.containsKey(id) && seen.add(id))
-            .take(newBudget)
-            .toList();
+              .where((id) => !schedules.containsKey(id) && seen.add(id))
+              .take(newBudget)
+              .toList();
 
     return StudySession([
       for (final e in due) SessionCard(e.key, isNew: false),

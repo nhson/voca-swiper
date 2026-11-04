@@ -26,9 +26,13 @@ void main() {
     final importer = WordBankImporter(db);
     await importer.importIfNewer(bankJson([w('a')], version: 2));
     expect(
-        await importer.importIfNewer(bankJson([w('b')], version: 2)), isFalse);
+      await importer.importIfNewer(bankJson([w('b')], version: 2)),
+      isFalse,
+    );
     expect(
-        await importer.importIfNewer(bankJson([w('b')], version: 1)), isFalse);
+      await importer.importIfNewer(bankJson([w('b')], version: 1)),
+      isFalse,
+    );
     expect(await WordRepository(db).count(), 1);
   });
 
@@ -38,8 +42,9 @@ void main() {
     final importer = WordBankImporter(db);
     await importer.importIfNewer(bankJson([w('a', vi: 'old')], version: 1));
     expect(
-      await importer
-          .importIfNewer(bankJson([w('a', vi: 'new'), w('b')], version: 2)),
+      await importer.importIfNewer(
+        bankJson([w('a', vi: 'new'), w('b')], version: 2),
+      ),
       isTrue,
     );
     final cards = await WordRepository(db).cards(['a', 'b'], language: 'vi');

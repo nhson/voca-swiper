@@ -27,7 +27,7 @@ class SessionCard {
 ///   the retry is practice.
 class StudySession {
   StudySession(List<SessionCard> queue)
-      : this._(List.unmodifiable(queue), const {});
+    : this._(List.unmodifiable(queue), const {});
 
   StudySession._(this.queue, this.firstAnswers);
 
@@ -48,18 +48,17 @@ class StudySession {
     }
 
     final rest = queue.sublist(1);
-    final isMiss = quality == AnswerQuality.didntKnow ||
+    final isMiss =
+        quality == AnswerQuality.didntKnow ||
         quality == AnswerQuality.quizWrong;
-    final nextQueue = [
-      ...rest,
-      if (isMiss && !card.isRetry) card.asRetry(),
-    ];
+    final nextQueue = [...rest, if (isMiss && !card.isRetry) card.asRetry()];
 
     final answers = firstAnswers.containsKey(card.wordId)
         ? firstAnswers
-        : Map<String, AnswerQuality>.unmodifiable(
-            {...firstAnswers, card.wordId: quality},
-          );
+        : Map<String, AnswerQuality>.unmodifiable({
+            ...firstAnswers,
+            card.wordId: quality,
+          });
 
     return StudySession._(List.unmodifiable(nextQueue), answers);
   }

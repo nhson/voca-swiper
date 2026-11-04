@@ -21,10 +21,10 @@ enum CefrLevel {
     final byAge = age <= 6
         ? preA1
         : age <= 9
-            ? a1
-            : age <= 12
-                ? a2
-                : b1;
+        ? a1
+        : age <= 12
+        ? a2
+        : b1;
     return byAge.index <= maxAvailable.index ? byAge : maxAvailable;
   }
 }

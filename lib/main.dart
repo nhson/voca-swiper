@@ -13,9 +13,9 @@ const wordBankAsset = 'assets/word_bank/word_bank.json';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final db = AppDatabase(driftDatabase(name: 'voca_swiper'));
-  await WordBankImporter(db).importIfNewer(
-    await rootBundle.loadString(wordBankAsset),
-  );
+  await WordBankImporter(
+    db,
+  ).importIfNewer(await rootBundle.loadString(wordBankAsset));
   runApp(
     ProviderScope(
       overrides: [databaseProvider.overrideWithValue(db)],

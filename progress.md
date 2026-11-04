@@ -5,7 +5,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ## Current State
 
 **Last Updated:** 2026-11-04
-**Active Feature:** feat-005 — Parent account + child profiles
+**Active Feature:** none — feat-005 done; waiting for owner decision before feat-006
 **Branch:** main
 
 ### What's Done
@@ -19,15 +19,16 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] feat-002: SM-2 scheduler in `lib/core/srs/` (`Sm2Scheduler`, `WordSchedule`, `resolveAnswer`), 25 tests green
 - [x] feat-003: session builder in `lib/core/session/` (`SessionBuilder`, immutable `StudySession`, `SessionCard`), 43 tests green
 - [x] feat-004: Drift DB (`lib/data/db/`), repositories, `WordBankImporter`; content pipeline builds `assets/word_bank/word_bank.json` (392 Pre-A1 + A1 words, emoji pictures, draft Vietnamese); loads on device
+- [x] feat-005: first-run PIN setup, PIN gate (locks on exit), parent area, profile create/edit/delete/reset, profile picker, child home stub, go_router routes
 
 ### What's In Progress
 
-- [ ] feat-005: parent PIN gate, profiles CRUD, profile picker, routing
+- (none)
 
 ### What's Next
 
 1. ~~First git commit~~ done
-2. feat-005 → feat-006 → feat-007 → feat-008 (owner approved running through all features without check-ins)
+2. Owner decides how to proceed; next in order is feat-006 (swipe flashcard session)
 
 ## Blockers / Risks
 
@@ -57,11 +58,19 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - **New-word order**: current level first, then lower levels, teaching order (rank) within a level; words above the child's age excluded.
 - **Defaults**: daily new words 5, daily minutes 10, level by age (4–6 Pre-A1, 7+ A1 — capped at A1 until more content), quiet hours 21:00–07:00, school hours Mon–Fri 07:30–16:30 blocked.
 
+- **feat-005 details**: PIN hashing runs in `Isolate.run` (10k SHA-256 rounds froze the UI for seconds in debug builds); widget tests inject `runInline`. Dart SDK constraint raised to ^3.9 (wildcard `_` params; newer formatter style). Parent-area links to Reminders and Progress are hidden until feat-007 / feat-008 add those screens.
+
 ## Evidence of Completion
 
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-04 — feat-005 Parent account + child profiles
+
+- Screens: setup, PIN gate, parent area, profile form, change PIN, profile picker, child home stub. Widget tests found two real bugs (setup replaced the nav stack so saving the first profile popped the last page; locking from a pop callback modified a provider mid-build) — both fixed.
+- Device walkthrough on Android emulator passed. `./init.sh` green, 78/78.
+- Owner asked to stop after this task and wait for a decision.
 
 ### 2026-11-04 — feat-004 Local database + word bank
 

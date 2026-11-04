@@ -4,7 +4,7 @@ publish_to: none
 version: 0.1.0+1
 
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.9.0
 
 # Runtime packages (flutter_riverpod, drift, go_router, flutter_card_swiper,
 # flutter_tts, flutter_local_notifications) are added by the feature that first

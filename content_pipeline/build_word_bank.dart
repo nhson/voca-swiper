@@ -19,6 +19,8 @@ void main() {
     ..createSync(recursive: true)
     ..writeAsStringSync(encodeWordBank(bank));
   final words = bank['words']! as List;
-  stdout.writeln('Wrote $outputPath: version ${bank['version']}, '
-      '${words.length} words');
+  stdout.writeln(
+    'Wrote $outputPath: version ${bank['version']}, '
+    '${words.length} words',
+  );
 }

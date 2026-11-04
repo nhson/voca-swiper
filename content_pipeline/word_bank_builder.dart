@@ -12,7 +12,8 @@ class WordBankBuildException implements Exception {
   WordBankBuildException(this.errors);
   final List<String> errors;
   @override
-  String toString() => 'Word bank has ${errors.length} error(s):\n'
+  String toString() =>
+      'Word bank has ${errors.length} error(s):\n'
       '${errors.map((e) => '  - $e').join('\n')}';
 }
 
@@ -56,7 +57,7 @@ Map<String, Object?> buildWordBank({
       definition,
       example,
       vi,
-      forms
+      forms,
     ] = r.f;
     final where = 'line ${r.line} ($text)';
 
@@ -74,9 +75,9 @@ Map<String, Object?> buildWordBank({
     if (definition.isEmpty) errors.add('$where: missing definition');
     if (example.isEmpty) errors.add('$where: missing example');
     if (vi.isEmpty) errors.add('$where: missing Vietnamese translation');
-    for (final token in RegExp(r"[a-z']+").allMatches(
-      '$text $definition $example'.toLowerCase(),
-    )) {
+    for (final token in RegExp(
+      r"[a-z']+",
+    ).allMatches('$text $definition $example'.toLowerCase())) {
       if (blocklist.contains(token.group(0))) {
         errors.add('$where: blocked word "${token.group(0)}"');
       }

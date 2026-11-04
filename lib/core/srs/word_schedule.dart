@@ -18,15 +18,15 @@ class WordSchedule {
 
   /// A word the profile has never answered.
   factory WordSchedule.initial() => const WordSchedule(
-        state: WordState.newWord,
-        easeFactor: defaultEase,
-        intervalDays: 0,
-        repetitions: 0,
-        nextReviewAt: null,
-        lastAnsweredAt: null,
-        correctCount: 0,
-        wrongCount: 0,
-      );
+    state: WordState.newWord,
+    easeFactor: defaultEase,
+    intervalDays: 0,
+    repetitions: 0,
+    nextReviewAt: null,
+    lastAnsweredAt: null,
+    correctCount: 0,
+    wrongCount: 0,
+  );
 
   static const double defaultEase = 2.5;
 
@@ -59,17 +59,16 @@ class WordSchedule {
     DateTime? lastAnsweredAt,
     int? correctCount,
     int? wrongCount,
-  }) =>
-      WordSchedule(
-        state: state ?? this.state,
-        easeFactor: easeFactor ?? this.easeFactor,
-        intervalDays: intervalDays ?? this.intervalDays,
-        repetitions: repetitions ?? this.repetitions,
-        nextReviewAt: nextReviewAt ?? this.nextReviewAt,
-        lastAnsweredAt: lastAnsweredAt ?? this.lastAnsweredAt,
-        correctCount: correctCount ?? this.correctCount,
-        wrongCount: wrongCount ?? this.wrongCount,
-      );
+  }) => WordSchedule(
+    state: state ?? this.state,
+    easeFactor: easeFactor ?? this.easeFactor,
+    intervalDays: intervalDays ?? this.intervalDays,
+    repetitions: repetitions ?? this.repetitions,
+    nextReviewAt: nextReviewAt ?? this.nextReviewAt,
+    lastAnsweredAt: lastAnsweredAt ?? this.lastAnsweredAt,
+    correctCount: correctCount ?? this.correctCount,
+    wrongCount: wrongCount ?? this.wrongCount,
+  );
 
   @override
   String toString() =>

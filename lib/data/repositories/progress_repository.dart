@@ -9,9 +9,9 @@ class ProgressRepository {
   final AppDatabase db;
 
   Future<Map<String, WordSchedule>> schedules(int profileId) async {
-    final rows = await (db.select(db.wordProgress)
-          ..where((p) => p.profileId.equals(profileId)))
-        .get();
+    final rows = await (db.select(
+      db.wordProgress,
+    )..where((p) => p.profileId.equals(profileId))).get();
     return {for (final r in rows) r.wordId: _toSchedule(r)};
   }
 
@@ -21,8 +21,10 @@ class ProgressRepository {
     final count = p.wordId.count();
     final q = db.selectOnly(p)
       ..addColumns([count])
-      ..where(p.profileId.equals(profileId) &
-          p.firstSeenAt.isBiggerOrEqualValue(since));
+      ..where(
+        p.profileId.equals(profileId) &
+            p.firstSeenAt.isBiggerOrEqualValue(since),
+      );
     return q.map((r) => r.read(count)!).getSingle();
   }
 
@@ -47,10 +49,13 @@ class ProgressRepository {
       wrongCount: s.wrongCount,
       firstSeenAt: now,
     );
-    return db.into(db.wordProgress).insert(
+    return db
+        .into(db.wordProgress)
+        .insert(
           row,
-          onConflict:
-              DoUpdate((_) => row.copyWith(firstSeenAt: const Value.absent())),
+          onConflict: DoUpdate(
+            (_) => row.copyWith(firstSeenAt: const Value.absent()),
+          ),
         );
   }
 
@@ -61,36 +66,38 @@ class ProgressRepository {
     required int reviewed,
     required int newLearned,
     required double accuracy,
-  }) =>
-      db.into(db.sessionLogs).insert(
-            SessionLogsCompanion.insert(
-              profileId: profileId,
-              startedAt: startedAt,
-              durationSec: durationSec,
-              reviewed: reviewed,
-              newLearned: newLearned,
-              accuracy: accuracy,
-            ),
-          );
+  }) => db
+      .into(db.sessionLogs)
+      .insert(
+        SessionLogsCompanion.insert(
+          profileId: profileId,
+          startedAt: startedAt,
+          durationSec: durationSec,
+          reviewed: reviewed,
+          newLearned: newLearned,
+          accuracy: accuracy,
+        ),
+      );
 
   /// Next review date of every word the profile has progress on (UTC), for
   /// reminder planning.
   Future<List<DateTime>> reviewDates(int profileId) async {
-    final rows = await (db.select(db.wordProgress)
-          ..where((p) =>
-              p.profileId.equals(profileId) & p.nextReviewAt.isNotNull()))
-        .get();
+    final rows =
+        await (db.select(db.wordProgress)..where(
+              (p) => p.profileId.equals(profileId) & p.nextReviewAt.isNotNull(),
+            ))
+            .get();
     return [for (final r in rows) r.nextReviewAt!.toUtc()];
   }
 
   static WordSchedule _toSchedule(WordProgressRow r) => WordSchedule(
-        state: r.state,
-        easeFactor: r.easeFactor,
-        intervalDays: r.intervalDays,
-        repetitions: r.repetitions,
-        nextReviewAt: r.nextReviewAt?.toUtc(),
-        lastAnsweredAt: r.lastAnsweredAt?.toUtc(),
-        correctCount: r.correctCount,
-        wrongCount: r.wrongCount,
-      );
+    state: r.state,
+    easeFactor: r.easeFactor,
+    intervalDays: r.intervalDays,
+    repetitions: r.repetitions,
+    nextReviewAt: r.nextReviewAt?.toUtc(),
+    lastAnsweredAt: r.lastAnsweredAt?.toUtc(),
+    correctCount: r.correctCount,
+    wrongCount: r.wrongCount,
+  );
 }

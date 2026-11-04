@@ -13,17 +13,19 @@ final databaseProvider = Provider<AppDatabase>(
 
 /// Clock seam so tests control "now". Always UTC.
 final clockProvider = Provider<DateTime Function()>(
-  (ref) => () => DateTime.now().toUtc(),
+  (ref) =>
+      () => DateTime.now().toUtc(),
 );
 
-final wordRepositoryProvider =
-    Provider((ref) => WordRepository(ref.watch(databaseProvider)));
-final progressRepositoryProvider =
-    Provider((ref) => ProgressRepository(ref.watch(databaseProvider)));
-final profileRepositoryProvider =
-    Provider((ref) => ProfileRepository(ref.watch(databaseProvider)));
-final parentRepositoryProvider =
-    Provider((ref) => ParentRepository(ref.watch(databaseProvider)));
-
-final wordCountProvider =
-    FutureProvider<int>((ref) => ref.watch(wordRepositoryProvider).count());
+final wordRepositoryProvider = Provider(
+  (ref) => WordRepository(ref.watch(databaseProvider)),
+);
+final progressRepositoryProvider = Provider(
+  (ref) => ProgressRepository(ref.watch(databaseProvider)),
+);
+final profileRepositoryProvider = Provider(
+  (ref) => ProfileRepository(ref.watch(databaseProvider)),
+);
+final parentRepositoryProvider = Provider(
+  (ref) => ParentRepository(ref.watch(databaseProvider)),
+);

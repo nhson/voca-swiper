@@ -1,13 +1,30 @@
+import 'dart:isolate';
+
 import 'package:drift/drift.dart';
 
 import '../../core/security/pin_hasher.dart';
 import '../db/app_database.dart';
 
+/// Runs CPU-heavy work (PIN hashing) off the UI isolate.
+typedef HeavyRunner = Future<T> Function<T>(T Function() work);
+
+Future<T> _isolateRun<T>(T Function() work) => Isolate.run(work);
+
+/// Runs work inline; for tests, where a real isolate can't be awaited.
+Future<T> runInline<T>(T Function() work) async => work();
+
 class ParentRepository {
-  ParentRepository(this.db, {this.hasher = const PinHasher()});
+  ParentRepository(this.db, {this.hasher = const PinHasher(), HeavyRunner? run})
+    : _run = run ?? _isolateRun;
 
   final AppDatabase db;
   final PinHasher hasher;
+  final HeavyRunner _run;
+
+  Future<String> _hash(String pin, String salt) {
+    final h = hasher;
+    return _run(() => h.hash(pin, salt));
+  }
 
   Future<ParentAccountRow?> account() =>
       (db.select(db.parentAccounts)..limit(1)).getSingleOrNull();
@@ -21,9 +38,12 @@ class ParentRepository {
     }
     if (await account() != null) throw StateError('Parent account exists');
     final salt = hasher.newSalt();
-    await db.into(db.parentAccounts).insert(
+    final pinHash = await _hash(pin, salt);
+    await db
+        .into(db.parentAccounts)
+        .insert(
           ParentAccountsCompanion.insert(
-            pinHash: hasher.hash(pin, salt),
+            pinHash: pinHash,
             pinSalt: salt,
             createdAt: now,
           ),
@@ -32,7 +52,9 @@ class ParentRepository {
 
   Future<bool> verifyPin(String pin) async {
     final a = await account();
-    return a != null && hasher.verify(pin, salt: a.pinSalt, hash: a.pinHash);
+    if (a == null) return false;
+    final h = hasher;
+    return _run(() => h.verify(pin, salt: a.pinSalt, hash: a.pinHash));
   }
 
   Future<void> changePin(String newPin) async {
@@ -41,11 +63,9 @@ class ParentRepository {
     }
     final a = (await account())!;
     final salt = hasher.newSalt();
+    final pinHash = await _hash(newPin, salt);
     await (db.update(db.parentAccounts)..where((p) => p.id.equals(a.id))).write(
-      ParentAccountsCompanion(
-        pinHash: Value(hasher.hash(newPin, salt)),
-        pinSalt: Value(salt),
-      ),
+      ParentAccountsCompanion(pinHash: Value(pinHash), pinSalt: Value(salt)),
     );
   }
 

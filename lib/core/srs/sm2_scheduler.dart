@@ -43,10 +43,12 @@ class Sm2Scheduler {
       2 => secondIntervalDays,
       _ => (s.intervalDays * s.easeFactor).round(),
     };
-    final interval =
-        almost ? _atLeastOne((ladder * almostIntervalFactor).round()) : ladder;
-    final ease =
-        almost ? _lowerEase(s.easeFactor, almostEasePenalty) : s.easeFactor;
+    final interval = almost
+        ? _atLeastOne((ladder * almostIntervalFactor).round())
+        : ladder;
+    final ease = almost
+        ? _lowerEase(s.easeFactor, almostEasePenalty)
+        : s.easeFactor;
 
     return s.copyWith(
       state: _stateAfterPass(interval, repetitions),
@@ -60,14 +62,14 @@ class Sm2Scheduler {
   }
 
   WordSchedule _miss(WordSchedule s, DateTime now) => s.copyWith(
-        state: WordState.learning,
-        easeFactor: _lowerEase(s.easeFactor, missEasePenalty),
-        intervalDays: firstIntervalDays,
-        repetitions: 0,
-        nextReviewAt: now.add(const Duration(days: firstIntervalDays)),
-        lastAnsweredAt: now,
-        wrongCount: s.wrongCount + 1,
-      );
+    state: WordState.learning,
+    easeFactor: _lowerEase(s.easeFactor, missEasePenalty),
+    intervalDays: firstIntervalDays,
+    repetitions: 0,
+    nextReviewAt: now.add(const Duration(days: firstIntervalDays)),
+    lastAnsweredAt: now,
+    wrongCount: s.wrongCount + 1,
+  );
 
   static WordState _stateAfterPass(int interval, int repetitions) {
     if (interval >= masteredIntervalDays) return WordState.mastered;
