@@ -5,7 +5,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ## Current State
 
 **Last Updated:** 2026-11-04
-**Active Feature:** feat-002 — SM-2 scheduler (domain)
+**Active Feature:** none — next up feat-003 (Session builder) or feat-004 (Local database)
 **Branch:** main
 
 ### What's Done
@@ -16,26 +16,44 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] Flutter 3.47.9 (Dart 3.13.7) installed via `brew install --cask flutter`; `flutter create` generated `android/` + `ios/`
 - [x] Android: Android Studio + SDK installed; cmdline-tools added at `~/Library/Android/sdk/cmdline-tools/latest`; debug APK built and app boots on emulator `Medium_Phone_API_37.0` (API 37)
 - [x] iOS: Xcode 27.2 + CocoaPods 1.17.0; app boots on iPhone 18 Pro simulator (iOS 27.2) → feat-001 done
+- [x] feat-002: SM-2 scheduler in `lib/core/srs/` (`Sm2Scheduler`, `WordSchedule`, `resolveAnswer`), 25 tests green
 
 ### What's In Progress
 
-- [ ] feat-002: SM-2 scheduler, test-first in `lib/core/srs/`
+- (none)
 
 ### What's Next
 
 1. ~~First git commit~~ done
-2. feat-002 (SM-2 scheduler), then feat-003 / feat-004
+2. feat-003 (Session builder, test-first) — depends on feat-002 only
+3. feat-004 (Drift DB + word bank) — can run independently
 
 ## Blockers / Risks
 
 - [ ] System Java is 1.8; sdkmanager needs `JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"` (Flutter/Gradle already use Android Studio's JDK).
 - [ ] Word-list licensing (Cambridge YLE, Oxford 3000) unconfirmed — fine for family use, check before store release.
 
+## Decisions Made
+
+- **SM-2 details not fixed by SPEC** (feat-002):
+  - "Knew it" leaves ease unchanged (SPEC only says misses lower it).
+  - "Almost": a pass; interval = max(1, round(knew-interval × 0.6)); ease −0.15.
+  - Miss (didn't know / quiz wrong): repetitions → 0, Learning, 1 day, ease −0.2.
+  - Ease floor 1.3 (SM-2 standard); ease rounded to 2 decimals.
+  - State after a pass: Mastered if interval ≥ 21d, else Review if repetitions ≥ 2, else Learning.
+  - Same-session re-queue of misses belongs to the session builder (feat-003), not the scheduler.
+  - Times are UTC; callers pass `now`.
+
 ## Evidence of Completion
 
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-04 — feat-002 SM-2 scheduler
+
+- Tests written first (red: missing files), then `word_schedule.dart` + `sm2_scheduler.dart`. `./init.sh` green, 25/25 tests.
+- Added `core_purity_test.dart` to enforce the pure-Dart rule for `lib/core`.
 
 ### 2026-11-04 — Android licenses
 

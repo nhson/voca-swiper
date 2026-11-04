@@ -16,8 +16,8 @@
       "dependencies": [
         "feat-001"
       ],
-      "status": "in-progress",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-04: ./init.sh green — format 0 changed, analyze no issues, 25/25 tests (test/core/srs/sm2_scheduler_test.dart covers New→Learning, Learning→Review, Review→Mastered, Mastered stays, miss→Learning from any state, 1→3→×ease ladder, almost < knew, ease floor 1.3, quiz-wrong override; test/core/core_purity_test.dart guards lib/core imports)."
     },
     {
       "id": "feat-003",
