@@ -36,8 +36,8 @@
       "dependencies": [
         "feat-001"
       ],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-04: ./init.sh green — analyze no issues, 74/74 tests (word_bank_builder_test: asset up to date, validation errors; word_bank_importer_test: import/version skip/upsert; repositories_test: candidates order + filters, progress roundtrip + firstSeenAt, cascade delete, file DB restart persistence). Device: app imports bundled bank on Android API 37 emulator and shows '392 words ready'. Decision: docs/adr/0001."
     },
     {
       "id": "feat-005",

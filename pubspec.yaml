@@ -10,13 +10,23 @@ environment:
 # flutter_tts, flutter_local_notifications) are added by the feature that first
 # needs them, with versions checked on pub.dev at that time (see docs/SPEC.md).
 dependencies:
+  crypto: ^3.0.8
+  drift: ^2.35.3
+  drift_flutter: ^0.3.1
   flutter:
     sdk: flutter
+  flutter_riverpod: ^3.4.3
+  go_router: ^18.1.2
+  path_provider: ^2.1.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  drift_dev: ^2.35.2
+  build_runner: ^2.17.1
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/word_bank/word_bank.json

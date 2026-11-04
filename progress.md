@@ -5,7 +5,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ## Current State
 
 **Last Updated:** 2026-11-04
-**Active Feature:** none — next up feat-004 (Local database + word bank)
+**Active Feature:** feat-005 — Parent account + child profiles
 **Branch:** main
 
 ### What's Done
@@ -18,19 +18,20 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] iOS: Xcode 27.2 + CocoaPods 1.17.0; app boots on iPhone 18 Pro simulator (iOS 27.2) → feat-001 done
 - [x] feat-002: SM-2 scheduler in `lib/core/srs/` (`Sm2Scheduler`, `WordSchedule`, `resolveAnswer`), 25 tests green
 - [x] feat-003: session builder in `lib/core/session/` (`SessionBuilder`, immutable `StudySession`, `SessionCard`), 43 tests green
+- [x] feat-004: Drift DB (`lib/data/db/`), repositories, `WordBankImporter`; content pipeline builds `assets/word_bank/word_bank.json` (392 Pre-A1 + A1 words, emoji pictures, draft Vietnamese); loads on device
 
 ### What's In Progress
 
-- (none)
+- [ ] feat-005: parent PIN gate, profiles CRUD, profile picker, routing
 
 ### What's Next
 
 1. ~~First git commit~~ done
-2. feat-004 (Drift DB + word bank) — needs content source decision for the Pre-A1/A1 list
-3. feat-005 (Parent account + profiles) after feat-004
+2. feat-005 → feat-006 → feat-007 → feat-008 (owner approved running through all features without check-ins)
 
 ## Blockers / Risks
 
+- [ ] Vietnamese translations in `content_pipeline/source/words.psv` are drafts — owner/native speaker review needed.
 - [ ] Review backlog: reviews are uncapped, so a child back after a long break could face a very long session. Revisit with a review cap once real usage data exists.
 - [ ] System Java is 1.8; sdkmanager needs `JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"` (Flutter/Gradle already use Android Studio's JDK).
 - [ ] Word-list licensing (Cambridge YLE, Oxford 3000) unconfirmed — fine for family use, check before store release.
@@ -52,11 +53,20 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
   - Daily new-word goal is per day across sessions (`newIntroducedToday`).
   - Due reviews are not capped.
 
+- **Content for MVP** (feat-004, owner delegated): 392-word starter bank written in-house from Starters/Movers topic areas (not copied lists); pictures are system emoji (no licensing, no assets); Vietnamese translations are drafts to review. Bank format: ADR 0001.
+- **New-word order**: current level first, then lower levels, teaching order (rank) within a level; words above the child's age excluded.
+- **Defaults**: daily new words 5, daily minutes 10, level by age (4–6 Pre-A1, 7+ A1 — capped at A1 until more content), quiet hours 21:00–07:00, school hours Mon–Fri 07:30–16:30 blocked.
+
 ## Evidence of Completion
 
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-04 — feat-004 Local database + word bank
+
+- Added flutter_riverpod 3.4, go_router 18.1, drift 2.35 (+drift_flutter, drift_dev, build_runner), path_provider, crypto.
+- Content pipeline + 392-word bank, Drift schema, repositories, importer, PIN hasher. `./init.sh` green, 74/74. Verified on Android emulator.
 
 ### 2026-11-04 — feat-003 Session builder
 

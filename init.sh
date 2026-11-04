@@ -6,8 +6,8 @@ echo "=== Harness Initialization ==="
 echo "=== flutter pub get ==="
 flutter pub get
 
-echo "=== dart format --output=none --set-exit-if-changed lib test ==="
-dart format --output=none --set-exit-if-changed lib test
+echo "=== dart format --output=none --set-exit-if-changed lib test content_pipeline ==="
+dart format --output=none --set-exit-if-changed lib test content_pipeline
 
 echo "=== flutter analyze ==="
 flutter analyze

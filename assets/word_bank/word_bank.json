@@ -1,0 +1,8087 @@
+{
+ "version": 1,
+ "words": [
+  {
+   "id": "cat",
+   "text": "cat",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐱",
+   "definition": "A small furry pet that says meow.",
+   "examples": [
+    "The cat is sleeping."
+   ],
+   "translations": {
+    "vi": "con mèo"
+   },
+   "forms": {},
+   "rank": 1
+  },
+  {
+   "id": "dog",
+   "text": "dog",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐶",
+   "definition": "A pet that barks and wags its tail.",
+   "examples": [
+    "My dog likes to run."
+   ],
+   "translations": {
+    "vi": "con chó"
+   },
+   "forms": {},
+   "rank": 2
+  },
+  {
+   "id": "bird",
+   "text": "bird",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐦",
+   "definition": "An animal with wings and feathers.",
+   "examples": [
+    "The bird can fly."
+   ],
+   "translations": {
+    "vi": "con chim"
+   },
+   "forms": {},
+   "rank": 3
+  },
+  {
+   "id": "fish",
+   "text": "fish",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐟",
+   "definition": "An animal that lives and swims in water.",
+   "examples": [
+    "The fish is in the water."
+   ],
+   "translations": {
+    "vi": "con cá"
+   },
+   "forms": {
+    "plural": "fish"
+   },
+   "rank": 4
+  },
+  {
+   "id": "horse",
+   "text": "horse",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐴",
+   "definition": "A big animal that people can ride.",
+   "examples": [
+    "The horse runs fast."
+   ],
+   "translations": {
+    "vi": "con ngựa"
+   },
+   "forms": {},
+   "rank": 5
+  },
+  {
+   "id": "cow",
+   "text": "cow",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐮",
+   "definition": "A farm animal that gives us milk.",
+   "examples": [
+    "The cow says moo."
+   ],
+   "translations": {
+    "vi": "con bò"
+   },
+   "forms": {},
+   "rank": 6
+  },
+  {
+   "id": "pig",
+   "text": "pig",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐷",
+   "definition": "A pink farm animal with a curly tail.",
+   "examples": [
+    "The pig is in the mud."
+   ],
+   "translations": {
+    "vi": "con lợn (con heo)"
+   },
+   "forms": {},
+   "rank": 7
+  },
+  {
+   "id": "sheep",
+   "text": "sheep",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐑",
+   "definition": "A farm animal with soft white wool.",
+   "examples": [
+    "The sheep is eating grass."
+   ],
+   "translations": {
+    "vi": "con cừu"
+   },
+   "forms": {
+    "plural": "sheep"
+   },
+   "rank": 8
+  },
+  {
+   "id": "duck",
+   "text": "duck",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🦆",
+   "definition": "A bird that swims and says quack.",
+   "examples": [
+    "The duck is on the pond."
+   ],
+   "translations": {
+    "vi": "con vịt"
+   },
+   "forms": {},
+   "rank": 9
+  },
+  {
+   "id": "chicken",
+   "text": "chicken",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐔",
+   "definition": "A farm bird that lays eggs.",
+   "examples": [
+    "The chicken has two eggs."
+   ],
+   "translations": {
+    "vi": "con gà"
+   },
+   "forms": {},
+   "rank": 10
+  },
+  {
+   "id": "rabbit",
+   "text": "rabbit",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐰",
+   "definition": "A small animal with long ears.",
+   "examples": [
+    "The rabbit eats a carrot."
+   ],
+   "translations": {
+    "vi": "con thỏ"
+   },
+   "forms": {},
+   "rank": 11
+  },
+  {
+   "id": "mouse",
+   "text": "mouse",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐭",
+   "definition": "A very small animal with a long tail.",
+   "examples": [
+    "The mouse is under the table."
+   ],
+   "translations": {
+    "vi": "con chuột"
+   },
+   "forms": {
+    "plural": "mice"
+   },
+   "rank": 12
+  },
+  {
+   "id": "frog",
+   "text": "frog",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐸",
+   "definition": "A small green animal that jumps.",
+   "examples": [
+    "The frog jumps into the water."
+   ],
+   "translations": {
+    "vi": "con ếch"
+   },
+   "forms": {},
+   "rank": 13
+  },
+  {
+   "id": "lion",
+   "text": "lion",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🦁",
+   "definition": "A big wild cat that roars.",
+   "examples": [
+    "The lion is very strong."
+   ],
+   "translations": {
+    "vi": "con sư tử"
+   },
+   "forms": {},
+   "rank": 14
+  },
+  {
+   "id": "tiger",
+   "text": "tiger",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐯",
+   "definition": "A big wild cat with orange and black stripes.",
+   "examples": [
+    "The tiger is at the zoo."
+   ],
+   "translations": {
+    "vi": "con hổ"
+   },
+   "forms": {},
+   "rank": 15
+  },
+  {
+   "id": "elephant",
+   "text": "elephant",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐘",
+   "definition": "A very big grey animal with a long nose.",
+   "examples": [
+    "The elephant has big ears."
+   ],
+   "translations": {
+    "vi": "con voi"
+   },
+   "forms": {},
+   "rank": 16
+  },
+  {
+   "id": "monkey",
+   "text": "monkey",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐵",
+   "definition": "A clever animal that climbs trees.",
+   "examples": [
+    "The monkey eats a banana."
+   ],
+   "translations": {
+    "vi": "con khỉ"
+   },
+   "forms": {},
+   "rank": 17
+  },
+  {
+   "id": "bear",
+   "text": "bear",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐻",
+   "definition": "A big strong animal with thick fur.",
+   "examples": [
+    "The bear is brown."
+   ],
+   "translations": {
+    "vi": "con gấu"
+   },
+   "forms": {},
+   "rank": 18
+  },
+  {
+   "id": "snake",
+   "text": "snake",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐍",
+   "definition": "A long animal with no legs.",
+   "examples": [
+    "The snake is long and green."
+   ],
+   "translations": {
+    "vi": "con rắn"
+   },
+   "forms": {},
+   "rank": 19
+  },
+  {
+   "id": "giraffe",
+   "text": "giraffe",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🦒",
+   "definition": "A tall animal with a very long neck.",
+   "examples": [
+    "The giraffe eats leaves from the tree."
+   ],
+   "translations": {
+    "vi": "con hươu cao cổ"
+   },
+   "forms": {},
+   "rank": 20
+  },
+  {
+   "id": "zebra",
+   "text": "zebra",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🦓",
+   "definition": "An animal like a horse with black and white stripes.",
+   "examples": [
+    "The zebra has stripes."
+   ],
+   "translations": {
+    "vi": "con ngựa vằn"
+   },
+   "forms": {},
+   "rank": 21
+  },
+  {
+   "id": "crocodile",
+   "text": "crocodile",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐊",
+   "definition": "A big animal with a long mouth and sharp teeth.",
+   "examples": [
+    "The crocodile is in the river."
+   ],
+   "translations": {
+    "vi": "con cá sấu"
+   },
+   "forms": {},
+   "rank": 22
+  },
+  {
+   "id": "hippo",
+   "text": "hippo",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🦛",
+   "definition": "A very big animal that likes water.",
+   "examples": [
+    "The hippo is in the river."
+   ],
+   "translations": {
+    "vi": "con hà mã"
+   },
+   "forms": {},
+   "rank": 23
+  },
+  {
+   "id": "spider",
+   "text": "spider",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🕷️",
+   "definition": "A small animal with eight legs.",
+   "examples": [
+    "The spider is on the wall."
+   ],
+   "translations": {
+    "vi": "con nhện"
+   },
+   "forms": {},
+   "rank": 24
+  },
+  {
+   "id": "bee",
+   "text": "bee",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐝",
+   "definition": "A small flying insect that makes honey.",
+   "examples": [
+    "The bee is on the flower."
+   ],
+   "translations": {
+    "vi": "con ong"
+   },
+   "forms": {},
+   "rank": 25
+  },
+  {
+   "id": "butterfly",
+   "text": "butterfly",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🦋",
+   "definition": "An insect with big colourful wings.",
+   "examples": [
+    "The butterfly is beautiful."
+   ],
+   "translations": {
+    "vi": "con bướm"
+   },
+   "forms": {},
+   "rank": 26
+  },
+  {
+   "id": "goat",
+   "text": "goat",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐐",
+   "definition": "A farm animal with horns.",
+   "examples": [
+    "The goat is eating."
+   ],
+   "translations": {
+    "vi": "con dê"
+   },
+   "forms": {},
+   "rank": 27
+  },
+  {
+   "id": "red",
+   "text": "red",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "colors"
+   ],
+   "emoji": "🔴",
+   "definition": "The colour of strawberries.",
+   "examples": [
+    "My hat is red."
+   ],
+   "translations": {
+    "vi": "màu đỏ"
+   },
+   "forms": {},
+   "rank": 28
+  },
+  {
+   "id": "blue",
+   "text": "blue",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "colors"
+   ],
+   "emoji": "🔵",
+   "definition": "The colour of the sky.",
+   "examples": [
+    "The sky is blue."
+   ],
+   "translations": {
+    "vi": "màu xanh dương"
+   },
+   "forms": {},
+   "rank": 29
+  },
+  {
+   "id": "green",
+   "text": "green",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "colors"
+   ],
+   "emoji": "🟢",
+   "definition": "The colour of grass.",
+   "examples": [
+    "The leaf is green."
+   ],
+   "translations": {
+    "vi": "màu xanh lá"
+   },
+   "forms": {},
+   "rank": 30
+  },
+  {
+   "id": "yellow",
+   "text": "yellow",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "colors"
+   ],
+   "emoji": "🟡",
+   "definition": "The colour of the sun and bananas.",
+   "examples": [
+    "The banana is yellow."
+   ],
+   "translations": {
+    "vi": "màu vàng"
+   },
+   "forms": {},
+   "rank": 31
+  },
+  {
+   "id": "orange-adjective",
+   "text": "orange",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "colors"
+   ],
+   "emoji": "🟠",
+   "definition": "The colour between red and yellow.",
+   "examples": [
+    "The ball is orange."
+   ],
+   "translations": {
+    "vi": "màu cam"
+   },
+   "forms": {},
+   "rank": 32
+  },
+  {
+   "id": "pink",
+   "text": "pink",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "colors"
+   ],
+   "emoji": "🩷",
+   "definition": "A light red colour.",
+   "examples": [
+    "She has a pink dress."
+   ],
+   "translations": {
+    "vi": "màu hồng"
+   },
+   "forms": {},
+   "rank": 33
+  },
+  {
+   "id": "purple",
+   "text": "purple",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "colors"
+   ],
+   "emoji": "🟣",
+   "definition": "A colour made from red and blue.",
+   "examples": [
+    "The grapes are purple."
+   ],
+   "translations": {
+    "vi": "màu tím"
+   },
+   "forms": {},
+   "rank": 34
+  },
+  {
+   "id": "black",
+   "text": "black",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "colors"
+   ],
+   "emoji": "⚫",
+   "definition": "The colour of the night.",
+   "examples": [
+    "The cat is black."
+   ],
+   "translations": {
+    "vi": "màu đen"
+   },
+   "forms": {},
+   "rank": 35
+  },
+  {
+   "id": "white",
+   "text": "white",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "colors"
+   ],
+   "emoji": "⚪",
+   "definition": "The colour of snow and milk.",
+   "examples": [
+    "The cloud is white."
+   ],
+   "translations": {
+    "vi": "màu trắng"
+   },
+   "forms": {},
+   "rank": 36
+  },
+  {
+   "id": "brown",
+   "text": "brown",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "colors"
+   ],
+   "emoji": "🟤",
+   "definition": "The colour of chocolate.",
+   "examples": [
+    "The bear is brown."
+   ],
+   "translations": {
+    "vi": "màu nâu"
+   },
+   "forms": {},
+   "rank": 37
+  },
+  {
+   "id": "grey",
+   "text": "grey",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "colors"
+   ],
+   "emoji": "🩶",
+   "definition": "The colour of an elephant.",
+   "examples": [
+    "The elephant is grey."
+   ],
+   "translations": {
+    "vi": "màu xám"
+   },
+   "forms": {},
+   "rank": 38
+  },
+  {
+   "id": "one",
+   "text": "one",
+   "pos": "number",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "numbers"
+   ],
+   "emoji": "1️⃣",
+   "definition": "The number 1.",
+   "examples": [
+    "I have one nose."
+   ],
+   "translations": {
+    "vi": "một"
+   },
+   "forms": {},
+   "rank": 39
+  },
+  {
+   "id": "two",
+   "text": "two",
+   "pos": "number",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "numbers"
+   ],
+   "emoji": "2️⃣",
+   "definition": "The number 2.",
+   "examples": [
+    "I have two eyes."
+   ],
+   "translations": {
+    "vi": "hai"
+   },
+   "forms": {},
+   "rank": 40
+  },
+  {
+   "id": "three",
+   "text": "three",
+   "pos": "number",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "numbers"
+   ],
+   "emoji": "3️⃣",
+   "definition": "The number 3.",
+   "examples": [
+    "There are three cats."
+   ],
+   "translations": {
+    "vi": "ba"
+   },
+   "forms": {},
+   "rank": 41
+  },
+  {
+   "id": "four",
+   "text": "four",
+   "pos": "number",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "numbers"
+   ],
+   "emoji": "4️⃣",
+   "definition": "The number 4.",
+   "examples": [
+    "A dog has four legs."
+   ],
+   "translations": {
+    "vi": "bốn"
+   },
+   "forms": {},
+   "rank": 42
+  },
+  {
+   "id": "five",
+   "text": "five",
+   "pos": "number",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "numbers"
+   ],
+   "emoji": "5️⃣",
+   "definition": "The number 5.",
+   "examples": [
+    "I have five fingers on my hand."
+   ],
+   "translations": {
+    "vi": "năm"
+   },
+   "forms": {},
+   "rank": 43
+  },
+  {
+   "id": "six",
+   "text": "six",
+   "pos": "number",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "numbers"
+   ],
+   "emoji": "6️⃣",
+   "definition": "The number 6.",
+   "examples": [
+    "I am six years old."
+   ],
+   "translations": {
+    "vi": "sáu"
+   },
+   "forms": {},
+   "rank": 44
+  },
+  {
+   "id": "seven",
+   "text": "seven",
+   "pos": "number",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "numbers"
+   ],
+   "emoji": "7️⃣",
+   "definition": "The number 7.",
+   "examples": [
+    "There are seven days in a week."
+   ],
+   "translations": {
+    "vi": "bảy"
+   },
+   "forms": {},
+   "rank": 45
+  },
+  {
+   "id": "eight",
+   "text": "eight",
+   "pos": "number",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "numbers"
+   ],
+   "emoji": "8️⃣",
+   "definition": "The number 8.",
+   "examples": [
+    "A spider has eight legs."
+   ],
+   "translations": {
+    "vi": "tám"
+   },
+   "forms": {},
+   "rank": 46
+  },
+  {
+   "id": "nine",
+   "text": "nine",
+   "pos": "number",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "numbers"
+   ],
+   "emoji": "9️⃣",
+   "definition": "The number 9.",
+   "examples": [
+    "Nine birds are in the tree."
+   ],
+   "translations": {
+    "vi": "chín"
+   },
+   "forms": {},
+   "rank": 47
+  },
+  {
+   "id": "ten",
+   "text": "ten",
+   "pos": "number",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "numbers"
+   ],
+   "emoji": "🔟",
+   "definition": "The number 10.",
+   "examples": [
+    "I have ten toes."
+   ],
+   "translations": {
+    "vi": "mười"
+   },
+   "forms": {},
+   "rank": 48
+  },
+  {
+   "id": "mother",
+   "text": "mother",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "family"
+   ],
+   "emoji": "👩",
+   "definition": "Your mum; a woman who has a child.",
+   "examples": [
+    "My mother is kind."
+   ],
+   "translations": {
+    "vi": "mẹ"
+   },
+   "forms": {},
+   "rank": 49
+  },
+  {
+   "id": "father",
+   "text": "father",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "family"
+   ],
+   "emoji": "👨",
+   "definition": "Your dad; a man who has a child.",
+   "examples": [
+    "My father is tall."
+   ],
+   "translations": {
+    "vi": "bố (ba)"
+   },
+   "forms": {},
+   "rank": 50
+  },
+  {
+   "id": "brother",
+   "text": "brother",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "family"
+   ],
+   "emoji": "👦",
+   "definition": "A boy who has the same parents as you.",
+   "examples": [
+    "My brother is ten."
+   ],
+   "translations": {
+    "vi": "anh trai, em trai"
+   },
+   "forms": {},
+   "rank": 51
+  },
+  {
+   "id": "sister",
+   "text": "sister",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "family"
+   ],
+   "emoji": "👧",
+   "definition": "A girl who has the same parents as you.",
+   "examples": [
+    "My sister likes to sing."
+   ],
+   "translations": {
+    "vi": "chị gái, em gái"
+   },
+   "forms": {},
+   "rank": 52
+  },
+  {
+   "id": "baby",
+   "text": "baby",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "family"
+   ],
+   "emoji": "👶",
+   "definition": "A very young child.",
+   "examples": [
+    "The baby is sleeping."
+   ],
+   "translations": {
+    "vi": "em bé"
+   },
+   "forms": {
+    "plural": "babies"
+   },
+   "rank": 53
+  },
+  {
+   "id": "grandmother",
+   "text": "grandmother",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "family"
+   ],
+   "emoji": "👵",
+   "definition": "The mother of your mum or dad.",
+   "examples": [
+    "My grandmother makes cake."
+   ],
+   "translations": {
+    "vi": "bà"
+   },
+   "forms": {},
+   "rank": 54
+  },
+  {
+   "id": "grandfather",
+   "text": "grandfather",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "family"
+   ],
+   "emoji": "👴",
+   "definition": "The father of your mum or dad.",
+   "examples": [
+    "My grandfather reads books."
+   ],
+   "translations": {
+    "vi": "ông"
+   },
+   "forms": {},
+   "rank": 55
+  },
+  {
+   "id": "family",
+   "text": "family",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "family"
+   ],
+   "emoji": "👨‍👩‍👧",
+   "definition": "Your parents, brothers, sisters and you.",
+   "examples": [
+    "I love my family."
+   ],
+   "translations": {
+    "vi": "gia đình"
+   },
+   "forms": {
+    "plural": "families"
+   },
+   "rank": 56
+  },
+  {
+   "id": "friend",
+   "text": "friend",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "family",
+    "people"
+   ],
+   "emoji": "🧑‍🤝‍🧑",
+   "definition": "Someone you like and play with.",
+   "examples": [
+    "Tom is my friend."
+   ],
+   "translations": {
+    "vi": "bạn"
+   },
+   "forms": {},
+   "rank": 57
+  },
+  {
+   "id": "boy",
+   "text": "boy",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "people"
+   ],
+   "emoji": "👦",
+   "definition": "A young male child.",
+   "examples": [
+    "The boy is running."
+   ],
+   "translations": {
+    "vi": "cậu bé"
+   },
+   "forms": {},
+   "rank": 58
+  },
+  {
+   "id": "girl",
+   "text": "girl",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "people"
+   ],
+   "emoji": "👧",
+   "definition": "A young female child.",
+   "examples": [
+    "The girl has long hair."
+   ],
+   "translations": {
+    "vi": "cô bé"
+   },
+   "forms": {},
+   "rank": 59
+  },
+  {
+   "id": "man",
+   "text": "man",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "people"
+   ],
+   "emoji": "👨",
+   "definition": "A grown-up male person.",
+   "examples": [
+    "The man is tall."
+   ],
+   "translations": {
+    "vi": "người đàn ông"
+   },
+   "forms": {
+    "plural": "men"
+   },
+   "rank": 60
+  },
+  {
+   "id": "woman",
+   "text": "woman",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "people"
+   ],
+   "emoji": "👩",
+   "definition": "A grown-up female person.",
+   "examples": [
+    "The woman is a teacher."
+   ],
+   "translations": {
+    "vi": "người phụ nữ"
+   },
+   "forms": {
+    "plural": "women"
+   },
+   "rank": 61
+  },
+  {
+   "id": "child",
+   "text": "child",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "people"
+   ],
+   "emoji": "🧒",
+   "definition": "A young person.",
+   "examples": [
+    "The child is playing."
+   ],
+   "translations": {
+    "vi": "đứa trẻ"
+   },
+   "forms": {
+    "plural": "children"
+   },
+   "rank": 62
+  },
+  {
+   "id": "head",
+   "text": "head",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "body"
+   ],
+   "emoji": "🙂",
+   "definition": "The top part of your body, with your face and hair.",
+   "examples": [
+    "Put the hat on your head."
+   ],
+   "translations": {
+    "vi": "cái đầu"
+   },
+   "forms": {},
+   "rank": 63
+  },
+  {
+   "id": "face",
+   "text": "face",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "body"
+   ],
+   "emoji": "😀",
+   "definition": "The front of your head.",
+   "examples": [
+    "She has a happy face."
+   ],
+   "translations": {
+    "vi": "khuôn mặt"
+   },
+   "forms": {},
+   "rank": 64
+  },
+  {
+   "id": "eye",
+   "text": "eye",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "body"
+   ],
+   "emoji": "👁️",
+   "definition": "You see with your eyes.",
+   "examples": [
+    "I have two eyes."
+   ],
+   "translations": {
+    "vi": "mắt"
+   },
+   "forms": {},
+   "rank": 65
+  },
+  {
+   "id": "ear",
+   "text": "ear",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "body"
+   ],
+   "emoji": "👂",
+   "definition": "You hear with your ears.",
+   "examples": [
+    "The rabbit has long ears."
+   ],
+   "translations": {
+    "vi": "tai"
+   },
+   "forms": {},
+   "rank": 66
+  },
+  {
+   "id": "nose",
+   "text": "nose",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "body"
+   ],
+   "emoji": "👃",
+   "definition": "You smell with your nose.",
+   "examples": [
+    "The elephant has a long nose."
+   ],
+   "translations": {
+    "vi": "mũi"
+   },
+   "forms": {},
+   "rank": 67
+  },
+  {
+   "id": "mouth",
+   "text": "mouth",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "body"
+   ],
+   "emoji": "👄",
+   "definition": "You eat and talk with your mouth.",
+   "examples": [
+    "Open your mouth."
+   ],
+   "translations": {
+    "vi": "miệng"
+   },
+   "forms": {},
+   "rank": 68
+  },
+  {
+   "id": "hand",
+   "text": "hand",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "body"
+   ],
+   "emoji": "✋",
+   "definition": "The part at the end of your arm.",
+   "examples": [
+    "Wash your hands."
+   ],
+   "translations": {
+    "vi": "bàn tay"
+   },
+   "forms": {},
+   "rank": 69
+  },
+  {
+   "id": "arm",
+   "text": "arm",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "body"
+   ],
+   "emoji": "💪",
+   "definition": "The part of your body between your shoulder and your hand.",
+   "examples": [
+    "My arm is strong."
+   ],
+   "translations": {
+    "vi": "cánh tay"
+   },
+   "forms": {},
+   "rank": 70
+  },
+  {
+   "id": "leg",
+   "text": "leg",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "body"
+   ],
+   "emoji": "🦵",
+   "definition": "You walk with your legs.",
+   "examples": [
+    "A bird has two legs."
+   ],
+   "translations": {
+    "vi": "chân"
+   },
+   "forms": {},
+   "rank": 71
+  },
+  {
+   "id": "foot",
+   "text": "foot",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "body"
+   ],
+   "emoji": "🦶",
+   "definition": "The part at the end of your leg.",
+   "examples": [
+    "Put your shoe on your foot."
+   ],
+   "translations": {
+    "vi": "bàn chân"
+   },
+   "forms": {
+    "plural": "feet"
+   },
+   "rank": 72
+  },
+  {
+   "id": "hair",
+   "text": "hair",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "body"
+   ],
+   "emoji": "💇",
+   "definition": "It grows on your head.",
+   "examples": [
+    "She has black hair."
+   ],
+   "translations": {
+    "vi": "tóc"
+   },
+   "forms": {},
+   "rank": 73
+  },
+  {
+   "id": "tooth",
+   "text": "tooth",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "body"
+   ],
+   "emoji": "🦷",
+   "definition": "One of the hard white things in your mouth.",
+   "examples": [
+    "Brush your teeth."
+   ],
+   "translations": {
+    "vi": "răng"
+   },
+   "forms": {
+    "plural": "teeth"
+   },
+   "rank": 74
+  },
+  {
+   "id": "apple",
+   "text": "apple",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍎",
+   "definition": "A round red or green fruit.",
+   "examples": [
+    "I eat an apple every day."
+   ],
+   "translations": {
+    "vi": "quả táo"
+   },
+   "forms": {},
+   "rank": 75
+  },
+  {
+   "id": "banana",
+   "text": "banana",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍌",
+   "definition": "A long yellow fruit.",
+   "examples": [
+    "Monkeys like bananas."
+   ],
+   "translations": {
+    "vi": "quả chuối"
+   },
+   "forms": {},
+   "rank": 76
+  },
+  {
+   "id": "orange-noun",
+   "text": "orange",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍊",
+   "definition": "A round fruit with an orange skin.",
+   "examples": [
+    "I eat an orange."
+   ],
+   "translations": {
+    "vi": "quả cam"
+   },
+   "forms": {},
+   "rank": 77
+  },
+  {
+   "id": "grape",
+   "text": "grape",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍇",
+   "definition": "A small round fruit that grows in bunches.",
+   "examples": [
+    "The grapes are sweet."
+   ],
+   "translations": {
+    "vi": "quả nho"
+   },
+   "forms": {},
+   "rank": 78
+  },
+  {
+   "id": "mango",
+   "text": "mango",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🥭",
+   "definition": "A sweet yellow fruit.",
+   "examples": [
+    "I love mango."
+   ],
+   "translations": {
+    "vi": "quả xoài"
+   },
+   "forms": {
+    "plural": "mangoes"
+   },
+   "rank": 79
+  },
+  {
+   "id": "watermelon",
+   "text": "watermelon",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍉",
+   "definition": "A big green fruit that is red inside.",
+   "examples": [
+    "Watermelon is sweet."
+   ],
+   "translations": {
+    "vi": "quả dưa hấu"
+   },
+   "forms": {},
+   "rank": 80
+  },
+  {
+   "id": "pear",
+   "text": "pear",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍐",
+   "definition": "A green fruit that is round at the bottom.",
+   "examples": [
+    "The pear is juicy."
+   ],
+   "translations": {
+    "vi": "quả lê"
+   },
+   "forms": {},
+   "rank": 81
+  },
+  {
+   "id": "cake",
+   "text": "cake",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🎂",
+   "definition": "A sweet food for birthdays and parties.",
+   "examples": [
+    "We eat cake at the party."
+   ],
+   "translations": {
+    "vi": "bánh ngọt"
+   },
+   "forms": {},
+   "rank": 82
+  },
+  {
+   "id": "bread",
+   "text": "bread",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍞",
+   "definition": "A food made from flour and baked.",
+   "examples": [
+    "I have bread for breakfast."
+   ],
+   "translations": {
+    "vi": "bánh mì"
+   },
+   "forms": {},
+   "rank": 83
+  },
+  {
+   "id": "rice",
+   "text": "rice",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍚",
+   "definition": "Small white grains that we cook and eat.",
+   "examples": [
+    "We eat rice every day."
+   ],
+   "translations": {
+    "vi": "cơm, gạo"
+   },
+   "forms": {},
+   "rank": 84
+  },
+  {
+   "id": "egg",
+   "text": "egg",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🥚",
+   "definition": "A round thing that a chicken lays.",
+   "examples": [
+    "I eat an egg."
+   ],
+   "translations": {
+    "vi": "quả trứng"
+   },
+   "forms": {},
+   "rank": 85
+  },
+  {
+   "id": "milk",
+   "text": "milk",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🥛",
+   "definition": "A white drink that comes from cows.",
+   "examples": [
+    "I drink milk."
+   ],
+   "translations": {
+    "vi": "sữa"
+   },
+   "forms": {},
+   "rank": 86
+  },
+  {
+   "id": "water",
+   "text": "water",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food",
+    "nature"
+   ],
+   "emoji": "💧",
+   "definition": "The clear drink we need every day.",
+   "examples": [
+    "Drink some water."
+   ],
+   "translations": {
+    "vi": "nước"
+   },
+   "forms": {},
+   "rank": 87
+  },
+  {
+   "id": "juice",
+   "text": "juice",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🧃",
+   "definition": "A drink made from fruit.",
+   "examples": [
+    "Apple juice is my favourite."
+   ],
+   "translations": {
+    "vi": "nước ép"
+   },
+   "forms": {},
+   "rank": 88
+  },
+  {
+   "id": "ice-cream",
+   "text": "ice cream",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍦",
+   "definition": "A cold sweet food.",
+   "examples": [
+    "I like chocolate ice cream."
+   ],
+   "translations": {
+    "vi": "kem"
+   },
+   "forms": {},
+   "rank": 89
+  },
+  {
+   "id": "chocolate",
+   "text": "chocolate",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍫",
+   "definition": "A sweet brown food.",
+   "examples": [
+    "Chocolate is sweet."
+   ],
+   "translations": {
+    "vi": "sô-cô-la"
+   },
+   "forms": {},
+   "rank": 90
+  },
+  {
+   "id": "burger",
+   "text": "burger",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍔",
+   "definition": "Meat inside a round piece of bread.",
+   "examples": [
+    "He eats a burger."
+   ],
+   "translations": {
+    "vi": "bánh hamburger"
+   },
+   "forms": {},
+   "rank": 91
+  },
+  {
+   "id": "carrot",
+   "text": "carrot",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🥕",
+   "definition": "A long orange vegetable.",
+   "examples": [
+    "Rabbits eat carrots."
+   ],
+   "translations": {
+    "vi": "củ cà rốt"
+   },
+   "forms": {},
+   "rank": 92
+  },
+  {
+   "id": "tomato",
+   "text": "tomato",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍅",
+   "definition": "A round red fruit we eat like a vegetable.",
+   "examples": [
+    "The tomato is red."
+   ],
+   "translations": {
+    "vi": "quả cà chua"
+   },
+   "forms": {
+    "plural": "tomatoes"
+   },
+   "rank": 93
+  },
+  {
+   "id": "potato",
+   "text": "potato",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🥔",
+   "definition": "A vegetable that grows under the ground.",
+   "examples": [
+    "We cook potatoes."
+   ],
+   "translations": {
+    "vi": "củ khoai tây"
+   },
+   "forms": {
+    "plural": "potatoes"
+   },
+   "rank": 94
+  },
+  {
+   "id": "meat",
+   "text": "meat",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍖",
+   "definition": "Food that comes from animals.",
+   "examples": [
+    "The lion eats meat."
+   ],
+   "translations": {
+    "vi": "thịt"
+   },
+   "forms": {},
+   "rank": 95
+  },
+  {
+   "id": "candy",
+   "text": "candy",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍬",
+   "definition": "A small sweet food.",
+   "examples": [
+    "Too much candy is bad for your teeth."
+   ],
+   "translations": {
+    "vi": "kẹo"
+   },
+   "forms": {
+    "plural": "candies"
+   },
+   "rank": 96
+  },
+  {
+   "id": "cookie",
+   "text": "cookie",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍪",
+   "definition": "A small sweet baked food.",
+   "examples": [
+    "Can I have a cookie?"
+   ],
+   "translations": {
+    "vi": "bánh quy"
+   },
+   "forms": {},
+   "rank": 97
+  },
+  {
+   "id": "shirt",
+   "text": "shirt",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "clothes"
+   ],
+   "emoji": "👔",
+   "definition": "Clothes for the top of your body, with buttons.",
+   "examples": [
+    "Dad has a blue shirt."
+   ],
+   "translations": {
+    "vi": "áo sơ mi"
+   },
+   "forms": {},
+   "rank": 98
+  },
+  {
+   "id": "t-shirt",
+   "text": "T-shirt",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "clothes"
+   ],
+   "emoji": "👕",
+   "definition": "A shirt with short sleeves and no buttons.",
+   "examples": [
+    "My T-shirt is red."
+   ],
+   "translations": {
+    "vi": "áo phông (áo thun)"
+   },
+   "forms": {},
+   "rank": 99
+  },
+  {
+   "id": "dress",
+   "text": "dress",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "clothes"
+   ],
+   "emoji": "👗",
+   "definition": "Clothes for a girl, with a top and skirt together.",
+   "examples": [
+    "She has a pink dress."
+   ],
+   "translations": {
+    "vi": "váy liền"
+   },
+   "forms": {
+    "plural": "dresses"
+   },
+   "rank": 100
+  },
+  {
+   "id": "skirt",
+   "text": "skirt",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "clothes"
+   ],
+   "emoji": null,
+   "definition": "Clothes that hang down from the waist.",
+   "examples": [
+    "Her skirt is blue."
+   ],
+   "translations": {
+    "vi": "chân váy"
+   },
+   "forms": {},
+   "rank": 101
+  },
+  {
+   "id": "trousers",
+   "text": "trousers",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "clothes"
+   ],
+   "emoji": "👖",
+   "definition": "Clothes that cover each of your legs.",
+   "examples": [
+    "My trousers are long."
+   ],
+   "translations": {
+    "vi": "quần dài"
+   },
+   "forms": {},
+   "rank": 102
+  },
+  {
+   "id": "shoe",
+   "text": "shoe",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "clothes"
+   ],
+   "emoji": "👟",
+   "definition": "You wear shoes on your feet.",
+   "examples": [
+    "Put on your shoes."
+   ],
+   "translations": {
+    "vi": "giày"
+   },
+   "forms": {},
+   "rank": 103
+  },
+  {
+   "id": "sock",
+   "text": "sock",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "clothes"
+   ],
+   "emoji": "🧦",
+   "definition": "You wear socks on your feet, under your shoes.",
+   "examples": [
+    "My socks are white."
+   ],
+   "translations": {
+    "vi": "tất (vớ)"
+   },
+   "forms": {},
+   "rank": 104
+  },
+  {
+   "id": "hat",
+   "text": "hat",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "clothes"
+   ],
+   "emoji": "👒",
+   "definition": "You wear a hat on your head.",
+   "examples": [
+    "The hat is big."
+   ],
+   "translations": {
+    "vi": "mũ (nón)"
+   },
+   "forms": {},
+   "rank": 105
+  },
+  {
+   "id": "jacket",
+   "text": "jacket",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "clothes"
+   ],
+   "emoji": "🧥",
+   "definition": "A short coat.",
+   "examples": [
+    "Wear your jacket. It is cold."
+   ],
+   "translations": {
+    "vi": "áo khoác"
+   },
+   "forms": {},
+   "rank": 106
+  },
+  {
+   "id": "bag",
+   "text": "bag",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "school",
+    "things"
+   ],
+   "emoji": "🎒",
+   "definition": "You carry things in a bag.",
+   "examples": [
+    "My books are in my bag."
+   ],
+   "translations": {
+    "vi": "cái cặp, cái túi"
+   },
+   "forms": {},
+   "rank": 107
+  },
+  {
+   "id": "house",
+   "text": "house",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "home"
+   ],
+   "emoji": "🏠",
+   "definition": "A building where people live.",
+   "examples": [
+    "My house is big."
+   ],
+   "translations": {
+    "vi": "ngôi nhà"
+   },
+   "forms": {},
+   "rank": 108
+  },
+  {
+   "id": "door",
+   "text": "door",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "home"
+   ],
+   "emoji": "🚪",
+   "definition": "You open it to go into a room.",
+   "examples": [
+    "Close the door, please."
+   ],
+   "translations": {
+    "vi": "cửa ra vào"
+   },
+   "forms": {},
+   "rank": 109
+  },
+  {
+   "id": "window",
+   "text": "window",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "home"
+   ],
+   "emoji": "🪟",
+   "definition": "Glass in a wall so you can see outside.",
+   "examples": [
+    "Look out of the window."
+   ],
+   "translations": {
+    "vi": "cửa sổ"
+   },
+   "forms": {},
+   "rank": 110
+  },
+  {
+   "id": "bed",
+   "text": "bed",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "home"
+   ],
+   "emoji": "🛏️",
+   "definition": "You sleep in a bed.",
+   "examples": [
+    "It is time for bed."
+   ],
+   "translations": {
+    "vi": "cái giường"
+   },
+   "forms": {},
+   "rank": 111
+  },
+  {
+   "id": "table",
+   "text": "table",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "home"
+   ],
+   "emoji": null,
+   "definition": "A piece of furniture with a flat top and legs.",
+   "examples": [
+    "The cake is on the table."
+   ],
+   "translations": {
+    "vi": "cái bàn"
+   },
+   "forms": {},
+   "rank": 112
+  },
+  {
+   "id": "chair",
+   "text": "chair",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "home"
+   ],
+   "emoji": "🪑",
+   "definition": "You sit on a chair.",
+   "examples": [
+    "Sit on the chair."
+   ],
+   "translations": {
+    "vi": "cái ghế"
+   },
+   "forms": {},
+   "rank": 113
+  },
+  {
+   "id": "room",
+   "text": "room",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "home"
+   ],
+   "emoji": null,
+   "definition": "A part of a house with walls and a door.",
+   "examples": [
+    "This is my room."
+   ],
+   "translations": {
+    "vi": "căn phòng"
+   },
+   "forms": {},
+   "rank": 114
+  },
+  {
+   "id": "kitchen",
+   "text": "kitchen",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "home"
+   ],
+   "emoji": "🍳",
+   "definition": "The room where you cook.",
+   "examples": [
+    "Mum is in the kitchen."
+   ],
+   "translations": {
+    "vi": "nhà bếp"
+   },
+   "forms": {},
+   "rank": 115
+  },
+  {
+   "id": "bathroom",
+   "text": "bathroom",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "home"
+   ],
+   "emoji": "🛁",
+   "definition": "The room where you wash.",
+   "examples": [
+    "The bathroom is upstairs."
+   ],
+   "translations": {
+    "vi": "phòng tắm"
+   },
+   "forms": {},
+   "rank": 116
+  },
+  {
+   "id": "garden",
+   "text": "garden",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "home",
+    "nature"
+   ],
+   "emoji": "🏡",
+   "definition": "Land next to a house with flowers and grass.",
+   "examples": [
+    "We play in the garden."
+   ],
+   "translations": {
+    "vi": "khu vườn"
+   },
+   "forms": {},
+   "rank": 117
+  },
+  {
+   "id": "sofa",
+   "text": "sofa",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "home"
+   ],
+   "emoji": "🛋️",
+   "definition": "A long soft seat for two or more people.",
+   "examples": [
+    "The cat is on the sofa."
+   ],
+   "translations": {
+    "vi": "ghế sô-pha"
+   },
+   "forms": {},
+   "rank": 118
+  },
+  {
+   "id": "clock",
+   "text": "clock",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "home",
+    "time"
+   ],
+   "emoji": "🕐",
+   "definition": "It shows you the time.",
+   "examples": [
+    "The clock is on the wall."
+   ],
+   "translations": {
+    "vi": "đồng hồ"
+   },
+   "forms": {},
+   "rank": 119
+  },
+  {
+   "id": "phone",
+   "text": "phone",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "📱",
+   "definition": "You use it to talk to people far away.",
+   "examples": [
+    "Mum is on the phone."
+   ],
+   "translations": {
+    "vi": "điện thoại"
+   },
+   "forms": {},
+   "rank": 120
+  },
+  {
+   "id": "television",
+   "text": "television",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "home"
+   ],
+   "emoji": "📺",
+   "definition": "You watch shows on it.",
+   "examples": [
+    "We watch television."
+   ],
+   "translations": {
+    "vi": "ti vi"
+   },
+   "forms": {},
+   "rank": 121
+  },
+  {
+   "id": "box",
+   "text": "box",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "📦",
+   "definition": "A container with flat sides.",
+   "examples": [
+    "The toys are in the box."
+   ],
+   "translations": {
+    "vi": "cái hộp"
+   },
+   "forms": {
+    "plural": "boxes"
+   },
+   "rank": 122
+  },
+  {
+   "id": "school",
+   "text": "school",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "school",
+    "places"
+   ],
+   "emoji": "🏫",
+   "definition": "A place where children learn.",
+   "examples": [
+    "I go to school."
+   ],
+   "translations": {
+    "vi": "trường học"
+   },
+   "forms": {},
+   "rank": 123
+  },
+  {
+   "id": "teacher",
+   "text": "teacher",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "school",
+    "jobs"
+   ],
+   "emoji": "🧑‍🏫",
+   "definition": "A person who helps you learn.",
+   "examples": [
+    "My teacher is nice."
+   ],
+   "translations": {
+    "vi": "giáo viên"
+   },
+   "forms": {},
+   "rank": 124
+  },
+  {
+   "id": "pen",
+   "text": "pen",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "school"
+   ],
+   "emoji": "🖊️",
+   "definition": "You write with ink using it.",
+   "examples": [
+    "I write with a pen."
+   ],
+   "translations": {
+    "vi": "bút mực"
+   },
+   "forms": {},
+   "rank": 125
+  },
+  {
+   "id": "pencil",
+   "text": "pencil",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "school"
+   ],
+   "emoji": "✏️",
+   "definition": "You write and draw with it.",
+   "examples": [
+    "My pencil is yellow."
+   ],
+   "translations": {
+    "vi": "bút chì"
+   },
+   "forms": {},
+   "rank": 126
+  },
+  {
+   "id": "book",
+   "text": "book",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "school"
+   ],
+   "emoji": "📕",
+   "definition": "You read it; it has pages.",
+   "examples": [
+    "I read a book."
+   ],
+   "translations": {
+    "vi": "quyển sách"
+   },
+   "forms": {},
+   "rank": 127
+  },
+  {
+   "id": "ruler",
+   "text": "ruler",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "school"
+   ],
+   "emoji": "📏",
+   "definition": "You draw straight lines with it.",
+   "examples": [
+    "Use a ruler."
+   ],
+   "translations": {
+    "vi": "thước kẻ"
+   },
+   "forms": {},
+   "rank": 128
+  },
+  {
+   "id": "eraser",
+   "text": "eraser",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "school"
+   ],
+   "emoji": null,
+   "definition": "You use it to clean pencil marks.",
+   "examples": [
+    "Can I use your eraser?"
+   ],
+   "translations": {
+    "vi": "cục tẩy"
+   },
+   "forms": {},
+   "rank": 129
+  },
+  {
+   "id": "desk",
+   "text": "desk",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "school"
+   ],
+   "emoji": null,
+   "definition": "A table for working at school.",
+   "examples": [
+    "My book is on my desk."
+   ],
+   "translations": {
+    "vi": "bàn học"
+   },
+   "forms": {},
+   "rank": 130
+  },
+  {
+   "id": "classroom",
+   "text": "classroom",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "school"
+   ],
+   "emoji": null,
+   "definition": "A room in a school where you learn.",
+   "examples": [
+    "Our classroom is big."
+   ],
+   "translations": {
+    "vi": "lớp học"
+   },
+   "forms": {},
+   "rank": 131
+  },
+  {
+   "id": "paper",
+   "text": "paper",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "school"
+   ],
+   "emoji": "📄",
+   "definition": "You write and draw on it.",
+   "examples": [
+    "Draw on the paper."
+   ],
+   "translations": {
+    "vi": "giấy"
+   },
+   "forms": {},
+   "rank": 132
+  },
+  {
+   "id": "ball",
+   "text": "ball",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "toys"
+   ],
+   "emoji": "⚽",
+   "definition": "A round toy you throw or kick.",
+   "examples": [
+    "Kick the ball!"
+   ],
+   "translations": {
+    "vi": "quả bóng"
+   },
+   "forms": {},
+   "rank": 133
+  },
+  {
+   "id": "doll",
+   "text": "doll",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "toys"
+   ],
+   "emoji": "🪆",
+   "definition": "A toy that looks like a person.",
+   "examples": [
+    "She plays with her doll."
+   ],
+   "translations": {
+    "vi": "búp bê"
+   },
+   "forms": {},
+   "rank": 134
+  },
+  {
+   "id": "kite",
+   "text": "kite",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "toys"
+   ],
+   "emoji": "🪁",
+   "definition": "A toy that flies in the wind.",
+   "examples": [
+    "We fly a kite."
+   ],
+   "translations": {
+    "vi": "con diều"
+   },
+   "forms": {},
+   "rank": 135
+  },
+  {
+   "id": "toy",
+   "text": "toy",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "toys"
+   ],
+   "emoji": "🧸",
+   "definition": "Something children play with.",
+   "examples": [
+    "This is my favourite toy."
+   ],
+   "translations": {
+    "vi": "đồ chơi"
+   },
+   "forms": {},
+   "rank": 136
+  },
+  {
+   "id": "robot",
+   "text": "robot",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "toys"
+   ],
+   "emoji": "🤖",
+   "definition": "A machine that can move and do jobs.",
+   "examples": [
+    "The robot can walk."
+   ],
+   "translations": {
+    "vi": "người máy (rô-bốt)"
+   },
+   "forms": {},
+   "rank": 137
+  },
+  {
+   "id": "teddy-bear",
+   "text": "teddy bear",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "toys"
+   ],
+   "emoji": "🧸",
+   "definition": "A soft toy bear.",
+   "examples": [
+    "I sleep with my teddy bear."
+   ],
+   "translations": {
+    "vi": "gấu bông"
+   },
+   "forms": {},
+   "rank": 138
+  },
+  {
+   "id": "game",
+   "text": "game",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "toys"
+   ],
+   "emoji": "🎲",
+   "definition": "Something you play for fun.",
+   "examples": [
+    "Let's play a game."
+   ],
+   "translations": {
+    "vi": "trò chơi"
+   },
+   "forms": {},
+   "rank": 139
+  },
+  {
+   "id": "bike",
+   "text": "bike",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "transport"
+   ],
+   "emoji": "🚲",
+   "definition": "It has two wheels and you ride it.",
+   "examples": [
+    "I ride my bike."
+   ],
+   "translations": {
+    "vi": "xe đạp"
+   },
+   "forms": {},
+   "rank": 140
+  },
+  {
+   "id": "car",
+   "text": "car",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "transport"
+   ],
+   "emoji": "🚗",
+   "definition": "You drive it on the road.",
+   "examples": [
+    "Dad has a red car."
+   ],
+   "translations": {
+    "vi": "ô tô"
+   },
+   "forms": {},
+   "rank": 141
+  },
+  {
+   "id": "bus",
+   "text": "bus",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "transport"
+   ],
+   "emoji": "🚌",
+   "definition": "A big car for many people.",
+   "examples": [
+    "We go to school by bus."
+   ],
+   "translations": {
+    "vi": "xe buýt"
+   },
+   "forms": {
+    "plural": "buses"
+   },
+   "rank": 142
+  },
+  {
+   "id": "train",
+   "text": "train",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "transport"
+   ],
+   "emoji": "🚆",
+   "definition": "It runs on tracks and carries many people.",
+   "examples": [
+    "The train is fast."
+   ],
+   "translations": {
+    "vi": "tàu hỏa"
+   },
+   "forms": {},
+   "rank": 143
+  },
+  {
+   "id": "boat",
+   "text": "boat",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "transport"
+   ],
+   "emoji": "⛵",
+   "definition": "It moves on water.",
+   "examples": [
+    "The boat is on the sea."
+   ],
+   "translations": {
+    "vi": "con thuyền"
+   },
+   "forms": {},
+   "rank": 144
+  },
+  {
+   "id": "plane",
+   "text": "plane",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "transport"
+   ],
+   "emoji": "✈️",
+   "definition": "It flies in the sky and carries people.",
+   "examples": [
+    "The plane is in the sky."
+   ],
+   "translations": {
+    "vi": "máy bay"
+   },
+   "forms": {},
+   "rank": 145
+  },
+  {
+   "id": "truck",
+   "text": "truck",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "transport"
+   ],
+   "emoji": "🚚",
+   "definition": "A big car that carries things.",
+   "examples": [
+    "The truck is very big."
+   ],
+   "translations": {
+    "vi": "xe tải"
+   },
+   "forms": {},
+   "rank": 146
+  },
+  {
+   "id": "motorbike",
+   "text": "motorbike",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "transport"
+   ],
+   "emoji": "🏍️",
+   "definition": "A bike with an engine.",
+   "examples": [
+    "My uncle has a motorbike."
+   ],
+   "translations": {
+    "vi": "xe máy"
+   },
+   "forms": {},
+   "rank": 147
+  },
+  {
+   "id": "sun",
+   "text": "sun",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": "☀️",
+   "definition": "The big bright star we see in the day.",
+   "examples": [
+    "The sun is hot."
+   ],
+   "translations": {
+    "vi": "mặt trời"
+   },
+   "forms": {},
+   "rank": 148
+  },
+  {
+   "id": "moon",
+   "text": "moon",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": "🌙",
+   "definition": "It shines in the sky at night.",
+   "examples": [
+    "The moon is bright."
+   ],
+   "translations": {
+    "vi": "mặt trăng"
+   },
+   "forms": {},
+   "rank": 149
+  },
+  {
+   "id": "star",
+   "text": "star",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": "⭐",
+   "definition": "A small bright light in the sky at night.",
+   "examples": [
+    "I can see a star."
+   ],
+   "translations": {
+    "vi": "ngôi sao"
+   },
+   "forms": {},
+   "rank": 150
+  },
+  {
+   "id": "sky",
+   "text": "sky",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": null,
+   "definition": "The space above us where the clouds are.",
+   "examples": [
+    "The sky is blue."
+   ],
+   "translations": {
+    "vi": "bầu trời"
+   },
+   "forms": {},
+   "rank": 151
+  },
+  {
+   "id": "tree",
+   "text": "tree",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": "🌳",
+   "definition": "A tall plant with leaves and branches.",
+   "examples": [
+    "The bird is in the tree."
+   ],
+   "translations": {
+    "vi": "cái cây"
+   },
+   "forms": {},
+   "rank": 152
+  },
+  {
+   "id": "flower",
+   "text": "flower",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": "🌸",
+   "definition": "The colourful part of a plant.",
+   "examples": [
+    "This flower is pretty."
+   ],
+   "translations": {
+    "vi": "bông hoa"
+   },
+   "forms": {},
+   "rank": 153
+  },
+  {
+   "id": "sea",
+   "text": "sea",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": "🌊",
+   "definition": "A very big area of salty water.",
+   "examples": [
+    "We swim in the sea."
+   ],
+   "translations": {
+    "vi": "biển"
+   },
+   "forms": {},
+   "rank": 154
+  },
+  {
+   "id": "beach",
+   "text": "beach",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "nature",
+    "places"
+   ],
+   "emoji": "🏖️",
+   "definition": "Sand next to the sea.",
+   "examples": [
+    "We play on the beach."
+   ],
+   "translations": {
+    "vi": "bãi biển"
+   },
+   "forms": {
+    "plural": "beaches"
+   },
+   "rank": 155
+  },
+  {
+   "id": "grass",
+   "text": "grass",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": "🌱",
+   "definition": "Green plants that cover the ground.",
+   "examples": [
+    "The cow eats grass."
+   ],
+   "translations": {
+    "vi": "cỏ"
+   },
+   "forms": {},
+   "rank": 156
+  },
+  {
+   "id": "rain",
+   "text": "rain",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "weather"
+   ],
+   "emoji": "🌧️",
+   "definition": "Water that falls from clouds.",
+   "examples": [
+    "I like the rain."
+   ],
+   "translations": {
+    "vi": "mưa"
+   },
+   "forms": {},
+   "rank": 157
+  },
+  {
+   "id": "park",
+   "text": "park",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "places"
+   ],
+   "emoji": "🏞️",
+   "definition": "A big garden where people play.",
+   "examples": [
+    "We play in the park."
+   ],
+   "translations": {
+    "vi": "công viên"
+   },
+   "forms": {},
+   "rank": 158
+  },
+  {
+   "id": "shop",
+   "text": "shop",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "places"
+   ],
+   "emoji": "🏪",
+   "definition": "A place where you buy things.",
+   "examples": [
+    "Mum goes to the shop."
+   ],
+   "translations": {
+    "vi": "cửa hàng"
+   },
+   "forms": {},
+   "rank": 159
+  },
+  {
+   "id": "zoo",
+   "text": "zoo",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "places"
+   ],
+   "emoji": null,
+   "definition": "A place where you can see wild animals.",
+   "examples": [
+    "We see lions at the zoo."
+   ],
+   "translations": {
+    "vi": "sở thú"
+   },
+   "forms": {},
+   "rank": 160
+  },
+  {
+   "id": "street",
+   "text": "street",
+   "pos": "noun",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "places"
+   ],
+   "emoji": null,
+   "definition": "A road in a town with houses.",
+   "examples": [
+    "I live on this street."
+   ],
+   "translations": {
+    "vi": "con phố"
+   },
+   "forms": {},
+   "rank": 161
+  },
+  {
+   "id": "run",
+   "text": "run",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🏃",
+   "definition": "To move very fast on your feet.",
+   "examples": [
+    "I can run fast."
+   ],
+   "translations": {
+    "vi": "chạy"
+   },
+   "forms": {
+    "past": "ran"
+   },
+   "rank": 162
+  },
+  {
+   "id": "jump",
+   "text": "jump",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🦘",
+   "definition": "To push yourself up into the air.",
+   "examples": [
+    "The frog can jump."
+   ],
+   "translations": {
+    "vi": "nhảy"
+   },
+   "forms": {},
+   "rank": 163
+  },
+  {
+   "id": "walk",
+   "text": "walk",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🚶",
+   "definition": "To move on your feet, not fast.",
+   "examples": [
+    "We walk to school."
+   ],
+   "translations": {
+    "vi": "đi bộ"
+   },
+   "forms": {},
+   "rank": 164
+  },
+  {
+   "id": "swim",
+   "text": "swim",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🏊",
+   "definition": "To move through water.",
+   "examples": [
+    "Fish can swim."
+   ],
+   "translations": {
+    "vi": "bơi"
+   },
+   "forms": {
+    "past": "swam"
+   },
+   "rank": 165
+  },
+  {
+   "id": "sing",
+   "text": "sing",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🎤",
+   "definition": "To make music with your voice.",
+   "examples": [
+    "She can sing."
+   ],
+   "translations": {
+    "vi": "hát"
+   },
+   "forms": {
+    "past": "sang"
+   },
+   "rank": 166
+  },
+  {
+   "id": "dance",
+   "text": "dance",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "💃",
+   "definition": "To move your body to music.",
+   "examples": [
+    "Let's dance!"
+   ],
+   "translations": {
+    "vi": "nhảy múa"
+   },
+   "forms": {},
+   "rank": 167
+  },
+  {
+   "id": "eat",
+   "text": "eat",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "food"
+   ],
+   "emoji": "🍽️",
+   "definition": "To put food in your mouth.",
+   "examples": [
+    "I eat breakfast."
+   ],
+   "translations": {
+    "vi": "ăn"
+   },
+   "forms": {
+    "past": "ate"
+   },
+   "rank": 168
+  },
+  {
+   "id": "drink",
+   "text": "drink",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "food"
+   ],
+   "emoji": "🥤",
+   "definition": "To swallow water, milk or juice.",
+   "examples": [
+    "Drink your milk."
+   ],
+   "translations": {
+    "vi": "uống"
+   },
+   "forms": {
+    "past": "drank"
+   },
+   "rank": 169
+  },
+  {
+   "id": "sleep",
+   "text": "sleep",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "😴",
+   "definition": "To rest with your eyes closed.",
+   "examples": [
+    "The baby sleeps a lot."
+   ],
+   "translations": {
+    "vi": "ngủ"
+   },
+   "forms": {
+    "past": "slept"
+   },
+   "rank": 170
+  },
+  {
+   "id": "read",
+   "text": "read",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "school"
+   ],
+   "emoji": "📖",
+   "definition": "To look at words and understand them.",
+   "examples": [
+    "I read a book."
+   ],
+   "translations": {
+    "vi": "đọc"
+   },
+   "forms": {
+    "past": "read"
+   },
+   "rank": 171
+  },
+  {
+   "id": "write",
+   "text": "write",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "school"
+   ],
+   "emoji": "✍️",
+   "definition": "To make letters and words with a pen.",
+   "examples": [
+    "Write your name."
+   ],
+   "translations": {
+    "vi": "viết"
+   },
+   "forms": {
+    "past": "wrote"
+   },
+   "rank": 172
+  },
+  {
+   "id": "draw",
+   "text": "draw",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "school"
+   ],
+   "emoji": "🎨",
+   "definition": "To make a picture with a pencil.",
+   "examples": [
+    "I draw a cat."
+   ],
+   "translations": {
+    "vi": "vẽ"
+   },
+   "forms": {
+    "past": "drew"
+   },
+   "rank": 173
+  },
+  {
+   "id": "play",
+   "text": "play",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "toys"
+   ],
+   "emoji": "🎮",
+   "definition": "To have fun with toys or games.",
+   "examples": [
+    "Let's play outside."
+   ],
+   "translations": {
+    "vi": "chơi"
+   },
+   "forms": {},
+   "rank": 174
+  },
+  {
+   "id": "look",
+   "text": "look",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "👀",
+   "definition": "To use your eyes to see.",
+   "examples": [
+    "Look at the bird!"
+   ],
+   "translations": {
+    "vi": "nhìn"
+   },
+   "forms": {},
+   "rank": 175
+  },
+  {
+   "id": "listen",
+   "text": "listen",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🎧",
+   "definition": "To hear something carefully.",
+   "examples": [
+    "Listen to the music."
+   ],
+   "translations": {
+    "vi": "nghe"
+   },
+   "forms": {},
+   "rank": 176
+  },
+  {
+   "id": "open",
+   "text": "open",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To make something not closed.",
+   "examples": [
+    "Open the door."
+   ],
+   "translations": {
+    "vi": "mở"
+   },
+   "forms": {},
+   "rank": 177
+  },
+  {
+   "id": "close",
+   "text": "close",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To shut something.",
+   "examples": [
+    "Close your book."
+   ],
+   "translations": {
+    "vi": "đóng"
+   },
+   "forms": {},
+   "rank": 178
+  },
+  {
+   "id": "sit",
+   "text": "sit",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To rest on a chair.",
+   "examples": [
+    "Sit down, please."
+   ],
+   "translations": {
+    "vi": "ngồi"
+   },
+   "forms": {
+    "past": "sat"
+   },
+   "rank": 179
+  },
+  {
+   "id": "stand",
+   "text": "stand",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🧍",
+   "definition": "To be on your feet.",
+   "examples": [
+    "Stand up, please."
+   ],
+   "translations": {
+    "vi": "đứng"
+   },
+   "forms": {
+    "past": "stood"
+   },
+   "rank": 180
+  },
+  {
+   "id": "go",
+   "text": "go",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To move to another place.",
+   "examples": [
+    "I go to the park."
+   ],
+   "translations": {
+    "vi": "đi"
+   },
+   "forms": {
+    "past": "went"
+   },
+   "rank": 181
+  },
+  {
+   "id": "come",
+   "text": "come",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To move towards here.",
+   "examples": [
+    "Come here, please."
+   ],
+   "translations": {
+    "vi": "đến"
+   },
+   "forms": {
+    "past": "came"
+   },
+   "rank": 182
+  },
+  {
+   "id": "like",
+   "text": "like",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": "👍",
+   "definition": "To think something is nice.",
+   "examples": [
+    "I like apples."
+   ],
+   "translations": {
+    "vi": "thích"
+   },
+   "forms": {},
+   "rank": 183
+  },
+  {
+   "id": "love",
+   "text": "love",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": "❤️",
+   "definition": "To like someone or something very much.",
+   "examples": [
+    "I love my mum."
+   ],
+   "translations": {
+    "vi": "yêu"
+   },
+   "forms": {},
+   "rank": 184
+  },
+  {
+   "id": "clap",
+   "text": "clap",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "👏",
+   "definition": "To hit your hands together.",
+   "examples": [
+    "Clap your hands!"
+   ],
+   "translations": {
+    "vi": "vỗ tay"
+   },
+   "forms": {},
+   "rank": 185
+  },
+  {
+   "id": "throw",
+   "text": "throw",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To send something through the air with your hand.",
+   "examples": [
+    "Throw the ball to me."
+   ],
+   "translations": {
+    "vi": "ném"
+   },
+   "forms": {
+    "past": "threw"
+   },
+   "rank": 186
+  },
+  {
+   "id": "catch",
+   "text": "catch",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To take something that is moving through the air.",
+   "examples": [
+    "Catch the ball!"
+   ],
+   "translations": {
+    "vi": "bắt"
+   },
+   "forms": {
+    "past": "caught"
+   },
+   "rank": 187
+  },
+  {
+   "id": "kick",
+   "text": "kick",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To hit something with your foot.",
+   "examples": [
+    "Kick the ball."
+   ],
+   "translations": {
+    "vi": "đá"
+   },
+   "forms": {},
+   "rank": 188
+  },
+  {
+   "id": "fly",
+   "text": "fly",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🕊️",
+   "definition": "To move through the air.",
+   "examples": [
+    "Birds can fly."
+   ],
+   "translations": {
+    "vi": "bay"
+   },
+   "forms": {
+    "past": "flew"
+   },
+   "rank": 189
+  },
+  {
+   "id": "smile",
+   "text": "smile",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "feelings"
+   ],
+   "emoji": "😊",
+   "definition": "To make a happy face.",
+   "examples": [
+    "Smile for the photo!"
+   ],
+   "translations": {
+    "vi": "mỉm cười"
+   },
+   "forms": {},
+   "rank": 190
+  },
+  {
+   "id": "wash",
+   "text": "wash",
+   "pos": "verb",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🧼",
+   "definition": "To clean something with water.",
+   "examples": [
+    "Wash your hands."
+   ],
+   "translations": {
+    "vi": "rửa"
+   },
+   "forms": {},
+   "rank": 191
+  },
+  {
+   "id": "big",
+   "text": "big",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Large; not small.",
+   "examples": [
+    "The elephant is big."
+   ],
+   "translations": {
+    "vi": "to, lớn"
+   },
+   "forms": {
+    "comparative": "bigger"
+   },
+   "rank": 192
+  },
+  {
+   "id": "small",
+   "text": "small",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Little; not big.",
+   "examples": [
+    "The mouse is small."
+   ],
+   "translations": {
+    "vi": "nhỏ"
+   },
+   "forms": {
+    "comparative": "smaller"
+   },
+   "rank": 193
+  },
+  {
+   "id": "happy",
+   "text": "happy",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": "😄",
+   "definition": "Feeling good.",
+   "examples": [
+    "I am happy today."
+   ],
+   "translations": {
+    "vi": "vui vẻ"
+   },
+   "forms": {
+    "comparative": "happier"
+   },
+   "rank": 194
+  },
+  {
+   "id": "sad",
+   "text": "sad",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": "😢",
+   "definition": "Not happy.",
+   "examples": [
+    "The boy is sad."
+   ],
+   "translations": {
+    "vi": "buồn"
+   },
+   "forms": {
+    "comparative": "sadder"
+   },
+   "rank": 195
+  },
+  {
+   "id": "long",
+   "text": "long",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Not short.",
+   "examples": [
+    "The snake is long."
+   ],
+   "translations": {
+    "vi": "dài"
+   },
+   "forms": {
+    "comparative": "longer"
+   },
+   "rank": 196
+  },
+  {
+   "id": "short",
+   "text": "short",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Not long, or not tall.",
+   "examples": [
+    "My hair is short."
+   ],
+   "translations": {
+    "vi": "ngắn, thấp"
+   },
+   "forms": {
+    "comparative": "shorter"
+   },
+   "rank": 197
+  },
+  {
+   "id": "hot",
+   "text": "hot",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing",
+    "weather"
+   ],
+   "emoji": "🥵",
+   "definition": "Very warm.",
+   "examples": [
+    "The soup is hot."
+   ],
+   "translations": {
+    "vi": "nóng"
+   },
+   "forms": {
+    "comparative": "hotter"
+   },
+   "rank": 198
+  },
+  {
+   "id": "cold",
+   "text": "cold",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing",
+    "weather"
+   ],
+   "emoji": "🥶",
+   "definition": "Not warm.",
+   "examples": [
+    "The ice is cold."
+   ],
+   "translations": {
+    "vi": "lạnh"
+   },
+   "forms": {
+    "comparative": "colder"
+   },
+   "rank": 199
+  },
+  {
+   "id": "old",
+   "text": "old",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Not new, or not young.",
+   "examples": [
+    "My grandfather is old."
+   ],
+   "translations": {
+    "vi": "già, cũ"
+   },
+   "forms": {
+    "comparative": "older"
+   },
+   "rank": 200
+  },
+  {
+   "id": "new",
+   "text": "new",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": "✨",
+   "definition": "Not old.",
+   "examples": [
+    "I have a new bike."
+   ],
+   "translations": {
+    "vi": "mới"
+   },
+   "forms": {
+    "comparative": "newer"
+   },
+   "rank": 201
+  },
+  {
+   "id": "young",
+   "text": "young",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Not old.",
+   "examples": [
+    "The puppy is young."
+   ],
+   "translations": {
+    "vi": "trẻ"
+   },
+   "forms": {
+    "comparative": "younger"
+   },
+   "rank": 202
+  },
+  {
+   "id": "good",
+   "text": "good",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Nice, or done well.",
+   "examples": [
+    "Good job!"
+   ],
+   "translations": {
+    "vi": "tốt, giỏi"
+   },
+   "forms": {
+    "comparative": "better"
+   },
+   "rank": 203
+  },
+  {
+   "id": "bad",
+   "text": "bad",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": "👎",
+   "definition": "Not good.",
+   "examples": [
+    "Rain is bad for a picnic."
+   ],
+   "translations": {
+    "vi": "xấu, tệ"
+   },
+   "forms": {
+    "comparative": "worse"
+   },
+   "rank": 204
+  },
+  {
+   "id": "beautiful",
+   "text": "beautiful",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Very nice to look at.",
+   "examples": [
+    "The flower is beautiful."
+   ],
+   "translations": {
+    "vi": "đẹp"
+   },
+   "forms": {},
+   "rank": 205
+  },
+  {
+   "id": "clean",
+   "text": "clean",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Not dirty.",
+   "examples": [
+    "My hands are clean."
+   ],
+   "translations": {
+    "vi": "sạch"
+   },
+   "forms": {
+    "comparative": "cleaner"
+   },
+   "rank": 206
+  },
+  {
+   "id": "dirty",
+   "text": "dirty",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Not clean.",
+   "examples": [
+    "My shoes are dirty."
+   ],
+   "translations": {
+    "vi": "bẩn"
+   },
+   "forms": {
+    "comparative": "dirtier"
+   },
+   "rank": 207
+  },
+  {
+   "id": "funny",
+   "text": "funny",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": "😂",
+   "definition": "Making you laugh.",
+   "examples": [
+    "The clown is funny."
+   ],
+   "translations": {
+    "vi": "buồn cười"
+   },
+   "forms": {
+    "comparative": "funnier"
+   },
+   "rank": 208
+  },
+  {
+   "id": "scary",
+   "text": "scary",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": "😱",
+   "definition": "Making you feel afraid.",
+   "examples": [
+    "The story is scary."
+   ],
+   "translations": {
+    "vi": "đáng sợ"
+   },
+   "forms": {},
+   "rank": 209
+  },
+  {
+   "id": "angry",
+   "text": "angry",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": "😠",
+   "definition": "Feeling very upset.",
+   "examples": [
+    "The man is angry."
+   ],
+   "translations": {
+    "vi": "tức giận"
+   },
+   "forms": {},
+   "rank": 210
+  },
+  {
+   "id": "nice",
+   "text": "nice",
+   "pos": "adjective",
+   "cefr": "preA1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Good, kind or pleasant.",
+   "examples": [
+    "She is a nice girl."
+   ],
+   "translations": {
+    "vi": "tốt, dễ chịu"
+   },
+   "forms": {
+    "comparative": "nicer"
+   },
+   "rank": 211
+  },
+  {
+   "id": "kitten",
+   "text": "kitten",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐱",
+   "definition": "A baby cat.",
+   "examples": [
+    "The kitten is playing with a ball."
+   ],
+   "translations": {
+    "vi": "mèo con"
+   },
+   "forms": {},
+   "rank": 1
+  },
+  {
+   "id": "puppy",
+   "text": "puppy",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐶",
+   "definition": "A baby dog.",
+   "examples": [
+    "The puppy is cute."
+   ],
+   "translations": {
+    "vi": "chó con"
+   },
+   "forms": {
+    "plural": "puppies"
+   },
+   "rank": 2
+  },
+  {
+   "id": "owl",
+   "text": "owl",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🦉",
+   "definition": "A bird with big eyes that is awake at night.",
+   "examples": [
+    "The owl says hoot."
+   ],
+   "translations": {
+    "vi": "con cú"
+   },
+   "forms": {},
+   "rank": 3
+  },
+  {
+   "id": "whale",
+   "text": "whale",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐳",
+   "definition": "A very big animal that lives in the sea.",
+   "examples": [
+    "The whale is huge."
+   ],
+   "translations": {
+    "vi": "cá voi"
+   },
+   "forms": {},
+   "rank": 4
+  },
+  {
+   "id": "dolphin",
+   "text": "dolphin",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐬",
+   "definition": "A clever sea animal that likes to jump.",
+   "examples": [
+    "The dolphin jumps out of the water."
+   ],
+   "translations": {
+    "vi": "cá heo"
+   },
+   "forms": {},
+   "rank": 5
+  },
+  {
+   "id": "shark",
+   "text": "shark",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🦈",
+   "definition": "A big sea fish with sharp teeth.",
+   "examples": [
+    "The shark swims fast."
+   ],
+   "translations": {
+    "vi": "cá mập"
+   },
+   "forms": {},
+   "rank": 6
+  },
+  {
+   "id": "penguin",
+   "text": "penguin",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐧",
+   "definition": "A black and white bird that cannot fly.",
+   "examples": [
+    "The penguin lives where it is cold."
+   ],
+   "translations": {
+    "vi": "chim cánh cụt"
+   },
+   "forms": {},
+   "rank": 7
+  },
+  {
+   "id": "kangaroo",
+   "text": "kangaroo",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🦘",
+   "definition": "An animal that jumps and carries its baby in a pocket.",
+   "examples": [
+    "The kangaroo can jump high."
+   ],
+   "translations": {
+    "vi": "con chuột túi"
+   },
+   "forms": {},
+   "rank": 8
+  },
+  {
+   "id": "camel",
+   "text": "camel",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐫",
+   "definition": "An animal with a hump that lives in the desert.",
+   "examples": [
+    "The camel is in the desert."
+   ],
+   "translations": {
+    "vi": "con lạc đà"
+   },
+   "forms": {},
+   "rank": 9
+  },
+  {
+   "id": "panda",
+   "text": "panda",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐼",
+   "definition": "A black and white bear that eats bamboo.",
+   "examples": [
+    "The panda eats bamboo."
+   ],
+   "translations": {
+    "vi": "gấu trúc"
+   },
+   "forms": {},
+   "rank": 10
+  },
+  {
+   "id": "fox",
+   "text": "fox",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🦊",
+   "definition": "A wild orange animal with a big tail.",
+   "examples": [
+    "The fox is in the forest."
+   ],
+   "translations": {
+    "vi": "con cáo"
+   },
+   "forms": {
+    "plural": "foxes"
+   },
+   "rank": 11
+  },
+  {
+   "id": "turtle",
+   "text": "turtle",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐢",
+   "definition": "An animal with a hard shell that moves slowly.",
+   "examples": [
+    "The turtle is slow."
+   ],
+   "translations": {
+    "vi": "con rùa"
+   },
+   "forms": {},
+   "rank": 12
+  },
+  {
+   "id": "ant",
+   "text": "ant",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🐜",
+   "definition": "A very small insect that lives in big groups.",
+   "examples": [
+    "The ant is very small."
+   ],
+   "translations": {
+    "vi": "con kiến"
+   },
+   "forms": {},
+   "rank": 13
+  },
+  {
+   "id": "parrot",
+   "text": "parrot",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "animals"
+   ],
+   "emoji": "🦜",
+   "definition": "A colourful bird that can copy words.",
+   "examples": [
+    "The parrot can talk."
+   ],
+   "translations": {
+    "vi": "con vẹt"
+   },
+   "forms": {},
+   "rank": 14
+  },
+  {
+   "id": "lemon",
+   "text": "lemon",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍋",
+   "definition": "A sour yellow fruit.",
+   "examples": [
+    "The lemon is sour."
+   ],
+   "translations": {
+    "vi": "quả chanh vàng"
+   },
+   "forms": {},
+   "rank": 15
+  },
+  {
+   "id": "strawberry",
+   "text": "strawberry",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍓",
+   "definition": "A small red fruit with seeds on the outside.",
+   "examples": [
+    "I like strawberries."
+   ],
+   "translations": {
+    "vi": "quả dâu tây"
+   },
+   "forms": {
+    "plural": "strawberries"
+   },
+   "rank": 16
+  },
+  {
+   "id": "pineapple",
+   "text": "pineapple",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍍",
+   "definition": "A big sweet fruit with a hard skin.",
+   "examples": [
+    "The pineapple is sweet."
+   ],
+   "translations": {
+    "vi": "quả dứa (quả thơm)"
+   },
+   "forms": {},
+   "rank": 17
+  },
+  {
+   "id": "cheese",
+   "text": "cheese",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🧀",
+   "definition": "A yellow or white food made from milk.",
+   "examples": [
+    "Mice like cheese."
+   ],
+   "translations": {
+    "vi": "phô mai"
+   },
+   "forms": {},
+   "rank": 18
+  },
+  {
+   "id": "sandwich",
+   "text": "sandwich",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🥪",
+   "definition": "Two pieces of bread with food between them.",
+   "examples": [
+    "I have a sandwich for lunch."
+   ],
+   "translations": {
+    "vi": "bánh mì kẹp"
+   },
+   "forms": {
+    "plural": "sandwiches"
+   },
+   "rank": 19
+  },
+  {
+   "id": "pizza",
+   "text": "pizza",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍕",
+   "definition": "A flat round bread with cheese and tomato on top.",
+   "examples": [
+    "We eat pizza on Friday."
+   ],
+   "translations": {
+    "vi": "bánh pizza"
+   },
+   "forms": {},
+   "rank": 20
+  },
+  {
+   "id": "noodles",
+   "text": "noodles",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍜",
+   "definition": "Long thin food that you cook in water.",
+   "examples": [
+    "I eat noodles with chopsticks."
+   ],
+   "translations": {
+    "vi": "mì, phở"
+   },
+   "forms": {},
+   "rank": 21
+  },
+  {
+   "id": "soup",
+   "text": "soup",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍲",
+   "definition": "A hot liquid food.",
+   "examples": [
+    "The soup is hot."
+   ],
+   "translations": {
+    "vi": "súp, canh"
+   },
+   "forms": {},
+   "rank": 22
+  },
+  {
+   "id": "salad",
+   "text": "salad",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🥗",
+   "definition": "Cold vegetables mixed together.",
+   "examples": [
+    "Mum makes a salad."
+   ],
+   "translations": {
+    "vi": "rau trộn (sa lát)"
+   },
+   "forms": {},
+   "rank": 23
+  },
+  {
+   "id": "vegetable",
+   "text": "vegetable",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🥦",
+   "definition": "A plant we eat, like a carrot or a potato.",
+   "examples": [
+    "Vegetables are good for you."
+   ],
+   "translations": {
+    "vi": "rau củ"
+   },
+   "forms": {},
+   "rank": 24
+  },
+  {
+   "id": "fruit",
+   "text": "fruit",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍑",
+   "definition": "Food from a plant, like an apple or a banana.",
+   "examples": [
+    "I eat fruit every day."
+   ],
+   "translations": {
+    "vi": "trái cây"
+   },
+   "forms": {},
+   "rank": 25
+  },
+  {
+   "id": "honey",
+   "text": "honey",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍯",
+   "definition": "A sweet food that bees make.",
+   "examples": [
+    "Bears like honey."
+   ],
+   "translations": {
+    "vi": "mật ong"
+   },
+   "forms": {},
+   "rank": 26
+  },
+  {
+   "id": "popcorn",
+   "text": "popcorn",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍿",
+   "definition": "A snack made from corn that pops when it is hot.",
+   "examples": [
+    "We eat popcorn at the cinema."
+   ],
+   "translations": {
+    "vi": "bỏng ngô (bắp rang)"
+   },
+   "forms": {},
+   "rank": 27
+  },
+  {
+   "id": "breakfast",
+   "text": "breakfast",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food",
+    "time"
+   ],
+   "emoji": "🥞",
+   "definition": "The first meal of the day.",
+   "examples": [
+    "I eat breakfast at seven."
+   ],
+   "translations": {
+    "vi": "bữa sáng"
+   },
+   "forms": {},
+   "rank": 28
+  },
+  {
+   "id": "lunch",
+   "text": "lunch",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food",
+    "time"
+   ],
+   "emoji": "🍱",
+   "definition": "The meal you eat in the middle of the day.",
+   "examples": [
+    "We have lunch at school."
+   ],
+   "translations": {
+    "vi": "bữa trưa"
+   },
+   "forms": {
+    "plural": "lunches"
+   },
+   "rank": 29
+  },
+  {
+   "id": "dinner",
+   "text": "dinner",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food",
+    "time"
+   ],
+   "emoji": "🍽️",
+   "definition": "The meal you eat in the evening.",
+   "examples": [
+    "We have dinner together."
+   ],
+   "translations": {
+    "vi": "bữa tối"
+   },
+   "forms": {},
+   "rank": 30
+  },
+  {
+   "id": "tea",
+   "text": "tea",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍵",
+   "definition": "A hot drink made from leaves.",
+   "examples": [
+    "Grandma drinks tea."
+   ],
+   "translations": {
+    "vi": "trà"
+   },
+   "forms": {},
+   "rank": 31
+  },
+  {
+   "id": "cup",
+   "text": "cup",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "home",
+    "things"
+   ],
+   "emoji": "☕",
+   "definition": "A small container you drink from.",
+   "examples": [
+    "Can I have a cup of milk?"
+   ],
+   "translations": {
+    "vi": "cái cốc (cái ly)"
+   },
+   "forms": {},
+   "rank": 32
+  },
+  {
+   "id": "bowl",
+   "text": "bowl",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "home",
+    "things"
+   ],
+   "emoji": "🥣",
+   "definition": "A round deep dish for food.",
+   "examples": [
+    "I eat rice from a bowl."
+   ],
+   "translations": {
+    "vi": "cái bát (cái chén)"
+   },
+   "forms": {},
+   "rank": 33
+  },
+  {
+   "id": "spoon",
+   "text": "spoon",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "home",
+    "things"
+   ],
+   "emoji": "🥄",
+   "definition": "You eat soup with it.",
+   "examples": [
+    "Eat your soup with a spoon."
+   ],
+   "translations": {
+    "vi": "cái thìa (cái muỗng)"
+   },
+   "forms": {},
+   "rank": 34
+  },
+  {
+   "id": "fork",
+   "text": "fork",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "home",
+    "things"
+   ],
+   "emoji": "🍴",
+   "definition": "You use it to pick up food.",
+   "examples": [
+    "I eat with a fork."
+   ],
+   "translations": {
+    "vi": "cái dĩa (cái nĩa)"
+   },
+   "forms": {},
+   "rank": 35
+  },
+  {
+   "id": "plate",
+   "text": "plate",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "home",
+    "things"
+   ],
+   "emoji": null,
+   "definition": "A flat dish for food.",
+   "examples": [
+    "Put the cake on the plate."
+   ],
+   "translations": {
+    "vi": "cái đĩa"
+   },
+   "forms": {},
+   "rank": 36
+  },
+  {
+   "id": "morning",
+   "text": "morning",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "time"
+   ],
+   "emoji": "🌅",
+   "definition": "The early part of the day.",
+   "examples": [
+    "I go to school in the morning."
+   ],
+   "translations": {
+    "vi": "buổi sáng"
+   },
+   "forms": {},
+   "rank": 37
+  },
+  {
+   "id": "afternoon",
+   "text": "afternoon",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "time"
+   ],
+   "emoji": null,
+   "definition": "The part of the day after lunch.",
+   "examples": [
+    "We play in the afternoon."
+   ],
+   "translations": {
+    "vi": "buổi chiều"
+   },
+   "forms": {},
+   "rank": 38
+  },
+  {
+   "id": "evening",
+   "text": "evening",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "time"
+   ],
+   "emoji": "🌆",
+   "definition": "The part of the day before night.",
+   "examples": [
+    "We eat dinner in the evening."
+   ],
+   "translations": {
+    "vi": "buổi tối"
+   },
+   "forms": {},
+   "rank": 39
+  },
+  {
+   "id": "night",
+   "text": "night",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "time"
+   ],
+   "emoji": "🌃",
+   "definition": "The dark time when we sleep.",
+   "examples": [
+    "The stars come out at night."
+   ],
+   "translations": {
+    "vi": "ban đêm"
+   },
+   "forms": {},
+   "rank": 40
+  },
+  {
+   "id": "day",
+   "text": "day",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "time"
+   ],
+   "emoji": null,
+   "definition": "The time from morning to night.",
+   "examples": [
+    "Have a nice day!"
+   ],
+   "translations": {
+    "vi": "ngày"
+   },
+   "forms": {},
+   "rank": 41
+  },
+  {
+   "id": "week",
+   "text": "week",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "time"
+   ],
+   "emoji": null,
+   "definition": "Seven days.",
+   "examples": [
+    "There are seven days in a week."
+   ],
+   "translations": {
+    "vi": "tuần"
+   },
+   "forms": {},
+   "rank": 42
+  },
+  {
+   "id": "today",
+   "text": "today",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "time"
+   ],
+   "emoji": null,
+   "definition": "This day.",
+   "examples": [
+    "Today is my birthday."
+   ],
+   "translations": {
+    "vi": "hôm nay"
+   },
+   "forms": {},
+   "rank": 43
+  },
+  {
+   "id": "tomorrow",
+   "text": "tomorrow",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "time"
+   ],
+   "emoji": null,
+   "definition": "The day after today.",
+   "examples": [
+    "See you tomorrow!"
+   ],
+   "translations": {
+    "vi": "ngày mai"
+   },
+   "forms": {},
+   "rank": 44
+  },
+  {
+   "id": "yesterday",
+   "text": "yesterday",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "time"
+   ],
+   "emoji": null,
+   "definition": "The day before today.",
+   "examples": [
+    "Yesterday I went to the zoo."
+   ],
+   "translations": {
+    "vi": "hôm qua"
+   },
+   "forms": {},
+   "rank": 45
+  },
+  {
+   "id": "birthday",
+   "text": "birthday",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "time"
+   ],
+   "emoji": "🥳",
+   "definition": "The day you were born, every year.",
+   "examples": [
+    "Happy birthday!"
+   ],
+   "translations": {
+    "vi": "sinh nhật"
+   },
+   "forms": {},
+   "rank": 46
+  },
+  {
+   "id": "party",
+   "text": "party",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "time"
+   ],
+   "emoji": "🎉",
+   "definition": "A time when people meet to have fun.",
+   "examples": [
+    "Come to my party!"
+   ],
+   "translations": {
+    "vi": "bữa tiệc"
+   },
+   "forms": {
+    "plural": "parties"
+   },
+   "rank": 47
+  },
+  {
+   "id": "present",
+   "text": "present",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "🎁",
+   "definition": "Something you give to someone.",
+   "examples": [
+    "This present is for you."
+   ],
+   "translations": {
+    "vi": "món quà"
+   },
+   "forms": {},
+   "rank": 48
+  },
+  {
+   "id": "holiday",
+   "text": "holiday",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "time"
+   ],
+   "emoji": "🧳",
+   "definition": "A time when you do not go to school or work.",
+   "examples": [
+    "We go to the beach on holiday."
+   ],
+   "translations": {
+    "vi": "kỳ nghỉ"
+   },
+   "forms": {},
+   "rank": 49
+  },
+  {
+   "id": "doctor",
+   "text": "doctor",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "jobs"
+   ],
+   "emoji": "🧑‍⚕️",
+   "definition": "A person who helps sick people get better.",
+   "examples": [
+    "The doctor is kind."
+   ],
+   "translations": {
+    "vi": "bác sĩ"
+   },
+   "forms": {},
+   "rank": 50
+  },
+  {
+   "id": "nurse",
+   "text": "nurse",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "jobs"
+   ],
+   "emoji": null,
+   "definition": "A person who looks after sick people in a hospital.",
+   "examples": [
+    "The nurse helps the doctor."
+   ],
+   "translations": {
+    "vi": "y tá"
+   },
+   "forms": {},
+   "rank": 51
+  },
+  {
+   "id": "farmer",
+   "text": "farmer",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "jobs"
+   ],
+   "emoji": "🧑‍🌾",
+   "definition": "A person who works on a farm.",
+   "examples": [
+    "The farmer has many cows."
+   ],
+   "translations": {
+    "vi": "nông dân"
+   },
+   "forms": {},
+   "rank": 52
+  },
+  {
+   "id": "driver",
+   "text": "driver",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "jobs",
+    "transport"
+   ],
+   "emoji": null,
+   "definition": "A person who drives a car, bus or truck.",
+   "examples": [
+    "The bus driver is friendly."
+   ],
+   "translations": {
+    "vi": "tài xế"
+   },
+   "forms": {},
+   "rank": 53
+  },
+  {
+   "id": "police-officer",
+   "text": "police officer",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "jobs"
+   ],
+   "emoji": "👮",
+   "definition": "A person whose job is to keep people safe.",
+   "examples": [
+    "The police officer helps us."
+   ],
+   "translations": {
+    "vi": "cảnh sát"
+   },
+   "forms": {},
+   "rank": 54
+  },
+  {
+   "id": "firefighter",
+   "text": "firefighter",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "jobs"
+   ],
+   "emoji": "🧑‍🚒",
+   "definition": "A person who puts out fires.",
+   "examples": [
+    "The firefighter is brave."
+   ],
+   "translations": {
+    "vi": "lính cứu hỏa"
+   },
+   "forms": {},
+   "rank": 55
+  },
+  {
+   "id": "pilot",
+   "text": "pilot",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "jobs"
+   ],
+   "emoji": "🧑‍✈️",
+   "definition": "A person who flies a plane.",
+   "examples": [
+    "The pilot flies the plane."
+   ],
+   "translations": {
+    "vi": "phi công"
+   },
+   "forms": {},
+   "rank": 56
+  },
+  {
+   "id": "student",
+   "text": "student",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "school",
+    "people"
+   ],
+   "emoji": "🧑‍🎓",
+   "definition": "A person who is learning at a school.",
+   "examples": [
+    "I am a student."
+   ],
+   "translations": {
+    "vi": "học sinh"
+   },
+   "forms": {},
+   "rank": 57
+  },
+  {
+   "id": "camera",
+   "text": "camera",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "📷",
+   "definition": "You take photos with it.",
+   "examples": [
+    "Smile at the camera!"
+   ],
+   "translations": {
+    "vi": "máy ảnh"
+   },
+   "forms": {},
+   "rank": 58
+  },
+  {
+   "id": "computer",
+   "text": "computer",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things",
+    "school"
+   ],
+   "emoji": "💻",
+   "definition": "A machine you use to work and play games.",
+   "examples": [
+    "I use the computer at school."
+   ],
+   "translations": {
+    "vi": "máy tính"
+   },
+   "forms": {},
+   "rank": 59
+  },
+  {
+   "id": "money",
+   "text": "money",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "💰",
+   "definition": "You use it to buy things.",
+   "examples": [
+    "I have money for ice cream."
+   ],
+   "translations": {
+    "vi": "tiền"
+   },
+   "forms": {},
+   "rank": 60
+  },
+  {
+   "id": "map",
+   "text": "map",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "🗺️",
+   "definition": "A picture that shows where places are.",
+   "examples": [
+    "Look at the map."
+   ],
+   "translations": {
+    "vi": "bản đồ"
+   },
+   "forms": {},
+   "rank": 61
+  },
+  {
+   "id": "umbrella",
+   "text": "umbrella",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things",
+    "weather"
+   ],
+   "emoji": "☂️",
+   "definition": "You hold it over your head when it rains.",
+   "examples": [
+    "Take your umbrella. It's raining."
+   ],
+   "translations": {
+    "vi": "cái ô (cái dù)"
+   },
+   "forms": {},
+   "rank": 62
+  },
+  {
+   "id": "glasses",
+   "text": "glasses",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "👓",
+   "definition": "You wear them on your face to see better.",
+   "examples": [
+    "Grandpa wears glasses."
+   ],
+   "translations": {
+    "vi": "kính mắt"
+   },
+   "forms": {},
+   "rank": 63
+  },
+  {
+   "id": "watch",
+   "text": "watch",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things",
+    "time"
+   ],
+   "emoji": "⌚",
+   "definition": "A small clock you wear on your arm.",
+   "examples": [
+    "My watch is new."
+   ],
+   "translations": {
+    "vi": "đồng hồ đeo tay"
+   },
+   "forms": {
+    "plural": "watches"
+   },
+   "rank": 64
+  },
+  {
+   "id": "boots",
+   "text": "boots",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "clothes"
+   ],
+   "emoji": "🥾",
+   "definition": "Strong shoes that cover part of your leg.",
+   "examples": [
+    "Wear your boots in the rain."
+   ],
+   "translations": {
+    "vi": "đôi ủng"
+   },
+   "forms": {},
+   "rank": 65
+  },
+  {
+   "id": "scarf",
+   "text": "scarf",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "clothes"
+   ],
+   "emoji": "🧣",
+   "definition": "A long piece of cloth you wear around your neck.",
+   "examples": [
+    "My scarf is warm."
+   ],
+   "translations": {
+    "vi": "khăn quàng cổ"
+   },
+   "forms": {
+    "plural": "scarves"
+   },
+   "rank": 66
+  },
+  {
+   "id": "gloves",
+   "text": "gloves",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "clothes"
+   ],
+   "emoji": "🧤",
+   "definition": "You wear them on your hands to keep warm.",
+   "examples": [
+    "Put on your gloves."
+   ],
+   "translations": {
+    "vi": "găng tay"
+   },
+   "forms": {},
+   "rank": 67
+  },
+  {
+   "id": "key",
+   "text": "key",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "🔑",
+   "definition": "You use it to open a door.",
+   "examples": [
+    "Where is my key?"
+   ],
+   "translations": {
+    "vi": "chìa khóa"
+   },
+   "forms": {},
+   "rank": 68
+  },
+  {
+   "id": "picture",
+   "text": "picture",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "🖼️",
+   "definition": "A drawing, painting or photo.",
+   "examples": [
+    "Look at this picture."
+   ],
+   "translations": {
+    "vi": "bức tranh"
+   },
+   "forms": {},
+   "rank": 69
+  },
+  {
+   "id": "photo",
+   "text": "photo",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "📸",
+   "definition": "A picture you take with a camera.",
+   "examples": [
+    "Let's take a photo!"
+   ],
+   "translations": {
+    "vi": "bức ảnh"
+   },
+   "forms": {},
+   "rank": 70
+  },
+  {
+   "id": "music",
+   "text": "music",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "🎵",
+   "definition": "Sounds that people sing or play.",
+   "examples": [
+    "I like music."
+   ],
+   "translations": {
+    "vi": "âm nhạc"
+   },
+   "forms": {},
+   "rank": 71
+  },
+  {
+   "id": "song",
+   "text": "song",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "🎶",
+   "definition": "Music with words that you sing.",
+   "examples": [
+    "Let's sing a song."
+   ],
+   "translations": {
+    "vi": "bài hát"
+   },
+   "forms": {},
+   "rank": 72
+  },
+  {
+   "id": "movie",
+   "text": "movie",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "🎬",
+   "definition": "A story that you watch on a screen.",
+   "examples": [
+    "We watch a movie."
+   ],
+   "translations": {
+    "vi": "bộ phim"
+   },
+   "forms": {},
+   "rank": 73
+  },
+  {
+   "id": "letter",
+   "text": "letter",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things",
+    "school"
+   ],
+   "emoji": "✉️",
+   "definition": "A message you write and send, or a sign like A or B.",
+   "examples": [
+    "I write a letter to Grandma."
+   ],
+   "translations": {
+    "vi": "lá thư, chữ cái"
+   },
+   "forms": {},
+   "rank": 74
+  },
+  {
+   "id": "ticket",
+   "text": "ticket",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "things"
+   ],
+   "emoji": "🎟️",
+   "definition": "A small paper that lets you go on a bus or into a show.",
+   "examples": [
+    "We need two tickets."
+   ],
+   "translations": {
+    "vi": "vé"
+   },
+   "forms": {},
+   "rank": 75
+  },
+  {
+   "id": "balloon",
+   "text": "balloon",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "toys"
+   ],
+   "emoji": "🎈",
+   "definition": "A colourful toy you fill with air.",
+   "examples": [
+    "The red balloon flies away."
+   ],
+   "translations": {
+    "vi": "bóng bay"
+   },
+   "forms": {},
+   "rank": 76
+  },
+  {
+   "id": "hospital",
+   "text": "hospital",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "places"
+   ],
+   "emoji": "🏥",
+   "definition": "A place where sick people get help.",
+   "examples": [
+    "The doctor works in a hospital."
+   ],
+   "translations": {
+    "vi": "bệnh viện"
+   },
+   "forms": {},
+   "rank": 77
+  },
+  {
+   "id": "farm",
+   "text": "farm",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "places"
+   ],
+   "emoji": "🚜",
+   "definition": "Land where people grow food and keep animals.",
+   "examples": [
+    "There are cows on the farm."
+   ],
+   "translations": {
+    "vi": "nông trại"
+   },
+   "forms": {},
+   "rank": 78
+  },
+  {
+   "id": "city",
+   "text": "city",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "places"
+   ],
+   "emoji": "🏙️",
+   "definition": "A very big town.",
+   "examples": [
+    "I live in a big city."
+   ],
+   "translations": {
+    "vi": "thành phố"
+   },
+   "forms": {
+    "plural": "cities"
+   },
+   "rank": 79
+  },
+  {
+   "id": "library",
+   "text": "library",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "places"
+   ],
+   "emoji": "📚",
+   "definition": "A place with many books you can borrow.",
+   "examples": [
+    "We read books at the library."
+   ],
+   "translations": {
+    "vi": "thư viện"
+   },
+   "forms": {
+    "plural": "libraries"
+   },
+   "rank": 80
+  },
+  {
+   "id": "playground",
+   "text": "playground",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "places"
+   ],
+   "emoji": "🛝",
+   "definition": "A place outside where children play.",
+   "examples": [
+    "We play on the playground."
+   ],
+   "translations": {
+    "vi": "sân chơi"
+   },
+   "forms": {},
+   "rank": 81
+  },
+  {
+   "id": "village",
+   "text": "village",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "places"
+   ],
+   "emoji": "🏘️",
+   "definition": "A very small town in the country.",
+   "examples": [
+    "My grandparents live in a village."
+   ],
+   "translations": {
+    "vi": "ngôi làng"
+   },
+   "forms": {},
+   "rank": 82
+  },
+  {
+   "id": "island",
+   "text": "island",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "places",
+    "nature"
+   ],
+   "emoji": "🏝️",
+   "definition": "Land with water all around it.",
+   "examples": [
+    "We visit an island."
+   ],
+   "translations": {
+    "vi": "hòn đảo"
+   },
+   "forms": {},
+   "rank": 83
+  },
+  {
+   "id": "forest",
+   "text": "forest",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": "🌲",
+   "definition": "A place with lots of trees.",
+   "examples": [
+    "Bears live in the forest."
+   ],
+   "translations": {
+    "vi": "khu rừng"
+   },
+   "forms": {},
+   "rank": 84
+  },
+  {
+   "id": "lake",
+   "text": "lake",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": null,
+   "definition": "A big area of water with land all around it.",
+   "examples": [
+    "We swim in the lake."
+   ],
+   "translations": {
+    "vi": "cái hồ"
+   },
+   "forms": {},
+   "rank": 85
+  },
+  {
+   "id": "mountain",
+   "text": "mountain",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": "⛰️",
+   "definition": "A very high hill.",
+   "examples": [
+    "The mountain is very high."
+   ],
+   "translations": {
+    "vi": "ngọn núi"
+   },
+   "forms": {},
+   "rank": 86
+  },
+  {
+   "id": "river",
+   "text": "river",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": null,
+   "definition": "Water that moves across the land to the sea.",
+   "examples": [
+    "The boat is on the river."
+   ],
+   "translations": {
+    "vi": "dòng sông"
+   },
+   "forms": {},
+   "rank": 87
+  },
+  {
+   "id": "bridge",
+   "text": "bridge",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "places"
+   ],
+   "emoji": "🌉",
+   "definition": "You walk or drive over it to cross water.",
+   "examples": [
+    "We walk over the bridge."
+   ],
+   "translations": {
+    "vi": "cây cầu"
+   },
+   "forms": {},
+   "rank": 88
+  },
+  {
+   "id": "road",
+   "text": "road",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "places",
+    "transport"
+   ],
+   "emoji": "🛣️",
+   "definition": "Cars drive on it.",
+   "examples": [
+    "Be careful on the road."
+   ],
+   "translations": {
+    "vi": "con đường"
+   },
+   "forms": {},
+   "rank": 89
+  },
+  {
+   "id": "supermarket",
+   "text": "supermarket",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "places"
+   ],
+   "emoji": "🛒",
+   "definition": "A big shop that sells food.",
+   "examples": [
+    "We buy fruit at the supermarket."
+   ],
+   "translations": {
+    "vi": "siêu thị"
+   },
+   "forms": {},
+   "rank": 90
+  },
+  {
+   "id": "restaurant",
+   "text": "restaurant",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "places"
+   ],
+   "emoji": null,
+   "definition": "A place where you buy and eat a meal.",
+   "examples": [
+    "We have dinner at a restaurant."
+   ],
+   "translations": {
+    "vi": "nhà hàng"
+   },
+   "forms": {},
+   "rank": 91
+  },
+  {
+   "id": "airport",
+   "text": "airport",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "places",
+    "transport"
+   ],
+   "emoji": "🛫",
+   "definition": "A place where planes come and go.",
+   "examples": [
+    "We go to the airport."
+   ],
+   "translations": {
+    "vi": "sân bay"
+   },
+   "forms": {},
+   "rank": 92
+  },
+  {
+   "id": "snow",
+   "text": "snow",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "weather"
+   ],
+   "emoji": "❄️",
+   "definition": "Soft white ice that falls from the sky.",
+   "examples": [
+    "The snow is cold."
+   ],
+   "translations": {
+    "vi": "tuyết"
+   },
+   "forms": {},
+   "rank": 93
+  },
+  {
+   "id": "cloud",
+   "text": "cloud",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "weather"
+   ],
+   "emoji": "☁️",
+   "definition": "A white or grey shape in the sky.",
+   "examples": [
+    "The cloud is big and white."
+   ],
+   "translations": {
+    "vi": "đám mây"
+   },
+   "forms": {},
+   "rank": 94
+  },
+  {
+   "id": "wind",
+   "text": "wind",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "weather"
+   ],
+   "emoji": "🌬️",
+   "definition": "Air that moves.",
+   "examples": [
+    "The wind is strong today."
+   ],
+   "translations": {
+    "vi": "gió"
+   },
+   "forms": {},
+   "rank": 95
+  },
+  {
+   "id": "rainbow",
+   "text": "rainbow",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "weather"
+   ],
+   "emoji": "🌈",
+   "definition": "A curve of colours in the sky after rain.",
+   "examples": [
+    "Look! A rainbow!"
+   ],
+   "translations": {
+    "vi": "cầu vồng"
+   },
+   "forms": {},
+   "rank": 96
+  },
+  {
+   "id": "fire",
+   "text": "fire",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 7,
+   "themes": [
+    "nature"
+   ],
+   "emoji": "🔥",
+   "definition": "The hot bright flames when something burns.",
+   "examples": [
+    "Don't touch the fire."
+   ],
+   "translations": {
+    "vi": "lửa"
+   },
+   "forms": {},
+   "rank": 97
+  },
+  {
+   "id": "leaf",
+   "text": "leaf",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": "🍃",
+   "definition": "A flat green part of a plant.",
+   "examples": [
+    "The leaf is green."
+   ],
+   "translations": {
+    "vi": "chiếc lá"
+   },
+   "forms": {
+    "plural": "leaves"
+   },
+   "rank": 98
+  },
+  {
+   "id": "rock",
+   "text": "rock",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": "🪨",
+   "definition": "A big hard stone.",
+   "examples": [
+    "I sit on a rock."
+   ],
+   "translations": {
+    "vi": "hòn đá"
+   },
+   "forms": {},
+   "rank": 99
+  },
+  {
+   "id": "sand",
+   "text": "sand",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "nature"
+   ],
+   "emoji": null,
+   "definition": "Tiny bits of rock on a beach.",
+   "examples": [
+    "We play in the sand."
+   ],
+   "translations": {
+    "vi": "cát"
+   },
+   "forms": {},
+   "rank": 100
+  },
+  {
+   "id": "weather",
+   "text": "weather",
+   "pos": "noun",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "weather"
+   ],
+   "emoji": null,
+   "definition": "How hot, cold, sunny or rainy it is.",
+   "examples": [
+    "The weather is nice today."
+   ],
+   "translations": {
+    "vi": "thời tiết"
+   },
+   "forms": {},
+   "rank": 101
+  },
+  {
+   "id": "buy",
+   "text": "buy",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To get something by paying money.",
+   "examples": [
+    "I want to buy a toy."
+   ],
+   "translations": {
+    "vi": "mua"
+   },
+   "forms": {
+    "past": "bought"
+   },
+   "rank": 102
+  },
+  {
+   "id": "carry",
+   "text": "carry",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To hold something and take it with you.",
+   "examples": [
+    "Can you carry my bag?"
+   ],
+   "translations": {
+    "vi": "mang, xách"
+   },
+   "forms": {
+    "past": "carried"
+   },
+   "rank": 103
+  },
+  {
+   "id": "push",
+   "text": "push",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To move something away from you.",
+   "examples": [
+    "Push the door."
+   ],
+   "translations": {
+    "vi": "đẩy"
+   },
+   "forms": {},
+   "rank": 104
+  },
+  {
+   "id": "pull",
+   "text": "pull",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To move something towards you.",
+   "examples": [
+    "Pull the rope."
+   ],
+   "translations": {
+    "vi": "kéo"
+   },
+   "forms": {},
+   "rank": 105
+  },
+  {
+   "id": "find",
+   "text": "find",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🔍",
+   "definition": "To see something you were looking for.",
+   "examples": [
+    "I can't find my shoe."
+   ],
+   "translations": {
+    "vi": "tìm thấy"
+   },
+   "forms": {
+    "past": "found"
+   },
+   "rank": 106
+  },
+  {
+   "id": "give",
+   "text": "give",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To let someone have something.",
+   "examples": [
+    "Give me the ball, please."
+   ],
+   "translations": {
+    "vi": "cho, đưa"
+   },
+   "forms": {
+    "past": "gave"
+   },
+   "rank": 107
+  },
+  {
+   "id": "take",
+   "text": "take",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To get something in your hand.",
+   "examples": [
+    "Take an apple."
+   ],
+   "translations": {
+    "vi": "lấy"
+   },
+   "forms": {
+    "past": "took"
+   },
+   "rank": 108
+  },
+  {
+   "id": "make",
+   "text": "make",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To build or create something.",
+   "examples": [
+    "Let's make a cake."
+   ],
+   "translations": {
+    "vi": "làm"
+   },
+   "forms": {
+    "past": "made"
+   },
+   "rank": 109
+  },
+  {
+   "id": "build",
+   "text": "build",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🏗️",
+   "definition": "To make something by putting parts together.",
+   "examples": [
+    "We build a sandcastle."
+   ],
+   "translations": {
+    "vi": "xây"
+   },
+   "forms": {
+    "past": "built"
+   },
+   "rank": 110
+  },
+  {
+   "id": "ride",
+   "text": "ride",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "transport"
+   ],
+   "emoji": "🚴",
+   "definition": "To sit on a bike or horse and move.",
+   "examples": [
+    "I ride my bike to school."
+   ],
+   "translations": {
+    "vi": "đi (xe), cưỡi"
+   },
+   "forms": {
+    "past": "rode"
+   },
+   "rank": 111
+  },
+  {
+   "id": "drive",
+   "text": "drive",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "transport"
+   ],
+   "emoji": null,
+   "definition": "To make a car or bus move.",
+   "examples": [
+    "My mum can drive."
+   ],
+   "translations": {
+    "vi": "lái xe"
+   },
+   "forms": {
+    "past": "drove"
+   },
+   "rank": 112
+  },
+  {
+   "id": "wait",
+   "text": "wait",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "⏳",
+   "definition": "To stay until something happens.",
+   "examples": [
+    "Wait for me!"
+   ],
+   "translations": {
+    "vi": "chờ, đợi"
+   },
+   "forms": {},
+   "rank": 113
+  },
+  {
+   "id": "win",
+   "text": "win",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🏆",
+   "definition": "To be the best in a game.",
+   "examples": [
+    "Our team wins!"
+   ],
+   "translations": {
+    "vi": "thắng"
+   },
+   "forms": {
+    "past": "won"
+   },
+   "rank": 114
+  },
+  {
+   "id": "learn",
+   "text": "learn",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "school"
+   ],
+   "emoji": null,
+   "definition": "To get to know something new.",
+   "examples": [
+    "I learn English."
+   ],
+   "translations": {
+    "vi": "học"
+   },
+   "forms": {},
+   "rank": 115
+  },
+  {
+   "id": "teach",
+   "text": "teach",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "school"
+   ],
+   "emoji": null,
+   "definition": "To help someone learn.",
+   "examples": [
+    "My mum teaches me to swim."
+   ],
+   "translations": {
+    "vi": "dạy"
+   },
+   "forms": {
+    "past": "taught"
+   },
+   "rank": 116
+  },
+  {
+   "id": "count",
+   "text": "count",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "numbers"
+   ],
+   "emoji": "🔢",
+   "definition": "To say numbers in order.",
+   "examples": [
+    "Let's count to ten."
+   ],
+   "translations": {
+    "vi": "đếm"
+   },
+   "forms": {},
+   "rank": 117
+  },
+  {
+   "id": "ask",
+   "text": "ask",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To say a question.",
+   "examples": [
+    "Ask your teacher."
+   ],
+   "translations": {
+    "vi": "hỏi"
+   },
+   "forms": {},
+   "rank": 118
+  },
+  {
+   "id": "answer",
+   "text": "answer",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To say something back to a question.",
+   "examples": [
+    "Can you answer the question?"
+   ],
+   "translations": {
+    "vi": "trả lời"
+   },
+   "forms": {},
+   "rank": 119
+  },
+  {
+   "id": "call",
+   "text": "call",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "📞",
+   "definition": "To talk to someone on the phone.",
+   "examples": [
+    "Call your grandma."
+   ],
+   "translations": {
+    "vi": "gọi điện"
+   },
+   "forms": {},
+   "rank": 120
+  },
+  {
+   "id": "visit",
+   "text": "visit",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To go and see a person or a place.",
+   "examples": [
+    "We visit our grandparents."
+   ],
+   "translations": {
+    "vi": "thăm"
+   },
+   "forms": {},
+   "rank": 121
+  },
+  {
+   "id": "live",
+   "text": "live",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To have your home in a place.",
+   "examples": [
+    "I live in Hanoi."
+   ],
+   "translations": {
+    "vi": "sống"
+   },
+   "forms": {},
+   "rank": 122
+  },
+  {
+   "id": "work",
+   "text": "work",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "jobs"
+   ],
+   "emoji": "💼",
+   "definition": "To do a job.",
+   "examples": [
+    "My dad works in an office."
+   ],
+   "translations": {
+    "vi": "làm việc"
+   },
+   "forms": {},
+   "rank": 123
+  },
+  {
+   "id": "brush",
+   "text": "brush",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🪥",
+   "definition": "To clean with a brush.",
+   "examples": [
+    "Brush your teeth."
+   ],
+   "translations": {
+    "vi": "chải, đánh (răng)"
+   },
+   "forms": {},
+   "rank": 124
+  },
+  {
+   "id": "hug",
+   "text": "hug",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "feelings"
+   ],
+   "emoji": "🤗",
+   "definition": "To put your arms around someone.",
+   "examples": [
+    "I hug my mum."
+   ],
+   "translations": {
+    "vi": "ôm"
+   },
+   "forms": {},
+   "rank": 125
+  },
+  {
+   "id": "shout",
+   "text": "shout",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "📢",
+   "definition": "To say something very loudly.",
+   "examples": [
+    "Don't shout!"
+   ],
+   "translations": {
+    "vi": "hét"
+   },
+   "forms": {},
+   "rank": 126
+  },
+  {
+   "id": "hide",
+   "text": "hide",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🙈",
+   "definition": "To go where no one can see you.",
+   "examples": [
+    "Let's hide behind the tree."
+   ],
+   "translations": {
+    "vi": "trốn, giấu"
+   },
+   "forms": {
+    "past": "hid"
+   },
+   "rank": 127
+  },
+  {
+   "id": "share",
+   "text": "share",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To let others use or have some of your things.",
+   "examples": [
+    "Share your toys."
+   ],
+   "translations": {
+    "vi": "chia sẻ"
+   },
+   "forms": {},
+   "rank": 128
+  },
+  {
+   "id": "think",
+   "text": "think",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🤔",
+   "definition": "To use your mind.",
+   "examples": [
+    "I think it's a cat."
+   ],
+   "translations": {
+    "vi": "nghĩ"
+   },
+   "forms": {
+    "past": "thought"
+   },
+   "rank": 129
+  },
+  {
+   "id": "know",
+   "text": "know",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To have something in your mind.",
+   "examples": [
+    "I know the answer!"
+   ],
+   "translations": {
+    "vi": "biết"
+   },
+   "forms": {
+    "past": "knew"
+   },
+   "rank": 130
+  },
+  {
+   "id": "remember",
+   "text": "remember",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To keep something in your mind.",
+   "examples": [
+    "Remember your bag!"
+   ],
+   "translations": {
+    "vi": "nhớ"
+   },
+   "forms": {},
+   "rank": 131
+  },
+  {
+   "id": "forget",
+   "text": "forget",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To not remember.",
+   "examples": [
+    "Don't forget your hat."
+   ],
+   "translations": {
+    "vi": "quên"
+   },
+   "forms": {
+    "past": "forgot"
+   },
+   "rank": 132
+  },
+  {
+   "id": "try",
+   "text": "try",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To do your best to do something.",
+   "examples": [
+    "Try again!"
+   ],
+   "translations": {
+    "vi": "thử, cố gắng"
+   },
+   "forms": {
+    "past": "tried"
+   },
+   "rank": 133
+  },
+  {
+   "id": "start",
+   "text": "start",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To begin.",
+   "examples": [
+    "The game starts now."
+   ],
+   "translations": {
+    "vi": "bắt đầu"
+   },
+   "forms": {},
+   "rank": 134
+  },
+  {
+   "id": "stop",
+   "text": "stop",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🛑",
+   "definition": "To not move or not do something any more.",
+   "examples": [
+    "Stop at the red light."
+   ],
+   "translations": {
+    "vi": "dừng lại"
+   },
+   "forms": {
+    "past": "stopped"
+   },
+   "rank": 135
+  },
+  {
+   "id": "finish",
+   "text": "finish",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🏁",
+   "definition": "To come to the end.",
+   "examples": [
+    "I finish my homework."
+   ],
+   "translations": {
+    "vi": "hoàn thành"
+   },
+   "forms": {},
+   "rank": 136
+  },
+  {
+   "id": "climb",
+   "text": "climb",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🧗",
+   "definition": "To go up using your hands and feet.",
+   "examples": [
+    "The monkey climbs the tree."
+   ],
+   "translations": {
+    "vi": "leo, trèo"
+   },
+   "forms": {},
+   "rank": 137
+  },
+  {
+   "id": "cry",
+   "text": "cry",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "feelings"
+   ],
+   "emoji": "😭",
+   "definition": "To have tears coming from your eyes.",
+   "examples": [
+    "The baby is crying."
+   ],
+   "translations": {
+    "vi": "khóc"
+   },
+   "forms": {
+    "past": "cried"
+   },
+   "rank": 138
+  },
+  {
+   "id": "laugh",
+   "text": "laugh",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "feelings"
+   ],
+   "emoji": "😆",
+   "definition": "To make a happy sound when something is funny.",
+   "examples": [
+    "We laugh at the joke."
+   ],
+   "translations": {
+    "vi": "cười"
+   },
+   "forms": {},
+   "rank": 139
+  },
+  {
+   "id": "help",
+   "text": "help",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": null,
+   "definition": "To make it easier for someone to do something.",
+   "examples": [
+    "Can you help me?"
+   ],
+   "translations": {
+    "vi": "giúp đỡ"
+   },
+   "forms": {},
+   "rank": 140
+  },
+  {
+   "id": "cook",
+   "text": "cook",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions",
+    "food"
+   ],
+   "emoji": "🧑‍🍳",
+   "definition": "To make food hot and ready to eat.",
+   "examples": [
+    "Dad cooks dinner."
+   ],
+   "translations": {
+    "vi": "nấu ăn"
+   },
+   "forms": {},
+   "rank": 141
+  },
+  {
+   "id": "talk",
+   "text": "talk",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "actions"
+   ],
+   "emoji": "🗣️",
+   "definition": "To say words to someone.",
+   "examples": [
+    "Let's talk about animals."
+   ],
+   "translations": {
+    "vi": "nói chuyện"
+   },
+   "forms": {},
+   "rank": 142
+  },
+  {
+   "id": "want",
+   "text": "want",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": null,
+   "definition": "To wish to have or do something.",
+   "examples": [
+    "I want an ice cream."
+   ],
+   "translations": {
+    "vi": "muốn"
+   },
+   "forms": {},
+   "rank": 143
+  },
+  {
+   "id": "need",
+   "text": "need",
+   "pos": "verb",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": null,
+   "definition": "To must have something.",
+   "examples": [
+    "Plants need water."
+   ],
+   "translations": {
+    "vi": "cần"
+   },
+   "forms": {},
+   "rank": 144
+  },
+  {
+   "id": "fast",
+   "text": "fast",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Moving quickly.",
+   "examples": [
+    "The car is fast."
+   ],
+   "translations": {
+    "vi": "nhanh"
+   },
+   "forms": {
+    "comparative": "faster"
+   },
+   "rank": 145
+  },
+  {
+   "id": "slow",
+   "text": "slow",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Not fast.",
+   "examples": [
+    "The turtle is slow."
+   ],
+   "translations": {
+    "vi": "chậm"
+   },
+   "forms": {
+    "comparative": "slower"
+   },
+   "rank": 146
+  },
+  {
+   "id": "tall",
+   "text": "tall",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Very high from bottom to top.",
+   "examples": [
+    "The giraffe is tall."
+   ],
+   "translations": {
+    "vi": "cao"
+   },
+   "forms": {
+    "comparative": "taller"
+   },
+   "rank": 147
+  },
+  {
+   "id": "tired",
+   "text": "tired",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": "😩",
+   "definition": "Needing rest or sleep.",
+   "examples": [
+    "I am tired after school."
+   ],
+   "translations": {
+    "vi": "mệt"
+   },
+   "forms": {},
+   "rank": 148
+  },
+  {
+   "id": "hungry",
+   "text": "hungry",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": null,
+   "definition": "Wanting to eat.",
+   "examples": [
+    "I'm hungry. Can I have a snack?"
+   ],
+   "translations": {
+    "vi": "đói"
+   },
+   "forms": {
+    "comparative": "hungrier"
+   },
+   "rank": 149
+  },
+  {
+   "id": "thirsty",
+   "text": "thirsty",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": null,
+   "definition": "Wanting to drink.",
+   "examples": [
+    "I'm thirsty. I want some water."
+   ],
+   "translations": {
+    "vi": "khát"
+   },
+   "forms": {},
+   "rank": 150
+  },
+  {
+   "id": "loud",
+   "text": "loud",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": "🔊",
+   "definition": "Making a lot of noise.",
+   "examples": [
+    "The music is loud."
+   ],
+   "translations": {
+    "vi": "ồn, to"
+   },
+   "forms": {
+    "comparative": "louder"
+   },
+   "rank": 151
+  },
+  {
+   "id": "quiet",
+   "text": "quiet",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": "🤫",
+   "definition": "Making very little noise.",
+   "examples": [
+    "Be quiet in the library."
+   ],
+   "translations": {
+    "vi": "yên lặng"
+   },
+   "forms": {
+    "comparative": "quieter"
+   },
+   "rank": 152
+  },
+  {
+   "id": "wet",
+   "text": "wet",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing",
+    "weather"
+   ],
+   "emoji": null,
+   "definition": "Covered with water.",
+   "examples": [
+    "My shoes are wet."
+   ],
+   "translations": {
+    "vi": "ướt"
+   },
+   "forms": {},
+   "rank": 153
+  },
+  {
+   "id": "dry",
+   "text": "dry",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing",
+    "weather"
+   ],
+   "emoji": null,
+   "definition": "Not wet.",
+   "examples": [
+    "The towel is dry."
+   ],
+   "translations": {
+    "vi": "khô"
+   },
+   "forms": {},
+   "rank": 154
+  },
+  {
+   "id": "strong",
+   "text": "strong",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Able to lift heavy things.",
+   "examples": [
+    "My dad is strong."
+   ],
+   "translations": {
+    "vi": "khỏe"
+   },
+   "forms": {
+    "comparative": "stronger"
+   },
+   "rank": 155
+  },
+  {
+   "id": "soft",
+   "text": "soft",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Nice and gentle to touch, not hard.",
+   "examples": [
+    "The kitten is soft."
+   ],
+   "translations": {
+    "vi": "mềm"
+   },
+   "forms": {
+    "comparative": "softer"
+   },
+   "rank": 156
+  },
+  {
+   "id": "hard",
+   "text": "hard",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Not soft; also not easy.",
+   "examples": [
+    "The rock is hard."
+   ],
+   "translations": {
+    "vi": "cứng, khó"
+   },
+   "forms": {
+    "comparative": "harder"
+   },
+   "rank": 157
+  },
+  {
+   "id": "easy",
+   "text": "easy",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Not difficult.",
+   "examples": [
+    "This game is easy."
+   ],
+   "translations": {
+    "vi": "dễ"
+   },
+   "forms": {
+    "comparative": "easier"
+   },
+   "rank": 158
+  },
+  {
+   "id": "difficult",
+   "text": "difficult",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Not easy.",
+   "examples": [
+    "This puzzle is difficult."
+   ],
+   "translations": {
+    "vi": "khó"
+   },
+   "forms": {},
+   "rank": 159
+  },
+  {
+   "id": "heavy",
+   "text": "heavy",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": "🏋️",
+   "definition": "Weighing a lot.",
+   "examples": [
+    "The box is heavy."
+   ],
+   "translations": {
+    "vi": "nặng"
+   },
+   "forms": {
+    "comparative": "heavier"
+   },
+   "rank": 160
+  },
+  {
+   "id": "full",
+   "text": "full",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "With no more space inside.",
+   "examples": [
+    "The glass is full."
+   ],
+   "translations": {
+    "vi": "đầy, no"
+   },
+   "forms": {},
+   "rank": 161
+  },
+  {
+   "id": "empty",
+   "text": "empty",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "With nothing inside.",
+   "examples": [
+    "The box is empty."
+   ],
+   "translations": {
+    "vi": "trống, rỗng"
+   },
+   "forms": {},
+   "rank": 162
+  },
+  {
+   "id": "brave",
+   "text": "brave",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": "🦸",
+   "definition": "Not afraid to do something difficult.",
+   "examples": [
+    "The firefighter is brave."
+   ],
+   "translations": {
+    "vi": "dũng cảm"
+   },
+   "forms": {},
+   "rank": 163
+  },
+  {
+   "id": "kind",
+   "text": "kind",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": null,
+   "definition": "Nice and helpful to others.",
+   "examples": [
+    "My teacher is kind."
+   ],
+   "translations": {
+    "vi": "tốt bụng"
+   },
+   "forms": {
+    "comparative": "kinder"
+   },
+   "rank": 164
+  },
+  {
+   "id": "friendly",
+   "text": "friendly",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": null,
+   "definition": "Kind and nice to other people.",
+   "examples": [
+    "The dog is friendly."
+   ],
+   "translations": {
+    "vi": "thân thiện"
+   },
+   "forms": {},
+   "rank": 165
+  },
+  {
+   "id": "careful",
+   "text": "careful",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Thinking about what you do so you stay safe.",
+   "examples": [
+    "Be careful on the stairs."
+   ],
+   "translations": {
+    "vi": "cẩn thận"
+   },
+   "forms": {},
+   "rank": 166
+  },
+  {
+   "id": "favourite",
+   "text": "favourite",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": null,
+   "definition": "Liked more than all the others.",
+   "examples": [
+    "Blue is my favourite colour."
+   ],
+   "translations": {
+    "vi": "yêu thích"
+   },
+   "forms": {},
+   "rank": 167
+  },
+  {
+   "id": "different",
+   "text": "different",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Not the same.",
+   "examples": [
+    "The two cats are different."
+   ],
+   "translations": {
+    "vi": "khác"
+   },
+   "forms": {},
+   "rank": 168
+  },
+  {
+   "id": "same",
+   "text": "same",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Not different.",
+   "examples": [
+    "We have the same shoes."
+   ],
+   "translations": {
+    "vi": "giống nhau"
+   },
+   "forms": {},
+   "rank": 169
+  },
+  {
+   "id": "round",
+   "text": "round",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Shaped like a circle or a ball.",
+   "examples": [
+    "The ball is round."
+   ],
+   "translations": {
+    "vi": "tròn"
+   },
+   "forms": {},
+   "rank": 170
+  },
+  {
+   "id": "late",
+   "text": "late",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "time"
+   ],
+   "emoji": "⏰",
+   "definition": "After the right time.",
+   "examples": [
+    "Don't be late for school."
+   ],
+   "translations": {
+    "vi": "muộn"
+   },
+   "forms": {
+    "comparative": "later"
+   },
+   "rank": 171
+  },
+  {
+   "id": "busy",
+   "text": "busy",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": null,
+   "definition": "Having a lot to do.",
+   "examples": [
+    "Mum is busy today."
+   ],
+   "translations": {
+    "vi": "bận"
+   },
+   "forms": {
+    "comparative": "busier"
+   },
+   "rank": 172
+  },
+  {
+   "id": "sick",
+   "text": "sick",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": "🤒",
+   "definition": "Not well; ill.",
+   "examples": [
+    "I am sick today."
+   ],
+   "translations": {
+    "vi": "ốm (bệnh)"
+   },
+   "forms": {},
+   "rank": 173
+  },
+  {
+   "id": "delicious",
+   "text": "delicious",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "😋",
+   "definition": "Tasting very good.",
+   "examples": [
+    "The cake is delicious."
+   ],
+   "translations": {
+    "vi": "ngon"
+   },
+   "forms": {},
+   "rank": 174
+  },
+  {
+   "id": "sweet",
+   "text": "sweet",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "food"
+   ],
+   "emoji": "🍭",
+   "definition": "Tasting like sugar.",
+   "examples": [
+    "Honey is sweet."
+   ],
+   "translations": {
+    "vi": "ngọt"
+   },
+   "forms": {
+    "comparative": "sweeter"
+   },
+   "rank": 175
+  },
+  {
+   "id": "cute",
+   "text": "cute",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "describing"
+   ],
+   "emoji": "🥰",
+   "definition": "Small and lovely to look at.",
+   "examples": [
+    "The puppy is cute."
+   ],
+   "translations": {
+    "vi": "dễ thương"
+   },
+   "forms": {
+    "comparative": "cuter"
+   },
+   "rank": 176
+  },
+  {
+   "id": "excited",
+   "text": "excited",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": "🤩",
+   "definition": "Very happy about something that will happen.",
+   "examples": [
+    "I'm excited about my birthday."
+   ],
+   "translations": {
+    "vi": "hào hứng"
+   },
+   "forms": {},
+   "rank": 177
+  },
+  {
+   "id": "afraid",
+   "text": "afraid",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": "😨",
+   "definition": "Feeling fear.",
+   "examples": [
+    "I'm afraid of spiders."
+   ],
+   "translations": {
+    "vi": "sợ"
+   },
+   "forms": {},
+   "rank": 178
+  },
+  {
+   "id": "bored",
+   "text": "bored",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "feelings"
+   ],
+   "emoji": "😐",
+   "definition": "Not interested; with nothing to do.",
+   "examples": [
+    "I'm bored. Let's play!"
+   ],
+   "translations": {
+    "vi": "chán"
+   },
+   "forms": {},
+   "rank": 179
+  },
+  {
+   "id": "sunny",
+   "text": "sunny",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "weather"
+   ],
+   "emoji": "🌞",
+   "definition": "With a lot of sun.",
+   "examples": [
+    "It's a sunny day."
+   ],
+   "translations": {
+    "vi": "có nắng"
+   },
+   "forms": {
+    "comparative": "sunnier"
+   },
+   "rank": 180
+  },
+  {
+   "id": "rainy",
+   "text": "rainy",
+   "pos": "adjective",
+   "cefr": "A1",
+   "minAge": 4,
+   "themes": [
+    "weather"
+   ],
+   "emoji": "☔",
+   "definition": "With a lot of rain.",
+   "examples": [
+    "It's rainy today."
+   ],
+   "translations": {
+    "vi": "có mưa"
+   },
+   "forms": {
+    "comparative": "rainier"
+   },
+   "rank": 181
+  }
+ ]
+}

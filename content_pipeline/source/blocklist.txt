@@ -1,0 +1,16 @@
+# Words that must never appear in the word bank (lowercase, one per line).
+# Extend from a maintained kid-safety list before growing past A1.
+damn
+hell
+crap
+stupid
+idiot
+kill
+gun
+drug
+drugs
+beer
+wine
+cigarette
+sex
+naked
