@@ -26,3 +26,4 @@ content_pipeline/out/
 
 # Agent working files (kept local, not pushed)
 harness/
+.claude/skills/

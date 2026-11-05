@@ -65,7 +65,7 @@ flutter test
 dart run build_runner build --delete-conflicting-outputs   # after Drift is added
 ```
 
-Harness audit: `node .claude/skills/harness-creator/scripts/validate-harness.mjs --target .` — it looks for the tracker files at the repo root, so since the move to `harness/` it reports them missing; ignore those checks.
+Harness audit (the skill is local-only, git-ignored): `node .claude/skills/harness-creator/scripts/validate-harness.mjs --target .` — it looks for the tracker files at the repo root, so since the move to `harness/` it reports them missing; ignore those checks.
 
 ## Escalation
 
