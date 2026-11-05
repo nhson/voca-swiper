@@ -76,7 +76,8 @@ class LevelService {
     );
   }
 
-  Future<void> stepBack(int profileId, CefrLevel to) =>
+  /// Sets the level (step back, or the parent's override).
+  Future<void> setLevel(int profileId, CefrLevel to) =>
       profiles.changeLevel(profileId, to, now: clock());
 
   Future<void> dismissStepBack(int profileId) =>

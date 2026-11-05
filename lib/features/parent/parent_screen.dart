@@ -89,7 +89,8 @@ class _ParentBody extends ConsumerWidget {
                         key: Key('parent-progress-${p.id}'),
                         tooltip: 'Progress',
                         icon: const Icon(Icons.insights_rounded),
-                        onPressed: () => context.push('/kid/${p.id}/progress'),
+                        onPressed: () =>
+                            context.push('/parent/profiles/${p.id}/dashboard'),
                       ),
                       const Icon(Icons.chevron_right),
                     ],
@@ -193,7 +194,7 @@ class _StepBackBanner extends ConsumerWidget {
               FilledButton(
                 key: Key('step-back-accept-$id'),
                 onPressed: () async {
-                  await service.stepBack(id, s.to);
+                  await service.setLevel(id, s.to);
                   ref.invalidate(stepBackSuggestionProvider(id));
                 },
                 child: const Text('Step back'),

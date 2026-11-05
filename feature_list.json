@@ -172,8 +172,8 @@
         "feat-008",
         "feat-013"
       ],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-05: ./init.sh green — format 0 changed, analyze no issues, 283/283 tests. test/core/progress/dashboard_test.dart (6): struggling words by misses then fewer right, ≥2 misses, mastered excluded, limit; weekly trend Monday weeks oldest-first with new words/minutes/active days; last-7-days goal (days practised, at goal, average) and empty case. test/features/dashboard_flow_test.dart (5): seeded data → '1 of 5 Pre-A1 words mastered (20%)', 'Practised 3 of 7 days · 2 at the 10-minute goal · about 9 min a day', '67% right (2 of 3 quiz answers, 1 word)', week bars (2 words/26 min this week, 1/20 last week, sun 4 weeks back), struggling cat before dog with translation, mastered sun and once-missed bird left out — on phone and tablet sizes; level override from the dashboard → A1; new child zeros; Child's view opens 'My words'. progress_flow_test updated (parent goes via the dashboard). Device: flutter drive integration_test/dashboard_on_device_test.dart (real bank, 8 weeks of seeded sessions) passed on iPhone 18 Pro and iPad Pro 13 simulators; screenshots build/screenshots/{phone,tablet}-f17-*.png checked."
     },
     {
       "id": "feat-018",

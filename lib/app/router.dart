@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 
 import '../features/parent/change_pin_screen.dart';
+import '../features/parent/dashboard_screen.dart';
 import '../features/parent/parent_screen.dart';
 import '../features/parent/profile_form_screen.dart';
 import '../features/placement/placement_screen.dart';
@@ -44,6 +45,11 @@ GoRouter buildRouter() => GoRouter(
       path: '/parent/profiles/:id',
       builder: (_, s) =>
           ProfileFormScreen(profileId: int.parse(s.pathParameters['id']!)),
+    ),
+    GoRoute(
+      path: '/parent/profiles/:id/dashboard',
+      builder: (_, s) =>
+          DashboardScreen(profileId: int.parse(s.pathParameters['id']!)),
     ),
     GoRoute(path: '/parent/pin', builder: (_, _) => const ChangePinScreen()),
     GoRoute(

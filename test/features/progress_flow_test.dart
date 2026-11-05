@@ -96,6 +96,8 @@ void main() {
     await unlockParent(t);
     await t.tap(find.byKey(Key('parent-progress-$bi')));
     await t.pumpAndSettle();
+    await t.tap(find.byKey(const Key('dash-child-view')));
+    await t.pumpAndSettle();
     await expectBiNumbers(t);
   });
 
