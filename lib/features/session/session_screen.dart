@@ -15,6 +15,7 @@ import '../../ui/kid_screen.dart';
 import '../../ui/mascot.dart';
 import '../../ui/sfx.dart';
 import 'flash_card.dart';
+import 'quiz_view.dart';
 import 'session_controller.dart';
 import 'speaker.dart';
 import 'swipe_card.dart';
@@ -171,7 +172,26 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
         onDone: () => Navigator.of(context).pop(),
       );
     }
+    if (_c.inQuiz) {
+      return QuizView(
+        key: ValueKey('quiz-${_c.quizNumber}'),
+        item: _c.currentQuiz!,
+        number: _c.quizNumber,
+        total: _c.quiz.length,
+        cardFor: _c.cardFor,
+        look: look,
+        showWords: (_c.profile?.age ?? 0) >= 7,
+        say: _speaker.say,
+        sfx: _sfx,
+        onAnswered: _c.answerQuiz,
+        onQuit: _quit,
+      );
+    }
     final s = _c.session!;
+    if (s.isFinished) {
+      // Getting the quiz ready.
+      return const Center(child: CircularProgressIndicator());
+    }
     final card = _c.currentCard!;
     final profile = _c.profile!;
     final cardKey = '${s.seen.length}:${card.word.id}';
@@ -487,6 +507,18 @@ class SessionSummaryView extends StatelessWidget {
                           ),
                       ],
                     ),
+                    if (summary.quizAsked > 0)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          'Quiz: ${summary.quizCorrect} of '
+                          '${summary.quizAsked} right',
+                          key: const Key('summary-quiz'),
+                          style: text.titleMedium?.copyWith(
+                            color: KidColors.inkSoft,
+                          ),
+                        ),
+                      ),
                     if (practiced.isNotEmpty) ...[
                       const SizedBox(height: 14),
                       Wrap(

@@ -24,6 +24,7 @@ Map<String, Object?> w(
   int rank = 1,
   int minAge = 4,
   String vi = 'vi',
+  String? emoji,
 }) => {
   'id': id,
   'text': id,
@@ -31,7 +32,7 @@ Map<String, Object?> w(
   'cefr': cefr,
   'minAge': minAge,
   'themes': ['test'],
-  'emoji': null,
+  'emoji': emoji,
   'definition': 'def $id',
   'examples': ['ex $id'],
   'translations': {'vi': vi},

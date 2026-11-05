@@ -67,4 +67,26 @@ void main() {
     final s = play([newCat], [AnswerQuality.quizWrong, AnswerQuality.knew]);
     expect(SessionSummary.of(s).correct, 0);
   });
+
+  group('quiz round (feat-012)', () {
+    test('a wrong quiz answer turns a "knew it" into a miss', () {
+      final s = play(
+        [reviewSun, newCat, newDog],
+        [AnswerQuality.knew, AnswerQuality.knew, AnswerQuality.almost],
+      );
+      final sum = SessionSummary.of(s, quiz: {'sun': true, 'cat': false});
+      expect(sum.correct, 2, reason: 'sun ✓, cat ✗ (quiz), dog ✓');
+      expect(sum.accuracy, closeTo(2 / 3, 1e-9));
+      expect(sum.quizAsked, 2);
+      expect(sum.quizCorrect, 1);
+      expect(sum.reviewed, 1);
+      expect(sum.newLearned, 2);
+    });
+
+    test('no quiz → quiz counts are zero', () {
+      final s = play([newCat], [AnswerQuality.knew]);
+      final sum = SessionSummary.of(s);
+      expect((sum.quizAsked, sum.quizCorrect), (0, 0));
+    });
+  });
 }

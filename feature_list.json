@@ -119,8 +119,8 @@
       "dependencies": [
         "feat-006"
       ],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-05: ./init.sh green — format 0 changed, analyze no issues, 180/180 tests. test/core/quiz/quiz_builder_test.dart (15): knew/almost only, max 5, ages 4–6 picture only, 4 distinct pictures, no-picture skipped, small pool skipped, 7+ rotation + fall-through, distinct meanings, spelling tiles, deterministic seed, answer checking. test/core/session/session_summary_test.dart: quiz wrong overrides 'knew', quiz counts. test/features/session_controller_test.dart (6 quiz): quiz follows swipes, wrong answer reschedules as miss (wrongCount 1, correctCount 0), right answer keeps swipe, summary + SessionLog accuracy count quiz, missed words not quizzed, quit mid-quiz keeps answers, 7+ gets all kinds. test/features/quiz_flow_test.dart (4): child UI picture pick with ✓/✗ marks and word repeated, 7+ picture/meaning/spelling with wrong spelling shown, undo a tile, tablet fits. Device: integration_test/session_on_device_test.dart on iPhone 18 Pro + iPad Pro 13 simulators with the real word bank — quiz after swipes, wrong pick reschedules bird, 'Quiz: 3 of 4 right'; 7+ picture/meaning/spelling screenshots checked."
     },
     {
       "id": "feat-013",

@@ -1,3 +1,4 @@
+import '../srs/sm2_scheduler.dart';
 import '../srs/word_state.dart';
 import 'study_session.dart';
 
@@ -9,10 +10,16 @@ class SessionSummary {
     required this.newLearned,
     required this.answered,
     required this.correct,
+    this.quizAsked = 0,
+    this.quizCorrect = 0,
   });
 
-  /// Built from first answers only; retries are practice.
-  factory SessionSummary.of(StudySession session) {
+  /// Built from first answers only; retries are practice. [quiz] holds the
+  /// quiz result per word: a wrong quiz answer overrides the swipe.
+  factory SessionSummary.of(
+    StudySession session, {
+    Map<String, bool> quiz = const {},
+  }) {
     final isNew = <String, bool>{};
     for (final c in session.seen) {
       isNew.putIfAbsent(c.wordId, () => c.isNew);
@@ -24,13 +31,15 @@ class SessionSummary {
       } else {
         reviewed++;
       }
-      if (isPass(answer)) correct++;
+      if (isPass(resolveAnswer(answer, quizCorrect: quiz[wordId]))) correct++;
     });
     return SessionSummary(
       reviewed: reviewed,
       newLearned: newLearned,
       answered: session.firstAnswers.length,
       correct: correct,
+      quizAsked: quiz.length,
+      quizCorrect: quiz.values.where((ok) => ok).length,
     );
   }
 
@@ -38,6 +47,8 @@ class SessionSummary {
   final int newLearned;
   final int answered;
   final int correct;
+  final int quizAsked;
+  final int quizCorrect;
 
   double get accuracy => answered == 0 ? 0 : correct / answered;
 

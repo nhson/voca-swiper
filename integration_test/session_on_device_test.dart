@@ -11,6 +11,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:voca_swiper/app/app.dart';
+import 'package:voca_swiper/core/quiz/quiz_builder.dart';
+import 'package:voca_swiper/features/session/quiz_view.dart';
 import 'package:voca_swiper/app/providers.dart';
 import 'package:voca_swiper/core/levels.dart';
 import 'package:voca_swiper/data/db/app_database.dart';
@@ -68,6 +70,21 @@ void main() {
 
     // pumpAndSettle with a short limit that reports who keeps asking for
     // frames instead of hanging for 10 minutes.
+    Finder anyOption() => find
+        .byWidgetPredicate(
+          (w) =>
+              w.key is ValueKey<String> &&
+              (w.key! as ValueKey<String>).value.startsWith('quiz-option-'),
+        )
+        .first;
+    Finder wrongOption(String right) => find
+        .byWidgetPredicate(
+          (w) =>
+              w.key is ValueKey<String> &&
+              (w.key! as ValueKey<String>).value.startsWith('quiz-option-') &&
+              w.key != Key('quiz-option-$right'),
+        )
+        .first;
     Future<void> settle() async {
       try {
         await t.pumpAndSettle(
@@ -100,6 +117,12 @@ void main() {
     expect(find.text('5 words are waiting to say hi!'), findsOneWidget);
     await shot('1-kid-home');
 
+    Future<void> quizPick(WidgetTester t, String id) async {
+      await t.tap(find.byKey(Key('quiz-option-$id')));
+      await t.pump(QuizView.wrongPause);
+      await settle();
+    }
+
     await t.tap(find.byKey(const Key('start-session')));
     await settle();
     expect(find.text('cat'), findsOneWidget);
@@ -131,18 +154,39 @@ void main() {
     expect(find.text('One more try! 💪'), findsOneWidget);
     await shot('5-retry');
     await t.tap(find.byKey(const Key('answer-knew'))); // dog retry
+    await settle();
+
+    // feat-012: quiz on the words swiped knew/almost (not dog).
+    expect(find.byKey(const Key('quiz')), findsOneWidget);
+    expect(find.byKey(const Key('quiz-kind-pickPicture')), findsOneWidget);
+    await shot('6a-quiz-picture');
+    await quizPick(t, 'cat');
+    // A wrong pick for bird: the right picture lights up.
+    await t.tap(
+      find.byKey(const Key('quiz-option-fish')).evaluate().isNotEmpty
+          ? find.byKey(const Key('quiz-option-fish'))
+          : wrongOption('bird'),
+    );
+    await t.pump(const Duration(milliseconds: 400));
+    await binding.takeScreenshot('$tag-6b-quiz-wrong');
+    await t.pump(QuizView.wrongPause);
+    await settle();
+    await quizPick(t, 'fish');
+    await t.tap(find.byKey(const Key('quiz-option-horse')));
     // Catch the confetti mid-burst.
     for (var i = 0; i < 12; i++) {
       await t.pump(const Duration(milliseconds: 100));
     }
     await binding.takeScreenshot('$tag-6-summary');
     await settle();
-    expect(find.text('Amazing!'), findsOneWidget); // 4/5 → 3 stars
+    // Swipes 4/5, but bird's quiz was wrong → 3/5 → 2 stars.
+    expect(find.text('Great job!'), findsOneWidget);
+    expect(find.text('Quiz: 3 of 4 right'), findsOneWidget);
 
     final p = await ProgressRepository(db).schedules(kid);
     expect(p.keys.toSet(), {'cat', 'dog', 'bird', 'fish', 'horse'});
     expect(p['dog']!.wrongCount, 1);
-    expect(p['bird']!.easeFactor, closeTo(2.35, 1e-9));
+    expect(p['bird']!.wrongCount, 1, reason: 'quiz wrong overrides');
 
     await t.tap(find.byKey(const Key('session-done')));
     await shot('7-kid-home-after');
@@ -166,6 +210,36 @@ void main() {
     await shot('8-older-home');
     await t.tap(find.byKey(const Key('start-session')));
     await shot('9-older-card');
+    for (
+      var i = 0;
+      i < 5 && find.byKey(const Key('answer-knew')).evaluate().isNotEmpty;
+      i++
+    ) {
+      await t.tap(find.byKey(const Key('answer-knew')));
+      await settle();
+    }
+    // 7+: questions take turns (picture, meaning, spelling).
+    for (
+      var q = 0;
+      q < 3 && find.byKey(const Key('quiz')).evaluate().isNotEmpty;
+      q++
+    ) {
+      final kind = QuizKind.values.firstWhere(
+        (k) => find.byKey(Key('quiz-kind-${k.name}')).evaluate().isNotEmpty,
+      );
+      if (kind == QuizKind.spell) {
+        await t.tap(find.byKey(const Key('quiz-tile-0')));
+        await t.pump();
+        await t.tap(find.byKey(const Key('quiz-tile-1')));
+        await t.pump();
+        await shot('9${'abc'[q]}-older-quiz-${kind.name}');
+        break;
+      }
+      await shot('9${'abc'[q]}-older-quiz-${kind.name}');
+      await t.tap(anyOption());
+      await t.pump(QuizView.wrongPause);
+      await settle();
+    }
     await t.tap(find.byKey(const Key('quit-session')));
     await settle();
     // Unmount first: closing Drift under live queries hangs.

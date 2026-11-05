@@ -43,6 +43,29 @@ class WordRepository {
     return (await q.get()).map((w) => w.id).toList();
   }
 
+  /// Words to draw wrong quiz options from: allowed for the age, up to the
+  /// profile's level, in teaching order (feat-012).
+  Future<List<WordCard>> quizPool({
+    required int levelIndex,
+    required int age,
+    required String language,
+    int limit = 60,
+  }) async {
+    final q = db.select(db.words)
+      ..where(
+        (w) =>
+            w.minAge.isSmallerOrEqualValue(age) &
+            w.levelIndex.isSmallerOrEqualValue(levelIndex),
+      )
+      ..orderBy([
+        (w) => OrderingTerm.asc(w.levelIndex),
+        (w) => OrderingTerm.asc(w.rank),
+      ])
+      ..limit(limit);
+    final ids = (await q.get()).map((w) => w.id).toList();
+    return cards(ids, language: language);
+  }
+
   /// Cards for [ids] in the same order; unknown ids are skipped.
   Future<List<WordCard>> cards(
     List<String> ids, {

@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:voca_swiper/core/quiz/quiz_builder.dart';
 import 'package:voca_swiper/core/srs/word_schedule.dart';
 import 'package:voca_swiper/core/srs/word_state.dart';
 import 'package:voca_swiper/data/db/app_database.dart';
@@ -188,5 +189,118 @@ void main() {
       clock: () => now,
     ).preview(kid);
     expect((preview.reviews, preview.newWords), (12, 0));
+  });
+
+  group('quiz round (feat-012)', () {
+    const animals = [
+      ('cat', '🐱'),
+      ('dog', '🐶'),
+      ('fish', '🐟'),
+      ('bird', '🐦'),
+      ('frog', '🐸'),
+      ('duck', '🦆'),
+    ];
+
+    Future<void> seedAnimals({int age = 6}) async {
+      await db.close();
+      db = await seededDb([
+        for (final (i, (id, e)) in animals.indexed)
+          w(id, rank: i + 1, emoji: e, vi: 'vi-$id'),
+      ]);
+      kid = await createKid(db, age: age); // 5 new words a day
+    }
+
+    Future<SessionController> swipeAll(AnswerQuality q) async {
+      final c = controller();
+      await c.start();
+      while (!c.session!.isFinished) {
+        await c.answer(q);
+      }
+      return c;
+    }
+
+    String wrongOption(QuizItem item) =>
+        item.options.firstWhere((o) => o != item.wordId);
+
+    test(
+      'follows the swipe cards for words the child said they knew',
+      () async {
+        await seedAnimals();
+        final c = await swipeAll(AnswerQuality.knew);
+        expect(c.inQuiz, isTrue);
+        expect(c.isFinished, isFalse);
+        expect(c.quiz.map((i) => i.wordId), [
+          'cat',
+          'dog',
+          'fish',
+          'bird',
+          'frog',
+        ]);
+        expect(c.quiz.map((i) => i.kind).toSet(), {QuizKind.pickPicture});
+        for (final id in c.currentQuiz!.options) {
+          expect(c.cardFor(id), isNotNull, reason: 'option $id has a card');
+        }
+      },
+    );
+
+    test('a wrong quiz answer reschedules the word as a miss', () async {
+      await seedAnimals();
+      final c = await swipeAll(AnswerQuality.knew);
+      final before = (await ProgressRepository(db).schedules(kid))['cat']!;
+      expect(before.wrongCount, 0);
+
+      expect(await c.answerQuiz(wrongOption(c.currentQuiz!)), isFalse); // cat
+      expect(await c.answerQuiz('dog'), isTrue);
+
+      final after = await ProgressRepository(db).schedules(kid);
+      expect(after['cat']!.wrongCount, 1);
+      expect(after['cat']!.correctCount, 0, reason: 'swipe overridden');
+      expect(after['cat']!.state, WordState.learning);
+      expect(after['dog']!.correctCount, 1, reason: 'right answer keeps it');
+    });
+
+    test('summary and session log count the quiz', () async {
+      await seedAnimals();
+      final c = await swipeAll(AnswerQuality.knew);
+      await c.answerQuiz(wrongOption(c.currentQuiz!)); // cat ✗
+      while (c.inQuiz) {
+        await c.answerQuiz(c.currentQuiz!.wordId);
+      }
+      expect(c.isFinished, isTrue);
+      expect(c.summary!.quizAsked, 5);
+      expect(c.summary!.quizCorrect, 4);
+      expect(c.summary!.correct, 4);
+      final log = await db.select(db.sessionLogs).getSingle();
+      expect(log.accuracy, closeTo(4 / 5, 1e-9));
+    });
+
+    test('words the child missed are not quizzed', () async {
+      await seedAnimals();
+      final c = await swipeAll(AnswerQuality.didntKnow);
+      expect(c.inQuiz, isFalse);
+      expect(c.isFinished, isTrue);
+      expect(c.summary!.quizAsked, 0);
+    });
+
+    test('quitting during the quiz keeps the answers so far', () async {
+      await seedAnimals();
+      final c = await swipeAll(AnswerQuality.knew);
+      await c.answerQuiz(wrongOption(c.currentQuiz!));
+      await c.quit();
+      expect(c.summary!.quizAsked, 1);
+      final log = await db.select(db.sessionLogs).getSingle();
+      expect(log.newLearned, 5);
+      expect(log.accuracy, closeTo(4 / 5, 1e-9));
+    });
+
+    test('ages 7+ get meaning and spelling questions too', () async {
+      await seedAnimals(age: 8);
+      final c = await swipeAll(AnswerQuality.knew);
+      expect(c.quiz.map((i) => i.kind).toSet(), {
+        QuizKind.pickPicture,
+        QuizKind.chooseMeaning,
+        QuizKind.spell,
+      });
+    });
   });
 }

@@ -34,7 +34,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 1. Owner runs feat-009: the child uses the app 5 days a week for 2 weeks without being pushed (install on a real phone/tablet; turn on the daily reminder). Only the owner can mark it done.
 2. Before/while trialling: native-speaker review of the Vietnamese drafts (owner, alongside the trial).
 3. Trial note: at 10 min/day the cap slows new words to ~3/day after week 3 (reviews take the room). If the child wants more new words, raise "Minutes per day" to 15.
-4. Phase 2 planned (feat-012..020, 2026-11-05); suggested order: 012 quiz → 013 retention → 014 content → 015 placement → 016 level progression → 017 dashboard → 018 custom lists → 019 weekly recap → 020 gate. Trial feedback may reorder.
+4. Phase 2 started 2026-11-05; feat-012 done. Next: 013 retention → 014 content → 015 placement → 016 level progression → 017 dashboard → 018 custom lists → 019 weekly recap → 020 gate. Trial feedback may reorder.
 
 ## Blockers / Risks
 
@@ -95,6 +95,12 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-05 — feat-012 Quiz round (Phase 2 started)
+
+- Owner started Phase 2. After the swipe cards, a quiz of up to 5 questions on words swiped knew/almost: ages 4–6 hear-and-pick-the-picture; 7+ rotate picture / meaning / letter-tile spelling. A wrong quiz answer reschedules the word as a miss; summary shows the quiz score.
+- `./init.sh` green, 180/180. Device run on iPhone + iPad simulators with the real bank; screenshots checked (made the right/wrong marks bolder after the first look).
+- Note: distractor pictures come from the whole age/level pool (numbers, people, animals mixed) — easy for young children; feat-015 themes could make them same-theme later.
 
 ### 2026-11-05 — 6-box PIN entry (owner request)
 

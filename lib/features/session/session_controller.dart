@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 
 import '../../core/levels.dart';
+import '../../core/quiz/quiz_builder.dart';
 import '../../core/session/session_builder.dart';
 import '../../core/session/session_summary.dart';
 import '../../core/session/study_session.dart';
@@ -94,7 +97,10 @@ class SessionController extends ChangeNotifier {
     required ProfileRepository profiles,
     required DateTime Function() clock,
     this.scheduler = const Sm2Scheduler(),
-  }) : _words = words,
+    this.quizBuilder = const QuizBuilder(),
+    Random? random,
+  }) : _random = random ?? Random(),
+       _words = words,
        _progress = progress,
        _clock = clock,
        _loader = SessionLoader(
@@ -106,6 +112,8 @@ class SessionController extends ChangeNotifier {
 
   final int profileId;
   final Sm2Scheduler scheduler;
+  final QuizBuilder quizBuilder;
+  final Random _random;
   final WordRepository _words;
   final ProgressRepository _progress;
   final DateTime Function() _clock;
@@ -116,12 +124,34 @@ class SessionController extends ChangeNotifier {
   SessionSummary? summary;
   Map<String, WordCard> _cards = const {};
   Map<String, WordSchedule> _schedules = {};
+
+  /// Schedules as they were before this session, to redo a word when a
+  /// wrong quiz answer overrides its swipe.
+  Map<String, WordSchedule> _before = const {};
+
+  /// The active-recall round after the swipe cards (feat-012).
+  List<QuizItem> quiz = const [];
+  final Map<String, bool> quizResults = {};
+  int _quizIndex = 0;
+  bool _quizBuilt = false;
   DateTime? _startedAt;
   bool _logged = false;
   bool _busy = false;
 
   bool get isLoading => session == null;
-  bool get isFinished => session?.isFinished ?? false;
+
+  /// Swipe cards and quiz both done (or the session was empty).
+  bool get isFinished => summary != null;
+
+  bool get inQuiz => !isFinished && _quizBuilt && _quizIndex < quiz.length;
+
+  QuizItem? get currentQuiz => inQuiz ? quiz[_quizIndex] : null;
+
+  /// 1-based number of the current quiz question.
+  int get quizNumber => _quizIndex + 1;
+
+  /// Card for a word in today's session or the quiz options.
+  WordCard? cardFor(String wordId) => _cards[wordId];
 
   WordCard? get currentCard {
     final c = session?.current;
@@ -138,6 +168,7 @@ class SessionController extends ChangeNotifier {
     final loaded = await _loader.load(profileId);
     profile = loaded.profile;
     _schedules = Map.of(loaded.schedules);
+    _before = Map.of(loaded.schedules);
     final ids = [for (final c in loaded.session.queue) c.wordId];
     final cards = await _words.cards(ids, language: profile!.nativeLanguage);
     _cards = {for (final c in cards) c.word.id: c};
@@ -147,7 +178,10 @@ class SessionController extends ChangeNotifier {
         if (_cards.containsKey(c.wordId)) c,
     ]);
     _startedAt = _clock();
-    if (session!.isFinished) summary = SessionSummary.of(session!);
+    if (session!.isFinished) {
+      _quizBuilt = true;
+      summary = SessionSummary.of(session!);
+    }
     notifyListeners();
   }
 
@@ -170,7 +204,74 @@ class SessionController extends ChangeNotifier {
         _schedules[card.wordId] = next;
         await _progress.save(profileId, card.wordId, next, now: now);
       }
-      if (session!.isFinished) await _finish();
+      if (session!.isFinished) await _startQuiz();
+    } finally {
+      _busy = false;
+    }
+  }
+
+  Future<void> _startQuiz() async {
+    final s = session!;
+    final p = profile!;
+    final pool = await _words.quizPool(
+      levelIndex: CefrLevel.fromCode(p.currentLevel).index,
+      age: p.age,
+      language: p.nativeLanguage,
+    );
+    for (final c in pool) {
+      _cards.putIfAbsent(c.word.id, () => c);
+    }
+    QuizWord qw(WordCard c) => QuizWord(
+      id: c.word.id,
+      word: c.word.word,
+      emoji: c.word.emoji,
+      meaning: c.translation,
+    );
+    quiz = quizBuilder.build(
+      today: [
+        for (final id in s.firstAnswers.keys)
+          if (_cards[id] != null) qw(_cards[id]!),
+      ],
+      swipes: s.firstAnswers,
+      pool: [for (final c in _cards.values) qw(c)],
+      age: p.age,
+      random: _random,
+    );
+    _quizBuilt = true;
+    if (quiz.isEmpty) {
+      await _finish();
+    } else {
+      notifyListeners();
+    }
+  }
+
+  /// Answers the current quiz question: a word id, or the spelled letters.
+  /// A wrong answer reschedules the word as a miss ("quiz wrong" overrides
+  /// the swipe). Returns whether it was right.
+  Future<bool> answerQuiz(String given) async {
+    final item = currentQuiz;
+    if (item == null || _busy) return false;
+    _busy = true;
+    try {
+      final ok = item.isCorrect(given);
+      quizResults[item.wordId] = ok;
+      if (!ok) {
+        final now = _clock();
+        final next = scheduler.schedule(
+          _before[item.wordId] ?? WordSchedule.initial(),
+          AnswerQuality.quizWrong,
+          now: now,
+        );
+        _schedules[item.wordId] = next;
+        await _progress.save(profileId, item.wordId, next, now: now);
+      }
+      _quizIndex++;
+      if (_quizIndex >= quiz.length) {
+        await _finish();
+      } else {
+        notifyListeners();
+      }
+      return ok;
     } finally {
       _busy = false;
     }
@@ -182,7 +283,7 @@ class SessionController extends ChangeNotifier {
   }
 
   Future<void> _finish() async {
-    summary = SessionSummary.of(session!);
+    summary = SessionSummary.of(session!, quiz: Map.of(quizResults));
     if (!_logged && summary!.answered > 0) {
       _logged = true;
       final started = _startedAt!;
