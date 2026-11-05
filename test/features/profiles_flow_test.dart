@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:voca_swiper/data/db/app_database.dart';
+import 'package:voca_swiper/data/repositories/parent_repository.dart';
 import 'package:voca_swiper/data/repositories/profile_repository.dart';
 
 import '../support/app_harness.dart';
@@ -15,13 +16,27 @@ void main() {
     await pumpApp(t, db);
     expect(find.text('Welcome to Voca Swiper'), findsOneWidget);
 
-    await t.enterText(find.byKey(const Key('setup-pin')), '1234');
-    await t.enterText(find.byKey(const Key('setup-confirm')), '1243');
+    // Six separate boxes; a short PIN is not accepted.
+    expect(
+      find.descendant(
+        of: find.byKey(const Key('setup-pin')),
+        matching: find.byKey(const Key('pin-box-5')),
+      ),
+      findsOneWidget,
+    );
+    await t.enterText(pinInput('setup-pin'), '1234');
+    await t.enterText(pinInput('setup-confirm'), '1234');
+    await t.tap(find.byKey(const Key('setup-create')));
+    await t.pumpAndSettle();
+    expect(find.text('Enter all 6 digits.'), findsOneWidget);
+
+    await t.enterText(pinInput('setup-pin'), '123456');
+    await t.enterText(pinInput('setup-confirm'), '123465');
     await t.tap(find.byKey(const Key('setup-create')));
     await t.pumpAndSettle();
     expect(find.text('The two PINs are different.'), findsOneWidget);
 
-    await t.enterText(find.byKey(const Key('setup-confirm')), '1234');
+    await t.enterText(pinInput('setup-confirm'), '123456');
     await t.tap(find.byKey(const Key('setup-create')));
     await t.pumpAndSettle();
     expect(find.byKey(const Key('name-field')), findsOneWidget);
@@ -35,7 +50,7 @@ void main() {
     expect(rows.single.name, 'Bi');
     expect(rows.single.currentLevel, 'preA1'); // age 6 default
     final account = await db.select(db.parentAccounts).getSingle();
-    expect(account.pinHash, isNot(contains('1234')));
+    expect(account.pinHash, isNot(contains('123456')));
   });
 
   testWidgets('parent area needs the PIN and locks on exit', (t) async {
@@ -48,8 +63,16 @@ void main() {
     await unlockParent(t, pin: '0000');
     expect(find.text('Wrong PIN. Try again.'), findsOneWidget);
     expect(find.text('Parent area'), findsNothing);
+    await t.enterText(pinInput('pin-field'), '1');
+    await t.pump();
+    expect(
+      find.text('Wrong PIN. Try again.'),
+      findsNothing,
+      reason: 'typing again clears the error',
+    );
 
-    await t.enterText(find.byKey(const Key('pin-field')), '1234');
+    // An older 4-digit PIN still works with the Unlock button.
+    await t.enterText(pinInput('pin-field'), '1234');
     await t.tap(find.byKey(const Key('unlock')));
     await t.pumpAndSettle();
     expect(find.text('Parent area'), findsOneWidget);
@@ -59,6 +82,42 @@ void main() {
     await t.tap(find.byKey(const Key('open-parent')));
     await t.pumpAndSettle();
     expect(find.text('Parents only'), findsOneWidget);
+  });
+
+  testWidgets('a 6-digit PIN unlocks as soon as the last box is filled', (
+    t,
+  ) async {
+    await createParent(db, pin: '246810');
+    await createKid(db);
+    await pumpApp(t, db);
+    await t.tap(find.byKey(const Key('open-parent')));
+    await t.pumpAndSettle();
+    await t.enterText(pinInput('pin-field'), '246810');
+    await t.pumpAndSettle();
+    expect(find.text('Parent area'), findsOneWidget);
+  });
+
+  testWidgets('change PIN uses the 6 boxes too', (t) async {
+    await createParent(db);
+    await createKid(db);
+    await pumpApp(t, db);
+    await unlockParent(t);
+    await t.tap(find.text('Change PIN'));
+    await t.pumpAndSettle();
+    await t.enterText(pinInput('change-pin'), '13579');
+    await t.enterText(pinInput('change-confirm'), '13579');
+    await t.tap(find.byKey(const Key('change-save')));
+    await t.pumpAndSettle();
+    expect(find.text('Enter all 6 digits.'), findsOneWidget);
+
+    await t.enterText(pinInput('change-pin'), '135790');
+    await t.enterText(pinInput('change-confirm'), '135790');
+    await t.tap(find.byKey(const Key('change-save')));
+    await t.pumpAndSettle();
+    expect(
+      await ParentRepository(db, run: runInline).verifyPin('135790'),
+      isTrue,
+    );
   });
 
   testWidgets('editing one profile leaves the other unchanged', (t) async {

@@ -294,3 +294,4 @@ The MVP is flashcards with pictures and audio, spaced repetition, multiple profi
 | Audio | Device TTS for MVP; Edge TTS or another neural TTS later |
 | Word lists | Cambridge YLE and Oxford 3000/5000 for MVP; check their usage terms before store release |
 | Review backlog (feat-011, 2026-11-05) | Each session is capped by the profile's minutes per day (~2.5 cards/min, 10 min ≈ 25 cards, at least 5). Most overdue reviews first; the rest wait. New words only fill room the reviews leave, so they pause on catch-up days. Retries after a miss are extra practice, not counted |
+| Parent PIN entry (2026-11-05) | Six separate boxes, digits shown as dots; new and changed PINs are exactly 6 digits; the gate unlocks on the 6th digit. PINs made earlier (4–5 digits) still unlock with the Unlock button |

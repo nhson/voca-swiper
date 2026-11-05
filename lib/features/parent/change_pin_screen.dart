@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/providers.dart';
 import '../../core/security/pin_hasher.dart';
+import '../../ui/pin_boxes.dart';
 import 'pin_gate.dart';
 import '../../ui/readable_width.dart';
 
@@ -16,18 +17,21 @@ class ChangePinScreen extends ConsumerStatefulWidget {
 class _ChangePinScreenState extends ConsumerState<ChangePinScreen> {
   final _pin = TextEditingController();
   final _confirm = TextEditingController();
+  final _confirmFocus = FocusNode();
   String? _error;
 
   @override
   void dispose() {
     _pin.dispose();
     _confirm.dispose();
+    _confirmFocus.dispose();
     super.dispose();
   }
 
   Future<void> _save() async {
-    if (!PinHasher.isValidPin(_pin.text)) {
-      setState(() => _error = 'Use 4 to 6 digits.');
+    if (!PinHasher.isValidNewPin(_pin.text) ||
+        !PinHasher.isValidNewPin(_confirm.text)) {
+      setState(() => _error = 'Enter all 6 digits.');
       return;
     }
     if (_pin.text != _confirm.text) {
@@ -49,25 +53,27 @@ class _ChangePinScreenState extends ConsumerState<ChangePinScreen> {
       body: ListView(
         padding: readablePadding(context, side: 24, top: 24, bottom: 24),
         children: [
-          TextField(
+          PinBoxes(
+            key: const Key('change-pin'),
             controller: _pin,
-            obscureText: true,
-            keyboardType: TextInputType.number,
-            maxLength: 6,
-            decoration: const InputDecoration(labelText: 'New PIN'),
+            autofocus: true,
+            label: 'New PIN (6 digits)',
+            onCompleted: (_) => _confirmFocus.requestFocus(),
           ),
-          TextField(
+          const SizedBox(height: 20),
+          PinBoxes(
+            key: const Key('change-confirm'),
             controller: _confirm,
-            obscureText: true,
-            keyboardType: TextInputType.number,
-            maxLength: 6,
-            decoration: InputDecoration(
-              labelText: 'Repeat PIN',
-              errorText: _error,
-            ),
+            focusNode: _confirmFocus,
+            label: 'Repeat PIN',
+            errorText: _error,
           ),
-          const SizedBox(height: 16),
-          FilledButton(onPressed: _save, child: const Text('Save')),
+          const SizedBox(height: 24),
+          FilledButton(
+            key: const Key('change-save'),
+            onPressed: _save,
+            child: const Text('Save'),
+          ),
         ],
       ),
     ),

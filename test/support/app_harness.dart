@@ -110,10 +110,16 @@ Future<int> createKid(
   now: testNow,
 );
 
+/// The text input inside a [PinBoxes] with the given key.
+Finder pinInput(String key) => find.descendant(
+  of: find.byKey(Key(key)),
+  matching: find.byType(EditableText),
+);
+
 Future<void> unlockParent(WidgetTester t, {String pin = '1234'}) async {
   await t.tap(find.byKey(const Key('open-parent')));
   await t.pumpAndSettle();
-  await t.enterText(find.byKey(const Key('pin-field')), pin);
+  await t.enterText(pinInput('pin-field'), pin);
   await t.tap(find.byKey(const Key('unlock')));
   await t.pumpAndSettle();
 }

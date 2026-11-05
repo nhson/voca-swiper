@@ -25,4 +25,13 @@ void main() {
     expect(PinHasher.isValidPin('12a4'), isFalse);
     expect(PinHasher.isValidPin('1234567'), isFalse);
   });
+
+  test('new PINs are exactly 6 digits; older 4–5 digit PINs still unlock', () {
+    expect(PinHasher.newPinLength, 6);
+    expect(PinHasher.isValidNewPin('123456'), isTrue);
+    expect(PinHasher.isValidNewPin('1234'), isFalse);
+    expect(PinHasher.isValidNewPin('12345a'), isFalse);
+    expect(PinHasher.isValidNewPin('1234567'), isFalse);
+    expect(PinHasher.isValidPin('1234'), isTrue, reason: 'existing PINs');
+  });
 }

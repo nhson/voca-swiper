@@ -96,6 +96,11 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 
 ## Log
 
+### 2026-11-05 — 6-box PIN entry (owner request)
+
+- Setup, unlock and change PIN now use six separate boxes (`lib/ui/pin_boxes.dart`): one hidden number field underneath, boxes draw dots. New/changed PINs are exactly 6 digits; the gate unlocks on the 6th digit; a PIN made earlier with 4–5 digits still unlocks via the Unlock button. "Wrong PIN" clears when typing resumes.
+- `./init.sh` green, 154/154. Device check on iPhone + iPad simulators (`integration_test/pin_on_device_test.dart`).
+
 ### 2026-11-05 — feat-011 Session budget
 
 - Owner chose option A. Each session is capped by the profile's minutes per day (10 min ≈ 25 cards); the most overdue reviews go first, the rest wait; new words only fill the room left, so they pause on catch-up days.

@@ -62,7 +62,14 @@ void main() {
     }
     await t.tap(find.byKey(const Key('open-parent')));
     await t.pumpAndSettle();
-    await t.enterText(find.byKey(const Key('pin-field')), '1234');
+    await t.enterText(
+      find.descendant(
+        of: find.byKey(const Key('pin-field')),
+        matching: find.byType(EditableText),
+      ),
+      '1234',
+    );
+    await t.pump();
     await t.tap(find.byKey(const Key('unlock')));
     await t.pumpAndSettle();
     await t.tap(find.byKey(Key('parent-profile-$kid')));

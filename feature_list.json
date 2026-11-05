@@ -47,7 +47,7 @@
         "feat-004"
       ],
       "status": "done",
-      "evidence": "2026-11-04: ./init.sh green — analyze no issues, 78/78 tests. test/data/repositories_test.dart: two profiles keep independent settings across a file-DB restart; PIN stored salted+hashed, verify/changePin. test/features/profiles_flow_test.dart: first-run PIN setup → add child → picker; PIN gate rejects wrong PIN, locks on exit; editing one profile leaves the other; delete with confirm; picker opens child home. Device (Android API 37 emulator): fresh install → create PIN → add 'Bi' → force-stop + relaunch → profile still listed → PIN unlocks parent area."
+      "evidence": "2026-11-04: ./init.sh green — analyze no issues, 78/78 tests. test/data/repositories_test.dart: two profiles keep independent settings across a file-DB restart; PIN stored salted+hashed, verify/changePin. test/features/profiles_flow_test.dart: first-run PIN setup → add child → picker; PIN gate rejects wrong PIN, locks on exit; editing one profile leaves the other; delete with confirm; picker opens child home. Device (Android API 37 emulator): fresh install → create PIN → add 'Bi' → force-stop + relaunch → profile still listed → PIN unlocks parent area. 2026-11-05 owner request: PIN entry changed to 6 separate boxes (lib/ui/pin_boxes.dart) on setup, unlock and change PIN; new PINs exactly 6 digits, older 4–5 digit PINs still unlock. ./init.sh green, 154/154 (test/ui/pin_boxes_test.dart 3; profiles_flow_test: short PIN rejected, mismatch, legacy 4-digit unlock, auto-unlock on 6th digit, error clears on typing, change PIN). Device: integration_test/pin_on_device_test.dart passed on iPhone 18 Pro + iPad Pro 13 simulators, screenshots checked."
     },
     {
       "id": "feat-006",

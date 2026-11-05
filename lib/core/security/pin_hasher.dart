@@ -12,7 +12,14 @@ class PinHasher {
 
   static final _pinPattern = RegExp(r'^\d{4,6}$');
 
+  /// Any PIN that can unlock: 4–6 digits (PINs made before 6-digit boxes).
   static bool isValidPin(String pin) => _pinPattern.hasMatch(pin);
+
+  /// New and changed PINs fill all the boxes on screen.
+  static const int newPinLength = 6;
+
+  static bool isValidNewPin(String pin) =>
+      pin.length == newPinLength && _pinPattern.hasMatch(pin);
 
   String newSalt([Random? random]) {
     final r = random ?? Random.secure();

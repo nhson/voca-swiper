@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/providers.dart';
+import '../../core/security/pin_hasher.dart';
+import '../../ui/pin_boxes.dart';
 import 'parent_providers.dart';
 
 /// Shows [child] only when the parent area is unlocked; otherwise a PIN pad.
@@ -24,16 +26,19 @@ class PinGateScreen extends ConsumerStatefulWidget {
 
 class _PinGateScreenState extends ConsumerState<PinGateScreen> {
   final _pin = TextEditingController();
+  final _focus = FocusNode();
   String? _error;
   bool _checking = false;
 
   @override
   void dispose() {
     _pin.dispose();
+    _focus.dispose();
     super.dispose();
   }
 
   Future<void> _submit() async {
+    if (_checking || !PinHasher.isValidPin(_pin.text)) return;
     setState(() => _checking = true);
     final ok = await ref.read(parentRepositoryProvider).verifyPin(_pin.text);
     if (!mounted) return;
@@ -45,6 +50,7 @@ class _PinGateScreenState extends ConsumerState<PinGateScreen> {
         _checking = false;
         _pin.clear();
       });
+      _focus.requestFocus();
     }
   }
 
@@ -62,20 +68,25 @@ class _PinGateScreenState extends ConsumerState<PinGateScreen> {
               children: [
                 const Text('🔒', style: TextStyle(fontSize: 56)),
                 const SizedBox(height: 16),
-                TextField(
+                Text(
+                  'Enter your PIN',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 16),
+                // Unlocks by itself when the 6th digit goes in; PINs made
+                // before the boxes (4–5 digits) use the Unlock button.
+                PinBoxes(
                   key: const Key('pin-field'),
                   controller: _pin,
+                  focusNode: _focus,
                   autofocus: true,
-                  obscureText: true,
-                  keyboardType: TextInputType.number,
-                  maxLength: 6,
-                  decoration: InputDecoration(
-                    labelText: 'Parent PIN',
-                    errorText: _error,
-                  ),
-                  onSubmitted: (_) => _submit(),
+                  errorText: _error,
+                  onChanged: (_) {
+                    if (_error != null) setState(() => _error = null);
+                  },
+                  onCompleted: (_) => _submit(),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 24),
                 FilledButton(
                   key: const Key('unlock'),
                   onPressed: _checking ? null : _submit,

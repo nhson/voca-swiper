@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/providers.dart';
 import '../../core/security/pin_hasher.dart';
+import '../../ui/pin_boxes.dart';
 import 'parent_providers.dart';
 
 /// First launch: the parent creates the PIN that protects the parent area.
@@ -17,6 +18,7 @@ class SetupScreen extends ConsumerStatefulWidget {
 class _SetupScreenState extends ConsumerState<SetupScreen> {
   final _pin = TextEditingController();
   final _confirm = TextEditingController();
+  final _confirmFocus = FocusNode();
   String? _error;
   bool _busy = false;
 
@@ -24,12 +26,14 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
   void dispose() {
     _pin.dispose();
     _confirm.dispose();
+    _confirmFocus.dispose();
     super.dispose();
   }
 
   Future<void> _create() async {
-    if (!PinHasher.isValidPin(_pin.text)) {
-      setState(() => _error = 'Use 4 to 6 digits.');
+    if (!PinHasher.isValidNewPin(_pin.text) ||
+        !PinHasher.isValidNewPin(_confirm.text)) {
+      setState(() => _error = 'Enter all 6 digits.');
       return;
     }
     if (_pin.text != _confirm.text) {
@@ -81,28 +85,22 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
                     style: text.bodyLarge,
                   ),
                   const SizedBox(height: 24),
-                  TextField(
+                  PinBoxes(
                     key: const Key('setup-pin'),
                     controller: _pin,
-                    obscureText: true,
-                    keyboardType: TextInputType.number,
-                    maxLength: 6,
-                    decoration: const InputDecoration(
-                      labelText: 'New PIN (4–6 digits)',
-                    ),
+                    autofocus: true,
+                    label: 'New PIN (6 digits)',
+                    onCompleted: (_) => _confirmFocus.requestFocus(),
                   ),
-                  TextField(
+                  const SizedBox(height: 20),
+                  PinBoxes(
                     key: const Key('setup-confirm'),
                     controller: _confirm,
-                    obscureText: true,
-                    keyboardType: TextInputType.number,
-                    maxLength: 6,
-                    decoration: InputDecoration(
-                      labelText: 'Repeat PIN',
-                      errorText: _error,
-                    ),
+                    focusNode: _confirmFocus,
+                    label: 'Repeat PIN',
+                    errorText: _error,
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 24),
                   FilledButton(
                     key: const Key('setup-create'),
                     onPressed: _busy ? null : _create,
