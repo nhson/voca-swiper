@@ -5,7 +5,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ## Current State
 
 **Last Updated:** 2026-11-05
-**Active Feature:** feat-008 (progress screen); owner asked to build all remaining features, pushing after each
+**Active Feature:** none — all buildable Phase 1 features done. Next is feat-009, the owner-run 2-week trial (human gate)
 **Branch:** main
 
 ### What's Done
@@ -20,18 +20,19 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] feat-003: session builder in `lib/core/session/` (`SessionBuilder`, immutable `StudySession`, `SessionCard`), 43 tests green
 - [x] feat-004: Drift DB (`lib/data/db/`), repositories, `WordBankImporter`; content pipeline builds `assets/word_bank/word_bank.json` (392 Pre-A1 + A1 words, emoji pictures, draft Vietnamese); loads on device
 - [x] feat-005: first-run PIN setup, PIN gate (locks on exit), parent area, profile create/edit/delete/reset, profile picker, child home stub, go_router routes
+- [x] feat-008: progress screen ("My words") per profile, from child home and parent area
 - [x] feat-007: daily reminder — planned a week ahead, re-planned on changes; parent Reminders screen
 - [x] feat-010: kid-friendly visual design (owner accepted 2026-11-05)
 - [x] feat-006: swipe flashcard session (`lib/features/session/`), device TTS, session summary with stars; progress saved per answer
 
 ### What's In Progress
 
-- feat-008 progress screen
+- (none)
 
 ### What's Next
 
-1. ~~First git commit~~ done
-2. Owner decides how to proceed: feat-010 (visual design pass, recommended next so feat-008 is built in the new style), feat-007 (daily reminder) or feat-008 (progress screen)
+1. Owner runs feat-009: the child uses the app 5 days a week for 2 weeks without being pushed (install on a real phone/tablet; turn on the daily reminder). Only the owner can mark it done.
+2. Before/while trialling: native-speaker review of the Vietnamese drafts; check reminders on a real Android device.
 
 ## Blockers / Risks
 
@@ -85,12 +86,18 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
   - Permission is asked only when a parent turns reminders on; if denied the parent is told to enable it in Settings.
   - Scheduled as absolute UTC instants (local wall time resolved by the planner), so no timezone database/`flutter_timezone` is needed.
   - Weekly "word of the week" recap and resurfacing mastered words (SPEC) are not in feat-007's done-when; noted for later.
+- **feat-008 details**: `ProgressStats` (pure Dart, `lib/core/progress/`) computes the numbers from WordProgress states and SessionLogs; accuracy is Σ(accuracy × answers) / Σanswers so long sessions weigh more; daily minutes round to the nearest minute with any practice shown as ≥ 1, and the weekly total is the sum of the bars so the two always agree.
 
 ## Evidence of Completion
 
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-05 — feat-008 Progress screen
+
+- `ProgressStats` (pure Dart, test-first), repository query for session stats, kid-styled "My words" screen; entry from the child home and a per-profile button in the parent area.
+- `./init.sh` green, 136/136. Device run on iPhone + iPad simulators passed. All buildable Phase 1 features are done; feat-009 is the owner's trial.
 
 ### 2026-11-05 — feat-007 Daily reminder
 

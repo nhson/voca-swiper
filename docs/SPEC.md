@@ -248,6 +248,7 @@ The app collects as little as possible about children, and every content source 
 | Visual style (feat-010) | Code-drawn "sunny sticker book": sky + hills backdrop, mascot "Sunny" (original, drawn in code), Baloo 2 + Nunito fonts (OFL, bundled, Vietnamese-capable), chunky buttons; ages 4–6 bright "sunny", 7+ cooler "adventure"; tablets scale the phone layout up (×1–1.75) |
 | Sound effects | Short tones synthesized in-house (`tool/make_sounds.dart`), mixed with TTS, never a "wrong" buzzer; parent can turn them off |
 | Reminder rules (feat-007) | Off until a parent turns it on (default 18:00). Planned a week ahead and re-planned on app start/resume, after each session and on settings changes. Counts only reviews due by that time. School hours (Mon–Fri) move it to when school ends; quiet hours skip that day. One notification for all children ("Bi 3 · An 2") |
+| Progress screen (feat-008) | One kid-styled "My words" screen per profile, opened from the child home and from the parent area: Mastered / Growing (Review) / Learning counts, right-answer % weighted by answers (first answers only), minutes per local day for the last 7 days. Fuller parent dashboard (struggling words, trends) stays in Phase 2 |
 | Word lists | Cambridge YLE lists, Oxford 3000/5000 | Publisher terms, may restrict redistribution |
 | Frequency data | Open subtitle or web-corpus frequency lists | Varies by list |
 | Audio | Device TTS for MVP; Edge TTS or another neural TTS later | Own recordings |

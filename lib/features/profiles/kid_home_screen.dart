@@ -41,6 +41,12 @@ class KidHomeScreen extends ConsumerWidget {
                   onPressed: () => context.pop(),
                 ),
                 const Spacer(),
+                _MyWordsButton(
+                  onTap: () async {
+                    await context.push('/kid/$profileId/progress');
+                  },
+                ),
+                const SizedBox(width: 8),
                 _NameBadge(avatar: profile.avatar, name: profile.name),
               ],
             ),
@@ -198,6 +204,42 @@ class _Pill extends StatelessWidget {
       style: TextStyle(
         fontWeight: FontWeight.w800,
         color: KidColors.shade(color, 0.12),
+      ),
+    ),
+  );
+}
+
+class _MyWordsButton extends StatelessWidget {
+  const _MyWordsButton({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => Material(
+    color: Colors.white.withValues(alpha: 0.9),
+    shape: const StadiumBorder(),
+    child: InkWell(
+      key: const Key('open-progress'),
+      customBorder: const StadiumBorder(),
+      onTap: onTap,
+      child: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('🌱', style: TextStyle(fontSize: 20)),
+            SizedBox(width: 4),
+            Text(
+              'My words',
+              style: TextStyle(
+                fontFamily: 'Baloo2',
+                fontWeight: FontWeight.w700,
+                fontSize: 17,
+                color: KidColors.ink,
+              ),
+            ),
+          ],
+        ),
       ),
     ),
   );

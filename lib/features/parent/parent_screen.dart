@@ -77,7 +77,18 @@ class _ParentBody extends ConsumerWidget {
                 'Age ${p.age} · ${CefrLevel.fromCode(p.currentLevel).label} · '
                 '${p.dailyNewWords} new words a day',
               ),
-              trailing: const Icon(Icons.chevron_right),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    key: Key('parent-progress-${p.id}'),
+                    tooltip: 'Progress',
+                    icon: const Icon(Icons.insights_rounded),
+                    onPressed: () => context.push('/kid/${p.id}/progress'),
+                  ),
+                  const Icon(Icons.chevron_right),
+                ],
+              ),
               onTap: () => context.push('/parent/profiles/${p.id}'),
             ),
           ),

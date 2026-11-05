@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 
+import '../../core/progress/progress_stats.dart';
 import '../../core/srs/word_schedule.dart';
 import '../db/app_database.dart';
 
@@ -81,6 +82,24 @@ class ProgressRepository {
 
   /// Next review date of every word the profile has progress on (UTC), for
   /// reminder planning.
+  /// Logged sessions for the progress screen, oldest first.
+  Future<List<SessionStat>> sessionStats(int profileId) async {
+    final rows =
+        await (db.select(db.sessionLogs)
+              ..where((l) => l.profileId.equals(profileId))
+              ..orderBy([(l) => OrderingTerm.asc(l.startedAt)]))
+            .get();
+    return [
+      for (final r in rows)
+        SessionStat(
+          startedAt: r.startedAt.toUtc(),
+          durationSec: r.durationSec,
+          answered: r.reviewed + r.newLearned,
+          accuracy: r.accuracy,
+        ),
+    ];
+  }
+
   Future<List<DateTime>> reviewDates(int profileId) async {
     final rows =
         await (db.select(db.wordProgress)..where(

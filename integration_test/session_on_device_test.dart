@@ -119,6 +119,17 @@ void main() {
     await shot('7-kid-home-after');
     expect(find.text('All done for today! 🎉'), findsOneWidget);
 
+    // feat-008: the progress screen after one session.
+    await t.tap(find.byKey(const Key('open-progress')));
+    await shot('7b-progress');
+    expect(
+      (t.widget<Text>(find.byKey(const Key('stat-learning')))).data,
+      '5',
+      reason: 'all five words are in Learning after their first answer',
+    );
+    await t.tap(find.byTooltip('Back'));
+    await t.pumpAndSettle();
+
     // The 7+ "adventure" look.
     await t.tap(find.byTooltip('Back'));
     await t.pumpAndSettle();

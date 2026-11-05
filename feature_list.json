@@ -77,8 +77,8 @@
       "dependencies": [
         "feat-006"
       ],
-      "status": "in-progress",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-05: ./init.sh green — analyze no issues, 136/136 tests. test/core/progress/progress_stats_test.dart (5): empty profile, counts by state (new excluded), accuracy weighted by answers, minutes per local day for 7 days, short sessions ≥ 1 min. test/features/progress_flow_test.dart (5): numbers on screen match seeded WordProgress (2 mastered/1 review/3 learning) and SessionLogs (9 of 12 right → 75%, 5 + 3 min) from child home and from the parent area; other profiles don't leak; new child shows zeros; numbers update after a session; tablet layout. Device: integration_test/session_on_device_test.dart opens My words after a real session on iPhone 18 Pro and iPad Pro 13 simulators (5 learning, 80%, 1 min) — passed, screenshots checked."
     },
     {
       "id": "feat-010",
