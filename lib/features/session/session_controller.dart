@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 
 import '../../core/levels.dart';
+import '../../core/progress/level_progression.dart';
 import '../../core/quiz/quiz_builder.dart';
 import '../../core/session/session_builder.dart';
 import '../../core/session/session_summary.dart';
@@ -14,6 +15,7 @@ import '../../data/db/app_database.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../../data/repositories/progress_repository.dart';
 import '../../data/repositories/word_repository.dart';
+import '../levels/level_service.dart';
 
 /// Start of the device's local calendar day containing [utc], as UTC.
 DateTime localDayStart(DateTime utc) {
@@ -37,13 +39,19 @@ class SessionLoader {
     required this.profiles,
     required this.clock,
     this.builder = const SessionBuilder(),
-  });
+  }) : levels = LevelService(
+         words: words,
+         progress: progress,
+         profiles: profiles,
+         clock: clock,
+       );
 
   final WordRepository words;
   final ProgressRepository progress;
   final ProfileRepository profiles;
   final DateTime Function() clock;
   final SessionBuilder builder;
+  final LevelService levels;
 
   Future<
     ({
@@ -65,13 +73,7 @@ class SessionLoader {
         firstWords ??
         (remaining <= 0
             ? const <String>[]
-            : await words.newWordCandidates(
-                profileId: profileId,
-                levelIndex: CefrLevel.fromCode(profile.currentLevel).index,
-                age: profile.age,
-                limit: remaining,
-                interests: profile.interests,
-              ));
+            : await _newWords(profile, remaining));
     final session = builder.build(
       schedules: schedules,
       newWordIds: candidates,
@@ -84,6 +86,30 @@ class SessionLoader {
       now: now,
     );
     return (profile: profile, session: session, schedules: schedules);
+  }
+
+  /// New-word candidates: the profile's level (favourites first), with a
+  /// next-level preview word in every 5th slot (feat-016).
+  Future<List<String>> _newWords(ProfileRow profile, int count) async {
+    final current = await words.newWordCandidates(
+      profileId: profile.id,
+      levelIndex: CefrLevel.fromCode(profile.currentLevel).index,
+      age: profile.age,
+      limit: count,
+      interests: profile.interests,
+    );
+    final slots = LevelProgression.previewSlots(count);
+    final next = slots == 0 ? null : await levels.previewLevel(profile);
+    if (next == null) return current;
+    final preview = await words.newWordCandidates(
+      profileId: profile.id,
+      levelIndex: next.index,
+      age: profile.age,
+      limit: count,
+      interests: profile.interests,
+      exactLevel: true,
+    );
+    return const LevelProgression().mixPreview(current, preview, count: count);
   }
 
   Future<SessionPreview> preview(int profileId) async {
@@ -133,6 +159,10 @@ class SessionController extends ChangeNotifier {
   ProfileRow? profile;
   StudySession? session;
   SessionSummary? summary;
+
+  /// The level the child just moved up to at the end of this session
+  /// (feat-016), or null.
+  CefrLevel? levelUp;
   Map<String, WordCard> _cards = const {};
   Map<String, WordSchedule> _schedules = {};
 
@@ -313,6 +343,7 @@ class SessionController extends ChangeNotifier {
         newLearned: summary!.newLearned,
         accuracy: summary!.accuracy,
       );
+      levelUp = await _loader.levels.maybeLevelUp(profileId);
     }
     notifyListeners();
   }

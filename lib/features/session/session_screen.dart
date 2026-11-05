@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
+import '../../core/levels.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -173,6 +175,7 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
         summary: _c.summary!,
         practiced: _c.practicedCards,
         look: look,
+        levelUp: _c.levelUp,
         onDone: () => Navigator.of(context).pop(),
       );
     }
@@ -433,8 +436,11 @@ class SessionSummaryView extends StatelessWidget {
     required this.onDone,
     this.practiced = const [],
     this.look = KidLook.sunny,
+    this.levelUp,
   });
 
+  /// Shown as a level-up celebration (feat-016).
+  final CefrLevel? levelUp;
   final SessionSummary summary;
   final List<WordCard> practiced;
   final KidLook look;
@@ -482,6 +488,7 @@ class SessionSummaryView extends StatelessWidget {
                       ),
                     ),
                   ] else ...[
+                    if (levelUp case final up?) _LevelUpBanner(level: up),
                     const Mascot(mood: MascotMood.cheer, size: 130),
                     _Stars(key: const Key('stars'), count: summary.stars),
                     const SizedBox(height: 6),
@@ -568,6 +575,14 @@ class SessionSummaryView extends StatelessWidget {
           ),
         ),
         if (!nothingToDo) const Positioned.fill(child: ConfettiBurst()),
+        if (levelUp != null)
+          const Positioned.fill(
+            child: ConfettiBurst(
+              key: Key('level-up-confetti'),
+              pieces: 120,
+              seed: 7,
+            ),
+          ),
       ],
     );
   }
@@ -613,4 +628,47 @@ class _Stars extends StatelessWidget {
       ],
     );
   }
+}
+
+/// "Level up!" on the session summary (feat-016).
+class _LevelUpBanner extends StatelessWidget {
+  const _LevelUpBanner({required this.level});
+
+  final CefrLevel level;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    key: const Key('level-up'),
+    width: double.infinity,
+    margin: const EdgeInsets.only(bottom: 8),
+    padding: const EdgeInsets.fromLTRB(16, 12, 16, 14),
+    decoration: BoxDecoration(
+      gradient: const LinearGradient(
+        colors: [Color(0xFFFFE07A), KidColors.star],
+      ),
+      borderRadius: BorderRadius.circular(24),
+    ),
+    child: Column(
+      children: [
+        const Text(
+          '🏆 Level up!',
+          style: TextStyle(
+            fontFamily: 'Baloo2',
+            fontWeight: FontWeight.w800,
+            fontSize: 30,
+            color: KidColors.ink,
+          ),
+        ),
+        Text(
+          'You know so many words! Now you get ${level.label} words.',
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 17,
+            color: KidColors.ink,
+          ),
+        ),
+      ],
+    ),
+  );
 }

@@ -23,9 +23,10 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase(super.executor);
 
   /// 1: Phase 1. 2: QuizLogs (feat-013). 3: profile interests and
-  /// onboardedAt (feat-015).
+  /// onboardedAt (feat-015). 4: levelLocked, levelChangedAt,
+  /// stepBackDismissedAt (feat-016).
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -36,6 +37,11 @@ class AppDatabase extends _$AppDatabase {
         await m.addColumn(profiles, profiles.onboardedAt);
         // Children set up before placement existed keep their level.
         await customStatement('UPDATE profiles SET onboarded_at = created_at');
+      }
+      if (from < 4) {
+        await m.addColumn(profiles, profiles.levelLocked);
+        await m.addColumn(profiles, profiles.levelChangedAt);
+        await m.addColumn(profiles, profiles.stepBackDismissedAt);
       }
     },
     beforeOpen: (details) async {

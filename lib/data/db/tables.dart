@@ -115,6 +115,17 @@ class Profiles extends Table {
   /// When placement finished or was skipped (feat-015). Null = the child
   /// takes the placement test on next open.
   DateTimeColumn get onboardedAt => dateTime().nullable()();
+
+  /// Parent locked the level: no automatic level-up, preview or step-back
+  /// suggestion (feat-016).
+  BoolColumn get levelLocked => boolean().withDefault(const Constant(false))();
+
+  /// When the level last changed after placement (level-up, step back or
+  /// the parent). Null = unchanged since placement / creation.
+  DateTimeColumn get levelChangedAt => dateTime().nullable()();
+
+  /// The parent's "not now" on a step-back suggestion.
+  DateTimeColumn get stepBackDismissedAt => dateTime().nullable()();
 }
 
 // ---------- Per-profile progress ----------

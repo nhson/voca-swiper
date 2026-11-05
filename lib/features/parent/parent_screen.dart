@@ -3,10 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/providers.dart';
+import '../../data/db/app_database.dart';
 import '../../core/levels.dart';
 import '../../ui/sfx.dart';
 import '../profiles/profile_providers.dart';
 import '../reminders/reminders_screen.dart' show formatMinute;
+import '../levels/level_service.dart';
 import 'parent_providers.dart';
 import 'pin_gate.dart';
 import '../../ui/readable_width.dart';
@@ -69,27 +71,33 @@ class _ParentBody extends ConsumerWidget {
           ),
         for (final p in profiles)
           Card(
-            child: ListTile(
-              key: Key('parent-profile-${p.id}'),
-              leading: Text(p.avatar, style: const TextStyle(fontSize: 32)),
-              title: Text(p.name),
-              subtitle: Text(
-                'Age ${p.age} · ${CefrLevel.fromCode(p.currentLevel).label} · '
-                '${p.dailyNewWords} new words a day',
-              ),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    key: Key('parent-progress-${p.id}'),
-                    tooltip: 'Progress',
-                    icon: const Icon(Icons.insights_rounded),
-                    onPressed: () => context.push('/kid/${p.id}/progress'),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  key: Key('parent-profile-${p.id}'),
+                  leading: Text(p.avatar, style: const TextStyle(fontSize: 32)),
+                  title: Text(p.name),
+                  subtitle: Text(
+                    'Age ${p.age} · ${CefrLevel.fromCode(p.currentLevel).label} · '
+                    '${p.dailyNewWords} new words a day',
                   ),
-                  const Icon(Icons.chevron_right),
-                ],
-              ),
-              onTap: () => context.push('/parent/profiles/${p.id}'),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        key: Key('parent-progress-${p.id}'),
+                        tooltip: 'Progress',
+                        icon: const Icon(Icons.insights_rounded),
+                        onPressed: () => context.push('/kid/${p.id}/progress'),
+                      ),
+                      const Icon(Icons.chevron_right),
+                    ],
+                  ),
+                  onTap: () => context.push('/parent/profiles/${p.id}'),
+                ),
+                _StepBackBanner(profile: p),
+              ],
             ),
           ),
         const SizedBox(height: 24),
@@ -134,5 +142,66 @@ class _ParentBody extends ConsumerWidget {
     final m = ref.watch(parentAccountProvider).value?.reminderMinuteOfDay;
     if (m == null) return 'Off';
     return 'Every day at ${formatMinute(context, m)}';
+  }
+}
+
+/// "Step back a level?" for a child who has been finding the level hard
+/// (feat-016). The parent decides; nothing changes on its own.
+class _StepBackBanner extends ConsumerWidget {
+  const _StepBackBanner({required this.profile});
+
+  final ProfileRow profile;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final id = profile.id;
+    final s = ref.watch(stepBackSuggestionProvider(id)).value;
+    if (s == null) return const SizedBox.shrink();
+    final level = CefrLevel.fromCode(profile.currentLevel);
+    final service = ref.read(levelServiceProvider);
+    final scheme = Theme.of(context).colorScheme;
+    return Container(
+      key: Key('step-back-$id'),
+      width: double.infinity,
+      margin: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+      padding: const EdgeInsets.fromLTRB(12, 10, 8, 4),
+      decoration: BoxDecoration(
+        color: scheme.tertiaryContainer,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '${profile.name} got ${(s.accuracy * 100).round()}% right this '
+            'week at ${level.label}. Step back to ${s.to.label} for a while?',
+            style: TextStyle(color: scheme.onTertiaryContainer),
+          ),
+          OverflowBar(
+            alignment: MainAxisAlignment.end,
+            spacing: 8,
+            overflowAlignment: OverflowBarAlignment.end,
+            children: [
+              TextButton(
+                key: Key('step-back-dismiss-$id'),
+                onPressed: () async {
+                  await service.dismissStepBack(id);
+                  ref.invalidate(stepBackSuggestionProvider(id));
+                },
+                child: const Text('Not now'),
+              ),
+              FilledButton(
+                key: Key('step-back-accept-$id'),
+                onPressed: () async {
+                  await service.stepBack(id, s.to);
+                  ref.invalidate(stepBackSuggestionProvider(id));
+                },
+                child: const Text('Step back'),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

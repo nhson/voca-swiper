@@ -223,6 +223,124 @@ void main() {
     });
   });
 
+  group('level progression data (feat-016)', () {
+    late AppDatabase db;
+    late int kidId;
+    setUp(() async {
+      db = await seededDb([
+        w('p1', rank: 1),
+        w('p2', rank: 2),
+        w('p3', rank: 3, minAge: 10),
+        w('a1', cefr: 'A1', rank: 1),
+        w('a2', cefr: 'A1', rank: 2),
+        w('x1', cefr: 'A2', rank: 1, minAge: 7),
+      ]);
+      kidId = await ProfileRepository(db).create(kid, now: now);
+    });
+    tearDown(() => db.close());
+
+    test('words per level for an age', () async {
+      final repo = WordRepository(db);
+      expect(await repo.levelCounts(age: 6), {
+        CefrLevel.preA1: 2,
+        CefrLevel.a1: 2,
+      });
+      expect(await repo.levelCounts(age: 12), {
+        CefrLevel.preA1: 3,
+        CefrLevel.a1: 2,
+        CefrLevel.a2: 1,
+      });
+    });
+
+    test('mastered words at one level, for the age', () async {
+      final progress = ProgressRepository(db);
+      Future<void> master(String id) => progress.save(
+        kidId,
+        id,
+        WordSchedule(
+          state: WordState.mastered,
+          easeFactor: 2.5,
+          intervalDays: 30,
+          repetitions: 5,
+          nextReviewAt: now.add(const Duration(days: 30)),
+          lastAnsweredAt: now,
+          correctCount: 5,
+          wrongCount: 0,
+        ),
+        now: now,
+      );
+      await master('p1');
+      await master('p3'); // above the age
+      await master('a1');
+      await progress.save(kidId, 'p2', WordSchedule.initial(), now: now);
+      expect(
+        await progress.masteredAt(kidId, level: CefrLevel.preA1, age: 6),
+        1,
+      );
+      expect(
+        await progress.masteredAt(kidId, level: CefrLevel.preA1, age: 12),
+        2,
+      );
+      expect(await progress.masteredAt(kidId, level: CefrLevel.a1, age: 6), 1);
+    });
+
+    test('candidates from exactly one level (next-level preview)', () async {
+      final ids = await WordRepository(db).newWordCandidates(
+        profileId: kidId,
+        levelIndex: CefrLevel.a1.index,
+        age: 6,
+        limit: 10,
+        exactLevel: true,
+      );
+      expect(ids, ['a1', 'a2']);
+    });
+
+    test('changing level records when; lock and "not now" persist', () async {
+      final repo = ProfileRepository(db);
+      final later = now.add(const Duration(days: 9));
+      await repo.changeLevel(kidId, CefrLevel.a1, now: later);
+      var p = (await repo.get(kidId))!;
+      expect(p.currentLevel, 'A1');
+      expect(p.levelChangedAt?.toUtc(), later);
+      expect(levelSince(p).toUtc(), later);
+
+      await repo.dismissStepBack(kidId, now: later);
+      p = (await repo.get(kidId))!;
+      expect(p.stepBackDismissedAt?.toUtc(), later);
+
+      await repo.update(
+        kidId,
+        ProfileDraft.fromRow(p).copyWith(levelLocked: true),
+        now: later,
+      );
+      p = (await repo.get(kidId))!;
+      expect(p.levelLocked, isTrue);
+      // Same level in the form: not a level change.
+      expect(p.levelChangedAt?.toUtc(), later);
+
+      final again = later.add(const Duration(days: 1));
+      await repo.update(
+        kidId,
+        ProfileDraft.fromRow(p).copyWithLevel(CefrLevel.preA1),
+        now: again,
+      );
+      expect((await repo.get(kidId))!.levelChangedAt?.toUtc(), again);
+    });
+
+    test(
+      'a level never changed counts from placement, else creation',
+      () async {
+        final repo = ProfileRepository(db);
+        var p = (await repo.get(kidId))!;
+        expect(levelSince(p).toUtc(), now);
+        final placed = now.add(const Duration(hours: 1));
+        await repo.skipPlacement(kidId, now: placed);
+        p = (await repo.get(kidId))!;
+        expect(levelSince(p).toUtc(), placed);
+      },
+    );
+  });
+
   group('ProgressRepository', () {
     late AppDatabase db;
     late ProgressRepository repo;

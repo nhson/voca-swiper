@@ -5,7 +5,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ## Current State
 
 **Last Updated:** 2026-11-05
-**Active Feature:** none — feat-015 done; waiting for the owner before feat-016. feat-009 (owner trial) runs alongside
+**Active Feature:** none — feat-016 done; waiting for the owner before feat-017. feat-009 (owner trial) runs alongside
 **Branch:** main
 
 ### What's Done
@@ -25,6 +25,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] feat-010: kid-friendly visual design (owner accepted 2026-11-05)
 - [x] feat-014: word bank v2 — 1,497 words (Pre-A1 364, A1 611, A2 255, B1 267), grammar forms, all four levels selectable, translation fades by level
 - [x] feat-015: placement test + favourite themes — word check on first open (24 words, staircase, picture/meaning checks against guessing), up to 3 favourite topics preferred for new words, first 5-word mini-session; parent can start now / later / skip, redo; DB schema v3
+- [x] feat-016: level progression — level-up at 80% mastered with a celebration, every 5th new word a next-level preview, step-back suggestion for the parent (<50% right over a week), "Keep this level" lock; DB schema v4
 - [x] feat-006: swipe flashcard session (`lib/features/session/`), device TTS, session summary with stars; progress saved per answer
 
 ### What's In Progress
@@ -36,7 +37,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 1. Owner runs feat-009: the child uses the app 5 days a week for 2 weeks without being pushed (install on a real phone/tablet; turn on the daily reminder). Only the owner can mark it done.
 2. Before/while trialling: native-speaker review of the Vietnamese drafts (owner, alongside the trial).
 3. Trial note: at 10 min/day the cap slows new words to ~3/day after week 3 (reviews take the room). If the child wants more new words, raise "Minutes per day" to 15.
-4. Phase 2 started 2026-11-05; feat-012, 013, 014, 015 done. Next: 016 level progression → 017 dashboard → 018 custom lists → 019 weekly recap → 020 gate. Trial feedback may reorder.
+4. Phase 2 started 2026-11-05; feat-012–016 done. Next: 017 level progression → 017 dashboard → 018 custom lists → 019 weekly recap → 020 gate. Trial feedback may reorder.
 
 ## Blockers / Risks
 
@@ -98,6 +99,15 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-05 — feat-016 level progression
+
+- Domain: `lib/core/progress/level_progression.dart` (level-up, preview mix, step-back suggestion), test-first.
+- Data: schema v4 adds `levelLocked`, `levelChangedAt`, `stepBackDismissedAt`; `levelCounts`, `masteredAt`, exact-level candidates; `changeLevel` / `dismissStepBack`; form saves date real level changes.
+- `lib/features/levels/level_service.dart` applies the rules; session loader mixes preview words; session end checks level-up → "Level up!" banner on the summary. Parent area: step-back card per child (Step back / Not now). Profile form: "Keep this level".
+- Caught by the new v3→v4 migration test: the v4 `onUpgrade` step had silently not been written (formatter reflowed the anchor line). Fixed before commit.
+- Device check on iPhone + iPad simulators (`integration_test/level_progression_on_device_test.dart`); fixed the suggestion card's buttons overflowing on phones.
+- Note for the trial: an A1 level has ~600 words, so a real level-up is months away at 5 new words/day; the preview words show up from the next session.
 
 ### 2026-11-05 — feat-015 placement test + favourite themes
 

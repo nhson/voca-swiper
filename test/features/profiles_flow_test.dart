@@ -158,6 +158,8 @@ void main() {
     expect(seg<TranslationMode>().selected, {TranslationMode.tap});
 
     // The parent can pick B1.
+    await t.ensureVisible(find.byKey(const Key('level')));
+    await t.pumpAndSettle();
     await t.tap(
       find.descendant(
         of: find.byKey(const Key('level')),

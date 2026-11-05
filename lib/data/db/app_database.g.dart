@@ -1779,6 +1779,44 @@ class $ProfilesTable extends Profiles
     type: DriftSqlType.dateTime,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _levelLockedMeta = const VerificationMeta(
+    'levelLocked',
+  );
+  @override
+  late final GeneratedColumn<bool> levelLocked = GeneratedColumn<bool>(
+    'level_locked',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("level_locked" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _levelChangedAtMeta = const VerificationMeta(
+    'levelChangedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> levelChangedAt =
+      GeneratedColumn<DateTime>(
+        'level_changed_at',
+        aliasedName,
+        true,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _stepBackDismissedAtMeta =
+      const VerificationMeta('stepBackDismissedAt');
+  @override
+  late final GeneratedColumn<DateTime> stepBackDismissedAt =
+      GeneratedColumn<DateTime>(
+        'step_back_dismissed_at',
+        aliasedName,
+        true,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+      );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -1794,6 +1832,9 @@ class $ProfilesTable extends Profiles
     createdAt,
     interests,
     onboardedAt,
+    levelLocked,
+    levelChangedAt,
+    stepBackDismissedAt,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1898,6 +1939,33 @@ class $ProfilesTable extends Profiles
         ),
       );
     }
+    if (data.containsKey('level_locked')) {
+      context.handle(
+        _levelLockedMeta,
+        levelLocked.isAcceptableOrUnknown(
+          data['level_locked']!,
+          _levelLockedMeta,
+        ),
+      );
+    }
+    if (data.containsKey('level_changed_at')) {
+      context.handle(
+        _levelChangedAtMeta,
+        levelChangedAt.isAcceptableOrUnknown(
+          data['level_changed_at']!,
+          _levelChangedAtMeta,
+        ),
+      );
+    }
+    if (data.containsKey('step_back_dismissed_at')) {
+      context.handle(
+        _stepBackDismissedAtMeta,
+        stepBackDismissedAt.isAcceptableOrUnknown(
+          data['step_back_dismissed_at']!,
+          _stepBackDismissedAtMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -1963,6 +2031,18 @@ class $ProfilesTable extends Profiles
         DriftSqlType.dateTime,
         data['${effectivePrefix}onboarded_at'],
       ),
+      levelLocked: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}level_locked'],
+      )!,
+      levelChangedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}level_changed_at'],
+      ),
+      stepBackDismissedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}step_back_dismissed_at'],
+      ),
     );
   }
 
@@ -2000,6 +2080,17 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
   /// When placement finished or was skipped (feat-015). Null = the child
   /// takes the placement test on next open.
   final DateTime? onboardedAt;
+
+  /// Parent locked the level: no automatic level-up, preview or step-back
+  /// suggestion (feat-016).
+  final bool levelLocked;
+
+  /// When the level last changed after placement (level-up, step back or
+  /// the parent). Null = unchanged since placement / creation.
+  final DateTime? levelChangedAt;
+
+  /// The parent's "not now" on a step-back suggestion.
+  final DateTime? stepBackDismissedAt;
   const ProfileRow({
     required this.id,
     required this.name,
@@ -2014,6 +2105,9 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
     required this.createdAt,
     required this.interests,
     this.onboardedAt,
+    required this.levelLocked,
+    this.levelChangedAt,
+    this.stepBackDismissedAt,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -2041,6 +2135,13 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
     if (!nullToAbsent || onboardedAt != null) {
       map['onboarded_at'] = Variable<DateTime>(onboardedAt);
     }
+    map['level_locked'] = Variable<bool>(levelLocked);
+    if (!nullToAbsent || levelChangedAt != null) {
+      map['level_changed_at'] = Variable<DateTime>(levelChangedAt);
+    }
+    if (!nullToAbsent || stepBackDismissedAt != null) {
+      map['step_back_dismissed_at'] = Variable<DateTime>(stepBackDismissedAt);
+    }
     return map;
   }
 
@@ -2061,6 +2162,13 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
       onboardedAt: onboardedAt == null && nullToAbsent
           ? const Value.absent()
           : Value(onboardedAt),
+      levelLocked: Value(levelLocked),
+      levelChangedAt: levelChangedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(levelChangedAt),
+      stepBackDismissedAt: stepBackDismissedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(stepBackDismissedAt),
     );
   }
 
@@ -2085,6 +2193,11 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
       interests: serializer.fromJson<List<String>>(json['interests']),
       onboardedAt: serializer.fromJson<DateTime?>(json['onboardedAt']),
+      levelLocked: serializer.fromJson<bool>(json['levelLocked']),
+      levelChangedAt: serializer.fromJson<DateTime?>(json['levelChangedAt']),
+      stepBackDismissedAt: serializer.fromJson<DateTime?>(
+        json['stepBackDismissedAt'],
+      ),
     );
   }
   @override
@@ -2106,6 +2219,9 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
       'createdAt': serializer.toJson<DateTime>(createdAt),
       'interests': serializer.toJson<List<String>>(interests),
       'onboardedAt': serializer.toJson<DateTime?>(onboardedAt),
+      'levelLocked': serializer.toJson<bool>(levelLocked),
+      'levelChangedAt': serializer.toJson<DateTime?>(levelChangedAt),
+      'stepBackDismissedAt': serializer.toJson<DateTime?>(stepBackDismissedAt),
     };
   }
 
@@ -2123,6 +2239,9 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
     DateTime? createdAt,
     List<String>? interests,
     Value<DateTime?> onboardedAt = const Value.absent(),
+    bool? levelLocked,
+    Value<DateTime?> levelChangedAt = const Value.absent(),
+    Value<DateTime?> stepBackDismissedAt = const Value.absent(),
   }) => ProfileRow(
     id: id ?? this.id,
     name: name ?? this.name,
@@ -2137,6 +2256,13 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
     createdAt: createdAt ?? this.createdAt,
     interests: interests ?? this.interests,
     onboardedAt: onboardedAt.present ? onboardedAt.value : this.onboardedAt,
+    levelLocked: levelLocked ?? this.levelLocked,
+    levelChangedAt: levelChangedAt.present
+        ? levelChangedAt.value
+        : this.levelChangedAt,
+    stepBackDismissedAt: stepBackDismissedAt.present
+        ? stepBackDismissedAt.value
+        : this.stepBackDismissedAt,
   );
   ProfileRow copyWithCompanion(ProfilesCompanion data) {
     return ProfileRow(
@@ -2167,6 +2293,15 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
       onboardedAt: data.onboardedAt.present
           ? data.onboardedAt.value
           : this.onboardedAt,
+      levelLocked: data.levelLocked.present
+          ? data.levelLocked.value
+          : this.levelLocked,
+      levelChangedAt: data.levelChangedAt.present
+          ? data.levelChangedAt.value
+          : this.levelChangedAt,
+      stepBackDismissedAt: data.stepBackDismissedAt.present
+          ? data.stepBackDismissedAt.value
+          : this.stepBackDismissedAt,
     );
   }
 
@@ -2185,7 +2320,10 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
           ..write('swipeKnownRight: $swipeKnownRight, ')
           ..write('createdAt: $createdAt, ')
           ..write('interests: $interests, ')
-          ..write('onboardedAt: $onboardedAt')
+          ..write('onboardedAt: $onboardedAt, ')
+          ..write('levelLocked: $levelLocked, ')
+          ..write('levelChangedAt: $levelChangedAt, ')
+          ..write('stepBackDismissedAt: $stepBackDismissedAt')
           ..write(')'))
         .toString();
   }
@@ -2205,6 +2343,9 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
     createdAt,
     interests,
     onboardedAt,
+    levelLocked,
+    levelChangedAt,
+    stepBackDismissedAt,
   );
   @override
   bool operator ==(Object other) =>
@@ -2222,7 +2363,10 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
           other.swipeKnownRight == this.swipeKnownRight &&
           other.createdAt == this.createdAt &&
           other.interests == this.interests &&
-          other.onboardedAt == this.onboardedAt);
+          other.onboardedAt == this.onboardedAt &&
+          other.levelLocked == this.levelLocked &&
+          other.levelChangedAt == this.levelChangedAt &&
+          other.stepBackDismissedAt == this.stepBackDismissedAt);
 }
 
 class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
@@ -2239,6 +2383,9 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
   final Value<DateTime> createdAt;
   final Value<List<String>> interests;
   final Value<DateTime?> onboardedAt;
+  final Value<bool> levelLocked;
+  final Value<DateTime?> levelChangedAt;
+  final Value<DateTime?> stepBackDismissedAt;
   const ProfilesCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
@@ -2253,6 +2400,9 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
     this.createdAt = const Value.absent(),
     this.interests = const Value.absent(),
     this.onboardedAt = const Value.absent(),
+    this.levelLocked = const Value.absent(),
+    this.levelChangedAt = const Value.absent(),
+    this.stepBackDismissedAt = const Value.absent(),
   });
   ProfilesCompanion.insert({
     this.id = const Value.absent(),
@@ -2268,6 +2418,9 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
     required DateTime createdAt,
     this.interests = const Value.absent(),
     this.onboardedAt = const Value.absent(),
+    this.levelLocked = const Value.absent(),
+    this.levelChangedAt = const Value.absent(),
+    this.stepBackDismissedAt = const Value.absent(),
   }) : name = Value(name),
        avatar = Value(avatar),
        age = Value(age),
@@ -2288,6 +2441,9 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
     Expression<DateTime>? createdAt,
     Expression<String>? interests,
     Expression<DateTime>? onboardedAt,
+    Expression<bool>? levelLocked,
+    Expression<DateTime>? levelChangedAt,
+    Expression<DateTime>? stepBackDismissedAt,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -2303,6 +2459,10 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
       if (createdAt != null) 'created_at': createdAt,
       if (interests != null) 'interests': interests,
       if (onboardedAt != null) 'onboarded_at': onboardedAt,
+      if (levelLocked != null) 'level_locked': levelLocked,
+      if (levelChangedAt != null) 'level_changed_at': levelChangedAt,
+      if (stepBackDismissedAt != null)
+        'step_back_dismissed_at': stepBackDismissedAt,
     });
   }
 
@@ -2320,6 +2480,9 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
     Value<DateTime>? createdAt,
     Value<List<String>>? interests,
     Value<DateTime?>? onboardedAt,
+    Value<bool>? levelLocked,
+    Value<DateTime?>? levelChangedAt,
+    Value<DateTime?>? stepBackDismissedAt,
   }) {
     return ProfilesCompanion(
       id: id ?? this.id,
@@ -2335,6 +2498,9 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
       createdAt: createdAt ?? this.createdAt,
       interests: interests ?? this.interests,
       onboardedAt: onboardedAt ?? this.onboardedAt,
+      levelLocked: levelLocked ?? this.levelLocked,
+      levelChangedAt: levelChangedAt ?? this.levelChangedAt,
+      stepBackDismissedAt: stepBackDismissedAt ?? this.stepBackDismissedAt,
     );
   }
 
@@ -2384,6 +2550,17 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
     if (onboardedAt.present) {
       map['onboarded_at'] = Variable<DateTime>(onboardedAt.value);
     }
+    if (levelLocked.present) {
+      map['level_locked'] = Variable<bool>(levelLocked.value);
+    }
+    if (levelChangedAt.present) {
+      map['level_changed_at'] = Variable<DateTime>(levelChangedAt.value);
+    }
+    if (stepBackDismissedAt.present) {
+      map['step_back_dismissed_at'] = Variable<DateTime>(
+        stepBackDismissedAt.value,
+      );
+    }
     return map;
   }
 
@@ -2402,7 +2579,10 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
           ..write('swipeKnownRight: $swipeKnownRight, ')
           ..write('createdAt: $createdAt, ')
           ..write('interests: $interests, ')
-          ..write('onboardedAt: $onboardedAt')
+          ..write('onboardedAt: $onboardedAt, ')
+          ..write('levelLocked: $levelLocked, ')
+          ..write('levelChangedAt: $levelChangedAt, ')
+          ..write('stepBackDismissedAt: $stepBackDismissedAt')
           ..write(')'))
         .toString();
   }
@@ -5308,6 +5488,9 @@ typedef $$ProfilesTableCreateCompanionBuilder =
       required DateTime createdAt,
       Value<List<String>> interests,
       Value<DateTime?> onboardedAt,
+      Value<bool> levelLocked,
+      Value<DateTime?> levelChangedAt,
+      Value<DateTime?> stepBackDismissedAt,
     });
 typedef $$ProfilesTableUpdateCompanionBuilder =
     ProfilesCompanion Function({
@@ -5324,6 +5507,9 @@ typedef $$ProfilesTableUpdateCompanionBuilder =
       Value<DateTime> createdAt,
       Value<List<String>> interests,
       Value<DateTime?> onboardedAt,
+      Value<bool> levelLocked,
+      Value<DateTime?> levelChangedAt,
+      Value<DateTime?> stepBackDismissedAt,
     });
 
 final class $$ProfilesTableReferences
@@ -5458,6 +5644,21 @@ class $$ProfilesTableFilterComposer
 
   ColumnFilters<DateTime> get onboardedAt => $composableBuilder(
     column: $table.onboardedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get levelLocked => $composableBuilder(
+    column: $table.levelLocked,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get levelChangedAt => $composableBuilder(
+    column: $table.levelChangedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get stepBackDismissedAt => $composableBuilder(
+    column: $table.stepBackDismissedAt,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -5610,6 +5811,21 @@ class $$ProfilesTableOrderingComposer
     column: $table.onboardedAt,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<bool> get levelLocked => $composableBuilder(
+    column: $table.levelLocked,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get levelChangedAt => $composableBuilder(
+    column: $table.levelChangedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get stepBackDismissedAt => $composableBuilder(
+    column: $table.stepBackDismissedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$ProfilesTableAnnotationComposer
@@ -5672,6 +5888,21 @@ class $$ProfilesTableAnnotationComposer
 
   GeneratedColumn<DateTime> get onboardedAt => $composableBuilder(
     column: $table.onboardedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get levelLocked => $composableBuilder(
+    column: $table.levelLocked,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get levelChangedAt => $composableBuilder(
+    column: $table.levelChangedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get stepBackDismissedAt => $composableBuilder(
+    column: $table.stepBackDismissedAt,
     builder: (column) => column,
   );
 
@@ -5796,6 +6027,9 @@ class $$ProfilesTableTableManager
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<List<String>> interests = const Value.absent(),
                 Value<DateTime?> onboardedAt = const Value.absent(),
+                Value<bool> levelLocked = const Value.absent(),
+                Value<DateTime?> levelChangedAt = const Value.absent(),
+                Value<DateTime?> stepBackDismissedAt = const Value.absent(),
               }) => ProfilesCompanion(
                 id: id,
                 name: name,
@@ -5810,6 +6044,9 @@ class $$ProfilesTableTableManager
                 createdAt: createdAt,
                 interests: interests,
                 onboardedAt: onboardedAt,
+                levelLocked: levelLocked,
+                levelChangedAt: levelChangedAt,
+                stepBackDismissedAt: stepBackDismissedAt,
               ),
           createCompanionCallback:
               ({
@@ -5826,6 +6063,9 @@ class $$ProfilesTableTableManager
                 required DateTime createdAt,
                 Value<List<String>> interests = const Value.absent(),
                 Value<DateTime?> onboardedAt = const Value.absent(),
+                Value<bool> levelLocked = const Value.absent(),
+                Value<DateTime?> levelChangedAt = const Value.absent(),
+                Value<DateTime?> stepBackDismissedAt = const Value.absent(),
               }) => ProfilesCompanion.insert(
                 id: id,
                 name: name,
@@ -5840,6 +6080,9 @@ class $$ProfilesTableTableManager
                 createdAt: createdAt,
                 interests: interests,
                 onboardedAt: onboardedAt,
+                levelLocked: levelLocked,
+                levelChangedAt: levelChangedAt,
+                stepBackDismissedAt: stepBackDismissedAt,
               ),
           withReferenceMapper: (p0) => p0
               .map(

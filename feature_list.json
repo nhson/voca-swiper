@@ -161,8 +161,8 @@
         "feat-013",
         "feat-014"
       ],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-05: ./init.sh green — format 0 changed, analyze no issues, 272/272 tests. test/core/progress/level_progression_test.dart (17): level-up at 80% (79% not), not when locked / no next level / empty level; preview every 5th new word, none under 5, current-only without preview words, next level fills in when current runs out, slots per goal; step-back under 50% over the last 7 days → one level down, weighted by answers, 50% → none, needs ≥3 practice days, only last 7 days count, not in first week at a level, not at lowest level or when locked, 'not now' quiets it for 7 days. test/data/repositories_test.dart: words per level for an age; mastered words per level for the age; exact-level candidates; changeLevel dates the change, lock and dismissal persist, form save dates only real level changes; levelSince falls back to placement then creation. test/data/migration_test.dart: v3 → v4 (unlocked, no change/dismissal). test/features/level_progression_flow_test.dart (7): a session that takes Pre-A1 to 80% mastered shows the 'Level up!' banner + confetti and saves A1; locked → no level-up; preview order p1–p4, a1, p5, a2… for 10 new words, none when locked; parent sees 'Bi got 30% right this week at A1. Step back to Pre-A1 for a while?' and Step back → Pre-A1; Not now hides it and keeps A1; no suggestion at 80%; parent locks the level in the form. Device: flutter drive integration_test/level_progression_on_device_test.dart (real bank) passed on iPhone 18 Pro and iPad Pro 13 simulators — level-up after one 'knew it' at 80%, suggestion for a struggling A1 child, step back to Pre-A1; screenshots build/screenshots/{phone,tablet}-f16-*.png checked (banner first overflowed the phone card — fixed with OverflowBar)."
     },
     {
       "id": "feat-017",

@@ -1,9 +1,11 @@
 import 'package:drift/drift.dart';
 
+import '../../core/levels.dart';
 import '../../core/progress/progress_stats.dart';
 import '../../core/progress/retention.dart';
 import '../../core/quiz/quiz_builder.dart';
 import '../../core/srs/word_schedule.dart';
+import '../../core/srs/word_state.dart';
 import '../db/app_database.dart';
 
 class ProgressRepository {
@@ -16,6 +18,26 @@ class ProgressRepository {
       db.wordProgress,
     )..where((p) => p.profileId.equals(profileId))).get();
     return {for (final r in rows) r.wordId: _toSchedule(r)};
+  }
+
+  /// Mastered words at [level] that are allowed for [age] (feat-016).
+  Future<int> masteredAt(
+    int profileId, {
+    required CefrLevel level,
+    required int age,
+  }) {
+    final p = db.wordProgress;
+    final w = db.words;
+    final count = p.wordId.count();
+    final q = db.selectOnly(p).join([innerJoin(w, w.id.equalsExp(p.wordId))])
+      ..addColumns([count])
+      ..where(
+        p.profileId.equals(profileId) &
+            p.state.equalsValue(WordState.mastered) &
+            w.levelIndex.equals(level.index) &
+            w.minAge.isSmallerOrEqualValue(age),
+      );
+    return q.map((r) => r.read(count)!).getSingle();
   }
 
   /// Words first shown to the profile at or after [since].

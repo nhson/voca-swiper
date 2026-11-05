@@ -66,6 +66,7 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
   late TranslationMode _translation;
   late bool _swipeKnownRight;
   late List<String> _interests;
+  late bool _levelLocked;
   bool _levelTouched = false;
   bool _translationTouched = false;
   String? _nameError;
@@ -87,6 +88,7 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
         d?.translationMode ?? ProfileDraft.defaultTranslationMode(_level);
     _swipeKnownRight = d?.swipeKnownRight ?? true;
     _interests = [...?d?.interests];
+    _levelLocked = d?.levelLocked ?? false;
     _levelTouched = !_isNew;
     _translationTouched = !_isNew;
   }
@@ -126,13 +128,18 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
       translationMode: _translation,
       swipeKnownRight: _swipeKnownRight,
       interests: _interests,
+      levelLocked: _levelLocked,
     );
     final repo = ref.read(profileRepositoryProvider);
     int? created;
     if (_isNew) {
       created = await repo.create(draft, now: ref.read(clockProvider)());
     } else {
-      await repo.update(widget.existing!.id, draft);
+      await repo.update(
+        widget.existing!.id,
+        draft,
+        now: ref.read(clockProvider)(),
+      );
     }
     // Names appear in reminder text.
     unawaited(ref.read(reminderServiceProvider).refresh());
@@ -295,6 +302,19 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
             'A2 and B1 are for ages 7+ and show grammar forms '
             '(went, bigger…).',
             style: text.bodySmall,
+          ),
+          SwitchListTile(
+            key: const Key('level-lock'),
+            contentPadding: EdgeInsets.zero,
+            title: const Text('Keep this level'),
+            subtitle: Text(
+              _levelLocked
+                  ? 'The level only changes when you change it here.'
+                  : 'Moves up when 80% of the level\'s words are mastered; '
+                        'a few next-level words come as a preview.',
+            ),
+            value: _levelLocked,
+            onChanged: (v) => setState(() => _levelLocked = v),
           ),
           const SizedBox(height: 16),
           Text('New words per day: $_dailyNewWords', style: text.titleSmall),

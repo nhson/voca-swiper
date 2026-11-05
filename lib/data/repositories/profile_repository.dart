@@ -16,6 +16,7 @@ class ProfileDraft {
     TranslationMode? translationMode,
     this.swipeKnownRight = true,
     this.interests = const [],
+    this.levelLocked = false,
   }) : translationMode = translationMode ?? TranslationMode.always;
 
   final String name;
@@ -31,7 +32,10 @@ class ProfileDraft {
   /// Favourite themes (feat-015).
   final List<String> interests;
 
-  ProfileDraft copyWith({List<String>? interests}) => ProfileDraft(
+  /// No automatic level changes (feat-016).
+  final bool levelLocked;
+
+  ProfileDraft copyWithLevel(CefrLevel level) => ProfileDraft(
     name: name,
     avatar: avatar,
     age: age,
@@ -41,8 +45,24 @@ class ProfileDraft {
     dailyMinutes: dailyMinutes,
     translationMode: translationMode,
     swipeKnownRight: swipeKnownRight,
-    interests: interests ?? this.interests,
+    interests: interests,
+    levelLocked: levelLocked,
   );
+
+  ProfileDraft copyWith({List<String>? interests, bool? levelLocked}) =>
+      ProfileDraft(
+        name: name,
+        avatar: avatar,
+        age: age,
+        level: level,
+        nativeLanguage: nativeLanguage,
+        dailyNewWords: dailyNewWords,
+        dailyMinutes: dailyMinutes,
+        translationMode: translationMode,
+        swipeKnownRight: swipeKnownRight,
+        interests: interests ?? this.interests,
+        levelLocked: levelLocked ?? this.levelLocked,
+      );
 
   factory ProfileDraft.fromRow(ProfileRow r) => ProfileDraft(
     name: r.name,
@@ -55,6 +75,7 @@ class ProfileDraft {
     translationMode: r.translationMode,
     swipeKnownRight: r.swipeKnownRight,
     interests: r.interests,
+    levelLocked: r.levelLocked,
   );
 
   /// Translation visibility default by level (docs/SPEC.md — Fading
@@ -77,8 +98,13 @@ class ProfileDraft {
     translationMode: Value(translationMode),
     swipeKnownRight: Value(swipeKnownRight),
     interests: Value(interests),
+    levelLocked: Value(levelLocked),
   );
 }
+
+/// Since when the profile has been at its current level.
+DateTime levelSince(ProfileRow p) =>
+    p.levelChangedAt ?? p.onboardedAt ?? p.createdAt;
 
 class ProfileRepository {
   ProfileRepository(this.db);
@@ -103,9 +129,47 @@ class ProfileRepository {
       .into(db.profiles)
       .insert(d._companion().copyWith(createdAt: Value(now)));
 
-  Future<void> update(int id, ProfileDraft d) => (db.update(
-    db.profiles,
-  )..where((p) => p.id.equals(id))).write(d._companion());
+  /// Saves the form. A different level than stored counts as a level change
+  /// at [now] (defaults to the current time).
+  Future<void> update(int id, ProfileDraft d, {DateTime? now}) async {
+    final old = await get(id);
+    var c = d._companion();
+    if (old != null && old.currentLevel != d.level.code) {
+      c = c.copyWith(levelChangedAt: Value(now ?? DateTime.now().toUtc()));
+    }
+    await (db.update(db.profiles)..where((p) => p.id.equals(id))).write(c);
+  }
+
+  /// Moves to [level] (level-up or step back, feat-016). A translation mode
+  /// still at the old level's default follows the new level.
+  Future<void> changeLevel(
+    int id,
+    CefrLevel level, {
+    required DateTime now,
+  }) async {
+    final p = await get(id);
+    if (p == null) return;
+    await (db.update(db.profiles)..where((r) => r.id.equals(id))).write(
+      ProfilesCompanion(
+        currentLevel: Value(level.code),
+        translationMode: Value(_followLevel(p, level)),
+        levelChangedAt: Value(now),
+      ),
+    );
+  }
+
+  /// The parent's "not now" on a step-back suggestion.
+  Future<void> dismissStepBack(int id, {required DateTime now}) =>
+      (db.update(db.profiles)..where((r) => r.id.equals(id))).write(
+        ProfilesCompanion(stepBackDismissedAt: Value(now)),
+      );
+
+  static TranslationMode _followLevel(ProfileRow p, CefrLevel level) {
+    final old = CefrLevel.fromCode(p.currentLevel);
+    return p.translationMode == ProfileDraft.defaultTranslationMode(old)
+        ? ProfileDraft.defaultTranslationMode(level)
+        : p.translationMode;
+  }
 
   /// Placement done (feat-015): sets the starting level and favourites.
   /// A translation mode still at the old level's default follows the new
@@ -118,15 +182,11 @@ class ProfileRepository {
   }) async {
     final p = await get(id);
     if (p == null) return;
-    final old = CefrLevel.fromCode(p.currentLevel);
-    final mode = p.translationMode == ProfileDraft.defaultTranslationMode(old)
-        ? ProfileDraft.defaultTranslationMode(level)
-        : p.translationMode;
     await (db.update(db.profiles)..where((r) => r.id.equals(id))).write(
       ProfilesCompanion(
         currentLevel: Value(level.code),
         interests: Value(interests),
-        translationMode: Value(mode),
+        translationMode: Value(_followLevel(p, level)),
         onboardedAt: Value(now),
       ),
     );

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:drift/drift.dart';
 
+import '../../core/levels.dart';
 import '../db/app_database.dart';
 
 /// A word with the translation for one native language.
@@ -27,6 +28,7 @@ class WordRepository {
     required int age,
     required int limit,
     List<String> interests = const [],
+    bool exactLevel = false,
   }) async {
     final seen = db.selectOnly(db.wordProgress)
       ..addColumns([db.wordProgress.wordId])
@@ -35,7 +37,9 @@ class WordRepository {
       ..where(
         (w) =>
             w.minAge.isSmallerOrEqualValue(age) &
-            w.levelIndex.isSmallerOrEqualValue(levelIndex) &
+            (exactLevel
+                ? w.levelIndex.equals(levelIndex)
+                : w.levelIndex.isSmallerOrEqualValue(levelIndex)) &
             w.id.isNotInQuery(seen),
       )
       ..orderBy([
@@ -76,6 +80,20 @@ class WordRepository {
         t.wordId: t.translation,
     };
     return [for (final w in words) WordCard(w, tr[w.id])];
+  }
+
+  /// Words per level allowed for [age] (levels with none are left out).
+  Future<Map<CefrLevel, int>> levelCounts({required int age}) async {
+    final n = db.words.id.count();
+    final q = db.selectOnly(db.words)
+      ..addColumns([db.words.levelIndex, n])
+      ..where(db.words.minAge.isSmallerOrEqualValue(age))
+      ..groupBy([db.words.levelIndex])
+      ..orderBy([OrderingTerm.asc(db.words.levelIndex)]);
+    return {
+      for (final r in await q.get())
+        CefrLevel.values[r.read(db.words.levelIndex)!]: r.read(n)!,
+    };
   }
 
   /// Words per theme up to [levelIndex], allowed for [age].
