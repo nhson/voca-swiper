@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +9,8 @@ import '../../core/levels.dart';
 import '../../data/db/app_database.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../profiles/profile_providers.dart';
+import '../../ui/readable_width.dart';
+import '../reminders/reminder_service.dart';
 import 'pin_gate.dart';
 
 /// Levels that have content in the bundled bank.
@@ -119,6 +123,8 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
     } else {
       await repo.update(widget.existing!.id, draft);
     }
+    // Names appear in reminder text.
+    unawaited(ref.read(reminderServiceProvider).refresh());
     if (mounted) _leave();
   }
 
@@ -150,6 +156,7 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
     );
     if (ok != true) return;
     await action();
+    unawaited(ref.read(reminderServiceProvider).refresh());
     if (mounted && popAfter) _leave();
   }
 
@@ -163,7 +170,7 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
       ),
       body: ListView(
         key: const Key('profile-form'),
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
+        padding: readablePadding(context),
         children: [
           TextField(
             key: const Key('name-field'),

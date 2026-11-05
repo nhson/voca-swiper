@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/reminders/reminder_refresher.dart';
 import 'router.dart';
 import 'theme.dart';
 
@@ -25,5 +26,6 @@ class _VocaSwiperAppState extends State<VocaSwiperApp> {
     title: 'Voca Swiper',
     theme: buildTheme(),
     routerConfig: _router,
+    builder: (context, child) => ReminderRefresher(child: child!),
   );
 }

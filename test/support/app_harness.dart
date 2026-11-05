@@ -7,6 +7,8 @@ import 'package:voca_swiper/core/levels.dart';
 import 'package:voca_swiper/data/db/app_database.dart';
 import 'package:voca_swiper/data/repositories/parent_repository.dart';
 import 'package:voca_swiper/data/repositories/profile_repository.dart';
+import 'package:voca_swiper/core/reminders/reminder_planner.dart';
+import 'package:voca_swiper/features/reminders/reminder_notifier.dart';
 import 'package:voca_swiper/features/session/speaker.dart';
 import 'package:voca_swiper/ui/kid_look.dart';
 import 'package:voca_swiper/ui/sfx.dart';
@@ -29,6 +31,22 @@ class FakeSfx implements Sfx {
   void play(Sound sound) => played.add(sound);
 }
 
+/// Records what would be put on the device's notification schedule.
+class FakeReminderNotifier implements ReminderNotifier {
+  FakeReminderNotifier({this.allow = true});
+  bool allow;
+  int permissionAsks = 0;
+  List<PlannedReminder>? scheduled;
+  @override
+  Future<bool> requestPermission() async {
+    permissionAsks++;
+    return allow;
+  }
+
+  @override
+  Future<void> replace(List<PlannedReminder> plan) async => scheduled = plan;
+}
+
 /// Pumps the full app on [db] with a fixed clock and a phone-sized screen.
 Future<void> pumpApp(
   WidgetTester tester,
@@ -37,6 +55,7 @@ Future<void> pumpApp(
   Size size = const Size(400, 860),
   FakeSpeaker? speaker,
   Sfx? sfx,
+  FakeReminderNotifier? notifier,
 }) async {
   tester.view.physicalSize = size * 2;
   tester.view.devicePixelRatio = 2;
@@ -55,6 +74,9 @@ Future<void> pumpApp(
         ),
         speakerProvider.overrideWithValue(speaker ?? FakeSpeaker()),
         sfxProvider.overrideWithValue(sfx ?? FakeSfx()),
+        reminderNotifierProvider.overrideWithValue(
+          notifier ?? FakeReminderNotifier(),
+        ),
         // Endless idle loops would keep pumpAndSettle from settling.
         ambientMotionProvider.overrideWithValue(false),
       ],

@@ -6,8 +6,10 @@ import '../../app/providers.dart';
 import '../../core/levels.dart';
 import '../../ui/sfx.dart';
 import '../profiles/profile_providers.dart';
+import '../reminders/reminders_screen.dart' show formatMinute;
 import 'parent_providers.dart';
 import 'pin_gate.dart';
+import '../../ui/readable_width.dart';
 
 class ParentScreen extends ConsumerWidget {
   const ParentScreen({super.key});
@@ -57,7 +59,7 @@ class _ParentBody extends ConsumerWidget {
     final profiles = ref.watch(profilesProvider).value ?? const [];
     final text = Theme.of(context).textTheme;
     return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
+      padding: readablePadding(context, bottom: 96),
       children: [
         Text('Children', style: text.titleMedium),
         const SizedBox(height: 8),
@@ -86,6 +88,15 @@ class _ParentBody extends ConsumerWidget {
           child: Column(
             children: [
               ListTile(
+                key: const Key('open-reminders'),
+                leading: const Icon(Icons.notifications_outlined),
+                title: const Text('Daily reminder'),
+                subtitle: Text(_reminderLabel(context, ref)),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => context.push('/parent/reminders'),
+              ),
+              const Divider(height: 1, indent: 16, endIndent: 16),
+              ListTile(
                 leading: const Icon(Icons.pin_outlined),
                 title: const Text('Change PIN'),
                 trailing: const Icon(Icons.chevron_right),
@@ -106,5 +117,11 @@ class _ParentBody extends ConsumerWidget {
         ),
       ],
     );
+  }
+
+  String _reminderLabel(BuildContext context, WidgetRef ref) {
+    final m = ref.watch(parentAccountProvider).value?.reminderMinuteOfDay;
+    if (m == null) return 'Off';
+    return 'Every day at ${formatMinute(context, m)}';
   }
 }

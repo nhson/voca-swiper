@@ -4,6 +4,7 @@ import '../features/parent/change_pin_screen.dart';
 import '../features/parent/parent_screen.dart';
 import '../features/parent/profile_form_screen.dart';
 import '../features/profiles/kid_home_screen.dart';
+import '../features/reminders/reminders_screen.dart';
 import '../features/profiles/profile_picker_screen.dart';
 import '../features/session/session_screen.dart';
 
@@ -31,5 +32,9 @@ GoRouter buildRouter() => GoRouter(
           ProfileFormScreen(profileId: int.parse(s.pathParameters['id']!)),
     ),
     GoRoute(path: '/parent/pin', builder: (_, _) => const ChangePinScreen()),
+    GoRoute(
+      path: '/parent/reminders',
+      builder: (_, _) => const RemindersScreen(),
+    ),
   ],
 );

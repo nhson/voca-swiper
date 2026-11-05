@@ -6,6 +6,7 @@ import '../../ui/chunky_button.dart';
 import '../../ui/kid_look.dart';
 import '../../ui/kid_screen.dart';
 import '../../ui/mascot.dart';
+import '../reminders/reminder_service.dart';
 import '../session/session_providers.dart';
 import 'profile_providers.dart';
 
@@ -120,6 +121,8 @@ class KidHomeScreen extends ConsumerWidget {
                           : () async {
                               await context.push('/kid/$profileId/session');
                               ref.invalidate(sessionPreviewProvider(profileId));
+                              // Answers moved review dates: re-plan reminders.
+                              await ref.read(reminderServiceProvider).refresh();
                             },
                       padding: const EdgeInsets.symmetric(
                         horizontal: 44,

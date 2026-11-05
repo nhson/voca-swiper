@@ -5,7 +5,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ## Current State
 
 **Last Updated:** 2026-11-05
-**Active Feature:** feat-007 (daily reminder); owner asked to build all remaining features, pushing after each
+**Active Feature:** feat-008 (progress screen); owner asked to build all remaining features, pushing after each
 **Branch:** main
 
 ### What's Done
@@ -20,12 +20,13 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] feat-003: session builder in `lib/core/session/` (`SessionBuilder`, immutable `StudySession`, `SessionCard`), 43 tests green
 - [x] feat-004: Drift DB (`lib/data/db/`), repositories, `WordBankImporter`; content pipeline builds `assets/word_bank/word_bank.json` (392 Pre-A1 + A1 words, emoji pictures, draft Vietnamese); loads on device
 - [x] feat-005: first-run PIN setup, PIN gate (locks on exit), parent area, profile create/edit/delete/reset, profile picker, child home stub, go_router routes
+- [x] feat-007: daily reminder — planned a week ahead, re-planned on changes; parent Reminders screen
 - [x] feat-010: kid-friendly visual design (owner accepted 2026-11-05)
 - [x] feat-006: swipe flashcard session (`lib/features/session/`), device TTS, session summary with stars; progress saved per answer
 
 ### What's In Progress
 
-- feat-007 daily reminder
+- feat-008 progress screen
 
 ### What's Next
 
@@ -39,6 +40,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [ ] Vietnamese translations in `content_pipeline/source/words.psv` are drafts — owner/native speaker review needed.
 - [ ] Review backlog: reviews are uncapped, so a child back after a long break could face a very long session. Revisit with a review cap once real usage data exists.
 - [ ] System Java is 1.8; sdkmanager needs `JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"` (Flutter/Gradle already use Android Studio's JDK).
+- [ ] Daily reminder not yet seen firing on a real Android device (APK builds; emulator unhealthy).
 - [ ] Android emulator `Medium_Phone_API_37.0` hangs on a systemui "Updating..." screen after reinstalls and adb stops responding; feat-006 device check was done on iOS simulators instead. A cold boot / wipe of the AVD may be needed.
 - [ ] Word-list licensing (Cambridge YLE, Oxford 3000) unconfirmed — fine for family use, check before store release.
 
@@ -77,12 +79,23 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
   - Looping idle motion (clouds, mascot bob/blink) is off in widget tests via `ambientMotionProvider` and off when the OS asks for reduced motion; one-shot flourishes (confetti, star pop, card entrance) also respect reduced motion.
   - Sounds mix with other audio (no audio focus) so they never cut off the spoken word.
   - Parent area only picks up the new fonts/theme; kept calm on purpose.
+- **feat-007 details**:
+  - A local notification can't query the DB when it fires, so `ReminderPlanner` (pure Dart, `lib/core/reminders/`) plans 7 days ahead, assuming no study in between; `ReminderService` re-plans after anything that changes due dates or settings, so studying cancels the nudge.
+  - Android uses inexact alarms (`inexactAllowWhileIdle`): no exact-alarm permission; a few minutes late is fine for a daily nudge. Boot receiver re-arms after reboot. Core-library desugaring enabled (plugin requirement).
+  - Permission is asked only when a parent turns reminders on; if denied the parent is told to enable it in Settings.
+  - Scheduled as absolute UTC instants (local wall time resolved by the planner), so no timezone database/`flutter_timezone` is needed.
+  - Weekly "word of the week" recap and resurfacing mastered words (SPEC) are not in feat-007's done-when; noted for later.
 
 ## Evidence of Completion
 
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-05 — feat-007 Daily reminder
+
+- Added flutter_local_notifications 22.3.3 + timezone 0.11.2. Planner (pure Dart, test-first), notifier, service, refresher (start/resume), parent Reminders screen with next-reminder preview. Parent screens now keep a readable width on tablets.
+- `./init.sh` green, 126/126. On iPhone + iPad simulators the scheduled reminder was really delivered by iOS; nothing scheduled when no reviews are due. Android APK builds.
 
 ### 2026-11-05 — feat-010 Kid-friendly visual design (owner accepted)
 

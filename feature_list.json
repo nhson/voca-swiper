@@ -67,8 +67,8 @@
       "dependencies": [
         "feat-006"
       ],
-      "status": "in-progress",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-05: ./init.sh green — analyze no issues, 126/126 tests. test/core/reminders/reminder_planner_test.dart (11): off, nothing due, one per day for a week, waits until words are due, time passed → tomorrow, school hours move to school end on weekdays only, quiet hours skip (overnight + same-day windows), several children in one message. test/features/reminders_flow_test.dart (5): parent turns on → permission asked, 18:00 default, scheduled with kid wording; nothing due → nothing scheduled; off → cancelled; permission denied → parent told; finishing a session re-plans (reviewed words stop the nudge). Device: flutter drive integration_test/reminder_on_device_test.dart on iPhone 18 Pro and iPad Pro 13 simulators — nothing due → 0 pending; due → 7 pending, waited for the first: iOS delivered 'Bi, 1 word is waiting to say hi!' (getActiveNotifications) and pending dropped to 6. Android: flutter build apk --debug OK (desugaring + receivers); not run on a device (emulator unhealthy)."
     },
     {
       "id": "feat-008",
@@ -77,7 +77,7 @@
       "dependencies": [
         "feat-006"
       ],
-      "status": "not-started",
+      "status": "in-progress",
       "evidence": ""
     },
     {

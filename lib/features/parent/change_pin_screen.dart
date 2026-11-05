@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../app/providers.dart';
 import '../../core/security/pin_hasher.dart';
 import 'pin_gate.dart';
+import '../../ui/readable_width.dart';
 
 class ChangePinScreen extends ConsumerStatefulWidget {
   const ChangePinScreen({super.key});
@@ -46,7 +47,7 @@ class _ChangePinScreenState extends ConsumerState<ChangePinScreen> {
     child: Scaffold(
       appBar: AppBar(title: const Text('Change PIN')),
       body: ListView(
-        padding: const EdgeInsets.all(24),
+        padding: readablePadding(context, side: 24, top: 24, bottom: 24),
         children: [
           TextField(
             controller: _pin,
