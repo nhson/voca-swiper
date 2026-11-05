@@ -4,6 +4,7 @@ import '../data/db/app_database.dart';
 import '../data/repositories/parent_repository.dart';
 import '../data/repositories/profile_repository.dart';
 import '../data/repositories/progress_repository.dart';
+import '../data/repositories/settings_repository.dart';
 import '../data/repositories/word_repository.dart';
 
 /// Overridden in main() (and in tests) with an opened database.
@@ -28,4 +29,7 @@ final profileRepositoryProvider = Provider(
 );
 final parentRepositoryProvider = Provider(
   (ref) => ParentRepository(ref.watch(databaseProvider)),
+);
+final settingsRepositoryProvider = Provider(
+  (ref) => SettingsRepository(ref.watch(databaseProvider)),
 );

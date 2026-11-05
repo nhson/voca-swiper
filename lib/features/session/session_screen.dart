@@ -1,17 +1,27 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/providers.dart';
 import '../../core/session/session_summary.dart';
 import '../../core/srs/word_state.dart';
+import '../../data/repositories/word_repository.dart';
+import '../../ui/chunky_button.dart';
+import '../../ui/confetti.dart';
+import '../../ui/kid_look.dart';
+import '../../ui/kid_screen.dart';
+import '../../ui/mascot.dart';
+import '../../ui/sfx.dart';
 import 'flash_card.dart';
 import 'session_controller.dart';
 import 'speaker.dart';
 import 'swipe_card.dart';
 
-const _knewColor = Color(0xFF2E9E5B);
-const _missColor = Color(0xFFE0573E);
-const _almostColor = Color(0xFFF2A007);
+const _knewColor = KidColors.knew;
+const _missColor = KidColors.notYet;
+const _almostColor = KidColors.almost;
 
 class SessionScreen extends ConsumerStatefulWidget {
   const SessionScreen({super.key, required this.profileId});
@@ -31,8 +41,12 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
     clock: ref.read(clockProvider),
   );
   late final Speaker _speaker = ref.read(speakerProvider);
+  late final Sfx _sfx = ref.read(sfxProvider);
   final _swipeKey = GlobalKey<SwipeCardState>();
   String? _spokenFor;
+  MascotMood _mood = MascotMood.happy;
+  Timer? _moodReset;
+  bool _cheered = false;
 
   @override
   void initState() {
@@ -43,6 +57,7 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
 
   @override
   void dispose() {
+    _moodReset?.cancel();
     _c.removeListener(_onChange);
     _c.dispose();
     _speaker.stop();
@@ -52,6 +67,10 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
   void _onChange() {
     if (!mounted) return;
     setState(() {});
+    if (_c.isFinished && !_cheered && (_c.summary?.answered ?? 0) > 0) {
+      _cheered = true;
+      _sfx.play(Sound.cheer);
+    }
     // Say each new card's word once when it appears.
     final s = _c.session;
     final card = _c.currentCard;
@@ -91,8 +110,29 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
     if (card != null) {
       await card.flyOut(_directionFor(q));
     } else {
-      await _c.answer(q);
+      await _answer(q);
     }
+  }
+
+  /// Sunny and a short sound react to each answer, then the next card.
+  Future<void> _answer(AnswerQuality q) {
+    final (mood, sound) = switch (q) {
+      AnswerQuality.knew => (MascotMood.cheer, Sound.knew),
+      AnswerQuality.almost => (MascotMood.happy, Sound.almost),
+      _ => (MascotMood.encourage, Sound.notYet),
+    };
+    _sfx.play(sound);
+    if (q == AnswerQuality.knew) {
+      HapticFeedback.lightImpact();
+    } else {
+      HapticFeedback.selectionClick();
+    }
+    _moodReset?.cancel();
+    setState(() => _mood = mood);
+    _moodReset = Timer(const Duration(milliseconds: 1100), () {
+      if (mounted) setState(() => _mood = MascotMood.happy);
+    });
+    return _c.answer(q);
   }
 
   Future<void> _quit() async {
@@ -102,72 +142,110 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final look = KidLook.forAge(_c.profile?.age);
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, _) {
         if (!didPop) _quit();
       },
-      child: Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 560),
-              child: _body(context),
-            ),
+      child: KidScreen(
+        look: look,
+        sun: false,
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 560),
+            child: _body(context, look),
           ),
         ),
       ),
     );
   }
 
-  Widget _body(BuildContext context) {
+  Widget _body(BuildContext context, KidLook look) {
     if (_c.isLoading) return const Center(child: CircularProgressIndicator());
     if (_c.isFinished) {
       return SessionSummaryView(
         summary: _c.summary!,
+        practiced: _c.practicedCards,
+        look: look,
         onDone: () => Navigator.of(context).pop(),
       );
     }
     final s = _c.session!;
     final card = _c.currentCard!;
     final profile = _c.profile!;
+    final cardKey = '${s.seen.length}:${card.word.id}';
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(4, 4, 16, 0),
+          padding: const EdgeInsets.fromLTRB(12, 8, 16, 0),
           child: Row(
             children: [
-              IconButton(
+              RoundIconButton(
                 key: const Key('quit-session'),
                 tooltip: 'Stop',
-                icon: const Icon(Icons.close_rounded),
+                icon: Icons.close_rounded,
                 onPressed: _quit,
               ),
+              const SizedBox(width: 4),
+              Mascot(mood: _mood, size: 60),
               Expanded(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: LinearProgressIndicator(
-                    minHeight: 12,
-                    value: s.total == 0 ? 0 : s.seen.length / s.total,
-                  ),
+                child: _ProgressTrack(
+                  value: s.total == 0 ? 0 : s.seen.length / s.total,
                 ),
               ),
-              const SizedBox(width: 12),
-              Text(
-                '${s.seen.length + 1}/${s.total}',
-                key: const Key('session-count'),
+              const SizedBox(width: 10),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.9),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Text(
+                  '${s.seen.length + 1}/${s.total}',
+                  key: const Key('session-count'),
+                  style: const TextStyle(
+                    fontFamily: 'Baloo2',
+                    fontWeight: FontWeight.w800,
+                    fontSize: 18,
+                    color: KidColors.ink,
+                  ),
+                ),
               ),
             ],
           ),
         ),
-        if (s.current!.isRetry)
-          const Padding(
-            padding: EdgeInsets.only(top: 8),
-            child: Text('One more try! 💪'),
-          ),
+        AnimatedSize(
+          duration: const Duration(milliseconds: 200),
+          child: s.current!.isRetry
+              ? Container(
+                  margin: const EdgeInsets.only(top: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 4,
+                  ),
+                  decoration: BoxDecoration(
+                    color: KidColors.almost,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: const Text(
+                    'One more try! 💪',
+                    style: TextStyle(
+                      fontFamily: 'Baloo2',
+                      fontWeight: FontWeight.w800,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              : const SizedBox(width: double.infinity),
+        ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
+            padding: const EdgeInsets.fromLTRB(22, 14, 22, 6),
             // Keep a card shape: on tall screens the card would otherwise
             // stretch into a thin strip.
             child: Center(
@@ -176,12 +254,16 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
                 child: SwipeCard(
                   key: _swipeKey,
                   hintFor: _hint,
-                  onSwiped: (d) => _c.answer(_qualityFor(d)),
-                  child: FlashCard(
-                    key: ValueKey('${s.seen.length}:${card.word.id}'),
-                    card: card,
-                    translationMode: profile.translationMode,
-                    onSpeak: () => _speaker.say(card.word.word),
+                  onSwiped: (d) => _answer(_qualityFor(d)),
+                  child: _CardEntrance(
+                    key: ValueKey(cardKey),
+                    child: FlashCard(
+                      key: ValueKey(cardKey),
+                      card: card,
+                      look: look,
+                      translationMode: profile.translationMode,
+                      onSpeak: () => _speaker.say(card.word.word),
+                    ),
                   ),
                 ),
               ),
@@ -189,9 +271,10 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 20),
+          padding: const EdgeInsets.fromLTRB(16, 6, 16, 18),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               for (final dir in [
                 SwipeDirection.left,
@@ -206,6 +289,62 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
           ),
         ),
       ],
+    );
+  }
+}
+
+/// Each new card pops in with a little bounce.
+class _CardEntrance extends StatelessWidget {
+  const _CardEntrance({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    if (!flourishes(context)) return child;
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 420),
+      curve: Curves.easeOutBack,
+      builder: (context, t, child) => Opacity(
+        opacity: t.clamp(0.0, 1.0),
+        child: Transform.scale(scale: 0.86 + 0.14 * t, child: child),
+      ),
+      child: child,
+    );
+  }
+}
+
+class _ProgressTrack extends StatelessWidget {
+  const _ProgressTrack({required this.value});
+
+  final double value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 22,
+      padding: const EdgeInsets.all(3),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.7),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: LayoutBuilder(
+        builder: (context, box) => Align(
+          alignment: Alignment.centerLeft,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 350),
+            curve: Curves.easeOutCubic,
+            width: box.maxWidth * value.clamp(0.0, 1.0),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [Color(0xFF5BE3A8), KidColors.knew],
+              ),
+              borderRadius: BorderRadius.circular(9),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -234,25 +373,30 @@ class _AnswerButton extends StatelessWidget {
       _ => (Icons.close_rounded, 'Not yet', _missColor, 'not-yet'),
     };
     final big = quality != AnswerQuality.almost;
+    final size = big ? 78.0 : 62.0;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox.square(
-          dimension: big ? 72 : 56,
-          child: FilledButton(
-            key: Key('answer-$key'),
-            style: FilledButton.styleFrom(
-              backgroundColor: color,
-              shape: const CircleBorder(),
-              padding: EdgeInsets.zero,
-              minimumSize: Size.zero,
-            ),
-            onPressed: onPressed,
-            child: Icon(icon, size: big ? 40 : 30, color: Colors.white),
+        ChunkyButton(
+          key: Key('answer-$key'),
+          color: color,
+          circle: true,
+          size: size,
+          semanticLabel: label,
+          onPressed: onPressed,
+          child: Icon(icon, size: size * 0.55),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          label,
+          style: const TextStyle(
+            fontFamily: 'Baloo2',
+            fontWeight: FontWeight.w800,
+            fontSize: 17,
+            color: Colors.white,
+            shadows: [Shadow(color: Color(0x55000000), blurRadius: 4)],
           ),
         ),
-        const SizedBox(height: 6),
-        Text(label),
       ],
     );
   }
@@ -263,76 +407,132 @@ class SessionSummaryView extends StatelessWidget {
     super.key,
     required this.summary,
     required this.onDone,
+    this.practiced = const [],
+    this.look = KidLook.sunny,
   });
 
   final SessionSummary summary;
+  final List<WordCard> practiced;
+  final KidLook look;
   final VoidCallback onDone;
 
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     final nothingToDo = summary.answered == 0;
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (nothingToDo) ...[
-            const Text('🎉', style: TextStyle(fontSize: 80)),
-            Text(
-              'All done for today!',
-              key: const Key('all-done'),
-              style: text.headlineMedium,
-            ),
-            const SizedBox(height: 8),
-            Text('Come back tomorrow for more words.', style: text.titleMedium),
-          ] else ...[
-            Row(
-              key: const Key('stars'),
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                for (var i = 0; i < 3; i++)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    child: Text(
-                      i < summary.stars ? '⭐' : '☆',
-                      style: TextStyle(
-                        fontSize: 56,
-                        color: Colors.amber.shade300,
+    return Stack(
+      children: [
+        Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(24, 24, 24, 96),
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(36),
+                boxShadow: [
+                  BoxShadow(
+                    color: KidColors.ink.withValues(alpha: 0.16),
+                    blurRadius: 24,
+                    offset: const Offset(0, 10),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (nothingToDo) ...[
+                    const Mascot(mood: MascotMood.sleepy, size: 140),
+                    Text(
+                      'All done for today!',
+                      key: const Key('all-done'),
+                      textAlign: TextAlign.center,
+                      style: text.headlineLarge,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Come back tomorrow for more words.',
+                      textAlign: TextAlign.center,
+                      style: text.titleMedium?.copyWith(
+                        color: KidColors.inkSoft,
                       ),
                     ),
+                  ] else ...[
+                    const Mascot(mood: MascotMood.cheer, size: 130),
+                    _Stars(key: const Key('stars'), count: summary.stars),
+                    const SizedBox(height: 6),
+                    Text(
+                      _cheer(summary.stars),
+                      style: text.displaySmall?.copyWith(color: look.accent),
+                    ),
+                    const SizedBox(height: 6),
+                    Wrap(
+                      alignment: WrapAlignment.center,
+                      spacing: 10,
+                      children: [
+                        if (summary.newLearned > 0)
+                          Text(
+                            '${summary.newLearned} new '
+                            '${summary.newLearned == 1 ? 'word' : 'words'}',
+                            key: const Key('summary-new'),
+                            style: text.titleLarge,
+                          ),
+                        if (summary.reviewed > 0)
+                          Text(
+                            '${summary.reviewed} '
+                            '${summary.reviewed == 1 ? 'word' : 'words'} '
+                            'reviewed',
+                            key: const Key('summary-reviewed'),
+                            style: text.titleLarge,
+                          ),
+                      ],
+                    ),
+                    if (practiced.isNotEmpty) ...[
+                      const SizedBox(height: 14),
+                      Wrap(
+                        key: const Key('practiced'),
+                        alignment: WrapAlignment.center,
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          for (final c in practiced)
+                            Container(
+                              width: 52,
+                              height: 52,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: KidColors.pastelFor(c.word.id),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Text(
+                                c.word.emoji ??
+                                    c.word.word.characters.first.toUpperCase(),
+                                style: const TextStyle(fontSize: 28),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ],
+                  ],
+                  const SizedBox(height: 24),
+                  ChunkyButton(
+                    key: const Key('session-done'),
+                    color: look.accent,
+                    semanticLabel: 'Done',
+                    onPressed: onDone,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 48,
+                      vertical: 12,
+                    ),
+                    child: const Text('Done'),
                   ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Text(_cheer(summary.stars), style: text.headlineMedium),
-            const SizedBox(height: 16),
-            if (summary.newLearned > 0)
-              Text(
-                '${summary.newLearned} new '
-                '${summary.newLearned == 1 ? 'word' : 'words'}',
-                key: const Key('summary-new'),
-                style: text.titleLarge,
+                ],
               ),
-            if (summary.reviewed > 0)
-              Text(
-                '${summary.reviewed} '
-                '${summary.reviewed == 1 ? 'word' : 'words'} reviewed',
-                key: const Key('summary-reviewed'),
-                style: text.titleLarge,
-              ),
-          ],
-          const SizedBox(height: 32),
-          FilledButton(
-            key: const Key('session-done'),
-            onPressed: onDone,
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32),
-              child: Text('Done'),
             ),
           ),
-        ],
-      ),
+        ),
+        if (!nothingToDo) const Positioned.fill(child: ConfettiBurst()),
+      ],
     );
   }
 
@@ -341,4 +541,40 @@ class SessionSummaryView extends StatelessWidget {
     2 => 'Great job!',
     _ => 'Good try!',
   };
+}
+
+/// Three stars that pop in one after another; earned ones are gold.
+class _Stars extends StatelessWidget {
+  const _Stars({super.key, required this.count});
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    final animate = flourishes(context);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        for (var i = 0; i < 3; i++)
+          Padding(
+            padding: EdgeInsets.fromLTRB(4, i == 1 ? 0 : 14, 4, 0),
+            child: TweenAnimationBuilder<double>(
+              tween: Tween(begin: animate ? 0 : 1, end: 1),
+              duration: Duration(milliseconds: 500 + i * 220),
+              curve: Interval(i * 0.3, 1, curve: Curves.elasticOut),
+              builder: (context, t, child) =>
+                  Transform.scale(scale: t, child: child),
+              child: Icon(
+                Icons.star_rounded,
+                size: i == 1 ? 76 : 60,
+                color: i < count ? KidColors.star : const Color(0xFFE6E1F0),
+                shadows: i < count
+                    ? const [Shadow(color: Color(0x55FFA000), blurRadius: 12)]
+                    : null,
+              ),
+            ),
+          ),
+      ],
+    );
+  }
 }

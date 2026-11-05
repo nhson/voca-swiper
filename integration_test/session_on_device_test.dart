@@ -16,6 +16,7 @@ import 'package:voca_swiper/data/repositories/profile_repository.dart';
 import 'package:voca_swiper/data/repositories/progress_repository.dart';
 import 'package:voca_swiper/data/word_bank_importer.dart';
 import 'package:voca_swiper/main.dart' show wordBankAsset;
+import 'package:voca_swiper/ui/kid_look.dart';
 
 void main() {
   final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -39,10 +40,18 @@ void main() {
       ),
       now: now,
     );
+    final older = await ProfileRepository(db).create(
+      const ProfileDraft(name: 'An', avatar: '🦊', age: 9, level: CefrLevel.a1),
+      now: now,
+    );
 
     await t.pumpWidget(
       ProviderScope(
-        overrides: [databaseProvider.overrideWithValue(db)],
+        overrides: [
+          databaseProvider.overrideWithValue(db),
+          // Idle loops never settle; real sounds and TTS stay on.
+          ambientMotionProvider.overrideWithValue(false),
+        ],
         child: const VocaSwiperApp(),
       ),
     );
@@ -56,6 +65,7 @@ void main() {
       await binding.takeScreenshot('$tag-$name');
     }
 
+    await shot('0-picker');
     await t.tap(find.byKey(Key('profile-$kid')));
     await t.pumpAndSettle();
     expect(find.text('5 words are waiting to say hi!'), findsOneWidget);
@@ -92,8 +102,12 @@ void main() {
     expect(find.text('One more try! 💪'), findsOneWidget);
     await shot('5-retry');
     await t.tap(find.byKey(const Key('answer-knew'))); // dog retry
+    // Catch the confetti mid-burst.
+    for (var i = 0; i < 12; i++) {
+      await t.pump(const Duration(milliseconds: 100));
+    }
+    await binding.takeScreenshot('$tag-6-summary');
     await t.pumpAndSettle();
-    await shot('6-summary');
     expect(find.text('Amazing!'), findsOneWidget); // 4/5 → 3 stars
 
     final p = await ProgressRepository(db).schedules(kid);
@@ -104,6 +118,16 @@ void main() {
     await t.tap(find.byKey(const Key('session-done')));
     await shot('7-kid-home-after');
     expect(find.text('All done for today! 🎉'), findsOneWidget);
+
+    // The 7+ "adventure" look.
+    await t.tap(find.byTooltip('Back'));
+    await t.pumpAndSettle();
+    await t.tap(find.byKey(Key('profile-$older')));
+    await shot('8-older-home');
+    await t.tap(find.byKey(const Key('start-session')));
+    await shot('9-older-card');
+    await t.tap(find.byKey(const Key('quit-session')));
+    await t.pumpAndSettle();
     // Unmount first: closing Drift under live queries hangs.
     await t.pumpWidget(const SizedBox());
     await db.close();

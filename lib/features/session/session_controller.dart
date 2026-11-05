@@ -127,6 +127,12 @@ class SessionController extends ChangeNotifier {
     return c == null ? null : _cards[c.wordId];
   }
 
+  /// Cards answered this session, in the order first answered.
+  List<WordCard> get practicedCards => [
+    for (final id in session?.firstAnswers.keys ?? const <String>[])
+      ?_cards[id],
+  ];
+
   Future<void> start() async {
     final loaded = await _loader.load(profileId);
     profile = loaded.profile;

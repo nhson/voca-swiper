@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../app/providers.dart';
 import '../../core/levels.dart';
+import '../../ui/sfx.dart';
 import '../profiles/profile_providers.dart';
 import 'parent_providers.dart';
 import 'pin_gate.dart';
@@ -88,6 +90,16 @@ class _ParentBody extends ConsumerWidget {
                 title: const Text('Change PIN'),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () => context.push('/parent/pin'),
+              ),
+              const Divider(height: 1, indent: 16, endIndent: 16),
+              SwitchListTile(
+                key: const Key('sound-toggle'),
+                secondary: const Icon(Icons.music_note_outlined),
+                title: const Text('Sound effects'),
+                subtitle: const Text('Short sounds for answers and stars'),
+                value: ref.watch(soundEffectsOnProvider).value ?? true,
+                onChanged: (on) =>
+                    ref.read(settingsRepositoryProvider).setSoundEffects(on),
               ),
             ],
           ),

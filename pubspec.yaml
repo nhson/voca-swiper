@@ -10,6 +10,7 @@ environment:
 # flutter_tts, flutter_local_notifications) are added by the feature that first
 # needs them, with versions checked on pub.dev at that time (see docs/SPEC.md).
 dependencies:
+  audioplayers: ^6.8.1
   crypto: ^3.0.8
   drift: ^2.35.3
   drift_flutter: ^0.3.1
@@ -33,3 +34,23 @@ flutter:
   uses-material-design: true
   assets:
     - assets/word_bank/word_bank.json
+    - assets/sounds/
+  fonts:
+    - family: Baloo2
+      fonts:
+        - asset: assets/fonts/Baloo2-600.ttf
+          weight: 600
+        - asset: assets/fonts/Baloo2-700.ttf
+          weight: 700
+        - asset: assets/fonts/Baloo2-800.ttf
+          weight: 800
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-400.ttf
+          weight: 400
+        - asset: assets/fonts/Nunito-600.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-700.ttf
+          weight: 700
+        - asset: assets/fonts/Nunito-800.ttf
+          weight: 800

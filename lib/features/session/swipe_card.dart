@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 enum SwipeDirection { left, right, up }
 
@@ -120,7 +121,15 @@ class SwipeCardState extends State<SwipeCard>
                 : SwipeDirection.up);
         final hint = widget.hintFor(hintDir);
         return GestureDetector(
-          onPanUpdate: (d) => setState(() => _drag += d.delta),
+          onPanUpdate: (d) {
+            final before = _directionOf(_drag);
+            setState(() => _drag += d.delta);
+            final after = _directionOf(_drag);
+            // A little tick when the drag crosses into an answer.
+            if (after != null && after != before) {
+              HapticFeedback.selectionClick();
+            }
+          },
           onPanEnd: _onEnd,
           child: Transform.translate(
             offset: o,
@@ -130,30 +139,48 @@ class SwipeCardState extends State<SwipeCard>
                 fit: StackFit.expand,
                 children: [
                   widget.child,
-                  if (o != Offset.zero)
+                  if (o != Offset.zero) ...[
+                    // Tint the card toward the answer's colour.
                     IgnorePointer(
-                      child: Opacity(
-                        opacity: progress,
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.zero,
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: hint.color,
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 8,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: hint.color.withValues(alpha: 0.22 * progress),
+                          borderRadius: BorderRadius.circular(36),
+                        ),
+                      ),
+                    ),
+                    // A rubber-stamp label that firms up past the threshold.
+                    IgnorePointer(
+                      child: Align(
+                        alignment: const Alignment(0, -0.55),
+                        child: Opacity(
+                          opacity: progress,
+                          child: Transform.rotate(
+                            angle: hintDir == SwipeDirection.left ? 0.2 : -0.2,
+                            child: Transform.scale(
+                              scale: 0.8 + 0.3 * progress,
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(18),
+                                  border: Border.all(
+                                    color: hint.color,
+                                    width: 5,
+                                  ),
                                 ),
-                                child: Text(
-                                  hint.label,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 22,
+                                    vertical: 6,
+                                  ),
+                                  child: Text(
+                                    hint.label,
+                                    style: TextStyle(
+                                      fontFamily: 'Baloo2',
+                                      color: hint.color,
+                                      fontSize: 34,
+                                      fontWeight: FontWeight.w800,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -162,6 +189,7 @@ class SwipeCardState extends State<SwipeCard>
                         ),
                       ),
                     ),
+                  ],
                 ],
               ),
             ),

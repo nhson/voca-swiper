@@ -245,6 +245,8 @@ The app collects as little as possible about children, and every content source 
 | Example sentences | Tatoeba project | CC BY |
 | Images | OpenMoji, Twemoji; AI-generated with review as fallback | CC BY-SA, CC BY |
 | UI/UX polish timing | Phase 1, before the real-use gate: the gate measures whether the child comes back unprompted, so a plain UI would fail it for the wrong reason. Rewards (streaks, badges, garden) stay in Phase 3 |
+| Visual style (feat-010) | Code-drawn "sunny sticker book": sky + hills backdrop, mascot "Sunny" (original, drawn in code), Baloo 2 + Nunito fonts (OFL, bundled, Vietnamese-capable), chunky buttons; ages 4–6 bright "sunny", 7+ cooler "adventure"; tablets scale the phone layout up (×1–1.75) |
+| Sound effects | Short tones synthesized in-house (`tool/make_sounds.dart`), mixed with TTS, never a "wrong" buzzer; parent can turn them off |
 | Word lists | Cambridge YLE lists, Oxford 3000/5000 | Publisher terms, may restrict redistribution |
 | Frequency data | Open subtitle or web-corpus frequency lists | Varies by list |
 | Audio | Device TTS for MVP; Edge TTS or another neural TTS later | Own recordings |

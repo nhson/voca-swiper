@@ -8,6 +8,8 @@ import 'package:voca_swiper/data/db/app_database.dart';
 import 'package:voca_swiper/data/repositories/parent_repository.dart';
 import 'package:voca_swiper/data/repositories/profile_repository.dart';
 import 'package:voca_swiper/features/session/speaker.dart';
+import 'package:voca_swiper/ui/kid_look.dart';
+import 'package:voca_swiper/ui/sfx.dart';
 
 final testNow = DateTime.utc(2026, 11, 4, 9);
 
@@ -20,6 +22,13 @@ class FakeSpeaker implements Speaker {
   Future<void> stop() async {}
 }
 
+/// Records the UI sounds the app played.
+class FakeSfx implements Sfx {
+  final played = <Sound>[];
+  @override
+  void play(Sound sound) => played.add(sound);
+}
+
 /// Pumps the full app on [db] with a fixed clock and a phone-sized screen.
 Future<void> pumpApp(
   WidgetTester tester,
@@ -27,6 +36,7 @@ Future<void> pumpApp(
   DateTime? now,
   Size size = const Size(400, 860),
   FakeSpeaker? speaker,
+  Sfx? sfx,
 }) async {
   tester.view.physicalSize = size * 2;
   tester.view.devicePixelRatio = 2;
@@ -44,6 +54,9 @@ Future<void> pumpApp(
           ParentRepository(db, run: runInline),
         ),
         speakerProvider.overrideWithValue(speaker ?? FakeSpeaker()),
+        sfxProvider.overrideWithValue(sfx ?? FakeSfx()),
+        // Endless idle loops would keep pumpAndSettle from settling.
+        ambientMotionProvider.overrideWithValue(false),
       ],
       child: const VocaSwiperApp(),
     ),

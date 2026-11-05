@@ -5,7 +5,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ## Current State
 
 **Last Updated:** 2026-11-05
-**Active Feature:** none — feat-006 done; waiting for owner decision before feat-007/feat-008
+**Active Feature:** feat-010 (visual design pass) — built and verified, awaiting owner review of the before/after screenshots
 **Branch:** main
 
 ### What's Done
@@ -24,7 +24,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 
 ### What's In Progress
 
-- (none)
+- feat-010: kid UI kit in `lib/ui/` (look, sky, mascot, chunky button, confetti, tablet scale, sfx); child screens restyled; parent sound toggle. Owner to review `docs/design/feat-010/compare-*.jpg`.
 
 ### What's Next
 
@@ -68,12 +68,24 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
   - Stars: ≥80% → 3, ≥50% → 2, otherwise 1 (never 0 for trying). Almost counts as correct.
   - Word is spoken when each card appears (flutter_tts, en-US, rate 0.4); TTS failures are ignored.
   - Device checks run as `integration_test` + `flutter drive` with screenshots (`integration_test/session_on_device_test.dart`).
+- **feat-010 details**:
+  - Everything visual is drawn in code or bundled with a known license (`assets/LICENSES.md`); no network fonts (google_fonts would fetch at runtime).
+  - Tablets: `KidScale` lays the child screen out at a phone-like size and scales it up, rather than a second layout.
+  - Looping idle motion (clouds, mascot bob/blink) is off in widget tests via `ambientMotionProvider` and off when the OS asks for reduced motion; one-shot flourishes (confetti, star pop, card entrance) also respect reduced motion.
+  - Sounds mix with other audio (no audio focus) so they never cut off the spoken word.
+  - Parent area only picks up the new fonts/theme; kept calm on purpose.
 
 ## Evidence of Completion
 
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-05 — feat-010 Kid-friendly visual design (awaiting review)
+
+- Added audioplayers 6.8.1; bundled Baloo 2 + Nunito (OFL); synthesized 6 sound effects. New `lib/ui/` kit; profile picker, child home, session and summary redesigned; age-banded looks; tablet scaling; parent "Sound effects" toggle (AppMeta).
+- Device screenshots drove three fixes: greeting text lost against clouds, sun behind top-bar controls, bubble text wrapping.
+- `./init.sh` green, 110/110. On-device run passed on iPhone 18 Pro and iPad Pro 13 simulators.
 
 ### 2026-11-05 — Plan: UI/UX enhancement
 

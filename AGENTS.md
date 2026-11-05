@@ -57,7 +57,7 @@ Before ending a session:
 ```bash
 ./init.sh                                              # full gate
 flutter pub get
-dart format --output=none --set-exit-if-changed lib test content_pipeline integration_test test_driver
+dart format --output=none --set-exit-if-changed lib test content_pipeline integration_test test_driver tool
 flutter analyze
 flutter test
 dart run build_runner build --delete-conflicting-outputs   # after Drift is added
