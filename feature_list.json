@@ -193,8 +193,8 @@
         "feat-007",
         "feat-008"
       ],
-      "status": "in-progress",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-05: ./init.sh green — format 0 changed, analyze no issues, 318/318 tests. test/core/recap/weekly_recap_test.dart (5): new words and minutes in the last 7 days; word of the week prefers a picture, then most right; falls back to unpictured; recall = 2 mastered words answered longest ago; quiet week is empty. test/core/reminders/reminder_planner_test.dart (+6): weekly recap on the coming Sunday at the reminder time; Sunday before/after the time; several children in one message; nobody learned → none; quiet hours → skipped; school hours don't apply on Sunday. test/data/migration_test.dart: v5 → v6 (weekly recap off, account and PIN kept). test/features/weekly_recap_flow_test.dart (4): child home card '🆕 3 new words', '⏱ 15 min', word of the week dog (spoken on tap), recall sun + star (tap shows 'mặt trời'); no card for a new child; tablet size; parent turns on the weekly recap → exactly one Sunday 18:00 notification 'Bi learned 3 new words this week! Word of the week: dog 🐶', shown in the screen; off removes it. Device: flutter drive integration_test/weekly_recap_on_device_test.dart (real bank, real local notifications) passed on iPhone 18 Pro and iPad Pro 13 simulators — card and recall shown; after the toggle the OS has one pending notification titled 'Your week with Sunny ☀️'; screenshots build/screenshots/{phone,tablet}-f19-*.png checked. (First runs were blank: an iOS permission dialog from an earlier run stayed on the simulator's home screen; fixed by rebooting the simulators.)"
     },
     {
       "id": "feat-020",

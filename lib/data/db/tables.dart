@@ -85,6 +85,9 @@ class ParentAccounts extends Table {
       integer().withDefault(const Constant(7 * 60 + 30))();
   IntColumn get schoolEndMinute =>
       integer().withDefault(const Constant(16 * 60 + 30))();
+
+  /// Weekly recap notification on Sundays (feat-019). Off by default.
+  BoolColumn get weeklyRecap => boolean().withDefault(const Constant(false))();
   DateTimeColumn get createdAt => dateTime()();
 }
 

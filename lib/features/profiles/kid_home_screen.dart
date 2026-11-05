@@ -7,6 +7,8 @@ import '../../ui/kid_look.dart';
 import '../../ui/kid_screen.dart';
 import '../../ui/mascot.dart';
 import '../reminders/reminder_service.dart';
+import '../recap/recap_service.dart';
+import '../recap/week_card.dart';
 import '../session/session_providers.dart';
 import 'profile_providers.dart';
 
@@ -147,6 +149,7 @@ class KidHomeScreen extends ConsumerWidget {
                           : () async {
                               await context.push('/kid/$profileId/session');
                               ref.invalidate(sessionPreviewProvider(profileId));
+                              ref.invalidate(weeklyRecapProvider(profileId));
                               // Answers moved review dates: re-plan reminders.
                               await ref.read(reminderServiceProvider).refresh();
                             },
@@ -163,6 +166,10 @@ class KidHomeScreen extends ConsumerWidget {
                         ],
                       ),
                     ),
+                    if (!needsPlacement) ...[
+                      const SizedBox(height: 20),
+                      WeekCard(profileId: profileId, look: look),
+                    ],
                   ],
                 ),
               ),

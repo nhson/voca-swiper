@@ -99,6 +99,17 @@ class _RemindersScreenState extends ConsumerState<RemindersScreen> {
     await _save(a, minute: () => on ? RemindersScreen.defaultMinute : null);
   }
 
+  Future<void> _toggleWeekly(bool on) async {
+    if (on) await ref.read(reminderNotifierProvider).requestPermission();
+    await ref.read(parentRepositoryProvider).setWeeklyRecap(on);
+    final plan = ref.read(reminderServiceProvider).refresh();
+    if (mounted) {
+      setState(() {
+        _plan = plan;
+      });
+    }
+  }
+
   Future<int?> _pick(int current) async {
     final t = await showTimePicker(
       context: context,
@@ -162,6 +173,25 @@ class _RemindersScreenState extends ConsumerState<RemindersScreen> {
                   a.reminderMinuteOfDay!,
                   (m) => _save(a, minute: () => m),
                 ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
+        Card(
+          child: Column(
+            children: [
+              SwitchListTile(
+                key: const Key('weekly-toggle'),
+                title: const Text('Weekly recap on Sundays'),
+                subtitle: Text(
+                  'New words of the week and the word of the week, at '
+                  '${formatMinute(context, a.reminderMinuteOfDay ?? ReminderService.weeklyDefaultMinute)}. '
+                  'Skipped in quiet hours or after a week off.',
+                ),
+                value: a.weeklyRecap,
+                onChanged: _toggleWeekly,
+              ),
+              if (a.weeklyRecap) _NextWeekly(plan: _plan),
             ],
           ),
         ),
@@ -243,11 +273,15 @@ class _NextReminder extends StatelessWidget {
         final p = snap.data;
         if (p == null) return const SizedBox(height: 56);
         final String label;
-        if (p.isEmpty) {
+        final daily = [
+          for (final r in p)
+            if (r.title == ReminderPlanner.title) r,
+        ];
+        if (daily.isEmpty) {
           label =
               'Nothing is due in the next 7 days, so no reminder is planned.';
         } else {
-          final r = p.first;
+          final r = daily.first;
           final at = r.at;
           label =
               'Next: ${_weekdays[at.weekday - 1]} ${at.day} '
@@ -266,4 +300,37 @@ class _NextReminder extends StatelessWidget {
       },
     );
   }
+}
+
+class _NextWeekly extends StatelessWidget {
+  const _NextWeekly({required this.plan});
+
+  final Future<List<PlannedReminder>>? plan;
+
+  @override
+  Widget build(BuildContext context) => FutureBuilder(
+    future: plan,
+    builder: (context, snap) {
+      final p = snap.data;
+      if (p == null) return const SizedBox(height: 48);
+      final weekly = [
+        for (final r in p)
+          if (r.title == ReminderPlanner.weeklyTitle) r,
+      ];
+      final String label;
+      if (weekly.isEmpty) {
+        label = 'No new words in the last 7 days, so no recap is planned yet.';
+      } else {
+        final at = weekly.first.at;
+        label =
+            '${_weekdays[at.weekday - 1]} ${at.day} ${_months[at.month - 1]}, '
+            '${formatMinute(context, at.hour * 60 + at.minute)}\n'
+            '“${weekly.first.body}”';
+      }
+      return ListTile(
+        leading: const Text('📅', style: TextStyle(fontSize: 24)),
+        title: Text(label, key: const Key('next-weekly')),
+      );
+    },
+  );
 }

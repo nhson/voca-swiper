@@ -69,6 +69,11 @@ class ParentRepository {
     );
   }
 
+  /// Weekly recap notification on or off (feat-019).
+  Future<void> setWeeklyRecap(bool on) => db
+      .update(db.parentAccounts)
+      .write(ParentAccountsCompanion(weeklyRecap: Value(on)));
+
   Future<void> updateReminders({
     required int? reminderMinuteOfDay,
     required int quietStartMinute,

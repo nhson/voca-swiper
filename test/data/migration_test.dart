@@ -6,6 +6,7 @@ import 'package:voca_swiper/core/levels.dart';
 import 'package:voca_swiper/core/quiz/quiz_builder.dart';
 import 'package:voca_swiper/core/srs/word_schedule.dart';
 import 'package:voca_swiper/data/db/app_database.dart';
+import 'package:voca_swiper/data/repositories/parent_repository.dart';
 import 'package:voca_swiper/data/repositories/profile_repository.dart';
 import 'package:voca_swiper/data/repositories/progress_repository.dart';
 
@@ -138,6 +139,30 @@ void main() {
         );
     expect(await db.select(db.customWords).get(), hasLength(1));
   });
+
+  test('v5 → v6: weekly recap off, account kept', () async {
+    final dir = await Directory.systemTemp.createTemp('voca-mig');
+    addTearDown(() => dir.delete(recursive: true));
+    final file = File('${dir.path}/app.sqlite');
+
+    var db = AppDatabase(NativeDatabase(file));
+    await ParentRepository(
+      db,
+      run: runInline,
+    ).create('123456', now: DateTime.utc(2026, 11, 1));
+    await _dropWeeklyRecap(db);
+    await db.customStatement('PRAGMA user_version = 5');
+    await db.close();
+
+    db = AppDatabase(NativeDatabase(file));
+    addTearDown(db.close);
+    final repo = ParentRepository(db, run: runInline);
+    final a = (await repo.account())!;
+    expect(a.weeklyRecap, isFalse);
+    expect(await repo.verifyPin('123456'), isTrue);
+    await repo.setWeeklyRecap(true);
+    expect((await repo.account())!.weeklyRecap, isTrue);
+  });
 }
 
 /// Makes the profiles table look like schema 1–2 (before feat-015).
@@ -147,9 +172,15 @@ Future<void> _dropPlacementColumns(AppDatabase db) async {
   await db.customStatement('ALTER TABLE profiles DROP COLUMN onboarded_at');
 }
 
+/// Makes the database look like schema 5 (before feat-019).
+Future<void> _dropWeeklyRecap(AppDatabase db) =>
+    db.customStatement('ALTER TABLE parent_accounts DROP COLUMN weekly_recap');
+
 /// Makes the database look like schema 4 (before feat-018).
-Future<void> _dropCustomWords(AppDatabase db) =>
-    db.customStatement('DROP TABLE custom_words');
+Future<void> _dropCustomWords(AppDatabase db) async {
+  await _dropWeeklyRecap(db);
+  await db.customStatement('DROP TABLE custom_words');
+}
 
 /// Makes the profiles table look like schema 3 (before feat-016).
 Future<void> _dropLevelColumns(AppDatabase db) async {

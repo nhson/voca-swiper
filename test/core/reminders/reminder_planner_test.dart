@@ -174,4 +174,66 @@ void main() {
     expect(r.first.dueCount, 3);
     expect(r.first.body, '3 words are waiting to say hi! Bi 2 · An 1');
   });
+
+  group('weekly recap (feat-019)', () {
+    PlannedReminder? weekly({
+      DateTime? at,
+      int minute = 17 * 60,
+      List<WeeklyLearner>? learners,
+    }) => planner.planWeekly(
+      now: at ?? now,
+      minute: minute,
+      settings: settings(),
+      learners:
+          learners ??
+          const [WeeklyLearner(name: 'Bi', newWords: 12, wordOfWeek: 'dog 🐶')],
+    );
+
+    test('once, on the coming Sunday at the reminder time', () {
+      final r = weekly()!;
+      expect(r.at, DateTime(2026, 11, 8, 17));
+      expect(r.title, ReminderPlanner.weeklyTitle);
+      expect(
+        r.body,
+        'Bi learned 12 new words this week! Word of the week: dog 🐶',
+      );
+    });
+
+    test('on a Sunday before the time: today; after it: next Sunday', () {
+      expect(
+        weekly(at: DateTime(2026, 11, 8, 9))!.at,
+        DateTime(2026, 11, 8, 17),
+      );
+      expect(
+        weekly(at: DateTime(2026, 11, 8, 18))!.at,
+        DateTime(2026, 11, 15, 17),
+      );
+    });
+
+    test('several children: one message', () {
+      final r = weekly(
+        learners: const [
+          WeeklyLearner(name: 'Bi', newWords: 12),
+          WeeklyLearner(name: 'An', newWords: 0),
+          WeeklyLearner(name: 'Mi', newWords: 1),
+        ],
+      )!;
+      expect(r.body, 'New words this week: Bi 12 · Mi 1 🎉');
+    });
+
+    test('nobody learned anything → no recap', () {
+      expect(
+        weekly(learners: const [WeeklyLearner(name: 'Bi', newWords: 0)]),
+        isNull,
+      );
+    });
+
+    test('inside quiet hours → skipped, never moved into the night', () {
+      expect(weekly(minute: 22 * 60), isNull);
+    });
+
+    test('school hours do not apply on Sunday', () {
+      expect(weekly(minute: 10 * 60)!.at, DateTime(2026, 11, 8, 10));
+    });
+  });
 }

@@ -26,8 +26,9 @@ class AppDatabase extends _$AppDatabase {
   /// 1: Phase 1. 2: QuizLogs (feat-013). 3: profile interests and
   /// onboardedAt (feat-015). 4: levelLocked, levelChangedAt,
   /// stepBackDismissedAt (feat-016). 5: CustomWords (feat-018).
+  /// 6: parent weeklyRecap (feat-019).
   @override
-  int get schemaVersion => 5;
+  int get schemaVersion => 6;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -45,6 +46,9 @@ class AppDatabase extends _$AppDatabase {
         await m.addColumn(profiles, profiles.stepBackDismissedAt);
       }
       if (from < 5) await m.createTable(customWords);
+      if (from < 6) {
+        await m.addColumn(parentAccounts, parentAccounts.weeklyRecap);
+      }
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');

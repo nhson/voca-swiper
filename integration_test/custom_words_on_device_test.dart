@@ -105,7 +105,10 @@ void main() {
       find.byKey(const Key('cw-definition')),
       'A dinosaur with three horns.',
     );
-    await t.enterText(find.byKey(const Key('cw-translation')), 'khủng long ba sừng');
+    await t.enterText(
+      find.byKey(const Key('cw-translation')),
+      'khủng long ba sừng',
+    );
     await t.tap(find.byKey(const Key('cw-emoji-🦖')));
     FocusManager.instance.primaryFocus?.unfocus();
     await shot('1-form');

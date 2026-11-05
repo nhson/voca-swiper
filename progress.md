@@ -5,7 +5,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ## Current State
 
 **Last Updated:** 2026-11-05
-**Active Feature:** feat-019 weekly recap (owner granted a batch run 2026-11-05 for feat-017..019). feat-009 (owner trial) runs alongside
+**Active Feature:** none — feat-012..019 done. Only feat-020 (Phase 2 gate, owner-only) and feat-009 (owner trial) remain
 **Branch:** main
 
 ### What's Done
@@ -25,6 +25,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] feat-010: kid-friendly visual design (owner accepted 2026-11-05)
 - [x] feat-014: word bank v2 — 1,497 words (Pre-A1 364, A1 611, A2 255, B1 267), grammar forms, all four levels selectable, translation fades by level
 - [x] feat-015: placement test + favourite themes — word check on first open (24 words, staircase, picture/meaning checks against guessing), up to 3 favourite topics preferred for new words, first 5-word mini-session; parent can start now / later / skip, redo; DB schema v3
+- [x] feat-019: weekly recap — "This week" card (new words, minutes, word of the week, 2 mastered words to recall) + optional Sunday notification; DB schema v6
 - [x] feat-018: custom word lists — per child, matched to the bank or parent's own (meaning, Vietnamese, emoji), first among new words; DB schema v5
 - [x] feat-017: parent dashboard — level + override, last-7-days vs goal, retention, 8-week trend, struggling words
 - [x] feat-016: level progression — level-up at 80% mastered with a celebration, every 5th new word a next-level preview, step-back suggestion for the parent (<50% right over a week), "Keep this level" lock; DB schema v4
@@ -39,7 +40,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 1. Owner runs feat-009: the child uses the app 5 days a week for 2 weeks without being pushed (install on a real phone/tablet; turn on the daily reminder). Only the owner can mark it done.
 2. Before/while trialling: native-speaker review of the Vietnamese drafts (owner, alongside the trial).
 3. Trial note: at 10 min/day the cap slows new words to ~3/day after week 3 (reviews take the room). If the child wants more new words, raise "Minutes per day" to 15.
-4. Phase 2 started 2026-11-05; feat-012–018 done. Next: 019 level progression → 017 dashboard → 018 custom lists → 019 weekly recap → 020 gate. Trial feedback may reorder.
+4. Phase 2 started 2026-11-05; feat-012–019 built. Next: feat-020 — the owner reads "Remembered after 2 weeks" (child's progress screen / parent dashboard) during real use; only the owner can mark it done. Trial feedback may add fixes.
 
 ## Blockers / Risks
 
@@ -101,6 +102,13 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-05 — feat-019 weekly recap
+
+- `lib/core/recap/weekly_recap.dart` and `ReminderPlanner.planWeekly` (shares the school/quiet rule with the daily plan), test-first. Schema v6: `parentAccounts.weeklyRecap`.
+- `lib/features/recap/` (RecapService, WeekCard on the child home); Reminders screen gets a "Weekly recap on Sundays" switch with the next planned recap.
+- Device: an iOS notification permission dialog from a first run stuck on the simulator home screen and blanked later screenshots; rebooting the simulators cleared it. If device screenshots come out as identical blank files again, check `xcrun simctl io <id> screenshot` for a system dialog.
+- Phase 2 build-out (012–019) is complete; feat-020 is the owner's retention gate.
 
 ### 2026-11-05 — feat-018 custom word lists
 

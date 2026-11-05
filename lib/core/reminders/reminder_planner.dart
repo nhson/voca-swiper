@@ -49,10 +49,78 @@ class PlannedReminder {
   final int dueCount;
 }
 
+/// One child's week for the weekly recap notification (feat-019).
+class WeeklyLearner {
+  const WeeklyLearner({
+    required this.name,
+    required this.newWords,
+    this.wordOfWeek,
+  });
+
+  final String name;
+  final int newWords;
+
+  /// Shown when there is one child, e.g. "dog 🐶".
+  final String? wordOfWeek;
+}
+
 class ReminderPlanner {
   const ReminderPlanner();
 
   static const title = 'Sunny says hi! ☀️';
+  static const weeklyTitle = 'Your week with Sunny ☀️';
+
+  /// The weekly recap: the next Sunday at [minute] (today if it is Sunday
+  /// and the time is still ahead), under the same school / quiet-hour rules
+  /// as the daily reminder. Null when no child learned a new word, or the
+  /// time falls in quiet hours. Counts are as of planning; the app re-plans
+  /// after every session.
+  PlannedReminder? planWeekly({
+    required DateTime now,
+    required int minute,
+    required ReminderSettings settings,
+    required List<WeeklyLearner> learners,
+  }) {
+    final active = [
+      for (final l in learners)
+        if (l.newWords > 0) l,
+    ];
+    if (active.isEmpty) return null;
+    for (var i = 0; i < 14; i++) {
+      final day = DateTime(now.year, now.month, now.day + i);
+      if (day.weekday != DateTime.sunday) continue;
+      final at = _place(day, minute, settings);
+      if (at == null) return null;
+      if (!at.isAfter(now)) continue;
+      final body = active.length == 1
+          ? '${active.single.name} learned ${_words(active.single.newWords)} '
+                'this week!'
+                '${active.single.wordOfWeek == null ? '' : ' Word of the week: ${active.single.wordOfWeek}'}'
+          : 'New words this week: '
+                '${active.map((l) => '${l.name} ${l.newWords}').join(' · ')} 🎉';
+      return PlannedReminder(
+        at: at,
+        title: weeklyTitle,
+        body: body,
+        dueCount: 0,
+      );
+    }
+    return null;
+  }
+
+  static String _words(int n) => '$n new ${n == 1 ? 'word' : 'words'}';
+
+  /// [minute] on [day] after the school rule, or null in quiet hours.
+  static DateTime? _place(DateTime day, int minute, ReminderSettings s) {
+    var m = minute;
+    if (s.schoolBlock &&
+        day.weekday <= DateTime.friday &&
+        _inWindow(m, s.schoolStartMinute, s.schoolEndMinute)) {
+      m = s.schoolEndMinute;
+    }
+    if (_inWindow(m, s.quietStartMinute, s.quietEndMinute)) return null;
+    return DateTime(day.year, day.month, day.day, m ~/ 60, m % 60);
+  }
 
   /// Up to one reminder per day for [days] days from [now] (local).
   ///
@@ -69,19 +137,9 @@ class ReminderPlanner {
     if (minute == null) return const [];
     final out = <PlannedReminder>[];
     for (var i = 0; i < days; i++) {
-      var m = minute;
       final day = DateTime(now.year, now.month, now.day + i);
-      final weekday = day.weekday <= DateTime.friday;
-      if (settings.schoolBlock &&
-          weekday &&
-          _inWindow(m, settings.schoolStartMinute, settings.schoolEndMinute)) {
-        m = settings.schoolEndMinute;
-      }
-      if (_inWindow(m, settings.quietStartMinute, settings.quietEndMinute)) {
-        continue;
-      }
-      final at = DateTime(day.year, day.month, day.day, m ~/ 60, m % 60);
-      if (!at.isAfter(now)) continue;
+      final at = _place(day, minute, settings);
+      if (at == null || !at.isAfter(now)) continue;
 
       final counts = [
         for (final l in learners)

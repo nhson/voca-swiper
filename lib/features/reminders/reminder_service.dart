@@ -4,6 +4,7 @@ import '../../app/providers.dart';
 import '../../core/reminders/reminder_planner.dart';
 import '../../core/srs/word_state.dart';
 import '../../data/db/app_database.dart';
+import '../recap/recap_service.dart';
 import 'reminder_notifier.dart';
 
 /// Re-plans the week of reminders from the current settings and progress.
@@ -42,12 +43,38 @@ class ReminderService {
         ),
     ];
     final now = _ref.read(clockProvider)().toLocal();
-    return planner.plan(
+    final settings = settingsOf(account);
+    final daily = planner.plan(
       now: now,
-      settings: settingsOf(account),
+      settings: settings,
       learners: learners,
     );
+    if (!account.weeklyRecap) return daily;
+    final recaps = _ref.read(recapServiceProvider);
+    final weekly = planner.planWeekly(
+      now: now,
+      minute: account.reminderMinuteOfDay ?? weeklyDefaultMinute,
+      settings: settings,
+      learners: [
+        for (final p in profiles)
+          if (await recaps.load(p.id) case final r?)
+            WeeklyLearner(
+              name: p.name,
+              newWords: r.recap.newWords,
+              wordOfWeek: r.wordOfWeek == null
+                  ? null
+                  : [
+                      r.wordOfWeek!.word.word,
+                      ?r.wordOfWeek!.word.emoji,
+                    ].join(' '),
+            ),
+      ],
+    );
+    return [...daily, ?weekly]..sort((a, b) => a.at.compareTo(b.at));
   }
+
+  /// The weekly recap's time when the daily reminder is off.
+  static const weeklyDefaultMinute = 18 * 60;
 
   Future<List<PlannedReminder>> refresh() async {
     final p = await plan();

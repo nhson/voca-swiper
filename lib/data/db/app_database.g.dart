@@ -1107,6 +1107,21 @@ class $ParentAccountsTable extends ParentAccounts
     requiredDuringInsert: false,
     defaultValue: const Constant(16 * 60 + 30),
   );
+  static const VerificationMeta _weeklyRecapMeta = const VerificationMeta(
+    'weeklyRecap',
+  );
+  @override
+  late final GeneratedColumn<bool> weeklyRecap = GeneratedColumn<bool>(
+    'weekly_recap',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("weekly_recap" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
   static const VerificationMeta _createdAtMeta = const VerificationMeta(
     'createdAt',
   );
@@ -1129,6 +1144,7 @@ class $ParentAccountsTable extends ParentAccounts
     blockSchoolHours,
     schoolStartMinute,
     schoolEndMinute,
+    weeklyRecap,
     createdAt,
   ];
   @override
@@ -1216,6 +1232,15 @@ class $ParentAccountsTable extends ParentAccounts
         ),
       );
     }
+    if (data.containsKey('weekly_recap')) {
+      context.handle(
+        _weeklyRecapMeta,
+        weeklyRecap.isAcceptableOrUnknown(
+          data['weekly_recap']!,
+          _weeklyRecapMeta,
+        ),
+      );
+    }
     if (data.containsKey('created_at')) {
       context.handle(
         _createdAtMeta,
@@ -1269,6 +1294,10 @@ class $ParentAccountsTable extends ParentAccounts
         DriftSqlType.int,
         data['${effectivePrefix}school_end_minute'],
       )!,
+      weeklyRecap: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}weekly_recap'],
+      )!,
       createdAt: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
         data['${effectivePrefix}created_at'],
@@ -1299,6 +1328,9 @@ class ParentAccountRow extends DataClass
   final bool blockSchoolHours;
   final int schoolStartMinute;
   final int schoolEndMinute;
+
+  /// Weekly recap notification on Sundays (feat-019). Off by default.
+  final bool weeklyRecap;
   final DateTime createdAt;
   const ParentAccountRow({
     required this.id,
@@ -1310,6 +1342,7 @@ class ParentAccountRow extends DataClass
     required this.blockSchoolHours,
     required this.schoolStartMinute,
     required this.schoolEndMinute,
+    required this.weeklyRecap,
     required this.createdAt,
   });
   @override
@@ -1326,6 +1359,7 @@ class ParentAccountRow extends DataClass
     map['block_school_hours'] = Variable<bool>(blockSchoolHours);
     map['school_start_minute'] = Variable<int>(schoolStartMinute);
     map['school_end_minute'] = Variable<int>(schoolEndMinute);
+    map['weekly_recap'] = Variable<bool>(weeklyRecap);
     map['created_at'] = Variable<DateTime>(createdAt);
     return map;
   }
@@ -1343,6 +1377,7 @@ class ParentAccountRow extends DataClass
       blockSchoolHours: Value(blockSchoolHours),
       schoolStartMinute: Value(schoolStartMinute),
       schoolEndMinute: Value(schoolEndMinute),
+      weeklyRecap: Value(weeklyRecap),
       createdAt: Value(createdAt),
     );
   }
@@ -1364,6 +1399,7 @@ class ParentAccountRow extends DataClass
       blockSchoolHours: serializer.fromJson<bool>(json['blockSchoolHours']),
       schoolStartMinute: serializer.fromJson<int>(json['schoolStartMinute']),
       schoolEndMinute: serializer.fromJson<int>(json['schoolEndMinute']),
+      weeklyRecap: serializer.fromJson<bool>(json['weeklyRecap']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
@@ -1380,6 +1416,7 @@ class ParentAccountRow extends DataClass
       'blockSchoolHours': serializer.toJson<bool>(blockSchoolHours),
       'schoolStartMinute': serializer.toJson<int>(schoolStartMinute),
       'schoolEndMinute': serializer.toJson<int>(schoolEndMinute),
+      'weeklyRecap': serializer.toJson<bool>(weeklyRecap),
       'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
@@ -1394,6 +1431,7 @@ class ParentAccountRow extends DataClass
     bool? blockSchoolHours,
     int? schoolStartMinute,
     int? schoolEndMinute,
+    bool? weeklyRecap,
     DateTime? createdAt,
   }) => ParentAccountRow(
     id: id ?? this.id,
@@ -1407,6 +1445,7 @@ class ParentAccountRow extends DataClass
     blockSchoolHours: blockSchoolHours ?? this.blockSchoolHours,
     schoolStartMinute: schoolStartMinute ?? this.schoolStartMinute,
     schoolEndMinute: schoolEndMinute ?? this.schoolEndMinute,
+    weeklyRecap: weeklyRecap ?? this.weeklyRecap,
     createdAt: createdAt ?? this.createdAt,
   );
   ParentAccountRow copyWithCompanion(ParentAccountsCompanion data) {
@@ -1432,6 +1471,9 @@ class ParentAccountRow extends DataClass
       schoolEndMinute: data.schoolEndMinute.present
           ? data.schoolEndMinute.value
           : this.schoolEndMinute,
+      weeklyRecap: data.weeklyRecap.present
+          ? data.weeklyRecap.value
+          : this.weeklyRecap,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
@@ -1448,6 +1490,7 @@ class ParentAccountRow extends DataClass
           ..write('blockSchoolHours: $blockSchoolHours, ')
           ..write('schoolStartMinute: $schoolStartMinute, ')
           ..write('schoolEndMinute: $schoolEndMinute, ')
+          ..write('weeklyRecap: $weeklyRecap, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
@@ -1464,6 +1507,7 @@ class ParentAccountRow extends DataClass
     blockSchoolHours,
     schoolStartMinute,
     schoolEndMinute,
+    weeklyRecap,
     createdAt,
   );
   @override
@@ -1479,6 +1523,7 @@ class ParentAccountRow extends DataClass
           other.blockSchoolHours == this.blockSchoolHours &&
           other.schoolStartMinute == this.schoolStartMinute &&
           other.schoolEndMinute == this.schoolEndMinute &&
+          other.weeklyRecap == this.weeklyRecap &&
           other.createdAt == this.createdAt);
 }
 
@@ -1492,6 +1537,7 @@ class ParentAccountsCompanion extends UpdateCompanion<ParentAccountRow> {
   final Value<bool> blockSchoolHours;
   final Value<int> schoolStartMinute;
   final Value<int> schoolEndMinute;
+  final Value<bool> weeklyRecap;
   final Value<DateTime> createdAt;
   const ParentAccountsCompanion({
     this.id = const Value.absent(),
@@ -1503,6 +1549,7 @@ class ParentAccountsCompanion extends UpdateCompanion<ParentAccountRow> {
     this.blockSchoolHours = const Value.absent(),
     this.schoolStartMinute = const Value.absent(),
     this.schoolEndMinute = const Value.absent(),
+    this.weeklyRecap = const Value.absent(),
     this.createdAt = const Value.absent(),
   });
   ParentAccountsCompanion.insert({
@@ -1515,6 +1562,7 @@ class ParentAccountsCompanion extends UpdateCompanion<ParentAccountRow> {
     this.blockSchoolHours = const Value.absent(),
     this.schoolStartMinute = const Value.absent(),
     this.schoolEndMinute = const Value.absent(),
+    this.weeklyRecap = const Value.absent(),
     required DateTime createdAt,
   }) : pinHash = Value(pinHash),
        pinSalt = Value(pinSalt),
@@ -1529,6 +1577,7 @@ class ParentAccountsCompanion extends UpdateCompanion<ParentAccountRow> {
     Expression<bool>? blockSchoolHours,
     Expression<int>? schoolStartMinute,
     Expression<int>? schoolEndMinute,
+    Expression<bool>? weeklyRecap,
     Expression<DateTime>? createdAt,
   }) {
     return RawValuesInsertable({
@@ -1542,6 +1591,7 @@ class ParentAccountsCompanion extends UpdateCompanion<ParentAccountRow> {
       if (blockSchoolHours != null) 'block_school_hours': blockSchoolHours,
       if (schoolStartMinute != null) 'school_start_minute': schoolStartMinute,
       if (schoolEndMinute != null) 'school_end_minute': schoolEndMinute,
+      if (weeklyRecap != null) 'weekly_recap': weeklyRecap,
       if (createdAt != null) 'created_at': createdAt,
     });
   }
@@ -1556,6 +1606,7 @@ class ParentAccountsCompanion extends UpdateCompanion<ParentAccountRow> {
     Value<bool>? blockSchoolHours,
     Value<int>? schoolStartMinute,
     Value<int>? schoolEndMinute,
+    Value<bool>? weeklyRecap,
     Value<DateTime>? createdAt,
   }) {
     return ParentAccountsCompanion(
@@ -1568,6 +1619,7 @@ class ParentAccountsCompanion extends UpdateCompanion<ParentAccountRow> {
       blockSchoolHours: blockSchoolHours ?? this.blockSchoolHours,
       schoolStartMinute: schoolStartMinute ?? this.schoolStartMinute,
       schoolEndMinute: schoolEndMinute ?? this.schoolEndMinute,
+      weeklyRecap: weeklyRecap ?? this.weeklyRecap,
       createdAt: createdAt ?? this.createdAt,
     );
   }
@@ -1602,6 +1654,9 @@ class ParentAccountsCompanion extends UpdateCompanion<ParentAccountRow> {
     if (schoolEndMinute.present) {
       map['school_end_minute'] = Variable<int>(schoolEndMinute.value);
     }
+    if (weeklyRecap.present) {
+      map['weekly_recap'] = Variable<bool>(weeklyRecap.value);
+    }
     if (createdAt.present) {
       map['created_at'] = Variable<DateTime>(createdAt.value);
     }
@@ -1620,6 +1675,7 @@ class ParentAccountsCompanion extends UpdateCompanion<ParentAccountRow> {
           ..write('blockSchoolHours: $blockSchoolHours, ')
           ..write('schoolStartMinute: $schoolStartMinute, ')
           ..write('schoolEndMinute: $schoolEndMinute, ')
+          ..write('weeklyRecap: $weeklyRecap, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
@@ -5688,6 +5744,7 @@ typedef $$ParentAccountsTableCreateCompanionBuilder =
       Value<bool> blockSchoolHours,
       Value<int> schoolStartMinute,
       Value<int> schoolEndMinute,
+      Value<bool> weeklyRecap,
       required DateTime createdAt,
     });
 typedef $$ParentAccountsTableUpdateCompanionBuilder =
@@ -5701,6 +5758,7 @@ typedef $$ParentAccountsTableUpdateCompanionBuilder =
       Value<bool> blockSchoolHours,
       Value<int> schoolStartMinute,
       Value<int> schoolEndMinute,
+      Value<bool> weeklyRecap,
       Value<DateTime> createdAt,
     });
 
@@ -5755,6 +5813,11 @@ class $$ParentAccountsTableFilterComposer
 
   ColumnFilters<int> get schoolEndMinute => $composableBuilder(
     column: $table.schoolEndMinute,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get weeklyRecap => $composableBuilder(
+    column: $table.weeklyRecap,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -5818,6 +5881,11 @@ class $$ParentAccountsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<bool> get weeklyRecap => $composableBuilder(
+    column: $table.weeklyRecap,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<DateTime> get createdAt => $composableBuilder(
     column: $table.createdAt,
     builder: (column) => ColumnOrderings(column),
@@ -5872,6 +5940,11 @@ class $$ParentAccountsTableAnnotationComposer
     builder: (column) => column,
   );
 
+  GeneratedColumn<bool> get weeklyRecap => $composableBuilder(
+    column: $table.weeklyRecap,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<DateTime> get createdAt =>
       $composableBuilder(column: $table.createdAt, builder: (column) => column);
 }
@@ -5922,6 +5995,7 @@ class $$ParentAccountsTableTableManager
                 Value<bool> blockSchoolHours = const Value.absent(),
                 Value<int> schoolStartMinute = const Value.absent(),
                 Value<int> schoolEndMinute = const Value.absent(),
+                Value<bool> weeklyRecap = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
               }) => ParentAccountsCompanion(
                 id: id,
@@ -5933,6 +6007,7 @@ class $$ParentAccountsTableTableManager
                 blockSchoolHours: blockSchoolHours,
                 schoolStartMinute: schoolStartMinute,
                 schoolEndMinute: schoolEndMinute,
+                weeklyRecap: weeklyRecap,
                 createdAt: createdAt,
               ),
           createCompanionCallback:
@@ -5946,6 +6021,7 @@ class $$ParentAccountsTableTableManager
                 Value<bool> blockSchoolHours = const Value.absent(),
                 Value<int> schoolStartMinute = const Value.absent(),
                 Value<int> schoolEndMinute = const Value.absent(),
+                Value<bool> weeklyRecap = const Value.absent(),
                 required DateTime createdAt,
               }) => ParentAccountsCompanion.insert(
                 id: id,
@@ -5957,6 +6033,7 @@ class $$ParentAccountsTableTableManager
                 blockSchoolHours: blockSchoolHours,
                 schoolStartMinute: schoolStartMinute,
                 schoolEndMinute: schoolEndMinute,
+                weeklyRecap: weeklyRecap,
                 createdAt: createdAt,
               ),
           withReferenceMapper: (p0) => p0
