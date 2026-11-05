@@ -244,6 +244,7 @@ The app collects as little as possible about children, and every content source 
 | Definitions | Wiktionary, WordNet | CC BY-SA; WordNet license |
 | Example sentences | Tatoeba project | CC BY |
 | Images | OpenMoji, Twemoji; AI-generated with review as fallback | CC BY-SA, CC BY |
+| UI/UX polish timing | Phase 1, before the real-use gate: the gate measures whether the child comes back unprompted, so a plain UI would fail it for the wrong reason. Rewards (streaks, badges, garden) stay in Phase 3 |
 | Word lists | Cambridge YLE lists, Oxford 3000/5000 | Publisher terms, may restrict redistribution |
 | Frequency data | Open subtitle or web-corpus frequency lists | Varies by list |
 | Audio | Device TTS for MVP; Edge TTS or another neural TTS later | Own recordings |
@@ -259,6 +260,7 @@ The MVP is flashcards with pictures and audio, spaced repetition, multiple profi
    - Swipe flashcards, tap to flip, daily session builder, SM-2 scheduling.
    - Daily reminder notification.
    - Simple progress screen per profile.
+   - Kid-friendly visual design pass: playful palette and type, mascot, celebration animations, tablet scaling (no new reward mechanics).
    - Gate: your child uses it 5 days a week for 2 weeks without being pushed.
 2. **Phase 2 — Learning depth**
    - Placement test and automatic level progression.

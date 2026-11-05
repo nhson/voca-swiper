@@ -29,7 +29,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ### What's Next
 
 1. ~~First git commit~~ done
-2. Owner decides how to proceed; next is feat-007 (daily reminder) or feat-008 (progress screen)
+2. Owner decides how to proceed: feat-010 (visual design pass, recommended next so feat-008 is built in the new style), feat-007 (daily reminder) or feat-008 (progress screen)
 
 ## Blockers / Risks
 
@@ -74,6 +74,10 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-05 — Plan: UI/UX enhancement
+
+- Owner: UI is too plain and not attractive. Added feat-010 (kid-friendly visual design + delight pass) to Phase 1, before the feat-009 gate, which now depends on it. Rationale and scope in SPEC Decisions ("UI/UX polish timing").
 
 ### 2026-11-05 — feat-006 Swipe flashcard session
 

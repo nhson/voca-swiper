@@ -81,12 +81,23 @@
       "evidence": ""
     },
     {
+      "id": "feat-010",
+      "name": "Kid-friendly visual design + delight pass",
+      "description": "Make the child-facing screens (profile picker, child home, session, summary, and the progress screen once it exists) look and feel made for kids: a playful colour palette and rounded display font, illustrated backgrounds and a friendly mascot on home and summary, bigger pictures on cards, satisfying motion (card entrance, swipe feedback, correct/miss reactions, star/confetti celebration via lottie or rive), optional short sound effects, and tablet scaling (type, card and buttons grow with screen size instead of staying phone-sized). Age band adjusts style (4–6 bigger and simpler, 7+ less babyish). Parent area gets a cleaner, calmer look but stays simple. Out of scope (Phase 3): streaks, badges, word garden, games. All assets bundled offline with a confirmed free license. Done when: before/after screenshots on phone and tablet for every child screen are reviewed and accepted by the owner; animations run smoothly on device; reduced-motion setting respected; ./init.sh green.",
+      "dependencies": [
+        "feat-006"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
       "id": "feat-009",
       "name": "Phase 1 gate — real-use trial",
       "description": "Owner's child uses the app 5 days a week for 2 weeks without being pushed. Human gate: only the owner can mark this done.",
       "dependencies": [
         "feat-007",
-        "feat-008"
+        "feat-008",
+        "feat-010"
       ],
       "status": "not-started",
       "evidence": ""
