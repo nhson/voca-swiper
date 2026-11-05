@@ -15,7 +15,12 @@ import '../reminders/reminder_service.dart';
 import 'pin_gate.dart';
 
 /// Levels that have content in the bundled bank.
-const availableLevels = [CefrLevel.preA1, CefrLevel.a1];
+const availableLevels = [
+  CefrLevel.preA1,
+  CefrLevel.a1,
+  CefrLevel.a2,
+  CefrLevel.b1,
+];
 
 /// Create ([profileId] == null) or edit a child profile.
 class ProfileFormScreen extends ConsumerWidget {
@@ -213,6 +218,7 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
           const SizedBox(height: 8),
           SegmentedButton<CefrLevel>(
             key: const Key('level'),
+            showSelectedIcon: false,
             segments: [
               for (final l in availableLevels)
                 ButtonSegment(value: l, label: Text(l.label)),
@@ -221,7 +227,11 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
             onSelectionChanged: (s) => setState(() => _setLevel(s.first)),
           ),
           const SizedBox(height: 4),
-          Text('More levels come with more words.', style: text.bodySmall),
+          Text(
+            'A2 and B1 are for ages 7+ and show grammar forms '
+            '(went, bigger…).',
+            style: text.bodySmall,
+          ),
           const SizedBox(height: 16),
           Text('New words per day: $_dailyNewWords', style: text.titleSmall),
           Slider(

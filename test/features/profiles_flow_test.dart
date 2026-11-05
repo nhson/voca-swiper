@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:voca_swiper/core/levels.dart';
 import 'package:voca_swiper/data/db/app_database.dart';
 import 'package:voca_swiper/data/repositories/parent_repository.dart';
 import 'package:voca_swiper/data/repositories/profile_repository.dart';
@@ -118,6 +119,58 @@ void main() {
       await ParentRepository(db, run: runInline).verifyPin('135790'),
       isTrue,
     );
+  });
+
+  testWidgets('feat-014: A2/B1 levels; translation fades by level', (t) async {
+    await createParent(db);
+    await pumpApp(t, db);
+    await unlockParent(t);
+    await t.tap(find.byKey(const Key('add-child')));
+    await t.pumpAndSettle();
+    await t.enterText(find.byKey(const Key('name-field')), 'Tom');
+
+    // All four levels are offered.
+    for (final l in ['Pre-A1', 'A1', 'A2', 'B1']) {
+      expect(
+        find.descendant(
+          of: find.byKey(const Key('level')),
+          matching: find.text(l),
+        ),
+        findsOneWidget,
+        reason: l,
+      );
+    }
+
+    // Age 11 → A2, and translations go to "tap to see".
+    final slider = find.byKey(const Key('age-slider'));
+    final r = t.getRect(slider);
+    // Slider runs 4–15: age 11 is 7/11 of the way (track has 24px padding).
+    final x = r.left + 24 + (r.width - 48) * 7 / 11;
+    await t.tapAt(Offset(x, r.center.dy));
+    await t.pumpAndSettle();
+    expect(find.text('Age: 11'), findsOneWidget);
+    SegmentedButton<T> seg<T>() =>
+        t.widget<SegmentedButton<T>>(find.byType(SegmentedButton<T>));
+    expect(seg<CefrLevel>().selected, {CefrLevel.a2});
+    await scrollForm(t, find.text('Tap'));
+    expect(seg<TranslationMode>().selected, {TranslationMode.tap});
+
+    // The parent can pick B1.
+    await t.tap(
+      find.descendant(
+        of: find.byKey(const Key('level')),
+        matching: find.text('B1'),
+      ),
+    );
+    await t.pumpAndSettle();
+    await scrollForm(t, find.byKey(const Key('save-profile')));
+    await t.tap(find.byKey(const Key('save-profile')));
+    await t.pumpAndSettle();
+
+    final row = await db.select(db.profiles).getSingle();
+    expect(row.currentLevel, 'B1');
+    expect(row.translationMode, TranslationMode.tap);
+    expect(row.age, 11);
   });
 
   testWidgets('editing one profile leaves the other unchanged', (t) async {

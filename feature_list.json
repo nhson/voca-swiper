@@ -139,8 +139,8 @@
       "dependencies": [
         "feat-004"
       ],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-05: ./init.sh green — format 0 changed, analyze no issues, 206/206 tests. Bank v2 = 1,497 words (preA1 364, A1 611, A2 255, B1 267); `dart run content_pipeline/build_word_bank.dart` → 'version 2, 1497 words'. Source split into content_pipeline/source/words/01-preA1..04-B1.psv. test/content_pipeline/word_bank_builder_test.dart: asset up to date; the 392 v1 ids in shipped_ids.txt never change; files read in level order; level counts (preA1+A1 ≥ 950, A2/B1 ≥ 250); every word has vi/definition/example; Pre-A1 >80% pictured; A2/B1 minAge ≥ 7; A2/B1 emoji are Emoji 12 with no ZWJ; >100 A2/B1 words with forms (past/past participle, comparative/superlative, plural); new POS (preposition, pronoun, conjunction, determiner); unknown form names rejected. Blocklist extended (swearing, violence, alcohol/drugs/gambling, adult) and checked on text+definition+example. test/data/word_bank_importer_test.dart: v1 bank (shipped ids) → progress + quiz log → v2 import: schedule, firstSeen and quiz answers kept, word count = v2. test/features/profiles_flow_test.dart: all four levels offered; age 11 → A2 + 'Tap' translation; B1 saves. Device: integration_test/levels_on_device_test.dart passed on iPhone 18 Pro and iPad Pro 13 simulators — four-level picker, B1 card 'achieve' with 'past: achieved · past participle: achieved', Vietnamese behind 'Show Vietnamese' (build/screenshots/{phone,tablet}-f14-*.png). Not done: syllables/stress (skipped — not cheap without a dictionary source); Vietnamese for the 1,105 new words are drafts for owner review."
     },
     {
       "id": "feat-015",

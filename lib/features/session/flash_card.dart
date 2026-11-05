@@ -240,6 +240,7 @@ class _FlashCardState extends State<FlashCard>
                 const SizedBox(height: 8),
                 Text(
                   forms,
+                  textAlign: TextAlign.center,
                   style: text.bodyLarge?.copyWith(color: KidColors.inkSoft),
                 ),
               ],

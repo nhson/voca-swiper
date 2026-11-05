@@ -1,16 +1,59 @@
 # Words that must never appear in the word bank (lowercase, one per line).
-# Extend from a maintained kid-safety list before growing past A1.
+# Checked against each word's text, definition and example. Written in-house
+# (feat-014, before adding A2/B1); extend it whenever new levels are added.
+
+# Swearing and insults
 damn
 hell
 crap
 stupid
 idiot
+dumb
+loser
+fat
+
+# Violence and weapons
 kill
+killed
+kills
+murder
 gun
+guns
+shoot
+shot
+weapon
+weapons
+bomb
+war
+blood
+bloody
+dead
+die
+died
+death
+suicide
+
+# Alcohol, smoking, drugs, gambling
 drug
 drugs
 beer
 wine
+alcohol
+vodka
+drunk
 cigarette
+cigarettes
+smoking
+vape
+casino
+gamble
+gambling
+bet
+
+# Adult content and romance
 sex
+sexy
 naked
+boyfriend
+girlfriend
+date

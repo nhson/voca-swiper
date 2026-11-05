@@ -1,0 +1,277 @@
+# Voca Swiper word bank — B1. One word per line, fields separated by "|".
+# text|pos|cefr|minAge|themes(;)|emoji|definition|example|vi|forms(k=v,k=v)
+# pos: noun verb adjective adverb number preposition pronoun conjunction determiner
+# forms: plural past "past participle" comparative superlative
+# Order within a level = teaching order (most useful first). Words written
+# in-house from topic areas; no published list copied (see docs/adr/0001).
+# Ages 8+; pictures optional at this level. Vietnamese: northern form first,
+# southern form in parentheses where they differ. Draft translations — review
+# before store release.
+
+achieve|verb|B1|9|school||To succeed in doing something after trying hard.|She achieved her goal of reading fifty books.|đạt được|past=achieved,past participle=achieved
+succeed|verb|B1|9|school||To do what you tried to do.|If you keep practising, you will succeed.|thành công|past=succeeded,past participle=succeeded
+fail|verb|B1|9|school||To not succeed.|He failed the test, but he will try again.|thất bại (trượt)|past=failed,past participle=failed
+manage|verb|B1|9|school||To be able to do something difficult.|We managed to finish the puzzle.|xoay xở (làm được)|past=managed,past participle=managed
+attempt|verb|B1|9|school||To try to do something.|She attempts to jump over the bar.|cố gắng (thử)|past=attempted,past participle=attempted
+concentrate|verb|B1|9|school||To think very carefully about one thing.|It's hard to concentrate when it's noisy.|tập trung|past=concentrated,past participle=concentrated
+memorise|verb|B1|9|school||To learn something so you remember it exactly.|I memorise ten new words every week.|ghi nhớ (học thuộc)|past=memorised,past participle=memorised
+revise|verb|B1|9|school||To study again before a test.|I revise my notes before the exam.|ôn tập|past=revised,past participle=revised
+research|verb|B1|9|school;science||To study something carefully to find out facts.|We research the life of bees.|nghiên cứu|past=researched,past participle=researched
+include|verb|B1|9|school||To have something as one part of a whole.|The price includes breakfast.|bao gồm|past=included,past participle=included
+contain|verb|B1|9|food;science||To have something inside.|This box contains old toys.|chứa đựng|past=contained,past participle=contained
+consist|verb|B1|9|science||To be made of parts.|A week consists of seven days.|gồm có|past=consisted,past participle=consisted
+depend|verb|B1|9|school||When one thing changes because of another.|Our plans depend on the weather.|phụ thuộc|past=depended,past participle=depended
+prefer|verb|B1|8|feelings||To like one thing more than another.|I prefer cats to dogs.|thích hơn|past=preferred,past participle=preferred
+expect|verb|B1|9|feelings||To think something will happen.|I expect it will rain later.|mong đợi (dự đoán)|past=expected,past participle=expected
+realise|verb|B1|9|feelings||To suddenly know or understand something.|I realised I had left my bag at school.|nhận ra|past=realised,past participle=realised
+recognise|verb|B1|9|people||To know someone or something because you have seen it before.|I didn't recognise you with short hair!|nhận ra|past=recognised,past participle=recognised
+notice|verb|B1|9|people||To see or hear something.|Did you notice the new picture on the wall?|để ý|past=noticed,past participle=noticed
+admire|verb|B1|9|people||To like and respect someone.|I admire my grandmother because she is brave.|ngưỡng mộ|past=admired,past participle=admired
+respect|verb|B1|9|people||To think someone is important and treat them well.|We should respect older people.|tôn trọng|past=respected,past participle=respected
+trust|verb|B1|9|people||To believe that someone is good and honest.|I trust my best friend.|tin tưởng|past=trusted,past participle=trusted
+encourage|verb|B1|9|people||To help someone feel brave enough to do something.|My coach encourages me to try again.|động viên (khuyến khích)|past=encouraged,past participle=encouraged
+support|verb|B1|9|people;sports||To help someone, or to like a team and want it to win.|Which team do you support?|ủng hộ (hỗ trợ)|past=supported,past participle=supported
+forgive|verb|B1|9|people||To stop being angry with someone.|Please forgive me. I'm sorry.|tha thứ|past=forgave,past participle=forgiven
+complain|verb|B1|9|people||To say that something is wrong or not good enough.|He always complains about the food.|phàn nàn|past=complained,past participle=complained
+refuse|verb|B1|9|people||To say you will not do something.|The cat refuses to eat its food.|từ chối|past=refused,past participle=refused
+persuade|verb|B1|9|people||To make someone agree to do something.|I persuaded Dad to buy a puppy.|thuyết phục|past=persuaded,past participle=persuaded
+introduce|verb|B1|9|people||To tell people each other's names when they first meet.|Let me introduce my friend Lan.|giới thiệu|past=introduced,past participle=introduced
+communicate|verb|B1|9|people;technology||To share ideas or information with someone.|Dolphins communicate with sounds.|giao tiếp|past=communicated,past participle=communicated
+mention|verb|B1|9|people||To say something in a few words.|She mentioned her new puppy.|nhắc đến|past=mentioned,past participle=mentioned
+announce|verb|B1|9|people||To tell everyone something important.|The teacher announces the winner.|thông báo|past=announced,past participle=announced
+warn|verb|B1|9|health||To tell someone about a danger.|The sign warns us about the deep water.|cảnh báo|past=warned,past participle=warned
+prevent|verb|B1|9|health||To stop something from happening.|Brushing your teeth prevents toothache.|ngăn chặn (phòng ngừa)|past=prevented,past participle=prevented
+recover|verb|B1|9|health||To get better after being ill or hurt.|She recovered quickly from her cold.|hồi phục|past=recovered,past participle=recovered
+breathe|verb|B1|8|health||To take air into your body and let it out.|Breathe in slowly.|thở|past=breathed,past participle=breathed
+exercise|verb|B1|8|health;sports|🏃|To move your body to stay healthy.|We exercise for an hour every day.|tập thể dục|past=exercised,past participle=exercised
+relax|verb|B1|8|health|😌|To rest and feel calm.|I relax by reading a book.|thư giãn|past=relaxed,past participle=relaxed
+injure|verb|B1|9|health;sports|🤕|To hurt part of your body.|He injured his knee playing football.|bị thương|past=injured,past participle=injured
+develop|verb|B1|9|science||To grow or change into something bigger or better.|A tadpole develops into a frog.|phát triển|past=developed,past participle=developed
+produce|verb|B1|9|science||To make or grow something.|Bees produce honey.|sản xuất (tạo ra)|past=produced,past participle=produced
+reduce|verb|B1|9|nature||To make something smaller or less.|We can reduce rubbish by recycling.|giảm bớt|past=reduced,past participle=reduced
+increase|verb|B1|9|science|📈|To get bigger in number or amount.|The number of tigers is increasing.|tăng lên|past=increased,past participle=increased
+disappear|verb|B1|9|nature||To go away so you cannot see it.|The sun disappeared behind a cloud.|biến mất|past=disappeared,past participle=disappeared
+appear|verb|B1|9|nature||To start to be seen.|A rainbow appeared in the sky.|xuất hiện|past=appeared,past participle=appeared
+survive|verb|B1|9|nature;animals||To stay alive through something difficult.|Camels can survive without water for days.|sống sót|past=survived,past participle=survived
+pollute|verb|B1|9|nature||To make air, water or land dirty.|Factories pollute the river.|làm ô nhiễm|past=polluted,past participle=polluted
+destroy|verb|B1|9|nature||To damage something so badly it cannot be used.|The storm destroyed the old bridge.|phá hủy|past=destroyed,past participle=destroyed
+damage|verb|B1|9|nature||To harm something.|Too much sun can damage your skin.|làm hư hại|past=damaged,past participle=damaged
+waste|verb|B1|9|nature||To use more than you need, or use badly.|Don't waste water.|lãng phí|past=wasted,past participle=wasted
+design|verb|B1|9|technology||To plan how something will look or work.|She designs her own clothes.|thiết kế|past=designed,past participle=designed
+repair|verb|B1|9|technology|🔧|To fix something that is broken.|The mechanic repairs the car.|sửa chữa|past=repaired,past participle=repaired
+connect|verb|B1|9|technology|🔌|To join two things together.|Connect the speaker to the computer.|kết nối|past=connected,past participle=connected
+delete|verb|B1|9|technology||To remove words or files from a computer.|Delete the old photos.|xóa|past=deleted,past participle=deleted
+search|verb|B1|9|technology|🔍|To look carefully for something.|We search the internet for information.|tìm kiếm|past=searched,past participle=searched
+upload|verb|B1|9|technology||To send a file from your computer to the internet.|Upload your picture to the class website.|tải lên|past=uploaded,past participle=uploaded
+deliver|verb|B1|9|shopping|📦|To take something to a person or place.|The postman delivers letters.|giao hàng|past=delivered,past participle=delivered
+afford|verb|B1|9|shopping||To have enough money to buy something.|We can't afford a new car.|đủ tiền mua|past=afforded,past participle=afforded
+pack|verb|B1|8|travel|🧳|To put things in a bag for a journey.|Pack your suitcase tonight.|đóng gói (xếp đồ)|past=packed,past participle=packed
+land|verb|B1|9|travel|🛬|When a plane comes down to the ground.|The plane lands at noon.|hạ cánh|past=landed,past participle=landed
+continue|verb|B1|9|actions||To keep doing something.|Continue reading until the bell rings.|tiếp tục|past=continued,past participle=continued
+disappoint|verb|B1|9|feelings||To make someone sad because something was not as good as hoped.|The film disappointed me.|làm thất vọng|past=disappointed,past participle=disappointed
+frighten|verb|B1|8|feelings|😱|To make someone afraid.|The thunder frightens my little brother.|làm sợ hãi|past=frightened,past participle=frightened
+shake|verb|B1|8|actions||To move quickly up and down or side to side.|Shake the bottle before you open it.|lắc|past=shook,past participle=shaken
+bend|verb|B1|8|actions||To make something curved, or move your body down.|Bend your knees.|uốn cong (cúi)|past=bent,past participle=bent
+throw away|verb|B1|8|nature;home|🗑️|To put something in the bin.|Don't throw away the bottle. Recycle it!|vứt đi|past=threw away,past participle=thrown away
+spread|verb|B1|9|food||To put a thin layer of something on something.|Spread butter on the bread.|phết (lan rộng)|past=spread,past participle=spread
+steal|verb|B1|9|people||To take something that is not yours.|In the story, the fox steals the cheese.|ăn trộm|past=stole,past participle=stolen
+lie|verb|B1|9|people||To say something that is not true.|Don't lie to your parents.|nói dối|past=lied,past participle=lied
+tear|verb|B1|9|actions||To pull paper or cloth into pieces.|Don't tear the page.|xé|past=tore,past participle=torn
+amazing|adjective|B1|8|feelings|🤩|Very surprising and wonderful.|The view from the mountain is amazing.|tuyệt vời (kinh ngạc)|comparative=more amazing,superlative=most amazing
+awful|adjective|B1|8|feelings||Very bad.|The medicine tastes awful.|kinh khủng|comparative=more awful,superlative=most awful
+brilliant|adjective|B1|9|feelings|🌟|Very clever, or very good.|What a brilliant idea!|xuất sắc|comparative=more brilliant,superlative=most brilliant
+cheerful|adjective|B1|9|feelings|😄|Happy and smiling.|Our neighbour is always cheerful.|vui vẻ|comparative=more cheerful,superlative=most cheerful
+confident|adjective|B1|9|feelings||Sure that you can do something well.|She is confident about her speech.|tự tin|comparative=more confident,superlative=most confident
+curious|adjective|B1|9|feelings|🧐|Wanting to know about something.|Cats are curious animals.|tò mò|comparative=more curious,superlative=most curious
+disappointed|adjective|B1|9|feelings|😞|Sad because something was not as good as you hoped.|I'm disappointed that the trip is cancelled.|thất vọng|comparative=more disappointed,superlative=most disappointed
+embarrassed|adjective|B1|9|feelings|😳|Feeling silly in front of other people.|I was embarrassed when I fell over.|xấu hổ (ngượng)|comparative=more embarrassed,superlative=most embarrassed
+frightened|adjective|B1|8|feelings|😨|Afraid.|The puppy is frightened of the storm.|sợ hãi|comparative=more frightened,superlative=most frightened
+grateful|adjective|B1|9|feelings|🙏|Wanting to thank someone.|I'm grateful for your help.|biết ơn|comparative=more grateful,superlative=most grateful
+jealous|adjective|B1|9|feelings||Unhappy because someone has something you want.|He is jealous of his sister's new bike.|ghen tị|comparative=more jealous,superlative=most jealous
+relaxed|adjective|B1|9|feelings|😌|Calm and not worried.|I feel relaxed on holiday.|thoải mái (thư thái)|comparative=more relaxed,superlative=most relaxed
+upset|adjective|B1|8|feelings|😢|Unhappy and worried.|She is upset because she lost her cat.|buồn bã (khó chịu)|comparative=more upset,superlative=most upset
+generous|adjective|B1|9|people||Happy to give things to others.|My uncle is very generous.|hào phóng|comparative=more generous,superlative=most generous
+patient|adjective|B1|9|people||Able to wait calmly.|Be patient. The bus will come soon.|kiên nhẫn|comparative=more patient,superlative=most patient
+helpful|adjective|B1|8|people||Happy to help, or useful.|The shop assistant is very helpful.|hay giúp đỡ (hữu ích)|comparative=more helpful,superlative=most helpful
+selfish|adjective|B1|9|people||Thinks only about yourself.|It's selfish not to share.|ích kỷ|comparative=more selfish,superlative=most selfish
+serious|adjective|B1|9|people||Not joking, or very bad.|This is a serious problem.|nghiêm túc (nghiêm trọng)|comparative=more serious,superlative=most serious
+sensible|adjective|B1|9|people||Makes good decisions.|Wearing a helmet is sensible.|hợp lý (khôn ngoan)|comparative=more sensible,superlative=most sensible
+creative|adjective|B1|9|hobbies|🎨|Good at making new things or having new ideas.|She is very creative; she makes her own toys.|sáng tạo|comparative=more creative,superlative=most creative
+talented|adjective|B1|9|hobbies||Very good at something.|He is a talented singer.|tài năng|comparative=more talented,superlative=most talented
+independent|adjective|B1|9|people||Can do things without help.|My cat is very independent.|độc lập|comparative=more independent,superlative=most independent
+ordinary|adjective|B1|9|things||Not special or different.|It was an ordinary day at school.|bình thường|comparative=more ordinary,superlative=most ordinary
+unusual|adjective|B1|9|things||Not usual or common.|This is an unusual flower.|khác thường|comparative=more unusual,superlative=most unusual
+necessary|adjective|B1|9|things||Needed.|Water is necessary for life.|cần thiết|
+possible|adjective|B1|9|things||Can happen or be done.|Is it possible to see the stars tonight?|có thể|
+impossible|adjective|B1|9|things||Cannot happen or be done.|It's impossible to lick your elbow!|không thể|
+useful|adjective|B1|8|things||Helps you do something.|A dictionary is useful.|hữu ích|comparative=more useful,superlative=most useful
+useless|adjective|B1|9|things||Does not help, or does not work.|This old pen is useless.|vô dụng|
+comfortable|adjective|B1|8|home|🛋️|Nice to sit in or wear.|This sofa is very comfortable.|thoải mái (êm)|comparative=more comfortable,superlative=most comfortable
+convenient|adjective|B1|9|places||Easy to use, or near.|The shop is convenient; it's just next door.|tiện lợi|comparative=more convenient,superlative=most convenient
+crowded|adjective|B1|9|places|👥|Full of people.|The beach is crowded in summer.|đông đúc|comparative=more crowded,superlative=most crowded
+peaceful|adjective|B1|9|places|🕊️|Quiet and calm.|The village is peaceful.|yên bình|comparative=more peaceful,superlative=most peaceful
+huge|adjective|B1|8|things||Very, very big.|An elephant is huge.|khổng lồ|comparative=huger,superlative=hugest
+tiny|adjective|B1|8|things||Very, very small.|An ant is tiny.|nhỏ xíu|comparative=tinier,superlative=tiniest
+enormous|adjective|B1|9|things||Extremely big.|The whale is enormous.|to lớn|
+smooth|adjective|B1|8|things||Flat with no rough parts.|The stone is smooth.|nhẵn (mịn)|comparative=smoother,superlative=smoothest
+rough|adjective|B1|9|things||Not smooth.|The tree has rough bark.|thô ráp|comparative=rougher,superlative=roughest
+loose|adjective|B1|9|clothes||Not tight.|My tooth is loose!|lỏng|comparative=looser,superlative=loosest
+tight|adjective|B1|9|clothes||Fits very closely.|These shoes are too tight.|chật|comparative=tighter,superlative=tightest
+wild|adjective|B1|8|animals||Living in nature, not with people.|Tigers are wild animals.|hoang dã|comparative=wilder,superlative=wildest
+rare|adjective|B1|9|animals||Not seen or found very often.|This is a rare bird.|hiếm|comparative=rarer,superlative=rarest
+common|adjective|B1|9|things||Happens often, or there are many.|Sparrows are common birds.|phổ biến (thông thường)|comparative=more common,superlative=most common
+natural|adjective|B1|9|nature||From nature, not made by people.|Honey is a natural food.|tự nhiên|comparative=more natural,superlative=most natural
+recent|adjective|B1|9|time||Happened a short time ago.|This is a recent photo of me.|gần đây|comparative=more recent,superlative=most recent
+public|adjective|B1|9|places||For everyone to use.|We go to the public library.|công cộng|
+private|adjective|B1|9|places||For only one person or group.|This is a private garden.|riêng tư|
+local|adjective|B1|9|places||Near where you live.|We shop at the local market.|địa phương|
+international|adjective|B1|9|places|🌐|Between different countries.|My school has an international festival.|quốc tế|
+traditional|adjective|B1|9|culture||Done in the same way for a long time.|Ao dai is a traditional dress.|truyền thống|comparative=more traditional,superlative=most traditional
+although|conjunction|B1|9|school||Even if, or but.|Although it was raining, we played outside.|mặc dù|
+unless|conjunction|B1|9|school||Except if.|You can't play unless you finish your homework.|trừ khi|
+while|conjunction|B1|9|time||During the time that.|I read while Mum cooks.|trong khi|
+whether|conjunction|B1|9|school||If (when there are two choices).|I don't know whether it will rain.|liệu (có ... hay không)|
+since|preposition|B1|9|time||From a time in the past until now.|I have lived here since 2020.|từ khi|
+during|preposition|B1|9|time||All through a time, or at some point in it.|Don't talk during the film.|trong suốt|
+until|preposition|B1|9|time||Up to a time.|We wait until five o'clock.|cho đến khi|
+towards|preposition|B1|9|places||In the direction of.|The dog runs towards me.|về phía|
+against|preposition|B1|9|sports||Playing on the other side, or touching.|We play against the red team.|chống lại (đấu với)|
+except|preposition|B1|9|school||But not.|Everyone came except Minh.|ngoại trừ|
+instead|adverb|B1|9|school||In the place of something else.|There's no rice, so let's have noodles instead.|thay vào đó|
+however|adverb|B1|9|school||But (used to start a new idea).|It was cold. However, we went swimming.|tuy nhiên|
+probably|adverb|B1|9|time||Almost certainly.|It will probably rain tomorrow.|có lẽ|
+perhaps|adverb|B1|9|time||Maybe.|Perhaps we can go to the zoo on Sunday.|có lẽ (có thể)|
+especially|adverb|B1|9|school||More than usual, or more than others.|I love fruit, especially mangoes.|đặc biệt là|
+suddenly|adverb|B1|9|time||Quickly and when you don't expect it.|Suddenly, the lights went out.|đột nhiên|
+finally|adverb|B1|9|time||After a long time, or at the end.|We finally arrived at the beach.|cuối cùng|
+recently|adverb|B1|9|time||A short time ago.|I recently started learning the guitar.|gần đây|
+immediately|adverb|B1|9|time||Now, without waiting.|Come here immediately!|ngay lập tức|
+nearly|adverb|B1|9|time||Almost.|I nearly missed the bus.|gần như (suýt)|
+actually|adverb|B1|9|school||Really, in fact.|Actually, I don't like chocolate.|thật ra|
+exactly|adverb|B1|9|school||Completely correct.|It's exactly three o'clock.|chính xác|
+completely|adverb|B1|9|school||In every way.|The glass is completely empty.|hoàn toàn|
+anywhere|adverb|B1|9|places||In or to any place.|I can't find my shoe anywhere.|bất cứ đâu|
+nowhere|adverb|B1|9|places||Not in or to any place.|There is nowhere to sit.|không nơi nào|
+both|determiner|B1|9|things||The two.|Both my parents are teachers.|cả hai|
+either|determiner|B1|9|things||One or the other of two.|You can sit on either side.|một trong hai (bất kỳ)|
+neither|determiner|B1|9|things||Not one and not the other.|Neither answer is right.|không cái nào (cả hai đều không)|
+several|determiner|B1|9|things||More than two, but not many.|I have read several books this month.|vài (một số)|
+enough|determiner|B1|9|things||As much as you need.|Do we have enough chairs?|đủ|
+whose|pronoun|B1|9|people||Belonging to which person.|Whose bag is this?|của ai|
+myself|pronoun|B1|9|people||Me (when I do something to me).|I made this cake myself.|chính tôi (tự mình)|
+themselves|pronoun|B1|9|people||Them (when they do something to them).|The children dressed themselves.|chính họ (tự họ)|
+anyone|pronoun|B1|9|people||Any person.|Is anyone at home?|bất kỳ ai|
+nobody|pronoun|B1|9|people||No person.|Nobody knows the answer.|không ai|
+nothing|pronoun|B1|9|things||Not anything.|There is nothing in the box.|không có gì|
+achievement|noun|B1|9|school|🏆|Something good that you did after trying hard.|Learning to swim was a big achievement.|thành tích|
+ability|noun|B1|9|school||Being able to do something.|Birds have the ability to fly.|khả năng|plural=abilities
+skill|noun|B1|9|school||Something you can do well because you practised.|Reading is an important skill.|kỹ năng|
+knowledge|noun|B1|9|school|📚|What you know.|He has a lot of knowledge about dinosaurs.|kiến thức|
+education|noun|B1|9|school|🎓|Learning at school or university.|Education is important for every child.|giáo dục|
+opinion|noun|B1|9|school||What you think about something.|In my opinion, cats are the best pets.|ý kiến|
+fact|noun|B1|9|school||Something that is true.|It's a fact that the Earth goes round the sun.|sự thật|
+detail|noun|B1|9|school||A small piece of information.|Tell me all the details!|chi tiết|
+result|noun|B1|9|school||What happens because of something.|The result of the match was 2–1.|kết quả|
+solution|noun|B1|9|school||The answer to a problem.|We need a solution to this problem.|giải pháp|
+choice|noun|B1|9|school||The chance to pick between things.|You have a choice: juice or milk.|sự lựa chọn|
+chance|noun|B1|9|school||A time when you can do something, or how likely something is.|This is your chance to win!|cơ hội|
+experience|noun|B1|9|school||Something that happens to you.|Swimming with dolphins was an amazing experience.|trải nghiệm|
+memory|noun|B1|9|feelings||Something you remember.|I have happy memories of my holiday.|kỷ niệm (trí nhớ)|plural=memories
+fear|noun|B1|9|feelings|😨|The feeling of being afraid.|She has a fear of spiders.|nỗi sợ|
+courage|noun|B1|9|feelings||Being brave.|It takes courage to say sorry.|lòng dũng cảm|
+kindness|noun|B1|9|people|💝|Being kind.|Thank you for your kindness.|lòng tốt|
+friendship|noun|B1|9|people|🤝|Being friends.|Their friendship is very strong.|tình bạn|
+relationship|noun|B1|9|people||How people feel about and act with each other.|I have a good relationship with my brother.|mối quan hệ|
+behaviour|noun|B1|9|people||The way someone acts.|The class gets a star for good behaviour.|hành vi (cách cư xử)|
+manners|noun|B1|9|people||Polite ways to behave.|It's good manners to say thank you.|phép lịch sự|
+habit|noun|B1|9|health||Something you do often, without thinking.|Brushing your teeth is a good habit.|thói quen|
+health|noun|B1|8|health||How well your body and mind are.|Exercise is good for your health.|sức khỏe|
+diet|noun|B1|9|health;food|🥗|The food you usually eat.|A healthy diet has lots of vegetables.|chế độ ăn|
+vitamin|noun|B1|9|health;food||Something in food that helps your body stay healthy.|Oranges have lots of vitamin C.|vitamin|
+illness|noun|B1|9|health|🤒|When you are ill.|A cold is a common illness.|bệnh tật|
+injury|noun|B1|9|health;sports|🩹|A hurt part of your body.|He has a knee injury.|chấn thương|plural=injuries
+emergency|noun|B1|9|health|🚨|A sudden dangerous situation where help is needed fast.|In an emergency, call 115.|trường hợp khẩn cấp|plural=emergencies
+climate|noun|B1|9|nature;weather||The usual weather in a place.|Viet Nam has a hot climate.|khí hậu|
+global warming|noun|B1|9|nature;science|🌡️|When the Earth slowly gets hotter.|Global warming melts the ice at the North Pole.|sự nóng lên toàn cầu|
+flood|noun|B1|9|nature;weather||When a lot of water covers land that is usually dry.|The flood covered the fields.|lũ lụt|
+drought|noun|B1|9|nature;weather||A long time with no rain.|The drought made the river dry.|hạn hán|
+forest fire|noun|B1|9|nature||A big fire that burns trees in a forest.|The forest fire burned for days.|cháy rừng|
+nature|noun|B1|8|nature|🌿|Plants, animals, mountains and seas — everything not made by people.|We go for a walk in nature.|thiên nhiên|
+species|noun|B1|9|animals;science||A group of animals or plants of the same kind.|There are many species of bird in the park.|loài|plural=species
+habitat|noun|B1|9|animals;nature||The natural home of an animal or plant.|The jungle is the tiger's habitat.|môi trường sống|
+extinct|adjective|B1|9|animals;science|🦕|No longer living anywhere.|Dinosaurs are extinct.|tuyệt chủng|
+endangered|adjective|B1|9|animals||Might soon be extinct.|Pandas are an endangered animal.|có nguy cơ tuyệt chủng|
+solar|adjective|B1|9|science;space|☀️|From or about the sun.|Our school has solar panels.|(thuộc) mặt trời|
+oxygen|noun|B1|9|science||A gas in the air that we need to breathe.|Trees give us oxygen.|khí ô-xy|
+gravity|noun|B1|9|science;space||The force that pulls things down to the ground.|Gravity makes the apple fall.|trọng lực|
+universe|noun|B1|9|science;space|🌌|All of space and everything in it.|The universe is very, very big.|vũ trụ|plural=universes
+galaxy|noun|B1|9|science;space|🌌|A very large group of stars.|We live in the Milky Way galaxy.|thiên hà|plural=galaxies
+telescope|noun|B1|9|science;space|🔭|A tube you look through to see things far away.|We look at the moon through a telescope.|kính thiên văn|
+microscope|noun|B1|9|science|🔬|A machine that makes very small things look bigger.|We look at a leaf under the microscope.|kính hiển vi|
+laboratory|noun|B1|9|science;places|🧪|A room where scientists do experiments.|The scientist works in a laboratory.|phòng thí nghiệm|plural=laboratories
+technology|noun|B1|9|technology|💻|New machines and ways of doing things using science.|Technology helps us talk to people far away.|công nghệ|plural=technologies
+device|noun|B1|9|technology|📱|A small machine for a special job.|A phone is a useful device.|thiết bị|
+app|noun|B1|9|technology|📱|A program on a phone or tablet.|This app helps me learn English.|ứng dụng|
+password|noun|B1|9|technology|🔑|A secret word that lets you use a computer or website.|Never tell anyone your password.|mật khẩu|
+online|adjective|B1|9|technology|🌐|On the internet.|We play an online game together.|trực tuyến|
+digital|adjective|B1|9|technology||Using computers and electronic things.|I have a digital camera.|kỹ thuật số|
+signal|noun|B1|9|technology|📶|Sounds or pictures sent through the air, or a sign.|There is no phone signal here.|tín hiệu|
+programme|noun|B1|8|technology|📺|A show on TV or radio.|My favourite TV programme is about animals.|chương trình|
+advertisement|noun|B1|9|shopping|📢|A picture, film or words that try to make you buy something.|There are too many advertisements on TV.|quảng cáo|
+news|noun|B1|9|technology|📰|Information about things that have just happened.|Dad watches the news every evening.|tin tức|
+article|noun|B1|9|school||A piece of writing in a newspaper or magazine.|I read an article about whales.|bài báo|
+author|noun|B1|9|school;jobs|✍️|A person who writes books.|Who is the author of this book?|tác giả|
+poem|noun|B1|9|school||A piece of writing with short lines, often with rhyming words.|We learn a poem by heart.|bài thơ|
+novel|noun|B1|9|hobbies|📖|A long story in a book.|She is reading a novel about a dragon.|tiểu thuyết|
+biography|noun|B1|9|school||A book about someone's life.|I read a biography of a famous scientist.|tiểu sử|plural=biographies
+event|noun|B1|9|culture||Something important that happens.|Sports day is a big event at our school.|sự kiện|
+ceremony|noun|B1|9|culture||A formal event for a special day.|There is a ceremony at the start of the school year.|buổi lễ|plural=ceremonies
+tradition|noun|B1|9|culture||Something people have done the same way for a long time.|Giving lucky money at Tet is a tradition.|truyền thống|
+custom|noun|B1|9|culture||Something that people in a place usually do.|It is a custom to take off your shoes at home.|phong tục|
+religion|noun|B1|9|culture||Belief in a god or gods.|There are many religions in the world.|tôn giáo|
+society|noun|B1|9|people||All the people living together in a country.|Teachers are important in society.|xã hội|plural=societies
+population|noun|B1|9|places;people||The number of people who live in a place.|The population of Ha Noi is very big.|dân số|
+citizen|noun|B1|9|people||A person who belongs to a country.|She is a citizen of Viet Nam.|công dân|
+government|noun|B1|9|people||The group of people who lead a country.|The government builds new schools.|chính phủ|
+president|noun|B1|9|people||The leader of some countries or organisations.|The president visits our city.|tổng thống (chủ tịch)|
+kingdom|noun|B1|9|places||A country ruled by a king or queen.|The story is about a magic kingdom.|vương quốc|
+army|noun|B1|9|people||A large group of soldiers.|The king's army guards the castle.|quân đội|plural=armies
+soldier|noun|B1|9|people;jobs||A person in an army.|The soldier stands by the gate.|người lính|
+law|noun|B1|9|people||A rule that everyone in a country must follow.|It is the law to wear a helmet on a motorbike.|luật pháp|
+lawyer|noun|B1|9|jobs||A person who helps people with the law.|My aunt is a lawyer.|luật sư|
+judge|noun|B1|9|jobs||A person who decides who wins a competition, or who is right in a court.|The judges give her ten points.|giám khảo (thẩm phán)|
+volunteer|noun|B1|9|people||A person who works for free to help others.|Volunteers clean the beach.|tình nguyện viên|
+charity|noun|B1|9|people|💝|A group that collects money to help people.|We give our old toys to charity.|tổ chức từ thiện|plural=charities
+community|noun|B1|9|people;places||The people living in one area.|Our community has a big garden.|cộng đồng|plural=communities
+organisation|noun|B1|9|people||A group of people working together for a purpose.|The organisation helps animals.|tổ chức|
+career|noun|B1|9|jobs||The jobs you do during your life.|She wants a career in science.|sự nghiệp|
+salary|noun|B1|9|jobs||Money you get every month for your job.|A pilot's salary is high.|tiền lương|plural=salaries
+interview|noun|B1|9|jobs||A meeting where someone asks you questions.|The journalist has an interview with the singer.|cuộc phỏng vấn|
+architect|noun|B1|9|jobs||A person who designs buildings.|The architect draws a new school.|kiến trúc sư|
+designer|noun|B1|9|jobs||A person who plans how things will look.|She is a fashion designer.|nhà thiết kế|
+inventor|noun|B1|9|jobs;science||A person who invents something.|Who was the inventor of the telephone?|nhà phát minh|
+explorer|noun|B1|9|travel||A person who travels to new places to learn about them.|The explorer finds a new island.|nhà thám hiểm|
+passenger|noun|B1|9|travel||A person travelling in a car, bus, train or plane.|The bus has twenty passengers.|hành khách|
+vehicle|noun|B1|9|transport||A machine that carries people or things, like a car or bus.|No vehicles in the park.|phương tiện (xe cộ)|
+engine|noun|B1|9|transport||The part of a car or plane that makes it move.|The car engine is very loud.|động cơ|
+fuel|noun|B1|9|transport||Something you burn to make heat or power, like petrol.|Cars need fuel to go.|nhiên liệu|
+petrol|noun|B1|9|transport|⛽|Fuel for cars and motorbikes.|We stop to buy petrol.|xăng|
+destination|noun|B1|9|travel|📍|The place you are travelling to.|Our destination is Da Nang.|điểm đến|
+progress|noun|B1|9|school|📈|Getting better or moving forward.|You are making good progress in English.|sự tiến bộ|
+effort|noun|B1|9|school|💪|Hard work when you try to do something.|She puts a lot of effort into her drawing.|nỗ lực|
+attention|noun|B1|9|school||Watching, listening or thinking carefully.|Pay attention to the teacher.|sự chú ý|
+instruction|noun|B1|9|school||Words that tell you how to do something.|Read the instructions before you start.|hướng dẫn|
+method|noun|B1|9|school||A way of doing something.|This is a good method for learning words.|phương pháp|
+purpose|noun|B1|9|school||Why something is done or made.|What is the purpose of this button?|mục đích|
+quality|noun|B1|9|things||How good or bad something is.|These shoes are good quality.|chất lượng|plural=qualities
+amount|noun|B1|9|things||How much of something there is.|Eat a small amount of sugar.|lượng (số lượng)|
+pattern|noun|B1|9|things||Shapes or colours that repeat.|The dress has a flower pattern.|hoa văn (mẫu)|
+shape|noun|B1|8|things|🔷|The form of something, like a circle or square.|What shape is the box?|hình dạng|
+surface|noun|B1|9|things||The top or outside of something.|The surface of the table is smooth.|bề mặt|
+edge|noun|B1|9|things||The outside end of something.|Don't stand near the edge of the cliff.|mép (cạnh)|
+distance|noun|B1|9|travel|📏|How far it is between two places.|What is the distance from here to the beach?|khoảng cách|
+century|noun|B1|9|time||One hundred years.|This house is from the last century.|thế kỷ|plural=centuries
+future|noun|B1|9|time|🔮|The time after now.|In the future, I want to be a doctor.|tương lai|
+past|noun|B1|9|time||The time before now.|In the past, people didn't have phones.|quá khứ|
+period|noun|B1|9|time;school||A length of time, or a lesson at school.|We have maths in the first period.|khoảng thời gian (tiết học)|
+moment|noun|B1|9|time||A very short time.|Wait a moment, please.|khoảnh khắc (chốc lát)|

@@ -1,0 +1,622 @@
+# Voca Swiper word bank — A1. One word per line, fields separated by "|".
+# text|pos|cefr|minAge|themes(;)|emoji|definition|example|vi|forms(k=v,k=v)
+# pos: noun verb adjective adverb number preposition pronoun conjunction determiner
+# forms: plural past "past participle" comparative superlative
+# Order within a level = teaching order (most useful first). Words written
+# in-house from topic areas; no published list copied (see docs/adr/0001).
+# Vietnamese: northern form first, southern form in parentheses where they
+# differ. Draft translations — review before store release.
+
+kitten|noun|A1|4|animals|🐱|A baby cat.|The kitten is playing with a ball.|mèo con|
+puppy|noun|A1|4|animals|🐶|A baby dog.|The puppy is cute.|chó con|plural=puppies
+owl|noun|A1|4|animals|🦉|A bird with big eyes that is awake at night.|The owl says hoot.|con cú|
+whale|noun|A1|4|animals|🐳|A very big animal that lives in the sea.|The whale is huge.|cá voi|
+dolphin|noun|A1|4|animals|🐬|A clever sea animal that likes to jump.|The dolphin jumps out of the water.|cá heo|
+shark|noun|A1|4|animals|🦈|A big sea fish with sharp teeth.|The shark swims fast.|cá mập|
+penguin|noun|A1|4|animals|🐧|A black and white bird that cannot fly.|The penguin lives where it is cold.|chim cánh cụt|
+kangaroo|noun|A1|4|animals|🦘|An animal that jumps and carries its baby in a pocket.|The kangaroo can jump high.|con chuột túi|
+camel|noun|A1|4|animals|🐫|An animal with a hump that lives in the desert.|The camel is in the desert.|con lạc đà|
+panda|noun|A1|4|animals|🐼|A black and white bear that eats bamboo.|The panda eats bamboo.|gấu trúc|
+fox|noun|A1|4|animals|🦊|A wild orange animal with a big tail.|The fox is in the forest.|con cáo|plural=foxes
+turtle|noun|A1|4|animals|🐢|An animal with a hard shell that moves slowly.|The turtle is slow.|con rùa|
+ant|noun|A1|4|animals|🐜|A very small insect that lives in big groups.|The ant is very small.|con kiến|
+parrot|noun|A1|4|animals|🦜|A colourful bird that can copy words.|The parrot can talk.|con vẹt|
+lemon|noun|A1|4|food|🍋|A sour yellow fruit.|The lemon is sour.|quả chanh vàng|
+strawberry|noun|A1|4|food|🍓|A small red fruit with seeds on the outside.|I like strawberries.|quả dâu tây|plural=strawberries
+pineapple|noun|A1|4|food|🍍|A big sweet fruit with a hard skin.|The pineapple is sweet.|quả dứa (quả thơm)|
+cheese|noun|A1|4|food|🧀|A yellow or white food made from milk.|Mice like cheese.|phô mai|
+sandwich|noun|A1|4|food|🥪|Two pieces of bread with food between them.|I have a sandwich for lunch.|bánh mì kẹp|plural=sandwiches
+pizza|noun|A1|4|food|🍕|A flat round bread with cheese and tomato on top.|We eat pizza on Friday.|bánh pizza|
+noodles|noun|A1|4|food|🍜|Long thin food that you cook in water.|I eat noodles with chopsticks.|mì, phở|
+soup|noun|A1|4|food|🍲|A hot liquid food.|The soup is hot.|súp, canh|
+salad|noun|A1|4|food|🥗|Cold vegetables mixed together.|Mum makes a salad.|rau trộn (sa lát)|
+vegetable|noun|A1|4|food|🥦|A plant we eat, like a carrot or a potato.|Vegetables are good for you.|rau củ|
+fruit|noun|A1|4|food|🍑|Food from a plant, like an apple or a banana.|I eat fruit every day.|trái cây|
+honey|noun|A1|4|food|🍯|A sweet food that bees make.|Bears like honey.|mật ong|
+popcorn|noun|A1|4|food|🍿|A snack made from corn that pops when it is hot.|We eat popcorn at the cinema.|bỏng ngô (bắp rang)|
+breakfast|noun|A1|4|food;time|🥞|The first meal of the day.|I eat breakfast at seven.|bữa sáng|
+lunch|noun|A1|4|food;time|🍱|The meal you eat in the middle of the day.|We have lunch at school.|bữa trưa|plural=lunches
+dinner|noun|A1|4|food;time|🍽️|The meal you eat in the evening.|We have dinner together.|bữa tối|
+tea|noun|A1|4|food|🍵|A hot drink made from leaves.|Grandma drinks tea.|trà|
+cup|noun|A1|4|home;things|☕|A small container you drink from.|Can I have a cup of milk?|cái cốc (cái ly)|
+bowl|noun|A1|4|home;things|🥣|A round deep dish for food.|I eat rice from a bowl.|cái bát (cái chén)|
+spoon|noun|A1|4|home;things|🥄|You eat soup with it.|Eat your soup with a spoon.|cái thìa (cái muỗng)|
+fork|noun|A1|4|home;things|🍴|You use it to pick up food.|I eat with a fork.|cái dĩa (cái nĩa)|
+plate|noun|A1|4|home;things||A flat dish for food.|Put the cake on the plate.|cái đĩa|
+morning|noun|A1|4|time|🌅|The early part of the day.|I go to school in the morning.|buổi sáng|
+afternoon|noun|A1|4|time||The part of the day after lunch.|We play in the afternoon.|buổi chiều|
+evening|noun|A1|4|time|🌆|The part of the day before night.|We eat dinner in the evening.|buổi tối|
+night|noun|A1|4|time|🌃|The dark time when we sleep.|The stars come out at night.|ban đêm|
+day|noun|A1|4|time||The time from morning to night.|Have a nice day!|ngày|
+week|noun|A1|4|time||Seven days.|There are seven days in a week.|tuần|
+today|noun|A1|4|time||This day.|Today is my birthday.|hôm nay|
+tomorrow|noun|A1|4|time||The day after today.|See you tomorrow!|ngày mai|
+yesterday|noun|A1|4|time||The day before today.|Yesterday I went to the zoo.|hôm qua|
+birthday|noun|A1|4|time|🥳|The day you were born, every year.|Happy birthday!|sinh nhật|
+party|noun|A1|4|time|🎉|A time when people meet to have fun.|Come to my party!|bữa tiệc|plural=parties
+present|noun|A1|4|things|🎁|Something you give to someone.|This present is for you.|món quà|
+holiday|noun|A1|4|time|🧳|A time when you do not go to school or work.|We go to the beach on holiday.|kỳ nghỉ|
+doctor|noun|A1|4|jobs|🧑‍⚕️|A person who helps sick people get better.|The doctor is kind.|bác sĩ|
+nurse|noun|A1|4|jobs||A person who looks after sick people in a hospital.|The nurse helps the doctor.|y tá|
+farmer|noun|A1|4|jobs|🧑‍🌾|A person who works on a farm.|The farmer has many cows.|nông dân|
+driver|noun|A1|4|jobs;transport||A person who drives a car, bus or truck.|The bus driver is friendly.|tài xế|
+police officer|noun|A1|4|jobs|👮|A person whose job is to keep people safe.|The police officer helps us.|cảnh sát|
+firefighter|noun|A1|4|jobs|🧑‍🚒|A person who puts out fires.|The firefighter is brave.|lính cứu hỏa|
+pilot|noun|A1|4|jobs|🧑‍✈️|A person who flies a plane.|The pilot flies the plane.|phi công|
+student|noun|A1|4|school;people|🧑‍🎓|A person who is learning at a school.|I am a student.|học sinh|
+camera|noun|A1|4|things|📷|You take photos with it.|Smile at the camera!|máy ảnh|
+computer|noun|A1|4|things;school|💻|A machine you use to work and play games.|I use the computer at school.|máy tính|
+money|noun|A1|4|things|💰|You use it to buy things.|I have money for ice cream.|tiền|
+map|noun|A1|4|things|🗺️|A picture that shows where places are.|Look at the map.|bản đồ|
+umbrella|noun|A1|4|things;weather|☂️|You hold it over your head when it rains.|Take your umbrella. It's raining.|cái ô (cái dù)|
+glasses|noun|A1|4|things|👓|You wear them on your face to see better.|Grandpa wears glasses.|kính mắt|
+watch|noun|A1|4|things;time|⌚|A small clock you wear on your arm.|My watch is new.|đồng hồ đeo tay|plural=watches
+boots|noun|A1|4|clothes|🥾|Strong shoes that cover part of your leg.|Wear your boots in the rain.|đôi ủng|
+scarf|noun|A1|4|clothes|🧣|A long piece of cloth you wear around your neck.|My scarf is warm.|khăn quàng cổ|plural=scarves
+gloves|noun|A1|4|clothes|🧤|You wear them on your hands to keep warm.|Put on your gloves.|găng tay|
+key|noun|A1|4|things|🔑|You use it to open a door.|Where is my key?|chìa khóa|
+picture|noun|A1|4|things|🖼️|A drawing, painting or photo.|Look at this picture.|bức tranh|
+photo|noun|A1|4|things|📸|A picture you take with a camera.|Let's take a photo!|bức ảnh|
+music|noun|A1|4|things|🎵|Sounds that people sing or play.|I like music.|âm nhạc|
+song|noun|A1|4|things|🎶|Music with words that you sing.|Let's sing a song.|bài hát|
+movie|noun|A1|4|things|🎬|A story that you watch on a screen.|We watch a movie.|bộ phim|
+letter|noun|A1|4|things;school|✉️|A message you write and send, or a sign like A or B.|I write a letter to Grandma.|lá thư, chữ cái|
+ticket|noun|A1|4|things|🎟️|A small paper that lets you go on a bus or into a show.|We need two tickets.|vé|
+balloon|noun|A1|4|toys|🎈|A colourful toy you fill with air.|The red balloon flies away.|bóng bay|
+hospital|noun|A1|4|places|🏥|A place where sick people get help.|The doctor works in a hospital.|bệnh viện|
+farm|noun|A1|4|places|🚜|Land where people grow food and keep animals.|There are cows on the farm.|nông trại|
+city|noun|A1|4|places|🏙️|A very big town.|I live in a big city.|thành phố|plural=cities
+library|noun|A1|4|places|📚|A place with many books you can borrow.|We read books at the library.|thư viện|plural=libraries
+playground|noun|A1|4|places||A place outside where children play.|We play on the playground.|sân chơi|
+village|noun|A1|4|places|🏘️|A very small town in the country.|My grandparents live in a village.|ngôi làng|
+island|noun|A1|4|places;nature|🏝️|Land with water all around it.|We visit an island.|hòn đảo|
+forest|noun|A1|4|nature|🌲|A place with lots of trees.|Bears live in the forest.|khu rừng|
+lake|noun|A1|4|nature||A big area of water with land all around it.|We swim in the lake.|cái hồ|
+mountain|noun|A1|4|nature|⛰️|A very high hill.|The mountain is very high.|ngọn núi|
+river|noun|A1|4|nature||Water that moves across the land to the sea.|The boat is on the river.|dòng sông|
+bridge|noun|A1|4|places|🌉|You walk or drive over it to cross water.|We walk over the bridge.|cây cầu|
+road|noun|A1|4|places;transport|🛣️|Cars drive on it.|Be careful on the road.|con đường|
+supermarket|noun|A1|4|places|🛒|A big shop that sells food.|We buy fruit at the supermarket.|siêu thị|
+restaurant|noun|A1|4|places||A place where you buy and eat a meal.|We have dinner at a restaurant.|nhà hàng|
+airport|noun|A1|4|places;transport|🛫|A place where planes come and go.|We go to the airport.|sân bay|
+snow|noun|A1|4|weather|❄️|Soft white ice that falls from the sky.|The snow is cold.|tuyết|
+cloud|noun|A1|4|weather|☁️|A white or grey shape in the sky.|The cloud is big and white.|đám mây|
+wind|noun|A1|4|weather|🌬️|Air that moves.|The wind is strong today.|gió|
+rainbow|noun|A1|4|weather|🌈|A curve of colours in the sky after rain.|Look! A rainbow!|cầu vồng|
+fire|noun|A1|7|nature|🔥|The hot bright flames when something burns.|Don't touch the fire.|lửa|
+leaf|noun|A1|4|nature|🍃|A flat green part of a plant.|The leaf is green.|chiếc lá|plural=leaves
+rock|noun|A1|4|nature|🪨|A big hard stone.|I sit on a rock.|hòn đá|
+sand|noun|A1|4|nature||Tiny bits of rock on a beach.|We play in the sand.|cát|
+weather|noun|A1|4|weather||How hot, cold, sunny or rainy it is.|The weather is nice today.|thời tiết|
+buy|verb|A1|4|actions||To get something by paying money.|I want to buy a toy.|mua|past=bought
+carry|verb|A1|4|actions||To hold something and take it with you.|Can you carry my bag?|mang, xách|past=carried
+push|verb|A1|4|actions||To move something away from you.|Push the door.|đẩy|
+pull|verb|A1|4|actions||To move something towards you.|Pull the rope.|kéo|
+find|verb|A1|4|actions|🔍|To see something you were looking for.|I can't find my shoe.|tìm thấy|past=found
+give|verb|A1|4|actions||To let someone have something.|Give me the ball, please.|cho, đưa|past=gave
+take|verb|A1|4|actions||To get something in your hand.|Take an apple.|lấy|past=took
+make|verb|A1|4|actions||To build or create something.|Let's make a cake.|làm|past=made
+build|verb|A1|4|actions|🏗️|To make something by putting parts together.|We build a sandcastle.|xây|past=built
+ride|verb|A1|4|actions;transport|🚴|To sit on a bike or horse and move.|I ride my bike to school.|đi (xe), cưỡi|past=rode
+drive|verb|A1|4|actions;transport||To make a car or bus move.|My mum can drive.|lái xe|past=drove
+wait|verb|A1|4|actions|⏳|To stay until something happens.|Wait for me!|chờ, đợi|
+win|verb|A1|4|actions|🏆|To be the best in a game.|Our team wins!|thắng|past=won
+learn|verb|A1|4|actions;school||To get to know something new.|I learn English.|học|
+teach|verb|A1|4|actions;school||To help someone learn.|My mum teaches me to swim.|dạy|past=taught
+count|verb|A1|4|actions;numbers|🔢|To say numbers in order.|Let's count to ten.|đếm|
+ask|verb|A1|4|actions||To say a question.|Ask your teacher.|hỏi|
+answer|verb|A1|4|actions||To say something back to a question.|Can you answer the question?|trả lời|
+call|verb|A1|4|actions|📞|To talk to someone on the phone.|Call your grandma.|gọi điện|
+visit|verb|A1|4|actions||To go and see a person or a place.|We visit our grandparents.|thăm|
+live|verb|A1|4|actions||To have your home in a place.|I live in Hanoi.|sống|
+work|verb|A1|4|actions;jobs|💼|To do a job.|My dad works in an office.|làm việc|
+brush|verb|A1|4|actions|🪥|To clean with a brush.|Brush your teeth.|chải, đánh (răng)|
+hug|verb|A1|4|actions;feelings|🤗|To put your arms around someone.|I hug my mum.|ôm|
+shout|verb|A1|4|actions|📢|To say something very loudly.|Don't shout!|hét|
+hide|verb|A1|4|actions|🙈|To go where no one can see you.|Let's hide behind the tree.|trốn, giấu|past=hid
+share|verb|A1|4|actions||To let others use or have some of your things.|Share your toys.|chia sẻ|
+think|verb|A1|4|actions|🤔|To use your mind.|I think it's a cat.|nghĩ|past=thought
+know|verb|A1|4|actions||To have something in your mind.|I know the answer!|biết|past=knew
+remember|verb|A1|4|actions||To keep something in your mind.|Remember your bag!|nhớ|
+forget|verb|A1|4|actions||To not remember.|Don't forget your hat.|quên|past=forgot
+try|verb|A1|4|actions||To do your best to do something.|Try again!|thử, cố gắng|past=tried
+start|verb|A1|4|actions||To begin.|The game starts now.|bắt đầu|
+stop|verb|A1|4|actions|🛑|To not move or not do something any more.|Stop at the red light.|dừng lại|past=stopped
+finish|verb|A1|4|actions|🏁|To come to the end.|I finish my homework.|hoàn thành|
+climb|verb|A1|4|actions|🧗|To go up using your hands and feet.|The monkey climbs the tree.|leo, trèo|
+cry|verb|A1|4|actions;feelings|😭|To have tears coming from your eyes.|The baby is crying.|khóc|past=cried
+laugh|verb|A1|4|actions;feelings|😆|To make a happy sound when something is funny.|We laugh at the joke.|cười|
+help|verb|A1|4|actions||To make it easier for someone to do something.|Can you help me?|giúp đỡ|
+cook|verb|A1|4|actions;food|🍳|To make food hot and ready to eat.|Dad cooks dinner.|nấu ăn|
+talk|verb|A1|4|actions|🗣️|To say words to someone.|Let's talk about animals.|nói chuyện|
+want|verb|A1|4|feelings||To wish to have or do something.|I want an ice cream.|muốn|
+need|verb|A1|4|feelings||To must have something.|Plants need water.|cần|
+fast|adjective|A1|4|describing||Moving quickly.|The car is fast.|nhanh|comparative=faster
+slow|adjective|A1|4|describing||Not fast.|The turtle is slow.|chậm|comparative=slower
+tall|adjective|A1|4|describing||Very high from bottom to top.|The giraffe is tall.|cao|comparative=taller
+tired|adjective|A1|4|feelings|😩|Needing rest or sleep.|I am tired after school.|mệt|
+hungry|adjective|A1|4|feelings||Wanting to eat.|I'm hungry. Can I have a snack?|đói|comparative=hungrier
+thirsty|adjective|A1|4|feelings||Wanting to drink.|I'm thirsty. I want some water.|khát|
+loud|adjective|A1|4|describing|🔊|Making a lot of noise.|The music is loud.|ồn, to|comparative=louder
+quiet|adjective|A1|4|describing|🤫|Making very little noise.|Be quiet in the library.|yên lặng|comparative=quieter
+wet|adjective|A1|4|describing;weather||Covered with water.|My shoes are wet.|ướt|
+dry|adjective|A1|4|describing;weather||Not wet.|The towel is dry.|khô|
+strong|adjective|A1|4|describing||Able to lift heavy things.|My dad is strong.|khỏe|comparative=stronger
+soft|adjective|A1|4|describing||Nice and gentle to touch, not hard.|The kitten is soft.|mềm|comparative=softer
+hard|adjective|A1|4|describing||Not soft; also not easy.|The rock is hard.|cứng, khó|comparative=harder
+easy|adjective|A1|4|describing||Not difficult.|This game is easy.|dễ|comparative=easier
+difficult|adjective|A1|4|describing||Not easy.|This puzzle is difficult.|khó|
+heavy|adjective|A1|4|describing|🏋️|Weighing a lot.|The box is heavy.|nặng|comparative=heavier
+full|adjective|A1|4|describing||With no more space inside.|The glass is full.|đầy, no|
+empty|adjective|A1|4|describing||With nothing inside.|The box is empty.|trống, rỗng|
+brave|adjective|A1|4|feelings|🦸|Not afraid to do something difficult.|The firefighter is brave.|dũng cảm|
+kind|adjective|A1|4|feelings||Nice and helpful to others.|My teacher is kind.|tốt bụng|comparative=kinder
+friendly|adjective|A1|4|feelings||Kind and nice to other people.|The dog is friendly.|thân thiện|
+careful|adjective|A1|4|describing||Thinking about what you do so you stay safe.|Be careful on the stairs.|cẩn thận|
+favourite|adjective|A1|4|feelings||Liked more than all the others.|Blue is my favourite colour.|yêu thích|
+different|adjective|A1|4|describing||Not the same.|The two cats are different.|khác|
+same|adjective|A1|4|describing||Not different.|We have the same shoes.|giống nhau|
+round|adjective|A1|4|describing||Shaped like a circle or a ball.|The ball is round.|tròn|
+late|adjective|A1|4|time|⏰|After the right time.|Don't be late for school.|muộn|comparative=later
+busy|adjective|A1|4|describing||Having a lot to do.|Mum is busy today.|bận|comparative=busier
+sick|adjective|A1|4|feelings|🤒|Not well; ill.|I am sick today.|ốm (bệnh)|
+delicious|adjective|A1|4|food|😋|Tasting very good.|The cake is delicious.|ngon|
+sweet|adjective|A1|4|food|🍭|Tasting like sugar.|Honey is sweet.|ngọt|comparative=sweeter
+cute|adjective|A1|4|describing|🥰|Small and lovely to look at.|The puppy is cute.|dễ thương|comparative=cuter
+excited|adjective|A1|4|feelings|🤩|Very happy about something that will happen.|I'm excited about my birthday.|hào hứng|
+afraid|adjective|A1|4|feelings|😨|Feeling fear.|I'm afraid of spiders.|sợ|
+bored|adjective|A1|4|feelings|😐|Not interested; with nothing to do.|I'm bored. Let's play!|chán|
+sunny|adjective|A1|4|weather|🌞|With a lot of sun.|It's a sunny day.|có nắng|comparative=sunnier
+rainy|adjective|A1|4|weather|☔|With a lot of rain.|It's rainy today.|có mưa|comparative=rainier
+
+# ---------- feat-014 top-up (2026-11-05) ----------
+Monday|noun|A1|5|time|📅|The day after Sunday.|We have English on Monday.|thứ Hai|
+Tuesday|noun|A1|5|time||The day after Monday.|I go swimming on Tuesday.|thứ Ba|
+Wednesday|noun|A1|5|time||The day after Tuesday.|Wednesday is in the middle of the week.|thứ Tư|
+Thursday|noun|A1|5|time||The day after Wednesday.|We have art on Thursday.|thứ Năm|
+Friday|noun|A1|5|time||The day after Thursday.|On Friday we watch a film.|thứ Sáu|
+Saturday|noun|A1|5|time||The day after Friday. There is no school.|On Saturday I play in the park.|thứ Bảy|
+Sunday|noun|A1|5|time||The day after Saturday.|We visit Grandma on Sunday.|Chủ nhật|
+January|noun|A1|6|time||The first month of the year.|It is cold in January.|tháng Một|
+February|noun|A1|6|time||The second month of the year.|My birthday is in February.|tháng Hai|
+March|noun|A1|6|time||The third month of the year.|Flowers grow in March.|tháng Ba|
+April|noun|A1|6|time||The fourth month of the year.|It often rains in April.|tháng Tư|
+May|noun|A1|6|time||The fifth month of the year.|School ends in May.|tháng Năm|
+June|noun|A1|6|time||The sixth month of the year.|June is hot and sunny.|tháng Sáu|
+July|noun|A1|6|time||The seventh month of the year.|We go to the beach in July.|tháng Bảy|
+August|noun|A1|6|time||The eighth month of the year.|In August we have a holiday.|tháng Tám|
+September|noun|A1|6|time||The ninth month of the year.|School starts in September.|tháng Chín|
+October|noun|A1|6|time||The tenth month of the year.|The leaves fall in October.|tháng Mười|
+November|noun|A1|6|time||The eleventh month of the year.|It is windy in November.|tháng Mười Một|
+December|noun|A1|6|time|🎄|The last month of the year.|Christmas is in December.|tháng Mười Hai|
+spring|noun|A1|5|time;weather|🌸|The season after winter, when flowers grow.|Trees get new leaves in spring.|mùa xuân|
+summer|noun|A1|5|time;weather|☀️|The hottest season of the year.|We swim a lot in summer.|mùa hè|
+autumn|noun|A1|5|time;weather|🍂|The season after summer, when leaves fall.|The leaves are orange in autumn.|mùa thu|
+winter|noun|A1|5|time;weather|⛄|The coldest season of the year.|It snows in winter.|mùa đông|
+month|noun|A1|5|time|🗓️|One of the twelve parts of a year.|There are twelve months in a year.|tháng|
+year|noun|A1|5|time||Twelve months.|I am seven years old.|năm|
+hour|noun|A1|5|time|⌛|Sixty minutes.|The film is two hours long.|giờ (tiếng)|
+minute|noun|A1|5|time|⏱️|Sixty seconds.|Wait a minute, please.|phút|
+o'clock|adverb|A1|5|time|🕒|Used to say the exact hour.|School starts at eight o'clock.|giờ đúng|
+weekend|noun|A1|5|time||Saturday and Sunday.|What do you do at the weekend?|cuối tuần|
+thirty|number|A1|6|numbers||The number 30.|There are thirty days in April.|ba mươi|
+forty|number|A1|6|numbers||The number 40.|My dad is forty.|bốn mươi|
+fifty|number|A1|6|numbers||The number 50.|There are fifty stickers in the book.|năm mươi|
+sixty|number|A1|6|numbers||The number 60.|There are sixty minutes in an hour.|sáu mươi|
+seventy|number|A1|6|numbers||The number 70.|Grandpa is seventy.|bảy mươi|
+eighty|number|A1|6|numbers||The number 80.|The book has eighty pages.|tám mươi|
+ninety|number|A1|6|numbers||The number 90.|The tree is ninety years old.|chín mươi|
+hundred|number|A1|6|numbers|💯|The number 100.|I can count to a hundred.|một trăm|
+first|number|A1|5|numbers|🥇|Coming before all the others; number 1 in order.|She is first in the race.|thứ nhất|
+second|number|A1|5|numbers|🥈|Coming after the first; number 2 in order.|My room is on the second floor.|thứ hai|
+third|number|A1|5|numbers|🥉|Coming after the second; number 3 in order.|This is my third ice cream!|thứ ba|
+bank|noun|A1|6|places|🏦|A place where people keep their money.|Mum goes to the bank.|ngân hàng|
+post office|noun|A1|6|places|🏤|A place where you send letters and parcels.|I buy a stamp at the post office.|bưu điện|
+museum|noun|A1|6|places|🏛️|A building where you can see old or interesting things.|We see dinosaur bones at the museum.|bảo tàng|
+cinema|noun|A1|5|places|🎬|A place where you watch films on a big screen.|We watch a cartoon at the cinema.|rạp chiếu phim|
+hotel|noun|A1|6|places|🏨|A building where you pay to sleep when you travel.|Our hotel is near the beach.|khách sạn|
+station|noun|A1|6|places|🚉|A place where trains or buses stop.|The train is at the station.|nhà ga (bến xe)|
+market|noun|A1|5|places|🛒|A place where people buy and sell food and things.|We buy fruit at the market.|chợ|
+café|noun|A1|6|places|☕|A small place where you can buy drinks and snacks.|We have juice at the café.|quán cà phê|
+swimming pool|noun|A1|5|places|🏊|A big hole filled with water for swimming.|I swim in the swimming pool.|bể bơi (hồ bơi)|
+toy shop|noun|A1|5|places|🧸|A shop that sells toys.|The toy shop has a big robot.|cửa hàng đồ chơi|
+bakery|noun|A1|5|places|🥐|A shop that makes and sells bread and cakes.|We buy bread at the bakery.|tiệm bánh|plural=bakeries
+church|noun|A1|6|places|⛪|A building where Christians pray.|There is an old church in the village.|nhà thờ|plural=churches
+temple|noun|A1|6|places|🛕|A building where people pray, often in Asia.|We visit a temple with Grandma.|ngôi chùa (đền)|
+pagoda|noun|A1|6|places||A tower-shaped temple with many roofs.|The One Pillar Pagoda is in Hanoi.|chùa|
+countryside|noun|A1|6|places;nature|🏞️|Land outside towns, with fields and farms.|My grandparents live in the countryside.|nông thôn|
+town|noun|A1|5|places|🏘️|A place with many houses and shops, smaller than a city.|I live in a small town.|thị trấn|
+building|noun|A1|5|places|🏢|A thing with walls and a roof, like a house or school.|That building is very tall.|tòa nhà|
+flat|noun|A1|6|home;places|🏢|A home on one floor of a big building.|We live in a flat on the fifth floor.|căn hộ|
+garage|noun|A1|6|home|🚗|A building where you keep a car.|Dad puts the car in the garage.|nhà để xe|
+balcony|noun|A1|6|home||A small area outside an upstairs window.|We have flowers on our balcony.|ban công|plural=balconies
+roof|noun|A1|5|home||The top part that covers a building.|There is a bird on the roof.|mái nhà|
+cupboard|noun|A1|5|home||A piece of furniture with doors where you keep things.|The cups are in the cupboard.|tủ chạn (tủ bếp)|
+shelf|noun|A1|5|home||A flat board on a wall for putting things on.|My books are on the shelf.|cái kệ|plural=shelves
+mirror|noun|A1|5|home||Glass where you can see yourself.|Look in the mirror.|cái gương|
+carpet|noun|A1|5|home||A thick soft cover for the floor.|The cat sleeps on the carpet.|tấm thảm|
+curtain|noun|A1|6|home||A piece of cloth that covers a window.|Close the curtains at night.|rèm cửa|
+toothbrush|noun|A1|5|home||A small brush for cleaning your teeth.|My toothbrush is green.|bàn chải đánh răng|plural=toothbrushes
+toothpaste|noun|A1|5|home||A paste you put on a toothbrush.|Put a little toothpaste on your brush.|kem đánh răng|
+shampoo|noun|A1|6|home|🧴|Soap for washing your hair.|This shampoo smells like apples.|dầu gội|
+comb|noun|A1|5|home||A flat tool with teeth for tidying your hair.|Use a comb for your hair.|cái lược|
+light|noun|A1|5|home|💡|What lets us see; the thing that makes a room bright.|Turn off the light, please.|đèn (ánh sáng)|
+dentist|noun|A1|5|jobs|🦷|A doctor who looks after your teeth.|I go to the dentist twice a year.|nha sĩ|
+singer|noun|A1|5|jobs|🎤|A person who sings, often as a job.|She wants to be a singer.|ca sĩ|
+dancer|noun|A1|5|jobs|💃|A person who dances, often as a job.|The dancer moves beautifully.|vũ công|
+artist|noun|A1|6|jobs|🖼️|A person who paints or draws pictures.|The artist paints a big picture.|họa sĩ|
+writer|noun|A1|6|jobs|✍️|A person who writes books or stories.|My favourite writer writes about animals.|nhà văn|
+astronaut|noun|A1|5|jobs||A person who travels into space.|The astronaut is on the moon.|phi hành gia|
+vet|noun|A1|5|jobs|🐾|A doctor for animals.|We take our dog to the vet.|bác sĩ thú y|
+waiter|noun|A1|6|jobs||A person who brings food to tables in a restaurant.|The waiter brings our pizza.|người phục vụ (bồi bàn)|
+builder|noun|A1|6|jobs|👷|A person whose job is to build houses.|The builder is making a wall.|thợ xây|
+mechanic|noun|A1|6|jobs|🔧|A person who repairs cars and machines.|The mechanic fixes our car.|thợ máy|
+scientist|noun|A1|6|jobs|🔬|A person who studies how the world works.|The scientist does an experiment.|nhà khoa học|
+chef|noun|A1|5|jobs|🍳|A person who cooks in a restaurant.|The chef makes delicious soup.|đầu bếp|
+shop assistant|noun|A1|6|jobs||A person who helps you in a shop.|The shop assistant is very kind.|nhân viên bán hàng|
+postman|noun|A1|5|jobs|📮|A person who brings letters to your house.|The postman has a letter for me.|người đưa thư|plural=postmen
+football|noun|A1|5|sports|⚽|A game where two teams kick a ball into a goal.|We play football after school.|bóng đá|
+basketball|noun|A1|5|sports|🏀|A game where teams throw a ball into a high net.|He is good at basketball.|bóng rổ|
+tennis|noun|A1|5|sports|🎾|A game where you hit a ball over a net with a racket.|Let's play tennis.|quần vợt (tennis)|
+badminton|noun|A1|5|sports|🏸|A game where you hit a shuttlecock over a net.|We play badminton in the yard.|cầu lông|
+volleyball|noun|A1|6|sports|🏐|A game where teams hit a ball over a high net with their hands.|They play volleyball on the beach.|bóng chuyền|
+table tennis|noun|A1|6|sports|🏓|A game like tennis played on a table.|My brother plays table tennis.|bóng bàn|
+baseball|noun|A1|6|sports|⚾|A game where you hit a ball with a bat and run.|Baseball is popular in America.|bóng chày|
+hockey|noun|A1|6|sports|🏑|A game where you hit a ball or puck with a long stick.|They play hockey on the ice.|khúc côn cầu|
+skating|noun|A1|6|sports|⛸️|Moving on ice or on wheels with special shoes.|Skating is fun in winter.|trượt băng|
+swimming|noun|A1|5|sports|🏊|The sport of moving through water.|Swimming is my favourite sport.|bơi lội|
+team|noun|A1|5|sports||A group of people who play or work together.|Our team wins the game.|đội|
+goal|noun|A1|5|sports|🥅|The net where you kick the ball to score.|He kicks the ball into the goal.|khung thành (bàn thắng)|
+race|noun|A1|5|sports|🏁|A competition to see who is the fastest.|I win the race!|cuộc đua|
+sport|noun|A1|5|sports|🏅|A game where you move your body, like football.|What is your favourite sport?|thể thao|
+hobby|noun|A1|6|hobbies||Something you enjoy doing in your free time.|My hobby is drawing.|sở thích|plural=hobbies
+chess|noun|A1|6|hobbies|♟️|A board game for two players with kings and queens.|Grandpa teaches me chess.|cờ vua|
+cartoon|noun|A1|5|hobbies|📺|A funny film made with drawings.|I watch cartoons on Saturday.|phim hoạt hình|
+comic|noun|A1|6|hobbies|💥|A magazine that tells a story in pictures.|I read a comic about a superhero.|truyện tranh|
+story|noun|A1|5|hobbies;school|📖|Words that tell what happens to people or animals.|Read me a story, please.|câu chuyện|plural=stories
+sticker|noun|A1|5|toys|⭐|A small picture with glue on the back.|I put a sticker in my book.|hình dán|
+jeans|noun|A1|5|clothes|👖|Trousers made of strong blue cloth.|I wear jeans at the weekend.|quần bò (quần jean)|
+sweater|noun|A1|6|clothes||A warm piece of clothing for the top of your body.|Put on your sweater.|áo len|
+trainers|noun|A1|6|clothes|👟|Soft shoes for sport.|I run in my new trainers.|giày thể thao|
+uniform|noun|A1|6|clothes;school||Special clothes that everyone in a group wears.|We wear a uniform at school.|đồng phục|
+belt|noun|A1|6|clothes||A long strip you wear around your waist.|Dad has a brown belt.|thắt lưng|
+tie|noun|A1|6|clothes|👔|A long piece of cloth worn around the neck with a shirt.|Grandpa wears a tie.|cà vạt|
+pocket|noun|A1|5|clothes||A small bag sewn into clothes.|I have a sweet in my pocket.|túi áo (túi quần)|
+earrings|noun|A1|6|clothes||Jewellery that you wear on your ears.|She has pretty earrings.|bông tai|
+jam|noun|A1|5|food|🍓|Sweet food made from fruit and sugar.|I like bread and jam.|mứt|
+yoghurt|noun|A1|5|food||A thick, creamy food made from milk.|I eat yoghurt with fruit.|sữa chua|
+sausage|noun|A1|5|food||Meat in a long thin skin.|We have sausages for dinner.|xúc xích|
+beans|noun|A1|5|food||Seeds that we cook and eat.|I like rice and beans.|đậu|
+peas|noun|A1|5|food||Small round green vegetables.|Peas are small and green.|đậu Hà Lan|
+garlic|noun|A1|6|food|🧄|A plant with a strong smell, used in cooking.|Mum puts garlic in the soup.|tỏi|
+pepper|noun|A1|6|food|🌶️|A vegetable or spice that can be sweet or hot.|This pepper is very hot!|ớt|
+coffee|noun|A1|6|food|☕|A hot brown drink that many adults like.|Dad drinks coffee in the morning.|cà phê|
+lemonade|noun|A1|5|food|🍋|A sweet drink made from lemons.|Can I have some lemonade?|nước chanh|
+snack|noun|A1|5|food|🍿|A small amount of food between meals.|I have an apple for a snack.|đồ ăn vặt|
+steak|noun|A1|7|food|🥩|A thick piece of meat.|Dad cooks steak for dinner.|bít tết|
+dumpling|noun|A1|6|food|🥟|A small ball of dough with food inside.|We make dumplings together.|bánh bao (há cảo)|
+spring roll|noun|A1|6|food||Rice paper rolled with vegetables or meat inside.|We eat spring rolls at Tet.|nem (chả giò)|
+pho|noun|A1|5|food|🍜|Vietnamese noodle soup.|I eat pho for breakfast.|phở|
+banh mi|noun|A1|5|food|🥖|A Vietnamese sandwich in a long piece of bread.|I want a banh mi with egg.|bánh mì|
+food|noun|A1|5|food|🍲|Things we eat.|What is your favourite food?|thức ăn (đồ ăn)|
+meal|noun|A1|6|food||Food eaten at one time, like lunch.|Breakfast is my favourite meal.|bữa ăn|
+shoulder|noun|A1|5|body||The part of your body where your arm starts.|Put your hands on your shoulders.|vai|
+back|noun|A1|5|body||The part of your body behind you, from your neck to your bottom.|My bag is on my back.|lưng|
+stomach|noun|A1|6|body||The part inside your body where food goes.|My stomach hurts.|dạ dày (bụng)|
+brain|noun|A1|6|body|🧠|The part inside your head that thinks.|Your brain helps you learn.|bộ não|
+skin|noun|A1|6|body||The outside cover of your body.|Use sun cream to protect your skin.|da|
+voice|noun|A1|6|body|🗣️|The sound you make when you speak or sing.|She has a beautiful voice.|giọng nói|
+van|noun|A1|6|transport|🚐|A vehicle bigger than a car, for carrying things.|The van brings our new sofa.|xe tải nhỏ|
+tram|noun|A1|7|transport|🚋|A long electric vehicle that runs on rails in the street.|We take a tram to the city.|xe điện|
+underground|noun|A1|7|transport|🚇|Trains that go under a city.|We take the underground to the museum.|tàu điện ngầm|
+bus stop|noun|A1|5|transport|🚏|A place where a bus stops for people.|Wait at the bus stop.|trạm xe buýt|
+wheel|noun|A1|5|transport||A round thing that turns so a car or bike can move.|A bike has two wheels.|bánh xe|
+seat|noun|A1|5|transport;home|💺|A thing you sit on.|Please sit in your seat.|chỗ ngồi|
+worried|adjective|A1|6|feelings|😟|Feeling that something bad might happen.|I am worried about my test.|lo lắng|comparative=more worried
+surprised|adjective|A1|5|feelings|😮|Feeling something you did not expect.|I am surprised by the present.|ngạc nhiên|comparative=more surprised
+proud|adjective|A1|6|feelings||Happy about something good you or others did.|Mum is proud of me.|tự hào|comparative=prouder
+shy|adjective|A1|5|feelings|🙈|Feeling a little afraid to talk to new people.|The new girl is shy.|nhút nhát|comparative=shyer
+lonely|adjective|A1|6|feelings||Sad because you are alone.|The puppy is lonely without its mum.|cô đơn|comparative=lonelier
+nervous|adjective|A1|6|feelings|😬|A little afraid before something.|I am nervous before my show.|hồi hộp|comparative=more nervous
+calm|adjective|A1|6|feelings|😌|Quiet and not worried or angry.|Take a breath and stay calm.|bình tĩnh|comparative=calmer
+glad|adjective|A1|6|feelings|😊|Happy about something.|I'm glad you are here.|vui mừng|
+sorry|adjective|A1|5|feelings|🙏|Feeling bad about something you did.|I'm sorry I broke your pencil.|xin lỗi (cảm thấy có lỗi)|
+bring|verb|A1|5|actions||To carry something to a place or person.|Bring your book tomorrow.|mang đến|past=brought,past participle=brought
+send|verb|A1|6|actions|📨|To make something go to another person or place.|I send a letter to Grandma.|gửi|past=sent,past participle=sent
+get|verb|A1|5|actions||To receive or take something.|I get a present on my birthday.|nhận được (lấy)|past=got,past participle=got
+keep|verb|A1|6|actions||To have something and not give it away.|You can keep the book.|giữ|past=kept,past participle=kept
+leave|verb|A1|6|actions|🚶|To go away from a place.|We leave school at four o'clock.|rời đi|past=left,past participle=left
+lose|verb|A1|6|actions||To not be able to find something; or to not win.|I always lose my pencil.|làm mất (thua)|past=lost,past participle=lost
+meet|verb|A1|6|actions|🤝|To see and talk to someone.|Let's meet at the park.|gặp|past=met,past participle=met
+pay|verb|A1|6|actions|💳|To give money for something.|Dad pays for the tickets.|trả tiền|past=paid,past participle=paid
+sell|verb|A1|6|actions||To give something to someone for money.|They sell fruit at the market.|bán|past=sold,past participle=sold
+tell|verb|A1|5|actions||To say something to someone.|Tell me a story.|kể (bảo)|past=told,past participle=told
+speak|verb|A1|5|actions|🗣️|To say words; to use a language.|I can speak English.|nói|past=spoke,past participle=spoken
+understand|verb|A1|6|actions||To know what something means.|Do you understand the question?|hiểu|past=understood,past participle=understood
+use|verb|A1|5|actions||To do something with a thing.|Can I use your ruler?|sử dụng (dùng)|past=used
+wear|verb|A1|5|actions;clothes||To have clothes on your body.|I wear a hat in the sun.|mặc (đội, đeo)|past=wore,past participle=worn
+wish|verb|A1|6|actions|🌠|To want something that may not happen.|I wish I could fly.|ước|past=wished
+choose|verb|A1|6|actions||To pick one thing from many.|Choose a colour.|chọn|past=chose,past participle=chosen
+collect|verb|A1|6|actions||To bring things together; to keep many of one kind.|I collect stickers.|sưu tầm (thu thập)|past=collected
+cross|verb|A1|6|actions||To go from one side to the other.|Look before you cross the road.|băng qua|past=crossed
+enjoy|verb|A1|6|actions||To like doing something.|I enjoy playing football.|thích (tận hưởng)|past=enjoyed
+fall|verb|A1|5|actions|🍂|To go down to the ground.|The leaves fall from the tree.|rơi (ngã)|past=fell,past participle=fallen
+feel|verb|A1|5|actions;feelings||To know how your body or mind is.|I feel happy today.|cảm thấy|past=felt,past participle=felt
+fix|verb|A1|6|actions|🔧|To make something work again.|Dad can fix my bike.|sửa|past=fixed
+grow|verb|A1|5|actions;nature|🌱|To get bigger.|Plants grow in the sun.|lớn lên (mọc)|past=grew,past participle=grown
+guess|verb|A1|6|actions|🤔|To say an answer when you are not sure.|Guess what is in the box!|đoán|past=guessed
+happen|verb|A1|6|actions||To take place.|What happens at the end of the story?|xảy ra|past=happened
+hope|verb|A1|6|actions;feelings|🤞|To want something to happen.|I hope it is sunny tomorrow.|hy vọng|past=hoped
+hurry|verb|A1|6|actions|🏃|To go or do something fast.|Hurry, the bus is here!|vội vàng|past=hurried
+join|verb|A1|6|actions||To become part of a group; to go with others.|Can I join your game?|tham gia|past=joined
+knock|verb|A1|5|actions|🚪|To hit a door to ask to come in.|Knock on the door.|gõ cửa|past=knocked
+mix|verb|A1|6|actions;food||To put things together and stir them.|Mix the eggs and the flour.|trộn|past=mixed
+move|verb|A1|5|actions||To go to a different place; to change position.|Don't move! Stay still.|di chuyển|past=moved
+pick|verb|A1|5|actions||To take a flower or fruit from a plant; to choose.|We pick strawberries on the farm.|hái (chọn)|past=picked
+plant|verb|A1|6|nature;actions|🌱|To put a seed or plant in the ground.|Let's plant a tree.|trồng|past=planted
+practise|verb|A1|6|actions;school||To do something many times to get better.|I practise the piano every day.|luyện tập|past=practised
+repeat|verb|A1|6|actions;school|🔁|To say or do something again.|Repeat after me.|nhắc lại|past=repeated
+rest|verb|A1|6|actions|🛋️|To stop and relax.|Let's rest for a minute.|nghỉ ngơi|past=rested
+return|verb|A1|7|actions||To come or go back; to give something back.|Return the book to the library.|trở về (trả lại)|past=returned
+save|verb|A1|7|actions|🐷|To keep money to use later; to help someone in danger.|I save my money in a piggy bank.|tiết kiệm (cứu)|past=saved
+shine|verb|A1|5|nature|🌞|To give bright light.|The sun shines in the sky.|chiếu sáng|past=shone,past participle=shone
+skip|verb|A1|5|actions||To jump over a rope that turns.|The girls skip in the playground.|nhảy dây|past=skipped
+slide|verb|A1|5|actions||To move smoothly down a surface.|We slide down the slide.|trượt|past=slid,past participle=slid
+smell|verb|A1|5|actions|👃|To notice something with your nose.|The flowers smell nice.|ngửi (có mùi)|past=smelled
+spell|verb|A1|6|school;actions|🔤|To say or write the letters of a word.|How do you spell your name?|đánh vần|past=spelled
+stay|verb|A1|6|actions|🏠|To not leave a place.|Stay here with me.|ở lại|past=stayed
+swing|verb|A1|5|actions||To move backwards and forwards.|The monkey swings in the tree.|đu (đung đưa)|past=swung,past participle=swung
+taste|verb|A1|6|food;actions|👅|To try food to see what it is like.|Taste this soup!|nếm|past=tasted
+travel|verb|A1|6|actions;transport|🧳|To go on a journey.|We travel by train.|đi du lịch|past=travelled
+turn|verb|A1|5|actions|↩️|To move round; to change direction.|Turn left at the shop.|rẽ (quay)|past=turned
+whisper|verb|A1|6|actions|🤫|To speak very quietly.|She whispers a secret.|thì thầm|past=whispered
+dig|verb|A1|5|actions|⛏️|To make a hole in the ground.|The dog digs in the garden.|đào|past=dug,past participle=dug
+dream|verb|A1|6|actions|💭|To see pictures in your head while you sleep.|I dream about flying.|mơ|past=dreamed
+fill|verb|A1|6|actions||To make something full.|Fill the glass with water.|làm đầy (đổ đầy)|past=filled
+hang|verb|A1|6|actions||To put something on a hook or a line.|Hang your coat on the hook.|treo|past=hung,past participle=hung
+fold|verb|A1|6|actions||To bend paper or cloth over itself.|Fold the paper in half.|gấp|past=folded
+tidy|verb|A1|6|actions;home|🧹|To make a place clean and neat.|Tidy your room, please.|dọn dẹp|past=tidied
+feed|verb|A1|5|animals;actions||To give food to a person or animal.|We feed the ducks.|cho ăn|past=fed,past participle=fed
+drop|verb|A1|6|actions||To let something fall.|Don't drop the eggs!|làm rơi|past=dropped
+bake|verb|A1|6|food;actions|🍪|To cook food in an oven.|We bake cookies.|nướng (bánh)|past=baked
+pour|verb|A1|6|food;actions||To make a liquid flow from a container.|Pour the milk into the bowl.|rót (đổ)|past=poured
+lift|verb|A1|6|actions|🏋️|To move something up.|Can you lift this box?|nâng lên|past=lifted
+sail|verb|A1|6|transport|⛵|To travel on water in a boat.|We sail across the lake.|đi thuyền|past=sailed
+sneeze|verb|A1|5|body|🤧|To blow air out of your nose suddenly.|Pepper makes me sneeze.|hắt hơi|past=sneezed
+yawn|verb|A1|5|body|🥱|To open your mouth wide when you are tired.|I yawn at bedtime.|ngáp|past=yawned
+stretch|verb|A1|6|body|🙆|To make your body long.|Stretch your arms up high.|vươn vai (duỗi)|past=stretched
+chat|verb|A1|6|actions|💬|To talk in a friendly way.|We chat after school.|trò chuyện|past=chatted
+begin|verb|A1|6|actions||To start.|The lesson begins at nine.|bắt đầu|past=began,past participle=begun
+end|verb|A1|6|actions|🔚|To finish.|The film ends at six.|kết thúc|past=ended
+check|verb|A1|7|actions|✅|To look again to see if something is right.|Check your answers.|kiểm tra|past=checked
+get up|verb|A1|5|actions||To get out of bed.|I get up at seven.|thức dậy (ra khỏi giường)|past=got up,past participle=got up
+put on|verb|A1|5|clothes;actions||To start wearing clothes.|Put on your shoes.|mặc vào (đi vào)|past=put on,past participle=put on
+take off|verb|A1|5|clothes;actions||To remove clothes.|Take off your coat.|cởi ra|past=took off,past participle=taken off
+look for|verb|A1|6|actions|🔍|To try to find something.|I'm looking for my keys.|tìm kiếm|past=looked for
+turn on|verb|A1|6|actions|💡|To make a machine or light start working.|Turn on the TV.|bật|past=turned on
+turn off|verb|A1|6|actions||To make a machine or light stop working.|Turn off the light.|tắt|past=turned off
+sit down|verb|A1|5|actions;school|🪑|To move from standing to sitting.|Sit down, please.|ngồi xuống|past=sat down,past participle=sat down
+stand up|verb|A1|5|actions;school||To move from sitting to standing.|Stand up and say hello.|đứng lên|past=stood up,past participle=stood up
+go to bed|verb|A1|5|actions;time|🛏️|To get into bed to sleep.|I go to bed at eight o'clock.|đi ngủ|past=went to bed,past participle=gone to bed
+cheap|adjective|A1|6|describing;shopping||Costing only a little money.|This pen is cheap.|rẻ|comparative=cheaper,superlative=cheapest
+expensive|adjective|A1|6|describing;shopping|💎|Costing a lot of money.|That bike is expensive.|đắt|comparative=more expensive,superlative=most expensive
+clever|adjective|A1|6|describing;people|💡|Quick to learn and understand.|My dog is very clever.|thông minh|comparative=cleverer,superlative=cleverest
+polite|adjective|A1|6|describing;people||Saying please and thank you; kind in how you speak.|Be polite to your teacher.|lịch sự|comparative=more polite
+early|adjective|A1|6|time|🌅|Before the usual or planned time.|I'm early for school today.|sớm|comparative=earlier,superlative=earliest
+correct|adjective|A1|6|school|✅|Right; with no mistakes.|Your answer is correct!|đúng|
+wrong|adjective|A1|6|school|❌|Not right; with a mistake.|Oops, that's the wrong answer.|sai|
+dark|adjective|A1|5|describing;colors|🌑|With little or no light.|It is dark at night.|tối|comparative=darker,superlative=darkest
+bright|adjective|A1|6|describing;colors|🔆|Full of light; strong in colour.|The sun is very bright.|sáng (rực rỡ)|comparative=brighter,superlative=brightest
+cool|adjective|A1|6|weather;describing|😎|A little cold; also: great.|The evening is cool.|mát mẻ (ngầu)|comparative=cooler,superlative=coolest
+fresh|adjective|A1|6|food;describing||Just made, picked or clean.|The bread is fresh.|tươi|comparative=fresher,superlative=freshest
+sour|adjective|A1|6|food|🍋|With a sharp taste like a lemon.|Lemons are sour.|chua|comparative=sourer
+salty|adjective|A1|6|food|🧂|Tasting of salt.|The sea water is salty.|mặn|comparative=saltier
+spicy|adjective|A1|6|food|🌶️|With a hot, strong taste.|This soup is very spicy!|cay|comparative=spicier
+dangerous|adjective|A1|6|describing|⚠️|Able to hurt you.|Fire is dangerous.|nguy hiểm|comparative=more dangerous,superlative=most dangerous
+safe|adjective|A1|6|describing|🛡️|Not in danger.|Hold my hand so you are safe.|an toàn|comparative=safer,superlative=safest
+free|adjective|A1|6|describing|🆓|Not costing money; or not busy.|The museum is free on Sunday.|miễn phí (rảnh)|
+ready|adjective|A1|5|describing||Prepared to do something.|Are you ready to go?|sẵn sàng|
+special|adjective|A1|6|describing|🌟|Different and better than usual.|Today is a special day.|đặc biệt|
+famous|adjective|A1|6|describing;people|🌟|Known by many people.|She is a famous singer.|nổi tiếng|comparative=more famous,superlative=most famous
+interesting|adjective|A1|6|describing|🤩|Making you want to know more.|This book is interesting.|thú vị|comparative=more interesting,superlative=most interesting
+boring|adjective|A1|6|describing|🥱|Not interesting.|The film is boring.|chán (nhàm chán)|comparative=more boring
+wonderful|adjective|A1|6|describing|🌈|Very, very good.|We have a wonderful day.|tuyệt vời|
+terrible|adjective|A1|6|describing||Very bad.|The weather is terrible today.|tồi tệ (khủng khiếp)|
+great|adjective|A1|5|describing|👍|Very good.|That's a great idea!|tuyệt|comparative=greater
+lovely|adjective|A1|6|describing|🥰|Beautiful or very nice.|What a lovely dress!|đáng yêu (xinh)|comparative=lovelier
+pretty|adjective|A1|5|describing|🌸|Nice to look at.|The flowers are pretty.|xinh xắn|comparative=prettier,superlative=prettiest
+quick|adjective|A1|6|describing|⚡|Fast; taking little time.|We have a quick lunch.|nhanh|comparative=quicker,superlative=quickest
+high|adjective|A1|5|describing|⛰️|Far above the ground.|The kite is high in the sky.|cao|comparative=higher,superlative=highest
+low|adjective|A1|6|describing||Close to the ground.|The table is low.|thấp|comparative=lower,superlative=lowest
+deep|adjective|A1|6|describing;nature||Going a long way down.|The river is deep.|sâu|comparative=deeper,superlative=deepest
+wide|adjective|A1|6|describing||Large from one side to the other.|The road is wide.|rộng|comparative=wider,superlative=widest
+cloudy|adjective|A1|5|weather|☁️|With many clouds in the sky.|It's cloudy today.|nhiều mây|comparative=cloudier
+windy|adjective|A1|5|weather|🌬️|With a lot of wind.|It's windy, so let's fly a kite.|nhiều gió|comparative=windier
+snowy|adjective|A1|5|weather|🌨️|With a lot of snow.|It's a snowy day.|có tuyết|comparative=snowier
+fine|adjective|A1|6|describing;feelings|🙂|Well; good enough.|I'm fine, thank you.|khỏe (ổn)|
+poor|adjective|A1|7|describing||Having little money; or a word to show you feel sorry.|The poor bird is hurt.|nghèo (tội nghiệp)|comparative=poorer
+sharp|adjective|A1|6|describing||Able to cut easily, or with a thin point.|Be careful, the knife is sharp.|sắc (nhọn)|comparative=sharper
+alone|adjective|A1|6|feelings||Without other people.|The cat is alone in the house.|một mình|
+awake|adjective|A1|6|describing|👁️|Not sleeping.|The baby is awake.|thức (tỉnh)|
+asleep|adjective|A1|6|describing|💤|Sleeping.|Grandpa is asleep on the sofa.|đang ngủ|
+closed|adjective|A1|6|describing||Not open.|The shop is closed on Sunday.|đóng cửa|
+curly|adjective|A1|6|describing;body||With lots of curls.|She has curly hair.|xoăn|comparative=curlier
+straight|adjective|A1|6|describing;body||Not bending or curly.|He has straight hair.|thẳng|comparative=straighter
+colourful|adjective|A1|6|colors|🎨|With many bright colours.|The bird has colourful feathers.|nhiều màu sắc|comparative=more colourful
+shiny|adjective|A1|6|describing|✨|Bright, reflecting light.|I have shiny new shoes.|sáng bóng|comparative=shinier
+sticky|adjective|A1|6|describing|🍯|Able to stick to things.|My hands are sticky from the honey.|dính|comparative=stickier
+true|adjective|A1|7|describing||Right; not made up.|Is the story true?|đúng (có thật)|
+real|adjective|A1|7|describing||Not pretend; true.|Is that a real dinosaur?|thật|
+magic|adjective|A1|5|describing|✨|With special powers, like in stories.|The fairy has a magic wand.|thần kỳ (phép thuật)|
+next|adjective|A1|6|time||Coming after this one.|See you next week!|tiếp theo|
+last|adjective|A1|6|time||Coming after all the others; the one before this.|This is the last cookie.|cuối cùng (vừa qua)|
+very|adverb|A1|5|describing||More than usual; a lot.|It is very hot today.|rất|
+really|adverb|A1|6|describing||Very; truly.|I really like your drawing.|thật sự|
+quickly|adverb|A1|6|describing|⚡|In a fast way.|Come here quickly!|nhanh chóng|
+slowly|adverb|A1|6|describing|🐢|In a slow way.|Walk slowly near the pool.|chậm rãi|
+always|adverb|A1|6|time||Every time.|I always brush my teeth.|luôn luôn|
+sometimes|adverb|A1|6|time||Some of the time, not always.|Sometimes we eat pizza.|thỉnh thoảng|
+never|adverb|A1|6|time||Not at any time.|I never eat spiders!|không bao giờ|
+often|adverb|A1|6|time||Many times.|We often go to the park.|thường|
+usually|adverb|A1|7|time||Most of the time.|I usually walk to school.|thường thường|
+again|adverb|A1|5|time|🔁|One more time.|Sing the song again!|lại (lần nữa)|
+here|adverb|A1|5|places|📍|In or to this place.|Come here, please.|ở đây|
+there|adverb|A1|5|places||In or to that place.|Put the box over there.|ở đó|
+now|adverb|A1|5|time||At this moment.|Let's go now.|bây giờ|
+then|adverb|A1|6|time||After that; at that time.|Wash your hands, then eat.|sau đó|
+soon|adverb|A1|6|time||In a short time.|See you soon!|sớm (chẳng bao lâu)|
+also|adverb|A1|6|describing||Too; as well.|I like cats and I also like dogs.|cũng|
+too|adverb|A1|6|describing||Also; or more than you want.|I want to come too.|cũng (quá)|
+together|adverb|A1|5|describing|🤝|With each other.|Let's play together.|cùng nhau|
+outside|adverb|A1|5|places||Not in a building.|Let's play outside.|bên ngoài|
+inside|adverb|A1|5|places||In a building or room.|It's raining, so we stay inside.|bên trong|
+upstairs|adverb|A1|6|places;home||On or to a higher floor.|My bedroom is upstairs.|tầng trên|
+downstairs|adverb|A1|6|places;home||On or to a lower floor.|Breakfast is downstairs.|tầng dưới|
+left|adverb|A1|6|places|⬅️|On or to the side of your left hand.|Turn left at the park.|bên trái|
+right|adverb|A1|6|places|➡️|On or to the side of your right hand.|The school is on the right.|bên phải|
+well|adverb|A1|6|describing||In a good way.|She sings very well.|tốt (giỏi)|
+later|adverb|A1|6|time||After now.|I will do it later.|sau này (lát nữa)|
+maybe|adverb|A1|6|describing|🤷|Perhaps; it is possible.|Maybe it will rain.|có lẽ|
+only|adverb|A1|7|describing||No more than.|I only have one sweet.|chỉ|
+in|preposition|A1|5|places||Inside something.|The cat is in the box.|trong|
+on|preposition|A1|5|places||On top of something.|The book is on the table.|trên|
+under|preposition|A1|5|places||Below something.|The ball is under the bed.|dưới|
+behind|preposition|A1|5|places||At the back of something.|The dog is behind the tree.|phía sau|
+next to|preposition|A1|5|places||At the side of something.|Sit next to me.|bên cạnh|
+between|preposition|A1|6|places||In the middle of two things.|The cat is between the two chairs.|ở giữa|
+in front of|preposition|A1|6|places||Ahead of something; facing it.|The bus stops in front of the school.|phía trước|
+above|preposition|A1|6|places||Higher than something.|The bird is above the house.|phía trên|
+below|preposition|A1|6|places||Lower than something.|The fish swim below the boat.|bên dưới|
+near|preposition|A1|6|places||Not far from.|I live near the school.|gần|
+into|preposition|A1|6|places||Moving to the inside of something.|Jump into the pool!|vào trong|
+out of|preposition|A1|6|places||Moving from the inside of something.|The cat jumps out of the box.|ra khỏi|
+over|preposition|A1|6|places||Above or across something.|The plane flies over the city.|qua (bên trên)|
+through|preposition|A1|7|places||From one side to the other side inside something.|The train goes through the tunnel.|xuyên qua|
+across|preposition|A1|7|places||From one side to the other.|We walk across the bridge.|băng qua|
+around|preposition|A1|6|places|🔄|On every side; in a circle.|We run around the tree.|xung quanh|
+with|preposition|A1|5|describing||Together; having.|I go to the park with my dad.|với (cùng)|
+without|preposition|A1|6|describing||Not having.|I can't see without my glasses.|không có|
+after|preposition|A1|6|time||Later than.|We play after lunch.|sau|
+before|preposition|A1|6|time||Earlier than.|Wash your hands before dinner.|trước|
+up|adverb|A1|5|places|⬆️|To a higher place.|The cat climbs up the tree.|lên|
+down|adverb|A1|5|places|⬇️|To a lower place.|Come down from the tree!|xuống|
+I|pronoun|A1|5|people||The word you use for yourself.|I am seven years old.|tôi (mình)|
+you|pronoun|A1|5|people||The person or people you are talking to.|You are my best friend.|bạn|
+he|pronoun|A1|5|people||A boy or man you are talking about.|He is my brother.|anh ấy (cậu ấy)|
+she|pronoun|A1|5|people||A girl or woman you are talking about.|She is my sister.|cô ấy (bạn ấy)|
+it|pronoun|A1|5|people||A thing or animal you are talking about.|It is a big dog.|nó|
+we|pronoun|A1|5|people||You and me, or a group with me in it.|We are friends.|chúng tôi (chúng ta)|
+they|pronoun|A1|5|people||The people or things you are talking about.|They are playing football.|họ (chúng nó)|
+this|determiner|A1|5|describing||The thing near you.|This is my book.|cái này|
+that|determiner|A1|5|describing||The thing not near you.|That is my house.|cái kia (cái đó)|
+these|determiner|A1|6|describing||The things near you.|These shoes are new.|những cái này|
+those|determiner|A1|6|describing||The things not near you.|Those birds are noisy.|những cái kia|
+some|determiner|A1|6|describing||A few; a little.|Can I have some water?|một vài (một ít)|
+many|determiner|A1|6|describing||A lot of.|There are many stars in the sky.|nhiều|
+every|determiner|A1|6|describing||Each one of a group.|I read every night.|mỗi (mọi)|
+all|determiner|A1|6|describing||The whole group or amount.|All the children are here.|tất cả|
+and|conjunction|A1|5|describing||A word that joins two things together.|I like apples and bananas.|và|
+but|conjunction|A1|6|describing||A word that shows something is different.|I like cats but I don't like snakes.|nhưng|
+or|conjunction|A1|6|describing||A word that gives a choice.|Do you want milk or juice?|hoặc (hay)|
+because|conjunction|A1|6|describing||A word that gives the reason.|I'm happy because it's my birthday.|bởi vì|
+what|pronoun|A1|5|school||A word to ask about a thing.|What is your name?|cái gì|
+who|pronoun|A1|5|school;people||A word to ask about a person.|Who is your teacher?|ai|
+where|adverb|A1|5|school;places||A word to ask about a place.|Where is my bag?|ở đâu|
+when|adverb|A1|6|school;time||A word to ask about a time.|When is your birthday?|khi nào|
+why|adverb|A1|6|school||A word to ask for a reason.|Why are you sad?|tại sao|
+how|adverb|A1|6|school||A word to ask about the way or how much.|How are you?|như thế nào|
+can|verb|A1|5|actions|💪|To be able to do something.|I can swim.|có thể|past=could
+field|noun|A1|6|nature|🌾|A large area of grass or crops.|The cows are in the field.|cánh đồng|
+hill|noun|A1|5|nature|⛰️|A small mountain.|We walk up the hill.|ngọn đồi|
+ground|noun|A1|6|nature||The surface of the earth that you walk on.|The apple falls to the ground.|mặt đất|
+air|noun|A1|6|nature|💨|What we breathe; the space above the ground.|Birds fly in the air.|không khí|
+Earth|noun|A1|6|nature|🌍|The planet we live on.|The Earth goes around the sun.|Trái Đất|
+space|noun|A1|6|nature|🌌|The place beyond the sky where the stars and planets are.|Astronauts travel into space.|vũ trụ|
+seed|noun|A1|6|nature|🌱|A small thing from a plant that grows into a new plant.|Put the seed in the soil.|hạt giống|
+wood|noun|A1|6|nature||What trees are made of.|The table is made of wood.|gỗ|
+stone|noun|A1|6|nature||A small piece of rock.|I throw a stone into the lake.|hòn đá|
+mud|noun|A1|5|nature||Wet, soft earth.|My boots are covered in mud.|bùn|
+sunset|noun|A1|6|nature;time|🌇|When the sun goes down in the evening.|The sunset is orange and pink.|hoàng hôn|
+sunrise|noun|A1|7|nature;time|🌄|When the sun comes up in the morning.|We get up early to see the sunrise.|bình minh|
+insect|noun|A1|6|animals|🐛|A small animal with six legs, like an ant.|A bee is an insect.|côn trùng|
+mosquito|noun|A1|6|animals|🦟|A small flying insect that bites.|Mosquitoes come out at night.|con muỗi|plural=mosquitoes
+caterpillar|noun|A1|6|animals||A small long animal that becomes a butterfly.|The caterpillar eats the leaf.|con sâu bướm|
+goldfish|noun|A1|5|animals||A small orange fish people keep as a pet.|My goldfish swims round and round.|cá vàng|plural=goldfish
+swan|noun|A1|6|animals|🦢|A big white bird with a long neck that swims.|The swan is on the lake.|thiên nga|
+eagle|noun|A1|6|animals|🦅|A big bird that can see very well and flies high.|The eagle flies over the mountain.|đại bàng|
+peacock|noun|A1|6|animals|🦚|A bird with a long, colourful tail.|The peacock opens its tail.|con công|
+flamingo|noun|A1|6|animals|🦩|A tall pink bird that stands on one leg.|The flamingo is pink.|chim hồng hạc|plural=flamingos
+gorilla|noun|A1|6|animals|🦍|A very big, strong ape.|The gorilla eats leaves.|khỉ đột|
+rhino|noun|A1|6|animals|🦏|A big grey animal with a horn on its nose.|The rhino has thick skin.|tê giác|
+cheetah|noun|A1|6|animals|🐆|A wild cat with spots that runs very fast.|The cheetah is the fastest animal.|báo săn|
+donkey|noun|A1|5|animals||An animal like a small horse with long ears.|The donkey carries the bags.|con lừa|
+buffalo|noun|A1|5|animals|🐃|A big animal with horns that helps on farms.|The buffalo works in the rice field.|con trâu|plural=buffaloes
+goose|noun|A1|6|animals||A big bird like a duck.|The goose says honk.|con ngỗng|plural=geese
+lesson|noun|A1|6|school|📚|A time when you learn something.|Our English lesson is fun.|bài học (tiết học)|
+homework|noun|A1|6|school|📝|School work that you do at home.|I do my homework after dinner.|bài tập về nhà|
+test|noun|A1|6|school|💯|Questions to see what you know.|We have a spelling test today.|bài kiểm tra|
+question|noun|A1|6|school|❓|What you ask when you want to know something.|Can I ask a question?|câu hỏi|
+word|noun|A1|5|school|🔤|A group of letters that means something.|"Cat" is a short word.|từ|
+sentence|noun|A1|7|school||A group of words that says something.|Write a sentence about your pet.|câu|
+page|noun|A1|6|school|📄|One side of a sheet of paper in a book.|Open your book to page ten.|trang|
+alphabet|noun|A1|6|school|🔤|All the letters, from A to Z.|Let's sing the alphabet song.|bảng chữ cái|
+number|noun|A1|5|school;numbers|🔢|A word or sign that tells how many, like 3 or 10.|Write the number five.|con số|
+maths|noun|A1|6|school|➗|The subject about numbers and shapes.|I like maths.|môn toán|
+English|noun|A1|6|school|🇬🇧|The language people speak in England and many other countries.|We learn English at school.|tiếng Anh|
+science|noun|A1|6|school|🧪|The subject about how the world works.|We grow beans in science.|môn khoa học|
+art|noun|A1|6|school|🎨|Drawing, painting and making things.|We paint in art.|môn mỹ thuật|
+class|noun|A1|5|school|🏫|A group of students who learn together.|There are twenty children in my class.|lớp học|plural=classes
+break|noun|A1|6|school||A short rest between lessons.|We play in the break.|giờ ra chơi|
+board|noun|A1|6|school||A flat surface on the wall where the teacher writes.|The teacher writes on the board.|bảng|
+classmate|noun|A1|6|school;people||A person in your class.|My classmate helps me.|bạn cùng lớp|
+aunt|noun|A1|5|family|👩|The sister of your mum or dad.|My aunt lives in Da Nang.|cô (dì, bác gái)|
+uncle|noun|A1|5|family|👨|The brother of your mum or dad.|My uncle is a doctor.|chú (cậu, bác trai)|
+cousin|noun|A1|5|family||The child of your aunt or uncle.|My cousin is my best friend.|anh chị em họ|
+parents|noun|A1|5|family|👪|Your mother and father.|My parents are at work.|bố mẹ (ba mẹ)|
+grandparents|noun|A1|5|family||The parents of your mum or dad.|I visit my grandparents on Sunday.|ông bà|
+son|noun|A1|6|family||A boy child of a parent.|They have one son.|con trai|
+daughter|noun|A1|6|family||A girl child of a parent.|Their daughter is five.|con gái|
+twins|noun|A1|6|family|👯|Two children born to the same mother at the same time.|The twins look the same.|cặp song sinh|
+people|noun|A1|5|people|👥|Men, women and children.|There are many people at the beach.|mọi người|
+person|noun|A1|6|people|🧍|A man, woman or child.|She is a kind person.|người|plural=people
+best friend|noun|A1|5|people||The friend you like the most.|Lan is my best friend.|bạn thân|
+bedroom|noun|A1|5|home|🛏️|The room where you sleep.|My bedroom is blue.|phòng ngủ|
+living room|noun|A1|5|home|🛋️|The room where a family sits and relaxes.|We watch TV in the living room.|phòng khách|
+dining room|noun|A1|6|home|🍽️|The room where you eat meals.|We eat dinner in the dining room.|phòng ăn|
+oven|noun|A1|6|home||A hot box in the kitchen for baking food.|The cake is in the oven.|lò nướng|
+sink|noun|A1|6|home||The bowl in a kitchen or bathroom where you wash.|Put the plates in the sink.|bồn rửa|
+gate|noun|A1|6|home||A door in a fence or wall outside.|Close the gate, please.|cổng|
+yard|noun|A1|6|home||The open space outside a house.|The children play in the yard.|cái sân|
+thing|noun|A1|6|things||An object; something.|What is that thing?|đồ vật (thứ)|
+envelope|noun|A1|7|things|✉️|A paper cover for a letter.|Put the letter in the envelope.|phong bì|
+stamp|noun|A1|7|things||A small picture you stick on a letter before you send it.|I need a stamp for this letter.|con tem|
+parcel|noun|A1|7|things|📦|Something wrapped in paper that you send.|A parcel comes for Mum.|bưu kiện|
+newspaper|noun|A1|7|things|📰|Big sheets of paper with news, printed every day.|Grandpa reads the newspaper.|tờ báo|
+magazine|noun|A1|7|things||A thin book with stories and pictures, printed every week or month.|I read a magazine about animals.|tạp chí|
+radio|noun|A1|6|things|📻|A machine you listen to for music and news.|We listen to the radio in the car.|đài (radio)|
+coin|noun|A1|6|things||A round piece of metal money.|I put a coin in my piggy bank.|đồng xu|
+flag|noun|A1|6|things|🚩|A piece of cloth with colours that shows a country.|The Vietnamese flag is red with a yellow star.|lá cờ|
+torch|noun|A1|7|things|🔦|A small light you carry in your hand.|Take a torch when it's dark.|đèn pin|plural=torches
+rope|noun|A1|6|things||A long, thick string.|We pull the rope.|sợi dây thừng|
+ice skates|noun|A1|7|sports||Boots with a blade for moving on ice.|I put on my ice skates.|giày trượt băng|
+racket|noun|A1|6|sports|🎾|A bat with strings for hitting a ball.|I have a new tennis racket.|cái vợt|

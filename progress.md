@@ -23,6 +23,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] feat-008: progress screen ("My words") per profile, from child home and parent area
 - [x] feat-007: daily reminder — planned a week ahead, re-planned on changes; parent Reminders screen
 - [x] feat-010: kid-friendly visual design (owner accepted 2026-11-05)
+- [x] feat-014: word bank v2 — 1,497 words (Pre-A1 364, A1 611, A2 255, B1 267), grammar forms, all four levels selectable, translation fades by level
 - [x] feat-006: swipe flashcard session (`lib/features/session/`), device TTS, session summary with stars; progress saved per answer
 
 ### What's In Progress
@@ -34,13 +35,14 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 1. Owner runs feat-009: the child uses the app 5 days a week for 2 weeks without being pushed (install on a real phone/tablet; turn on the daily reminder). Only the owner can mark it done.
 2. Before/while trialling: native-speaker review of the Vietnamese drafts (owner, alongside the trial).
 3. Trial note: at 10 min/day the cap slows new words to ~3/day after week 3 (reviews take the room). If the child wants more new words, raise "Minutes per day" to 15.
-4. Phase 2 started 2026-11-05; feat-012, 013 done. Next: 014 content → 015 placement → 016 level progression → 017 dashboard → 018 custom lists → 019 weekly recap → 020 gate. Trial feedback may reorder.
+4. Phase 2 started 2026-11-05; feat-012, 013, 014 done. Next: 015 placement → 016 level progression → 017 dashboard → 018 custom lists → 019 weekly recap → 020 gate. Trial feedback may reorder.
 
 ## Blockers / Risks
 
 - [x] Repo is public at https://github.com/nhson/voca-swiper; owner confirmed word-list licensing 2026-11-05.
 
-- [ ] Vietnamese translations in `content_pipeline/source/words.psv` are drafts — owner/native speaker review needed.
+- [ ] Vietnamese translations in `content_pipeline/source/words/*.psv` are drafts — owner/native speaker review needed (1,497 words; 1,105 new in feat-014).
+- [ ] Six v1 pictures are newer emoji that may show as boxes on Android 10 and older: pink 🩷, grey 🩶, window 🪟, doll 🪆, rock 🪨, brush 🪥 (A2/B1 are guarded by a test; Pre-A1/A1 left as shipped).
 - [x] Review backlog — fixed by feat-011 (session budget, 2026-11-05). Original finding: simulation with the real scheduler (5 new/day, 80% knew) — daily use grows to ~40 cards/session by week 3; 5 days/week gives Monday spikes of ~50; a 10-day break → ~100 cards; a 3-week holiday → ~200. `dailyMinutes` is stored but not enforced.
 - [ ] System Java is 1.8; sdkmanager needs `JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"` (Flutter/Gradle already use Android Studio's JDK).
 - [x] Daily reminder seen firing on the Android emulator (2026-11-05, 80s late — inexact alarm). Still worth a glance on a real phone during the trial.
@@ -66,7 +68,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 
 - **Content for MVP** (feat-004, owner delegated): 392-word starter bank written in-house from Starters/Movers topic areas (not copied lists); pictures are system emoji (no licensing, no assets); Vietnamese translations are drafts to review. Bank format: ADR 0001.
 - **New-word order**: current level first, then lower levels, teaching order (rank) within a level; words above the child's age excluded.
-- **Defaults**: daily new words 5, daily minutes 10, level by age (4–6 Pre-A1, 7+ A1 — capped at A1 until more content), quiet hours 21:00–07:00, school hours Mon–Fri 07:30–16:30 blocked.
+- **Defaults**: daily new words 5, daily minutes 10, level by age (4–6 Pre-A1, 7–9 A1, 10–12 A2, 13+ B1 — all four selectable since feat-014), quiet hours 21:00–07:00, school hours Mon–Fri 07:30–16:30 blocked.
 
 - **feat-005 details**: PIN hashing runs in `Isolate.run` (10k SHA-256 rounds froze the UI for seconds in debug builds); widget tests inject `runInline`. Dart SDK constraint raised to ^3.9 (wildcard `_` params; newer formatter style). Parent-area links to Reminders and Progress are hidden until feat-007 / feat-008 add those screens.
 - **feat-006 details**:
@@ -95,6 +97,15 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-05 — feat-014 word bank v2
+
+- Source split per level (`content_pipeline/source/words/01-preA1..04-B1.psv`); Pre-A1/A1 topped up 392 → 975; new A2 (255) and B1 (267), ages 7+, with grammar forms; bank version 2 (1,497 words).
+- `shipped_ids.txt` + test: v1 ids can never be renamed by a new part of speech. New-POS and form-name validation; blocklist extended and documented.
+- Profile form offers Pre-A1/A1/A2/B1; default by age up to B1; translation default fades (A2/B1 = tap).
+- Upgrade test: v1 → v2 import keeps schedules, first-seen and quiz log.
+- Device check on iPhone + iPad simulators (`integration_test/levels_on_device_test.dart`). Card grammar-forms line now centred.
+- Skipped: syllables/stress. Owner: review the Vietnamese drafts.
 
 ### 2026-11-05 — feat-013 Retention tracking
 

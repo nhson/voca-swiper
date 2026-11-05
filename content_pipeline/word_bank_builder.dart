@@ -6,7 +6,26 @@ library;
 import 'dart:convert';
 
 const cefrLevels = ['preA1', 'A1', 'A2', 'B1', 'B2'];
-const partsOfSpeech = {'noun', 'verb', 'adjective', 'number', 'adverb'};
+const partsOfSpeech = {
+  'noun',
+  'verb',
+  'adjective',
+  'number',
+  'adverb',
+  'preposition',
+  'pronoun',
+  'conjunction',
+  'determiner',
+};
+
+/// Grammar forms shown on the card (docs/SPEC.md — Grammar forms).
+const formNames = {
+  'plural',
+  'past',
+  'past participle',
+  'comparative',
+  'superlative',
+};
 
 class WordBankBuildException implements Exception {
   WordBankBuildException(this.errors);
@@ -17,7 +36,7 @@ class WordBankBuildException implements Exception {
       '${errors.map((e) => '  - $e').join('\n')}';
 }
 
-/// Parses [source] (words.psv) into the JSON bank. Throws
+/// Parses [source] (the level files in source/words/) into the JSON bank. Throws
 /// [WordBankBuildException] listing every problem found.
 Map<String, Object?> buildWordBank({
   required String source,
@@ -91,6 +110,8 @@ Map<String, Object?> buildWordBank({
             parts[0].trim().isEmpty ||
             parts[1].trim().isEmpty) {
           errors.add('$where: bad form "$kv" (use key=value)');
+        } else if (!formNames.contains(parts[0].trim())) {
+          errors.add('$where: unknown form "${parts[0].trim()}"');
         } else {
           formMap[parts[0].trim()] = parts[1].trim();
         }

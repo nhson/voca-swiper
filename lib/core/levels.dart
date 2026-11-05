@@ -17,7 +17,7 @@ enum CefrLevel {
 
   /// Default starting level by age band (docs/SPEC.md — Age bands), capped to
   /// levels that have content.
-  static CefrLevel defaultForAge(int age, {CefrLevel maxAvailable = a1}) {
+  static CefrLevel defaultForAge(int age, {CefrLevel maxAvailable = b1}) {
     final byAge = age <= 6
         ? preA1
         : age <= 9

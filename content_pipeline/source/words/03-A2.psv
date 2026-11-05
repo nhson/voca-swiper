@@ -1,0 +1,265 @@
+# Voca Swiper word bank — A2. One word per line, fields separated by "|".
+# text|pos|cefr|minAge|themes(;)|emoji|definition|example|vi|forms(k=v,k=v)
+# pos: noun verb adjective adverb number preposition pronoun conjunction determiner
+# forms: plural past "past participle" comparative superlative
+# Order within a level = teaching order (most useful first). Words written
+# in-house from topic areas; no published list copied (see docs/adr/0001).
+# Ages 7+; pictures optional at this level. Vietnamese: northern form first,
+# southern form in parentheses where they differ. Draft translations — review
+# before store release.
+
+ocean|noun|A2|7|nature|🌊|A very large area of sea.|Whales live in the ocean.|đại dương|
+desert|noun|A2|7|nature|🏜️|A large, dry area with sand and very little rain.|Camels can live in the desert.|sa mạc|
+jungle|noun|A2|7|nature|🌴|A thick forest in a hot, wet country.|Monkeys swing through the jungle.|rừng rậm|
+coast|noun|A2|7|nature|🏖️|The land next to the sea.|We drive along the coast.|bờ biển|
+valley|noun|A2|8|nature||Low land between hills or mountains.|A river runs through the valley.|thung lũng|plural=valleys
+waterfall|noun|A2|7|nature||Water that falls from a high place.|The waterfall is very loud.|thác nước|
+cave|noun|A2|7|nature||A large hole in the side of a hill or under the ground.|Bats live in the cave.|hang động|
+volcano|noun|A2|7|nature|🌋|A mountain that can send out hot melted rock.|The volcano is sleeping now.|núi lửa|plural=volcanoes
+earthquake|noun|A2|8|nature||When the ground shakes strongly.|The earthquake shook the houses.|động đất|
+storm|noun|A2|7|weather|⛈️|Very bad weather with strong wind and rain.|The storm broke a big tree.|cơn bão|
+thunder|noun|A2|7|weather|🌩️|The loud noise in the sky during a storm.|The thunder is very loud.|sấm|
+lightning|noun|A2|7|weather|⚡|A flash of bright light in the sky during a storm.|We see lightning in the sky.|tia chớp|
+temperature|noun|A2|8|weather;science|🌡️|How hot or cold something is.|The temperature is 30 degrees today.|nhiệt độ|
+fog|noun|A2|7|weather|🌫️|Thick cloud near the ground that is hard to see through.|We can't see the road in the fog.|sương mù|
+environment|noun|A2|8|nature||The air, water and land where people, animals and plants live.|We must protect the environment.|môi trường|
+pollution|noun|A2|8|nature||Dirty air, water or land that harms living things.|Cars make air pollution.|ô nhiễm|
+rubbish|noun|A2|7|nature;home|🗑️|Things you throw away.|Put the rubbish in the bin.|rác|
+plastic|noun|A2|7|things||A light material used to make bottles, toys and bags.|This bottle is made of plastic.|nhựa|
+wildlife|noun|A2|8|nature;animals|🦓|Wild animals and plants.|We see lots of wildlife in the park.|động vật hoang dã|
+continent|noun|A2|8|nature;places|🌏|One of the very large areas of land on Earth, like Asia.|Viet Nam is in the continent of Asia.|châu lục|
+country|noun|A2|7|places|🗺️|An area of land with its own government, like Viet Nam.|Which country do you come from?|đất nước|plural=countries
+world|noun|A2|7|places|🌎|The Earth and all the people and things on it.|I want to travel around the world.|thế giới|
+internet|noun|A2|7|technology|🌐|The system that connects computers all over the world.|We look for information on the internet.|mạng internet|
+website|noun|A2|8|technology||A place on the internet with pages of information.|This website has fun games.|trang web|
+email|noun|A2|8|technology|📧|A message you send from one computer to another.|I send an email to my teacher.|thư điện tử (email)|
+message|noun|A2|7|technology|💬|Words you send to someone.|Mum sends me a message.|tin nhắn|
+screen|noun|A2|7|technology|🖥️|The flat part of a TV, computer or phone where you see pictures.|Don't sit too close to the screen.|màn hình|
+keyboard|noun|A2|7|technology|⌨️|The keys you press to type on a computer.|I type my name on the keyboard.|bàn phím|
+video|noun|A2|7|technology|📹|Moving pictures you record or watch.|We watch a video about whales.|video|plural=videos
+invention|noun|A2|8|science||Something new that someone has made for the first time.|The telephone was a great invention.|phát minh|
+machine|noun|A2|7|technology|⚙️|A thing with moving parts that does a job.|The washing machine cleans our clothes.|máy móc|
+battery|noun|A2|7|technology|🔋|A small thing that gives power to toys and phones.|My toy needs a new battery.|pin|plural=batteries
+medicine|noun|A2|7|health|💊|Something you take to get better when you are ill.|Take your medicine after dinner.|thuốc|
+headache|noun|A2|7|health|🤕|A pain in your head.|I have a headache.|đau đầu|
+toothache|noun|A2|7|health||A pain in your tooth.|Eating too many sweets gave me toothache.|đau răng|
+fever|noun|A2|7|health|🤒|When your body is too hot because you are ill.|The baby has a fever.|sốt|
+cough|noun|A2|7|health||A loud sound when air comes out of your throat suddenly.|He has a bad cough.|ho|
+accident|noun|A2|8|health||Something bad that happens by chance.|He broke his arm in an accident.|tai nạn|
+traffic|noun|A2|8|transport;places|🚦|All the cars and buses on the road.|There is a lot of traffic in the city.|giao thông|
+neighbour|noun|A2|7|people|🏘️|A person who lives near you.|Our neighbour has a big dog.|hàng xóm|
+office|noun|A2|7|places|🏢|A room or building where people work at desks.|My mum works in an office.|văn phòng|
+factory|noun|A2|8|places|🏭|A building where people and machines make things.|They make cars in this factory.|nhà máy|plural=factories
+company|noun|A2|8|places||A business that makes or sells things.|My uncle works for a big company.|công ty|plural=companies
+palace|noun|A2|7|places|🏯|A very big house where a king or queen lives.|The king lives in a palace.|cung điện|
+tower|noun|A2|7|places|🗼|A tall, narrow building.|We climb to the top of the tower.|tòa tháp|
+theatre|noun|A2|8|places|🎭|A building where people watch plays and shows.|We see a play at the theatre.|nhà hát|
+stadium|noun|A2|8|places;sports|🏟️|A big place with seats where people watch sport.|The football stadium is full.|sân vận động|
+university|noun|A2|8|places;school|🎓|A place where people study after school.|My sister goes to university.|trường đại học|plural=universities
+police station|noun|A2|7|places|🚓|The building where police officers work.|We take the lost dog to the police station.|đồn cảnh sát|
+fire station|noun|A2|7|places|🚒|The building where firefighters and fire engines wait.|We visit the fire station.|trạm cứu hỏa|
+car park|noun|A2|7|places|🅿️|A place where people leave their cars.|The car park is full.|bãi đỗ xe|
+journey|noun|A2|8|travel||Travelling from one place to another.|The journey takes two hours.|chuyến đi (hành trình)|plural=journeys
+trip|noun|A2|7|travel|🧳|A short journey for fun or work.|We go on a school trip to the zoo.|chuyến đi|
+passport|noun|A2|8|travel|🛂|A small book you need to travel to other countries.|Don't forget your passport.|hộ chiếu|
+suitcase|noun|A2|7|travel|🧳|A big bag with a handle for carrying clothes when you travel.|My suitcase is very heavy.|va li|
+tourist|noun|A2|8|travel|📸|A person who visits a place on holiday.|Many tourists visit Ha Long Bay.|khách du lịch|
+adventure|noun|A2|7|travel;hobbies|🗺️|An exciting experience.|The pirates go on an adventure.|cuộc phiêu lưu|
+souvenir|noun|A2|8|travel||Something you buy to remember a place.|I buy a souvenir for my friend.|quà lưu niệm|
+flight|noun|A2|8|travel|✈️|A journey in a plane.|Our flight leaves at nine.|chuyến bay|
+timetable|noun|A2|8|school;travel|🗓️|A list of times when things happen.|Look at the bus timetable.|thời khóa biểu (lịch trình)|
+subject|noun|A2|7|school||Something you learn at school, like maths or art.|My favourite subject is science.|môn học|
+history|noun|A2|8|school|🏛️|The study of things that happened in the past.|We learn about kings in history.|lịch sử|
+geography|noun|A2|8|school|🗺️|The study of countries, mountains, rivers and weather.|In geography we learn about rivers.|địa lý|
+exam|noun|A2|8|school|📝|An important test at school.|I study hard for my exam.|kỳ thi|
+dictionary|noun|A2|7|school|📕|A book that tells you what words mean.|Look up the word in the dictionary.|từ điển|plural=dictionaries
+project|noun|A2|8|school||A piece of school work that takes a long time.|Our project is about the ocean.|dự án|
+competition|noun|A2|8|school;sports|🏆|An event where people try to win.|She wins the drawing competition.|cuộc thi|
+prize|noun|A2|7|school;sports|🏆|Something you get when you win.|The first prize is a bike.|giải thưởng|
+rule|noun|A2|7|school||Something that says what you must or must not do.|Don't run in the classroom. That's the rule.|quy tắc (luật lệ)|
+language|noun|A2|7|school|🗣️|The words people use to speak and write.|How many languages can you speak?|ngôn ngữ|
+information|noun|A2|8|school||Facts about something.|The book has lots of information about space.|thông tin|
+idea|noun|A2|7|school|💡|A thought or plan.|I have a good idea!|ý tưởng|
+problem|noun|A2|7|school||Something that is difficult and needs to be fixed.|We have a problem: the bus is late.|vấn đề|
+plan|noun|A2|8|school||Something you decide to do in the future.|What is your plan for the weekend?|kế hoạch|
+reason|noun|A2|8|school||Why something happens.|What is the reason you are late?|lý do|
+example|noun|A2|7|school||Something that shows what others of its kind are like.|A dog is an example of a pet.|ví dụ|
+mistake|noun|A2|7|school||Something that is wrong.|Don't worry, everyone makes mistakes.|lỗi (sai lầm)|
+adult|noun|A2|7|people||A person who is grown up.|Children must cross the road with an adult.|người lớn|
+teenager|noun|A2|8|people||A person between 13 and 19 years old.|My brother is a teenager.|thiếu niên|
+guest|noun|A2|8|people||A person you invite to your home or a party.|We have ten guests at the party.|khách|
+member|noun|A2|8|people||A person who belongs to a group.|I am a member of the football club.|thành viên|
+hero|noun|A2|7|people|🦸|A brave person who does something good.|The firefighter is a hero.|người hùng|plural=heroes
+crowd|noun|A2|8|people|👥|A lot of people together in one place.|A big crowd watches the game.|đám đông|
+audience|noun|A2|8|people||The people who watch a show.|The audience claps at the end.|khán giả|
+champion|noun|A2|8|sports|🏆|The winner of a competition.|She is the swimming champion.|nhà vô địch|
+coach|noun|A2|8|sports||A person who trains a team or player.|Our coach says we played well.|huấn luyện viên|plural=coaches
+player|noun|A2|7|sports||A person who plays a game or sport.|He is a good football player.|cầu thủ (người chơi)|
+joke|noun|A2|7|hobbies|😂|Something funny that you say to make people laugh.|Grandpa tells a funny joke.|truyện cười|
+secret|noun|A2|7|hobbies|🤫|Something that only a few people know.|Can you keep a secret?|bí mật|
+surprise|noun|A2|7|feelings|🎁|Something you did not expect.|The party is a surprise for Mum.|sự bất ngờ|
+luck|noun|A2|8|feelings|🍀|Good things that happen by chance.|Good luck in your exam!|may mắn|
+danger|noun|A2|8|health|⚠️|Something that can hurt you.|The sign says "Danger!"|nguy hiểm|
+festival|noun|A2|7|culture|🎊|A special day or time when people celebrate.|The Mid-Autumn Festival is in September.|lễ hội|
+culture|noun|A2|9|culture||The way of life, art and ideas of a group of people.|Food is an important part of our culture.|văn hóa|
+celebration|noun|A2|8|culture|🎉|A special event for a happy day.|We have a big celebration at Tet.|lễ kỷ niệm (buổi ăn mừng)|
+costume|noun|A2|7|culture|🎭|Special clothes to look like someone or something else.|I wear a tiger costume.|trang phục hóa trang|
+lantern|noun|A2|7|culture|🏮|A light in a box of paper or glass.|Children carry lanterns at the Mid-Autumn Festival.|đèn lồng|
+fireworks|noun|A2|7|culture|🎆|Things that explode in the sky with bright colours.|We watch fireworks at New Year.|pháo hoa|
+concert|noun|A2|8|music|🎵|A show where people play music.|We go to a concert in the park.|buổi hòa nhạc|
+band|noun|A2|8|music|🎸|A group of people who play music together.|My cousin plays in a band.|ban nhạc|
+instrument|noun|A2|8|music|🎻|Something you play to make music, like a piano.|Can you play an instrument?|nhạc cụ|
+film|noun|A2|7|hobbies|🎞️|A story told with moving pictures.|We watch a film on Friday.|bộ phim|
+character|noun|A2|8|hobbies||A person or animal in a story.|My favourite character is the brave mouse.|nhân vật|
+fairy tale|noun|A2|7|hobbies|🧚|An old story with magic, kings and princesses.|Cinderella is a fairy tale.|truyện cổ tích|
+recipe|noun|A2|8|food|📋|Instructions for cooking something.|This is Grandma's recipe for soup.|công thức nấu ăn|
+flour|noun|A2|7|food||White powder from grain, used to make bread and cakes.|Mix the flour with the eggs.|bột mì|
+oil|noun|A2|8|food||A liquid used for cooking.|Fry the eggs in a little oil.|dầu ăn|
+dessert|noun|A2|7|food|🍮|Sweet food you eat at the end of a meal.|We have ice cream for dessert.|món tráng miệng|
+menu|noun|A2|8|food|📋|A list of food in a restaurant.|Can I see the menu, please?|thực đơn|
+furniture|noun|A2|8|home|🛋️|Things like tables, chairs and beds.|We buy new furniture for my room.|đồ nội thất|
+wardrobe|noun|A2|7|home||A tall cupboard where you hang clothes.|My clothes are in the wardrobe.|tủ quần áo|
+washing machine|noun|A2|7|home||A machine that washes clothes.|Put your socks in the washing machine.|máy giặt|
+fan|noun|A2|7|home||A machine that moves air to make you cooler.|Turn on the fan, it's hot.|cái quạt|
+alarm clock|noun|A2|7|home|⏰|A clock that rings to wake you up.|My alarm clock rings at six.|đồng hồ báo thức|
+arrive|verb|A2|7|travel||To get to a place.|We arrive at school at seven.|đến nơi|past=arrived,past participle=arrived
+explore|verb|A2|8|travel||To travel around a place to learn about it.|Let's explore the island!|khám phá|past=explored,past participle=explored
+borrow|verb|A2|7|school||To take something that you will give back later.|Can I borrow your pencil?|mượn|past=borrowed,past participle=borrowed
+lend|verb|A2|8|school||To give something to someone for a short time.|Can you lend me your ruler?|cho mượn|past=lent,past participle=lent
+explain|verb|A2|8|school||To tell someone about something so they understand it.|The teacher explains the game.|giải thích|past=explained,past participle=explained
+decide|verb|A2|8|school||To make a choice after thinking.|We decide to go to the beach.|quyết định|past=decided,past participle=decided
+describe|verb|A2|8|school||To say what someone or something is like.|Describe your best friend.|miêu tả|past=described,past participle=described
+believe|verb|A2|8|feelings||To think that something is true.|I believe you.|tin|past=believed,past participle=believed
+worry|verb|A2|7|feelings|😟|To keep thinking about a problem.|Don't worry, you will be fine.|lo lắng|past=worried,past participle=worried
+agree|verb|A2|8|feelings||To think the same as someone else.|I agree with you.|đồng ý|past=agreed,past participle=agreed
+invite|verb|A2|7|people|💌|To ask someone to come to a party or event.|I invite my friends to my party.|mời|past=invited,past participle=invited
+protect|verb|A2|8|nature||To keep someone or something safe.|We must protect the forests.|bảo vệ|past=protected,past participle=protected
+recycle|verb|A2|8|nature|♻️|To use something again to make something new.|We recycle paper and bottles.|tái chế|past=recycled,past participle=recycled
+create|verb|A2|8|hobbies||To make something new.|Create your own story.|sáng tạo (tạo ra)|past=created,past participle=created
+invent|verb|A2|8|science||To make something for the first time.|Who invented the light bulb?|phát minh|past=invented,past participle=invented
+score|verb|A2|8|sports|⚽|To get a point or goal in a game.|She scores a goal!|ghi bàn (ghi điểm)|past=scored,past participle=scored
+hurt|verb|A2|7|health|🤕|To feel pain, or to cause pain.|My knee hurts.|đau (làm đau)|past=hurt,past participle=hurt
+follow|verb|A2|7|actions||To go after someone or something.|Follow me, please.|đi theo|past=followed,past participle=followed
+become|verb|A2|8|actions||To start to be something.|I want to become a doctor.|trở thành|past=became,past participle=become
+popular|adjective|A2|8|people||Liked by many people.|Football is a popular sport.|được ưa chuộng (phổ biến)|comparative=more popular,superlative=most popular
+important|adjective|A2|8|school||Matters a lot.|Sleep is important for children.|quan trọng|comparative=more important,superlative=most important
+exciting|adjective|A2|7|feelings|🤩|Makes you feel very happy and full of energy.|The roller coaster is exciting.|hào hứng (thú vị)|comparative=more exciting,superlative=most exciting
+lazy|adjective|A2|7|people|🦥|Does not want to work or move.|My cat is very lazy.|lười biếng|comparative=lazier,superlative=laziest
+rude|adjective|A2|8|people||Not polite.|It is rude to shout at people.|thô lỗ (bất lịch sự)|comparative=ruder,superlative=rudest
+honest|adjective|A2|8|people||Always tells the truth.|An honest boy gives back the money.|trung thực|comparative=more honest,superlative=most honest
+healthy|adjective|A2|7|health;food|🥗|Good for your body, or not ill.|Fruit is healthy food.|khỏe mạnh (lành mạnh)|comparative=healthier,superlative=healthiest
+ill|adjective|A2|7|health|🤒|Not well in your body.|I'm ill, so I stay at home.|ốm (bệnh)|
+bitter|adjective|A2|8|food||Has a strong taste that is not sweet.|The medicine is bitter.|đắng|comparative=more bitter,superlative=most bitter
+narrow|adjective|A2|8|places||Not wide.|The street is narrow.|hẹp|comparative=narrower,superlative=narrowest
+noisy|adjective|A2|7|places|📢|Makes a lot of noise.|The classroom is noisy.|ồn ào|comparative=noisier,superlative=noisiest
+modern|adjective|A2|8|places||New and of today.|We live in a modern flat.|hiện đại|comparative=more modern,superlative=most modern
+ancient|adjective|A2|8|places;culture|🏛️|Very, very old.|We visit an ancient temple.|cổ xưa|comparative=more ancient,superlative=most ancient
+strange|adjective|A2|8|things||Not usual, a bit surprising.|I hear a strange noise.|lạ (kỳ lạ)|comparative=stranger,superlative=strangest
+perfect|adjective|A2|8|things|💯|Without any mistakes.|Your picture is perfect!|hoàn hảo|
+easily|adverb|A2|8|school||Without difficulty.|She wins the race easily.|một cách dễ dàng|
+carefully|adverb|A2|8|actions||In a careful way.|Carry the eggs carefully.|cẩn thận|
+quietly|adverb|A2|7|actions||Without much noise.|Close the door quietly.|nhẹ nhàng (khẽ)|
+loudly|adverb|A2|7|actions||With a lot of noise.|The dog barks loudly.|ầm ĩ (to)|
+badly|adverb|A2|8|actions||In a bad way.|I slept badly last night.|tệ|comparative=worse,superlative=worst
+already|adverb|A2|8|time||Before now, or sooner than expected.|I have already finished my homework.|đã ... rồi|
+yet|adverb|A2|8|time||Until now (in questions and "not").|Has the bus come yet?|chưa|
+ago|adverb|A2|8|time||Before now.|I saw him two days ago.|cách đây|
+ever|adverb|A2|8|time||At any time.|Have you ever seen a whale?|từng|
+almost|adverb|A2|8|time||Nearly.|It's almost time for bed.|gần như (suýt)|
+abroad|adverb|A2|8|travel||In or to another country.|My aunt lives abroad.|ở nước ngoài|
+somewhere|adverb|A2|8|places||In or to a place you don't name.|I left my keys somewhere.|ở đâu đó|
+everywhere|adverb|A2|8|places||In all places.|There are toys everywhere!|khắp nơi|
+arrange|verb|A2|8|home||To put things in order.|Arrange the books on the shelf.|sắp xếp|past=arranged,past participle=arranged
+prepare|verb|A2|8|food||To make something ready.|Mum prepares dinner.|chuẩn bị|past=prepared,past participle=prepared
+boil|verb|A2|8|food||To heat water until it bubbles.|Boil the water for the tea.|đun sôi (luộc)|past=boiled,past participle=boiled
+fry|verb|A2|8|food|🍳|To cook in hot oil.|Grandma fries the spring rolls.|chiên (rán)|past=fried,past participle=fried
+order|verb|A2|8|food;shopping||To ask for food in a restaurant or for something to be sent to you.|I order noodles and juice.|gọi món (đặt hàng)|past=ordered,past participle=ordered
+spend|verb|A2|8|shopping||To use money or time.|I spend my pocket money on books.|tiêu (dành)|past=spent,past participle=spent
+cost|verb|A2|8|shopping|💰|To have a price.|How much does this toy cost?|có giá|past=cost,past participle=cost
+earn|verb|A2|9|shopping||To get money for work.|My brother earns money by washing cars.|kiếm (tiền)|past=earned,past participle=earned
+compare|verb|A2|9|school||To look at how things are the same or different.|Compare the two pictures.|so sánh|past=compared,past participle=compared
+complete|verb|A2|8|school||To finish something.|Complete the sentences.|hoàn thành|past=completed,past participle=completed
+improve|verb|A2|8|school|📈|To get better, or make something better.|My English is improving.|cải thiện|past=improved,past participle=improved
+imagine|verb|A2|8|school||To make a picture in your mind.|Imagine you can fly.|tưởng tượng|past=imagined,past participle=imagined
+mean|verb|A2|8|school||To have a meaning.|What does this word mean?|có nghĩa là|past=meant,past participle=meant
+translate|verb|A2|8|school||To change words into another language.|Translate the sentence into Vietnamese.|dịch|past=translated,past participle=translated
+pronounce|verb|A2|9|school||To say a word in the right way.|How do you pronounce this word?|phát âm|past=pronounced,past participle=pronounced
+discover|verb|A2|8|science||To find something for the first time.|Scientists discover a new star.|khám phá (phát hiện)|past=discovered,past participle=discovered
+measure|verb|A2|8|science|📏|To find out how big, long or heavy something is.|Measure the table with a ruler.|đo|past=measured,past participle=measured
+float|verb|A2|7|science||To stay on top of water.|The leaf floats on the water.|nổi|past=floated,past participle=floated
+melt|verb|A2|7|science||To turn from solid to liquid when warm.|The ice cream melts in the sun.|tan chảy|past=melted,past participle=melted
+freeze|verb|A2|8|science|🧊|To turn into ice because it is very cold.|Water freezes at zero degrees.|đóng băng|past=froze,past participle=frozen
+blow|verb|A2|7|weather|🌬️|When the wind moves the air.|The wind blows the leaves.|thổi|past=blew,past participle=blown
+hunt|verb|A2|8|animals||When an animal chases and catches other animals to eat.|Owls hunt at night.|săn mồi|past=hunted,past participle=hunted
+bite|verb|A2|7|animals||To cut with your teeth.|Does your dog bite?|cắn|past=bit,past participle=bitten
+chase|verb|A2|7|animals||To run after someone or something to catch them.|The dog chases the cat.|đuổi theo|past=chased,past participle=chased
+escape|verb|A2|8|animals||To get away from a place.|The parrot escapes from its cage.|trốn thoát|past=escaped,past participle=escaped
+rescue|verb|A2|8|people||To save someone from danger.|The firefighters rescue the cat.|giải cứu|past=rescued,past participle=rescued
+belong|verb|A2|9|things||To be someone's, or to be part of a group.|This bag belongs to me.|thuộc về|past=belonged,past participle=belonged
+own|verb|A2|9|things||To have something that is yours.|They own a small shop.|sở hữu|past=owned,past participle=owned
+lock|verb|A2|7|home|🔒|To close something with a key.|Lock the door when you go out.|khóa|past=locked,past participle=locked
+switch on|verb|A2|7|home;technology|💡|To make a machine or light start working.|Switch on the light, please.|bật|past=switched on,past participle=switched on
+switch off|verb|A2|7|home;technology||To make a machine or light stop working.|Switch off the TV.|tắt|past=switched off,past participle=switched off
+download|verb|A2|8|technology||To copy something from the internet to your phone or computer.|Download the new game.|tải xuống|past=downloaded,past participle=downloaded
+print|verb|A2|8|technology|🖨️|To put words or pictures on paper with a machine.|Print your homework.|in|past=printed,past participle=printed
+record|verb|A2|8|technology|🎙️|To keep sounds or pictures so you can see or hear them later.|Let's record a song.|ghi âm (ghi hình)|past=recorded,past participle=recorded
+type|verb|A2|8|technology|⌨️|To write with a keyboard.|I type a message to my friend.|đánh máy|past=typed,past participle=typed
+cheer|verb|A2|7|sports|📣|To shout to show you like something or to help a team.|We cheer for our team.|cổ vũ|past=cheered,past participle=cheered
+celebrate|verb|A2|8|culture|🎉|To do something fun because of a special day.|We celebrate Tet with our family.|ăn mừng (kỷ niệm)|past=celebrated,past participle=celebrated
+decorate|verb|A2|8|culture|🎄|To make something look pretty for a special day.|We decorate the house with flowers.|trang trí|past=decorated,past participle=decorated
+wrap|verb|A2|7|culture|🎁|To put paper around a present.|Wrap the present for Mum.|gói|past=wrapped,past participle=wrapped
+perform|verb|A2|9|music||To sing, dance or act for people.|Our class performs a song.|biểu diễn|past=performed,past participle=performed
+pretend|verb|A2|8|hobbies||To act like something is true when it is not.|Let's pretend we are pirates.|giả vờ|past=pretended,past participle=pretended
+apologise|verb|A2|8|people||To say sorry.|He apologises for being late.|xin lỗi|past=apologised,past participle=apologised
+thank|verb|A2|7|people|🙏|To say thank you.|Thank your grandma for the present.|cảm ơn|past=thanked,past participle=thanked
+promise|verb|A2|8|people|🤞|To say that you will really do something.|I promise to help you.|hứa|past=promised,past participle=promised
+argue|verb|A2|8|people||To talk angrily with someone who thinks differently.|My brothers argue about the TV.|cãi nhau|past=argued,past participle=argued
+allow|verb|A2|9|people||To let someone do something.|We are not allowed to run in the corridor.|cho phép|past=allowed,past participle=allowed
+offer|verb|A2|8|people||To ask if someone would like something.|She offers me a sweet.|mời (đề nghị)|past=offered,past participle=offered
+suggest|verb|A2|9|people||To give an idea for someone to think about.|I suggest we go to the zoo.|gợi ý|past=suggested,past participle=suggested
+advice|noun|A2|9|people||Words that help you decide what to do.|My teacher gives me good advice.|lời khuyên|
+drawer|noun|A2|8|home||A box in a table or cupboard that slides in and out.|My socks are in the drawer.|ngăn kéo|
+fence|noun|A2|8|home||A wall made of wood or wire around a garden or field.|The dog jumps over the fence.|hàng rào|
+neighbourhood|noun|A2|8|places;home||The area around where you live.|There is a park in my neighbourhood.|khu phố|
+capital|noun|A2|8|places||The most important city in a country.|Ha Noi is the capital of Viet Nam.|thủ đô|
+statue|noun|A2|8|places;culture|🗽|A model of a person or animal made of stone or metal.|There is a big statue in the park.|bức tượng|
+pharmacy|noun|A2|8|places;health|💊|A shop where you buy medicine.|Dad buys medicine at the pharmacy.|hiệu thuốc (nhà thuốc)|plural=pharmacies
+bookshop|noun|A2|7|places;shopping|📚|A shop that sells books.|I buy a comic at the bookshop.|hiệu sách|
+customer|noun|A2|8|shopping||A person who buys things in a shop.|The shop has many customers.|khách hàng|
+price|noun|A2|7|shopping|🏷️|How much money something costs.|What is the price of this hat?|giá cả|
+receipt|noun|A2|9|shopping|🧾|A piece of paper that shows what you paid.|Keep the receipt.|hóa đơn|
+size|noun|A2|7|shopping;clothes||How big or small something is.|What size are your shoes?|kích cỡ|
+glove|noun|A2|7|clothes|🧤|A thing you wear on your hand to keep it warm.|Put on your gloves, it's cold.|găng tay|
+jewellery|noun|A2|9|clothes|💍|Rings, necklaces and other things you wear to look pretty.|Mum keeps her jewellery in a box.|trang sức|
+wallet|noun|A2|8|shopping;things|👛|A small flat case for money and cards.|Dad puts the money in his wallet.|cái ví|
+luggage|noun|A2|9|travel|🧳|The bags you take on a journey.|Our luggage is in the car.|hành lý|
+camp|noun|A2|8|travel;hobbies|🏕️|A place where people stay in tents.|We go to summer camp.|trại (cắm trại)|
+guide|noun|A2|8|travel||A person who shows tourists around.|The guide tells us about the castle.|hướng dẫn viên|
+direction|noun|A2|8|travel|🧭|The way something goes or faces.|Which direction is the station?|hướng|
+jellyfish|noun|A2|7|animals||A soft sea animal you can see through.|Don't touch the jellyfish!|con sứa|plural=jellyfish
+bat|noun|A2|7|animals|🦇|A small animal that flies at night.|Bats sleep in the day.|con dơi|
+feather|noun|A2|7|animals||One of the soft things that cover a bird.|I find a blue feather.|lông vũ|
+fur|noun|A2|7|animals||The soft hair on an animal.|The cat has soft fur.|bộ lông|
+experiment|noun|A2|8|science|🧪|A test to find out something.|We do an experiment with water.|thí nghiệm|
+energy|noun|A2|8|science|⚡|The power that makes things move or work.|The sun gives us energy.|năng lượng|plural=energies
+electricity|noun|A2|8|science|🔌|Power that makes lights and machines work.|The TV uses electricity.|điện|
+magnet|noun|A2|7|science|🧲|A piece of metal that pulls other metal to it.|The magnet picks up the pins.|nam châm|
+metal|noun|A2|8|science|🔩|A hard material like iron or gold.|The spoon is made of metal.|kim loại|
+cotton|noun|A2|8|clothes||A soft material from a plant, used to make clothes.|My T-shirt is made of cotton.|vải bông (cotton)|
+diamond|noun|A2|8|things|💎|A very hard, clear, expensive stone.|The ring has a diamond.|kim cương|
+treasure|noun|A2|7|hobbies|💰|Gold and jewels that are hidden.|The pirates find the treasure.|kho báu|
+pirate|noun|A2|7|hobbies||A person who sails ships and steals from other ships in stories.|The pirate has a parrot.|cướp biển|
+ghost|noun|A2|7|hobbies|👻|A spooky white shape in stories that says "boo".|Do you believe in ghosts?|con ma|
+wizard|noun|A2|7|hobbies|🧙|A man with magic powers in stories.|The wizard has a long beard.|phù thủy|
+giant|noun|A2|7|hobbies||A very big, tall person in stories.|The giant lives in a castle in the clouds.|người khổng lồ|
+cards|noun|A2|7|hobbies|🃏|A game you play with small pieces of card with pictures and numbers.|Let's play cards.|chơi bài|
+painting|noun|A2|8|hobbies|🖼️|A picture made with paint.|There is a painting on the wall.|bức tranh|
+gym|noun|A2|8|sports||A room or building where people do exercise.|We play basketball in the gym.|phòng tập thể dục|
+match|noun|A2|8|sports|🏟️|A game between two teams or players.|We watch the football match.|trận đấu|plural=matches
+medal|noun|A2|7|sports|🏅|A round metal prize for winning.|She wins a gold medal.|huy chương|
+helmet|noun|A2|7|sports|⛑️|A hard hat that keeps your head safe.|Wear a helmet on your bike.|mũ bảo hiểm|
+journalist|noun|A2|9|jobs||A person who writes news for newspapers, TV or websites.|The journalist asks questions.|nhà báo|
+engineer|noun|A2|8|jobs||A person who designs machines, roads or bridges.|My mum is an engineer.|kỹ sư|
+musician|noun|A2|8|jobs;music||A person who plays music.|The musician plays the violin.|nhạc sĩ|
+receptionist|noun|A2|9|jobs||A person at the front desk of a hotel or office.|The receptionist gives us the key.|lễ tân|
+manager|noun|A2|9|jobs||A person who is in charge of a shop or office.|The manager is very busy.|quản lý|
