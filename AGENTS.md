@@ -1,6 +1,6 @@
 # voca-swiper — agent harness
 
-Kids English vocabulary app (Flutter · Dart · Riverpod · Drift/SQLite · go_router). Android + iOS, phones and tablets, offline-first. Current target: Phase 1 MVP from `docs/SPEC.md`.
+Kids English vocabulary app (Flutter · Dart · Riverpod · Drift/SQLite · go_router). Android + iOS, phones and tablets, offline-first. Current target: Phase 1 MVP from `docs/SPEC.md` is built; the owner's real-use trial (feat-009) is running. Phase 2 is planned in `feature_list.json` (feat-012..020) — start a Phase 2 feature only when the owner says so.
 
 ## Startup Workflow
 
@@ -16,7 +16,7 @@ Before writing code:
 ## Working Rules
 
 - **One feature at a time**: work only on the `in-progress` feature in `feature_list.json`; respect `dependencies`
-- **Stay in scope**: Phase 1 only. Games, placement test, speaking, AI and cloud sync are later phases — note ideas in `progress.md` instead
+- **Stay in scope**: the owner picks the phase. Until they start Phase 2, only Phase 1 fixes and feat-011. Games, speaking, AI and cloud sync are Phase 3–4 — note ideas in `progress.md` instead
 - **Domain is pure Dart and test-first**: `lib/core/` imports nothing from Flutter, `lib/data/` or `lib/features/`; write the test before the code
 - **Feature-first layout**: `lib/features/<feature>/` holds UI + Riverpod providers; repositories live in `lib/data/`
 - **Word content is shared and read-only**; all progress is per profile (`WordProgress` = profile × word)

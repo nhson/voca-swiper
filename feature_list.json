@@ -1,5 +1,5 @@
 {
-  "$comment": "Source of truth for feature state. Mirrors Phase 1 (MVP) in docs/SPEC.md. Status: not-started | in-progress | blocked | done. Only one feature in-progress at a time. 'done' requires evidence (command + result).",
+  "$comment": "Source of truth for feature state. feat-001..010 = Phase 1 (MVP) in docs/SPEC.md; feat-011 = Phase 1 follow-up; feat-012..020 = Phase 2 (planned 2026-11-05, start only when the owner says so; trial feedback from feat-009 may reorder). Status: not-started | in-progress | blocked | done. Only one feature in-progress at a time. 'done' requires evidence (command + result).",
   "features": [
     {
       "id": "feat-001",
@@ -68,7 +68,7 @@
         "feat-006"
       ],
       "status": "done",
-      "evidence": "2026-11-05: ./init.sh green — analyze no issues, 126/126 tests. test/core/reminders/reminder_planner_test.dart (11): off, nothing due, one per day for a week, waits until words are due, time passed → tomorrow, school hours move to school end on weekdays only, quiet hours skip (overnight + same-day windows), several children in one message. test/features/reminders_flow_test.dart (5): parent turns on → permission asked, 18:00 default, scheduled with kid wording; nothing due → nothing scheduled; off → cancelled; permission denied → parent told; finishing a session re-plans (reviewed words stop the nudge). Device: flutter drive integration_test/reminder_on_device_test.dart on iPhone 18 Pro and iPad Pro 13 simulators — nothing due → 0 pending; due → 7 pending, waited for the first: iOS delivered 'Bi, 1 word is waiting to say hi!' (getActiveNotifications) and pending dropped to 6. Android: flutter build apk --debug OK (desugaring + receivers); not run on a device (emulator unhealthy)."
+      "evidence": "2026-11-05: ./init.sh green — analyze no issues, 126/126 tests. test/core/reminders/reminder_planner_test.dart (11): off, nothing due, one per day for a week, waits until words are due, time passed → tomorrow, school hours move to school end on weekdays only, quiet hours skip (overnight + same-day windows), several children in one message. test/features/reminders_flow_test.dart (5): parent turns on → permission asked, 18:00 default, scheduled with kid wording; nothing due → nothing scheduled; off → cancelled; permission denied → parent told; finishing a session re-plans (reviewed words stop the nudge). Device: flutter drive integration_test/reminder_on_device_test.dart on iPhone 18 Pro and iPad Pro 13 simulators — nothing due → 0 pending; due → 7 pending, waited for the first: iOS delivered 'Bi, 1 word is waiting to say hi!' (getActiveNotifications) and pending dropped to 6. Android: same test on emulator Medium_Phone_API_37.0 (Android 17) after a cold boot, POST_NOTIFICATIONS granted via adb — passed, reminder delivered 80s after the planned time (inexact alarm, expected)."
     },
     {
       "id": "feat-008",
@@ -78,7 +78,7 @@
         "feat-006"
       ],
       "status": "done",
-      "evidence": "2026-11-05: ./init.sh green — analyze no issues, 136/136 tests. test/core/progress/progress_stats_test.dart (5): empty profile, counts by state (new excluded), accuracy weighted by answers, minutes per local day for 7 days, short sessions ≥ 1 min. test/features/progress_flow_test.dart (5): numbers on screen match seeded WordProgress (2 mastered/1 review/3 learning) and SessionLogs (9 of 12 right → 75%, 5 + 3 min) from child home and from the parent area; other profiles don't leak; new child shows zeros; numbers update after a session; tablet layout. Device: integration_test/session_on_device_test.dart opens My words after a real session on iPhone 18 Pro and iPad Pro 13 simulators (5 learning, 80%, 1 min) — passed, screenshots checked."
+      "evidence": "2026-11-05: ./init.sh green — analyze no issues, 136/136 tests. test/core/progress/progress_stats_test.dart (5): empty profile, counts by state (new excluded), accuracy weighted by answers, minutes per local day for 7 days, short sessions ≥ 1 min. test/features/progress_flow_test.dart (5): numbers on screen match seeded WordProgress (2 mastered/1 review/3 learning) and SessionLogs (9 of 12 right → 75%, 5 + 3 min) from child home and from the parent area; other profiles don't leak; new child shows zeros; numbers update after a session; tablet layout. Device: integration_test/session_on_device_test.dart opens My words after a real session on iPhone 18 Pro and iPad Pro 13 simulators (5 learning, 80%, 1 min) — passed, screenshots checked. 2026-11-05 Android emulator (Android 17): same test passed (01:31) after fixing an audioplayers frame loop (positionUpdater = null in lib/ui/sfx.dart), phone screenshots checked."
     },
     {
       "id": "feat-010",
@@ -98,6 +98,117 @@
         "feat-007",
         "feat-008",
         "feat-010"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-011",
+      "name": "Session budget for review backlogs",
+      "description": "DECISION PENDING (owner). Reviews are uncapped today: a simulation with the real scheduler shows sessions grow to ~40 cards by week 3 of daily use, ~50 on Mondays after weekends off, ~100 after a 10-day break and ~200 after a 3-week holiday. The profile's 'minutes per day' setting is stored but not enforced. Proposed: a per-session card budget from the profile's daily minutes; most-overdue reviews first, the rest wait for tomorrow; no new words on a catch-up day. Done when: no session exceeds the budget; the backlog drains over the following days in a simulation test; new words pause while behind.",
+      "dependencies": [
+        "feat-006"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-012",
+      "name": "P2: Active-recall quiz round",
+      "description": "After the swipe cards, a short quiz over today's words (docs/SPEC.md — Session flow step 4): pick the picture (4+), choose the meaning from four options, letter-tile spelling (7+). A wrong quiz answer overrides a 'knew it' swipe (resolveAnswer, AnswerQuality.quizWrong). Kid-styled, sounds and stars like the swipe cards. Done when: widget tests show the quiz round, the override rescheduling a word, and the summary counting quiz results; checked on phone and tablet.",
+      "dependencies": [
+        "feat-006"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-013",
+      "name": "P2: Retention tracking",
+      "description": "Log every quiz answer (new QuizLog table + migration) and compute 'remembered after 2 weeks': quiz accuracy on words first learned 14+ days earlier, per profile. Feeds the parent dashboard and the Phase 2 gate. Done when: unit tests on the metric; numbers match seeded logs in a widget test.",
+      "dependencies": [
+        "feat-012"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-014",
+      "name": "P2: Content — A1 top-up, A2–B1 words, grammar forms",
+      "description": "Grow the bank via content_pipeline: top up Pre-A1/A1 toward the ~1,000 words the Phase 1 SPEC targets (392 today), add A2–B1 words (word, definition, example, forms, themes, Vietnamese drafts; pictures optional at these levels), syllables with stress where cheap. Translation fades by level (already the default per level). Done when: pipeline tests pass, bank version bumps and imports on upgrade without touching progress, A2/B1 cards render on phone and tablet.",
+      "dependencies": [
+        "feat-004"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-015",
+      "name": "P2: Placement test + favourite themes",
+      "description": "Onboarding for a new profile (docs/SPEC.md — Onboarding): 20–30 words sampled across levels from the age default, know / don't know with a picture check every few words to catch guessing; start level where ~70%+ are known; the child picks favourite themes, which are preferred for new words; first mini-session of 5 easy words. Parent can skip or override. Done when: unit tests on level choice and anti-guessing; widget test of the whole flow; checked on phone and tablet.",
+      "dependencies": [
+        "feat-012",
+        "feat-014"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-016",
+      "name": "P2: Automatic level progression",
+      "description": "Move up a level when 80% of the current level's words are mastered (parent can override or lock); mix a few next-level preview words into daily batches; if accuracy stays under 50% for a week, suggest stepping back to the parent. Done when: unit tests for the rules; widget test shows the level-up celebration and the parent suggestion.",
+      "dependencies": [
+        "feat-013",
+        "feat-014"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-017",
+      "name": "P2: Parent dashboard",
+      "description": "Per profile in the parent area: struggling words (most misses), weekly trend (words learned and minutes for the last 4–8 weeks), minutes vs the daily goal, 'remembered after 2 weeks' %, current level with override. Done when: numbers match seeded data in widget tests; checked on phone and tablet.",
+      "dependencies": [
+        "feat-008",
+        "feat-013"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-018",
+      "name": "P2: Custom word lists",
+      "description": "Parents add words from homework or books: matched to the bank when present; otherwise the parent types a short definition and translation and picks an emoji; audio comes from device TTS. Custom words are introduced first as new words. Done when: repository + widget tests for add/match/edit/delete; custom words appear in the next session; per-profile.",
+      "dependencies": [
+        "feat-006"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-019",
+      "name": "P2: Weekly recap",
+      "description": "A 'This week' card on the child home (words learned, minutes, a word of the week) plus an optional weekly notification; includes 1–2 mastered words to recall so they don't fade (SPEC — Knowledge reminders). Done when: unit tests for the recap content; widget test; notification planned once a week within quiet/school rules.",
+      "dependencies": [
+        "feat-007",
+        "feat-008"
+      ],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-020",
+      "name": "Phase 2 gate — retention check",
+      "description": "Quiz accuracy shows words are retained after 2 weeks (docs/SPEC.md — Phase 2 gate), read from the feat-013 metric during real use. Human gate: only the owner can mark this done.",
+      "dependencies": [
+        "feat-012",
+        "feat-013",
+        "feat-014",
+        "feat-015",
+        "feat-016",
+        "feat-017",
+        "feat-018",
+        "feat-019"
       ],
       "status": "not-started",
       "evidence": ""

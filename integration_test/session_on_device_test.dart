@@ -1,8 +1,11 @@
 // On-device run of a daily session (feat-006 manual check), on a phone and a
 // tablet: `flutter drive --driver test_driver/integration_test.dart
 // --target integration_test/session_on_device_test.dart -d <device>`.
+import 'dart:io';
+
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -56,9 +59,35 @@ void main() {
       ),
     );
     await t.pumpAndSettle();
+    // Android renders to a texture; it must be switched to an image surface
+    // once before screenshots.
+    if (Platform.isAndroid) {
+      await binding.convertFlutterSurfaceToImage();
+      await t.pumpAndSettle();
+    }
+
+    // pumpAndSettle with a short limit that reports who keeps asking for
+    // frames instead of hanging for 10 minutes.
+    Future<void> settle() async {
+      try {
+        await t.pumpAndSettle(
+          const Duration(milliseconds: 100),
+          EnginePhase.sendSemanticsUpdate,
+          const Duration(seconds: 20),
+        );
+      } on FlutterError {
+        debugPrint(
+          'SETTLE-TIMEOUT transient=${t.binding.transientCallbackCount}',
+        );
+        debugPrintScheduleFrameStacks = true;
+        await t.pump(const Duration(milliseconds: 100));
+        debugPrintScheduleFrameStacks = false;
+        rethrow;
+      }
+    }
 
     Future<void> shot(String name) async {
-      await t.pumpAndSettle();
+      await settle();
       // Let the last animated frame reach the screen before capturing.
       await Future<void>.delayed(const Duration(milliseconds: 500));
       await t.pump();
@@ -67,12 +96,12 @@ void main() {
 
     await shot('0-picker');
     await t.tap(find.byKey(Key('profile-$kid')));
-    await t.pumpAndSettle();
+    await settle();
     expect(find.text('5 words are waiting to say hi!'), findsOneWidget);
     await shot('1-kid-home');
 
     await t.tap(find.byKey(const Key('start-session')));
-    await t.pumpAndSettle();
+    await settle();
     expect(find.text('cat'), findsOneWidget);
     await shot('2-card-front');
 
@@ -89,16 +118,16 @@ void main() {
     await shot('4-dragging-right');
     await g.moveBy(const Offset(200, 0));
     await g.up();
-    await t.pumpAndSettle(); // cat: knew
+    await settle(); // cat: knew
 
     await t.drag(find.byKey(const Key('flash-card')), const Offset(-500, 0));
-    await t.pumpAndSettle(); // dog: didn't know
+    await settle(); // dog: didn't know
     await t.drag(find.byKey(const Key('flash-card')), const Offset(0, -600));
-    await t.pumpAndSettle(); // bird: almost
+    await settle(); // bird: almost
     await t.tap(find.byKey(const Key('answer-knew'))); // fish
-    await t.pumpAndSettle();
+    await settle();
     await t.tap(find.byKey(const Key('answer-knew'))); // horse
-    await t.pumpAndSettle();
+    await settle();
     expect(find.text('One more try! 💪'), findsOneWidget);
     await shot('5-retry');
     await t.tap(find.byKey(const Key('answer-knew'))); // dog retry
@@ -107,7 +136,7 @@ void main() {
       await t.pump(const Duration(milliseconds: 100));
     }
     await binding.takeScreenshot('$tag-6-summary');
-    await t.pumpAndSettle();
+    await settle();
     expect(find.text('Amazing!'), findsOneWidget); // 4/5 → 3 stars
 
     final p = await ProgressRepository(db).schedules(kid);
@@ -128,17 +157,17 @@ void main() {
       reason: 'all five words are in Learning after their first answer',
     );
     await t.tap(find.byTooltip('Back'));
-    await t.pumpAndSettle();
+    await settle();
 
     // The 7+ "adventure" look.
     await t.tap(find.byTooltip('Back'));
-    await t.pumpAndSettle();
+    await settle();
     await t.tap(find.byKey(Key('profile-$older')));
     await shot('8-older-home');
     await t.tap(find.byKey(const Key('start-session')));
     await shot('9-older-card');
     await t.tap(find.byKey(const Key('quit-session')));
-    await t.pumpAndSettle();
+    await settle();
     // Unmount first: closing Drift under live queries hangs.
     await t.pumpWidget(const SizedBox());
     await db.close();

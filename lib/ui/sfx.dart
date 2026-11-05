@@ -44,6 +44,10 @@ class AudioSfx implements Sfx {
       );
     }
     final p = _players[sound] ??= AudioPlayer()
+      // No position stream: by default it asks for a frame on every frame
+      // while "playing", and Android's low-latency mode never reports the
+      // end, so the app would redraw forever (battery drain).
+      ..positionUpdater = null
       ..setPlayerMode(PlayerMode.lowLatency)
       ..setReleaseMode(ReleaseMode.stop);
     await p.stop();

@@ -4,7 +4,10 @@
 //   flutter drive --driver test_driver/integration_test.dart \
 //     --target integration_test/reminder_on_device_test.dart -d <device>
 // iOS simulators can't pre-grant notification permission, so the test asks
-// for *provisional* permission, which iOS grants without a dialog.
+// for *provisional* permission, which iOS grants without a dialog. On
+// Android, grant POST_NOTIFICATIONS with adb while the test waits.
+import 'dart:io';
+
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -57,12 +60,27 @@ void main() {
         .resolvePlatformSpecificImplementation<
           IOSFlutterLocalNotificationsPlugin
         >();
-    final granted = await ios?.requestPermissions(
-      alert: true,
-      sound: true,
-      provisional: true,
-    );
-    expect(granted, isTrue);
+    final android = plugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
+    if (ios != null) {
+      final granted = await ios.requestPermissions(
+        alert: true,
+        sound: true,
+        provisional: true,
+      );
+      expect(granted, isTrue);
+    } else {
+      // Android: POST_NOTIFICATIONS is granted from outside with
+      // `adb shell pm grant <app> android.permission.POST_NOTIFICATIONS`.
+      var enabled = false;
+      for (var i = 0; i < 60 && !enabled; i++) {
+        enabled = await android!.areNotificationsEnabled() ?? false;
+        if (!enabled) await Future<void>.delayed(const Duration(seconds: 2));
+      }
+      expect(enabled, isTrue, reason: 'grant POST_NOTIFICATIONS via adb');
+    }
 
     final container = ProviderContainer(
       overrides: [
@@ -120,6 +138,12 @@ void main() {
       ),
     );
     await t.pumpAndSettle();
+    // Android renders to a texture; it must be switched to an image surface
+    // once before screenshots.
+    if (Platform.isAndroid) {
+      await binding.convertFlutterSurfaceToImage();
+      await t.pumpAndSettle();
+    }
     await t.tap(find.byKey(const Key('open-parent')));
     await t.pumpAndSettle();
     await t.enterText(find.byKey(const Key('pin-field')), '1234');
@@ -135,13 +159,21 @@ void main() {
     await binding.takeScreenshot('$tag-r2-reminders');
     expect(find.byKey(const Key('next-reminder')), findsOneWidget);
 
-    // 3. Wait for the first one to fire, then ask iOS what it delivered.
+    // 3. Wait for the first one to fire, then ask the OS what it delivered.
+    // Android alarms are inexact (no exact-alarm permission), so keep
+    // checking for a while after the planned time.
     final wait =
         plan.first.at.difference(DateTime.now()) + const Duration(seconds: 20);
     debugPrint('waiting ${wait.inSeconds}s for the reminder to fire');
     await Future<void>.delayed(wait);
+    var delivered = await plugin.getActiveNotifications();
+    for (var i = 0; i < 60 && delivered.isEmpty; i++) {
+      await Future<void>.delayed(const Duration(seconds: 10));
+      delivered = await plugin.getActiveNotifications();
+    }
+    final late = DateTime.now().difference(plan.first.at);
+    debugPrint('delivered ${late.inSeconds}s after the planned time');
     await t.pump();
-    final delivered = await plugin.getActiveNotifications();
     expect(
       delivered.map((n) => n.body),
       contains('Bi, 1 word is waiting to say hi!'),
@@ -153,5 +185,5 @@ void main() {
     await t.pumpWidget(const SizedBox());
     container.dispose();
     await db.close();
-  }, timeout: const Timeout(Duration(minutes: 6)));
+  }, timeout: const Timeout(Duration(minutes: 16)));
 }

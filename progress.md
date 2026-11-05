@@ -32,18 +32,20 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ### What's Next
 
 1. Owner runs feat-009: the child uses the app 5 days a week for 2 weeks without being pushed (install on a real phone/tablet; turn on the daily reminder). Only the owner can mark it done.
-2. Before/while trialling: native-speaker review of the Vietnamese drafts; check reminders on a real Android device.
+2. Before/while trialling: native-speaker review of the Vietnamese drafts (owner, alongside the trial).
+3. Owner decides the review-backlog budget (feat-011).
+4. Phase 2 planned (feat-012..020, 2026-11-05); suggested order: 012 quiz → 013 retention → 014 content → 015 placement → 016 level progression → 017 dashboard → 018 custom lists → 019 weekly recap → 020 gate. Trial feedback may reorder.
 
 ## Blockers / Risks
 
-- [ ] Repo is public at https://github.com/nhson/voca-swiper — confirm word-list licensing before wider sharing.
+- [x] Repo is public at https://github.com/nhson/voca-swiper; owner confirmed word-list licensing 2026-11-05.
 
 - [ ] Vietnamese translations in `content_pipeline/source/words.psv` are drafts — owner/native speaker review needed.
-- [ ] Review backlog: reviews are uncapped, so a child back after a long break could face a very long session. Revisit with a review cap once real usage data exists.
+- [ ] Review backlog (feat-011, decision pending): simulation with the real scheduler (5 new/day, 80% knew) — daily use grows to ~40 cards/session by week 3; 5 days/week gives Monday spikes of ~50; a 10-day break → ~100 cards; a 3-week holiday → ~200. `dailyMinutes` is stored but not enforced.
 - [ ] System Java is 1.8; sdkmanager needs `JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"` (Flutter/Gradle already use Android Studio's JDK).
-- [ ] Daily reminder not yet seen firing on a real Android device (APK builds; emulator unhealthy).
-- [ ] Android emulator `Medium_Phone_API_37.0` hangs on a systemui "Updating..." screen after reinstalls and adb stops responding; feat-006 device check was done on iOS simulators instead. A cold boot / wipe of the AVD may be needed.
-- [ ] Word-list licensing (Cambridge YLE, Oxford 3000) unconfirmed — fine for family use, check before store release.
+- [x] Daily reminder seen firing on the Android emulator (2026-11-05, 80s late — inexact alarm). Still worth a glance on a real phone during the trial.
+- [x] Android emulator `Medium_Phone_API_37.0` hung on a systemui "Updating..." screen; fixed 2026-11-05 by killing it and cold-booting with `-wipe-data -no-snapshot`.
+- [x] Word-list licensing: owner confirmed on 2026-11-05 (words are written in-house from topic areas; no list copied).
 
 ## Decisions Made
 
@@ -93,6 +95,15 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-05 — Phase 2 plan, emulator fixed
+
+- Owner confirmed word-list licensing; will run the feat-009 trial and the Vietnamese review in parallel.
+- Simulated review load with the real SM-2 + session builder: backlog grows quickly (see Risks) → feat-011 proposed, owner to decide.
+- Phase 2 planned as feat-012..020 in `feature_list.json`; noted that the bank has 392 of the ~1,000 Pre-A1/A1 words the SPEC targets (top-up folded into feat-014).
+- Android emulator recovered with a wiped cold boot; reminder device test made Android-aware (adb-granted permission, inexact alarm wait).
+- Android device runs: reminder delivered (80s after the planned time); full session test passed with screenshots.
+- Bug found on Android and fixed: audioplayers' position updater asked for a new frame on every frame after a sound effect (low-latency mode never reports the end), so the app redrew forever — a battery drain on every platform. Fixed with `positionUpdater = null` in `lib/ui/sfx.dart`. `./init.sh` green, 136/136.
 
 ### 2026-11-05 — feat-008 Progress screen
 
