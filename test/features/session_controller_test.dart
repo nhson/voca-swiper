@@ -149,4 +149,44 @@ void main() {
     final p = await ProgressRepository(db).schedules(kid);
     expect(p['cat']!.intervalDays, 8); // 3 × 2.5
   });
+
+  test('a review pile is capped by the minutes per day (feat-011)', () async {
+    final seeded = await seededDb([
+      for (var i = 0; i < 40; i++)
+        w('w${i.toString().padLeft(2, '0')}', rank: i + 1),
+    ]);
+    await db.close();
+    db = seeded;
+    kid = await createKid(db, dailyMinutes: 5); // 12 cards
+    final progress = ProgressRepository(db);
+    for (var i = 0; i < 30; i++) {
+      await progress.save(
+        kid,
+        'w${i.toString().padLeft(2, '0')}',
+        WordSchedule.initial().copyWith(
+          state: WordState.review,
+          intervalDays: 3,
+          repetitions: 2,
+          nextReviewAt: testNow.subtract(Duration(days: i + 1)),
+          lastAnsweredAt: testNow.subtract(Duration(days: i + 4)),
+        ),
+        now: testNow,
+      );
+    }
+
+    final c = controller();
+    await c.start();
+    final q = c.session!.queue;
+    expect(q, hasLength(12));
+    expect(q.where((x) => x.isNew), isEmpty, reason: 'catch-up day');
+    expect(q.first.wordId, 'w29', reason: 'most overdue first');
+
+    final preview = await SessionLoader(
+      words: WordRepository(db),
+      progress: progress,
+      profiles: ProfileRepository(db),
+      clock: () => now,
+    ).preview(kid);
+    expect((preview.reviews, preview.newWords), (12, 0));
+  });
 }

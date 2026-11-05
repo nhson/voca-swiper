@@ -71,6 +71,12 @@ void main() {
     await t.tap(find.byKey(Key('parent-profile-$a')));
     await t.pumpAndSettle();
     await t.enterText(find.byKey(const Key('name-field')), 'Bo');
+    // feat-011: the parent sees what the minutes mean for a session.
+    await scrollForm(t, find.byKey(const Key('minutes-hint')));
+    expect(
+      t.widget<Text>(find.byKey(const Key('minutes-hint'))).data,
+      contains('up to 25 cards'),
+    );
     await scrollForm(t, find.byKey(const Key('swipe-direction')));
     await t.tap(find.byKey(const Key('swipe-direction')));
     await t.pumpAndSettle();

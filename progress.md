@@ -33,7 +33,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 
 1. Owner runs feat-009: the child uses the app 5 days a week for 2 weeks without being pushed (install on a real phone/tablet; turn on the daily reminder). Only the owner can mark it done.
 2. Before/while trialling: native-speaker review of the Vietnamese drafts (owner, alongside the trial).
-3. Owner decides the review-backlog budget (feat-011).
+3. Trial note: at 10 min/day the cap slows new words to ~3/day after week 3 (reviews take the room). If the child wants more new words, raise "Minutes per day" to 15.
 4. Phase 2 planned (feat-012..020, 2026-11-05); suggested order: 012 quiz → 013 retention → 014 content → 015 placement → 016 level progression → 017 dashboard → 018 custom lists → 019 weekly recap → 020 gate. Trial feedback may reorder.
 
 ## Blockers / Risks
@@ -41,7 +41,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] Repo is public at https://github.com/nhson/voca-swiper; owner confirmed word-list licensing 2026-11-05.
 
 - [ ] Vietnamese translations in `content_pipeline/source/words.psv` are drafts — owner/native speaker review needed.
-- [ ] Review backlog (feat-011, decision pending): simulation with the real scheduler (5 new/day, 80% knew) — daily use grows to ~40 cards/session by week 3; 5 days/week gives Monday spikes of ~50; a 10-day break → ~100 cards; a 3-week holiday → ~200. `dailyMinutes` is stored but not enforced.
+- [x] Review backlog — fixed by feat-011 (session budget, 2026-11-05). Original finding: simulation with the real scheduler (5 new/day, 80% knew) — daily use grows to ~40 cards/session by week 3; 5 days/week gives Monday spikes of ~50; a 10-day break → ~100 cards; a 3-week holiday → ~200. `dailyMinutes` is stored but not enforced.
 - [ ] System Java is 1.8; sdkmanager needs `JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"` (Flutter/Gradle already use Android Studio's JDK).
 - [x] Daily reminder seen firing on the Android emulator (2026-11-05, 80s late — inexact alarm). Still worth a glance on a real phone during the trial.
 - [x] Android emulator `Medium_Phone_API_37.0` hung on a systemui "Updating..." screen; fixed 2026-11-05 by killing it and cold-booting with `-wipe-data -no-snapshot`.
@@ -95,6 +95,12 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-05 — feat-011 Session budget
+
+- Owner chose option A. Each session is capped by the profile's minutes per day (10 min ≈ 25 cards); the most overdue reviews go first, the rest wait; new words only fill the room left, so they pause on catch-up days.
+- Simulated 8 weeks of daily use at 10 min: never over 25 cards, 171 new words (vs 280 uncapped, at ~60-card sessions). After a 3-week break: 7 review-only days, then new words resume.
+- Parent form explains it under "Minutes per day". `./init.sh` green, 148/148. Device check on iPhone + iPad simulators.
 
 ### 2026-11-05 — Phase 2 plan, emulator fixed
 

@@ -96,6 +96,7 @@ Future<int> createKid(
   CefrLevel level = CefrLevel.preA1,
   bool swipeKnownRight = true,
   TranslationMode translationMode = TranslationMode.always,
+  int dailyMinutes = 10,
 }) => ProfileRepository(db).create(
   ProfileDraft(
     name: name,
@@ -104,6 +105,7 @@ Future<int> createKid(
     level: level,
     swipeKnownRight: swipeKnownRight,
     translationMode: translationMode,
+    dailyMinutes: dailyMinutes,
   ),
   now: testNow,
 );

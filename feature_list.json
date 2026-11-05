@@ -105,12 +105,12 @@
     {
       "id": "feat-011",
       "name": "Session budget for review backlogs",
-      "description": "DECISION PENDING (owner). Reviews are uncapped today: a simulation with the real scheduler shows sessions grow to ~40 cards by week 3 of daily use, ~50 on Mondays after weekends off, ~100 after a 10-day break and ~200 after a 3-week holiday. The profile's 'minutes per day' setting is stored but not enforced. Proposed: a per-session card budget from the profile's daily minutes; most-overdue reviews first, the rest wait for tomorrow; no new words on a catch-up day. Done when: no session exceeds the budget; the backlog drains over the following days in a simulation test; new words pause while behind.",
+      "description": "Owner chose option A on 2026-11-05. Reviews are uncapped today: a simulation with the real scheduler shows sessions grow to ~40 cards by week 3 of daily use, ~50 on Mondays after weekends off, ~100 after a 10-day break and ~200 after a 3-week holiday. The profile's 'minutes per day' setting is stored but not enforced. Proposed: a per-session card budget from the profile's daily minutes; most-overdue reviews first, the rest wait for tomorrow; no new words on a catch-up day. Done when: no session exceeds the budget; the backlog drains over the following days in a simulation test; new words pause while behind.",
       "dependencies": [
         "feat-006"
       ],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-05: ./init.sh green — format 0 changed, analyze no issues, 148/148 tests. test/core/session/session_budget_test.dart (12): cards for minutes (5→12, 10→25, 15→37, 30→75, floor 5); reviews capped most-overdue first; new words pause when reviews fill the session; new words fill only the room left; light day gets full new words; no budget = old behaviour; retries are extra practice. Simulation with the real SM-2 scheduler (80% knew, 10 min = 25 cards): 8 weeks daily — max 25 cards/session, 171 new words learned (uncapped would be 280 new but sessions of ~60 cards); school-week (5/7 days) — max 25; after a 3-week break — 25-card sessions, 7 review-only days, then new words resume. test/features/session_controller_test.dart: 30 due reviews + 5-minute profile → 12 cards, oldest first, no new words; child-home preview shows 12 reviews / 0 new. test/features/profiles_flow_test.dart: parent form shows 'up to 25 cards'. Device: integration_test/profile_form_on_device_test.dart passed on iPhone 18 Pro and iPad Pro 13 simulators; screenshots checked."
     },
     {
       "id": "feat-012",

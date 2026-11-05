@@ -71,6 +71,7 @@ class SessionLoader {
       newWordIds: candidates,
       dailyNewWords: profile.dailyNewWords,
       newIntroducedToday: introduced,
+      maxCards: SessionBuilder.cardsForMinutes(profile.dailyMinutes),
       now: now,
     );
     return (profile: profile, session: session, schedules: schedules);

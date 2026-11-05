@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/providers.dart';
 import '../../core/levels.dart';
+import '../../core/session/session_builder.dart';
 import '../../data/db/app_database.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../profiles/profile_providers.dart';
@@ -241,6 +242,15 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
             label: '$_dailyMinutes',
             onChanged: (v) => setState(() => _dailyMinutes = v.round()),
           ),
+          Text(
+            'Each session shows up to '
+            '${SessionBuilder.cardsForMinutes(_dailyMinutes)} cards. When '
+            'more reviews are waiting, the oldest go first and new words '
+            'pause until the child catches up.',
+            key: const Key('minutes-hint'),
+            style: text.bodySmall,
+          ),
+          const SizedBox(height: 8),
           Text('Vietnamese translation', style: text.titleSmall),
           const SizedBox(height: 8),
           SegmentedButton<TranslationMode>(
