@@ -96,6 +96,10 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 
 ## Log
 
+### 2026-11-05 — APK on Google Drive
+
+- `tool/upload_apk.sh` uploads the release APK to the owner's Drive (folder "voca-swiper", file `voca-swiper.apk`); re-running replaces the content so the link stays the same. Needs a one-time `gcloud auth login --enable-gdrive-access`. Uploaded build with feat-012; checksum matches.
+
 ### 2026-11-05 — feat-012 Quiz round (Phase 2 started)
 
 - Owner started Phase 2. After the swipe cards, a quiz of up to 5 questions on words swiped knew/almost: ages 4–6 hear-and-pick-the-picture; 7+ rotate picture / meaning / letter-tile spelling. A wrong quiz answer reschedules the word as a miss; summary shows the quiz score.
