@@ -66,4 +66,4 @@ integration_test/   on-device checks (phone and tablet)
 docs/               SPEC.md (product and technical spec), adr/ (architecture decisions)
 ```
 
-This project is built with an AI coding agent. Its working files are [`AGENTS.md`](AGENTS.md) (the rules), `feature_list.json` (the feature tracker), `progress.md` (the session log) and `init.sh` (the check that runs before every change).
+This project is built with an AI coding agent. Its rules are in [`AGENTS.md`](AGENTS.md), and `init.sh` is the check that runs before every change. The agent's feature tracker and session log are kept locally in `harness/` and are not part of the repository.
