@@ -16,6 +16,7 @@ part 'app_database.g.dart';
     WordProgress,
     SessionLogs,
     QuizLogs,
+    CustomWords,
     AppMeta,
   ],
 )
@@ -24,9 +25,9 @@ class AppDatabase extends _$AppDatabase {
 
   /// 1: Phase 1. 2: QuizLogs (feat-013). 3: profile interests and
   /// onboardedAt (feat-015). 4: levelLocked, levelChangedAt,
-  /// stepBackDismissedAt (feat-016).
+  /// stepBackDismissedAt (feat-016). 5: CustomWords (feat-018).
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -43,6 +44,7 @@ class AppDatabase extends _$AppDatabase {
         await m.addColumn(profiles, profiles.levelChangedAt);
         await m.addColumn(profiles, profiles.stepBackDismissedAt);
       }
+      if (from < 5) await m.createTable(customWords);
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');

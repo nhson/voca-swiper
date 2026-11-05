@@ -181,6 +181,26 @@ class QuizLogs extends Table {
   DateTimeColumn get answeredAt => dateTime()();
 }
 
+/// Words a parent added for one child (feat-018). A word found in the bank
+/// keeps [wordId]; otherwise this row holds the content and the word's id is
+/// `custom:<id>`.
+@DataClassName('CustomWordRow')
+class CustomWords extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get profileId =>
+      integer().references(Profiles, #id, onDelete: KeyAction.cascade)();
+
+  /// Bank word id when matched; null for the parent's own word.
+  TextColumn get wordId => text().nullable()();
+
+  /// The word as matched (normalized: lower case, single spaces).
+  TextColumn get word => text()();
+  TextColumn get definition => text().withDefault(const Constant(''))();
+  TextColumn get translation => text().nullable()();
+  TextColumn get emoji => text().nullable()();
+  DateTimeColumn get addedAt => dateTime()();
+}
+
 /// Key–value app metadata (e.g. imported word-bank version).
 @DataClassName('AppMetaRow')
 class AppMeta extends Table {

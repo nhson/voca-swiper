@@ -12,6 +12,7 @@ import '../../core/srs/sm2_scheduler.dart';
 import '../../core/srs/word_schedule.dart';
 import '../../core/srs/word_state.dart';
 import '../../data/db/app_database.dart';
+import '../../data/repositories/custom_word_repository.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../../data/repositories/progress_repository.dart';
 import '../../data/repositories/word_repository.dart';
@@ -88,9 +89,19 @@ class SessionLoader {
     return (profile: profile, session: session, schedules: schedules);
   }
 
-  /// New-word candidates: the profile's level (favourites first), with a
-  /// next-level preview word in every 5th slot (feat-016).
-  Future<List<String>> _newWords(ProfileRow profile, int count) async {
+  /// New-word candidates: the parent's custom words first (feat-018), then
+  /// the profile's level (favourites first) with a next-level preview word
+  /// in every 5th slot (feat-016).
+  Future<List<String>> _newWords(ProfileRow profile, int total) async {
+    final custom = (await CustomWordRepository(
+      words.db,
+    ).unseenIds(profile.id)).take(total).toList();
+    final count = total - custom.length;
+    if (count <= 0) return custom;
+    return [...custom, ...await _levelWords(profile, count)];
+  }
+
+  Future<List<String>> _levelWords(ProfileRow profile, int count) async {
     final current = await words.newWordCandidates(
       profileId: profile.id,
       levelIndex: CefrLevel.fromCode(profile.currentLevel).index,

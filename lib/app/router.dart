@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 
 import '../features/parent/change_pin_screen.dart';
+import '../features/parent/custom_words_screen.dart';
 import '../features/parent/dashboard_screen.dart';
 import '../features/parent/parent_screen.dart';
 import '../features/parent/profile_form_screen.dart';
@@ -50,6 +51,23 @@ GoRouter buildRouter() => GoRouter(
       path: '/parent/profiles/:id/dashboard',
       builder: (_, s) =>
           DashboardScreen(profileId: int.parse(s.pathParameters['id']!)),
+    ),
+    GoRoute(
+      path: '/parent/profiles/:id/words',
+      builder: (_, s) =>
+          CustomWordsScreen(profileId: int.parse(s.pathParameters['id']!)),
+    ),
+    GoRoute(
+      path: '/parent/profiles/:id/words/new',
+      builder: (_, s) =>
+          CustomWordFormScreen(profileId: int.parse(s.pathParameters['id']!)),
+    ),
+    GoRoute(
+      path: '/parent/profiles/:id/words/:cid',
+      builder: (_, s) => CustomWordFormScreen(
+        profileId: int.parse(s.pathParameters['id']!),
+        customId: int.parse(s.pathParameters['cid']!),
+      ),
     ),
     GoRoute(path: '/parent/pin', builder: (_, _) => const ChangePinScreen()),
     GoRoute(

@@ -399,6 +399,16 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
             ),
             const SizedBox(height: 8),
             _PlacementTile(profile: existing),
+            ListTile(
+              key: const Key('open-custom-words'),
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.playlist_add),
+              title: const Text('Word list'),
+              subtitle: const Text('Add words from homework or books.'),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () =>
+                  context.push('/parent/profiles/${existing.id}/words'),
+            ),
           ],
           const SizedBox(height: 16),
           FilledButton(

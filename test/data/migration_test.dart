@@ -108,6 +108,36 @@ void main() {
     expect(p.currentLevel, 'A1');
     expect(levelSince(p).toUtc(), created);
   });
+
+  test('v4 → v5: custom words table added, profiles kept', () async {
+    final dir = await Directory.systemTemp.createTemp('voca-mig');
+    addTearDown(() => dir.delete(recursive: true));
+    final file = File('${dir.path}/app.sqlite');
+    final created = DateTime.utc(2026, 11, 1, 9);
+
+    var db = AppDatabase(NativeDatabase(file));
+    final kid = await ProfileRepository(db).create(
+      const ProfileDraft(name: 'Bi', avatar: '🐯', age: 6, level: CefrLevel.a1),
+      now: created,
+    );
+    await _dropCustomWords(db);
+    await db.customStatement('PRAGMA user_version = 4');
+    await db.close();
+
+    db = AppDatabase(NativeDatabase(file));
+    addTearDown(db.close);
+    expect((await ProfileRepository(db).get(kid))!.name, 'Bi');
+    await db
+        .into(db.customWords)
+        .insert(
+          CustomWordsCompanion.insert(
+            profileId: kid,
+            word: 'dinosaur',
+            addedAt: created,
+          ),
+        );
+    expect(await db.select(db.customWords).get(), hasLength(1));
+  });
 }
 
 /// Makes the profiles table look like schema 1–2 (before feat-015).
@@ -117,8 +147,13 @@ Future<void> _dropPlacementColumns(AppDatabase db) async {
   await db.customStatement('ALTER TABLE profiles DROP COLUMN onboarded_at');
 }
 
+/// Makes the database look like schema 4 (before feat-018).
+Future<void> _dropCustomWords(AppDatabase db) =>
+    db.customStatement('DROP TABLE custom_words');
+
 /// Makes the profiles table look like schema 3 (before feat-016).
 Future<void> _dropLevelColumns(AppDatabase db) async {
+  await _dropCustomWords(db);
   await db.customStatement('ALTER TABLE profiles DROP COLUMN level_locked');
   await db.customStatement('ALTER TABLE profiles DROP COLUMN level_changed_at');
   await db.customStatement(

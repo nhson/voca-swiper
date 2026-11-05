@@ -182,8 +182,8 @@
       "dependencies": [
         "feat-006"
       ],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-05: ./init.sh green — format 0 changed, analyze no issues, 302/302 tests. test/core/custom_words_test.dart: custom ids, normalising, validation. test/data/custom_word_repository_test.dart (9): match ignoring case/spaces; add bank word (bank id + content); add own word (custom id, card built from parent's content); duplicates refused (own and bank); per child; edit; unseen ids in order added, seen drop out; delete own word removes progress, bank word keeps it; deleting the child deletes the list. test/data/migration_test.dart: v4 → v5. test/features/custom_words_flow_test.dart (5): parent adds 'Dinosaur' with meaning/Vietnamese/🦖 → list shows it → Bi's next session starts with it (spoken first, 🦖 on card); other child unaffected; 'Ice Cream' matched to the bank, no meaning fields, saved as bank word; edit translation then remove with confirm; empty/non-letter/duplicate errors. Device: flutter drive integration_test/custom_words_on_device_test.dart (real bank) passed on iPhone 18 Pro and iPad Pro 13 simulators — bank word 'rainbow' then own word 'triceratops' first in the session, card back shows the parent's meaning, 'my word' tag and Vietnamese; screenshots build/screenshots/{phone,tablet}-f18-*.png checked."
     },
     {
       "id": "feat-019",
@@ -193,7 +193,7 @@
         "feat-007",
         "feat-008"
       ],
-      "status": "not-started",
+      "status": "in-progress",
       "evidence": ""
     },
     {

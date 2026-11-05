@@ -4170,6 +4170,517 @@ class QuizLogsCompanion extends UpdateCompanion<QuizLogRow> {
   }
 }
 
+class $CustomWordsTable extends CustomWords
+    with TableInfo<$CustomWordsTable, CustomWordRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $CustomWordsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _profileIdMeta = const VerificationMeta(
+    'profileId',
+  );
+  @override
+  late final GeneratedColumn<int> profileId = GeneratedColumn<int>(
+    'profile_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES profiles (id) ON DELETE CASCADE',
+    ),
+  );
+  static const VerificationMeta _wordIdMeta = const VerificationMeta('wordId');
+  @override
+  late final GeneratedColumn<String> wordId = GeneratedColumn<String>(
+    'word_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _wordMeta = const VerificationMeta('word');
+  @override
+  late final GeneratedColumn<String> word = GeneratedColumn<String>(
+    'word',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _definitionMeta = const VerificationMeta(
+    'definition',
+  );
+  @override
+  late final GeneratedColumn<String> definition = GeneratedColumn<String>(
+    'definition',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _translationMeta = const VerificationMeta(
+    'translation',
+  );
+  @override
+  late final GeneratedColumn<String> translation = GeneratedColumn<String>(
+    'translation',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _emojiMeta = const VerificationMeta('emoji');
+  @override
+  late final GeneratedColumn<String> emoji = GeneratedColumn<String>(
+    'emoji',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _addedAtMeta = const VerificationMeta(
+    'addedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> addedAt = GeneratedColumn<DateTime>(
+    'added_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    profileId,
+    wordId,
+    word,
+    definition,
+    translation,
+    emoji,
+    addedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'custom_words';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<CustomWordRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('profile_id')) {
+      context.handle(
+        _profileIdMeta,
+        profileId.isAcceptableOrUnknown(data['profile_id']!, _profileIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_profileIdMeta);
+    }
+    if (data.containsKey('word_id')) {
+      context.handle(
+        _wordIdMeta,
+        wordId.isAcceptableOrUnknown(data['word_id']!, _wordIdMeta),
+      );
+    }
+    if (data.containsKey('word')) {
+      context.handle(
+        _wordMeta,
+        word.isAcceptableOrUnknown(data['word']!, _wordMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_wordMeta);
+    }
+    if (data.containsKey('definition')) {
+      context.handle(
+        _definitionMeta,
+        definition.isAcceptableOrUnknown(data['definition']!, _definitionMeta),
+      );
+    }
+    if (data.containsKey('translation')) {
+      context.handle(
+        _translationMeta,
+        translation.isAcceptableOrUnknown(
+          data['translation']!,
+          _translationMeta,
+        ),
+      );
+    }
+    if (data.containsKey('emoji')) {
+      context.handle(
+        _emojiMeta,
+        emoji.isAcceptableOrUnknown(data['emoji']!, _emojiMeta),
+      );
+    }
+    if (data.containsKey('added_at')) {
+      context.handle(
+        _addedAtMeta,
+        addedAt.isAcceptableOrUnknown(data['added_at']!, _addedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_addedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  CustomWordRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return CustomWordRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      profileId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}profile_id'],
+      )!,
+      wordId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}word_id'],
+      ),
+      word: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}word'],
+      )!,
+      definition: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}definition'],
+      )!,
+      translation: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}translation'],
+      ),
+      emoji: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}emoji'],
+      ),
+      addedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}added_at'],
+      )!,
+    );
+  }
+
+  @override
+  $CustomWordsTable createAlias(String alias) {
+    return $CustomWordsTable(attachedDatabase, alias);
+  }
+}
+
+class CustomWordRow extends DataClass implements Insertable<CustomWordRow> {
+  final int id;
+  final int profileId;
+
+  /// Bank word id when matched; null for the parent's own word.
+  final String? wordId;
+
+  /// The word as matched (normalized: lower case, single spaces).
+  final String word;
+  final String definition;
+  final String? translation;
+  final String? emoji;
+  final DateTime addedAt;
+  const CustomWordRow({
+    required this.id,
+    required this.profileId,
+    this.wordId,
+    required this.word,
+    required this.definition,
+    this.translation,
+    this.emoji,
+    required this.addedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['profile_id'] = Variable<int>(profileId);
+    if (!nullToAbsent || wordId != null) {
+      map['word_id'] = Variable<String>(wordId);
+    }
+    map['word'] = Variable<String>(word);
+    map['definition'] = Variable<String>(definition);
+    if (!nullToAbsent || translation != null) {
+      map['translation'] = Variable<String>(translation);
+    }
+    if (!nullToAbsent || emoji != null) {
+      map['emoji'] = Variable<String>(emoji);
+    }
+    map['added_at'] = Variable<DateTime>(addedAt);
+    return map;
+  }
+
+  CustomWordsCompanion toCompanion(bool nullToAbsent) {
+    return CustomWordsCompanion(
+      id: Value(id),
+      profileId: Value(profileId),
+      wordId: wordId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(wordId),
+      word: Value(word),
+      definition: Value(definition),
+      translation: translation == null && nullToAbsent
+          ? const Value.absent()
+          : Value(translation),
+      emoji: emoji == null && nullToAbsent
+          ? const Value.absent()
+          : Value(emoji),
+      addedAt: Value(addedAt),
+    );
+  }
+
+  factory CustomWordRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return CustomWordRow(
+      id: serializer.fromJson<int>(json['id']),
+      profileId: serializer.fromJson<int>(json['profileId']),
+      wordId: serializer.fromJson<String?>(json['wordId']),
+      word: serializer.fromJson<String>(json['word']),
+      definition: serializer.fromJson<String>(json['definition']),
+      translation: serializer.fromJson<String?>(json['translation']),
+      emoji: serializer.fromJson<String?>(json['emoji']),
+      addedAt: serializer.fromJson<DateTime>(json['addedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'profileId': serializer.toJson<int>(profileId),
+      'wordId': serializer.toJson<String?>(wordId),
+      'word': serializer.toJson<String>(word),
+      'definition': serializer.toJson<String>(definition),
+      'translation': serializer.toJson<String?>(translation),
+      'emoji': serializer.toJson<String?>(emoji),
+      'addedAt': serializer.toJson<DateTime>(addedAt),
+    };
+  }
+
+  CustomWordRow copyWith({
+    int? id,
+    int? profileId,
+    Value<String?> wordId = const Value.absent(),
+    String? word,
+    String? definition,
+    Value<String?> translation = const Value.absent(),
+    Value<String?> emoji = const Value.absent(),
+    DateTime? addedAt,
+  }) => CustomWordRow(
+    id: id ?? this.id,
+    profileId: profileId ?? this.profileId,
+    wordId: wordId.present ? wordId.value : this.wordId,
+    word: word ?? this.word,
+    definition: definition ?? this.definition,
+    translation: translation.present ? translation.value : this.translation,
+    emoji: emoji.present ? emoji.value : this.emoji,
+    addedAt: addedAt ?? this.addedAt,
+  );
+  CustomWordRow copyWithCompanion(CustomWordsCompanion data) {
+    return CustomWordRow(
+      id: data.id.present ? data.id.value : this.id,
+      profileId: data.profileId.present ? data.profileId.value : this.profileId,
+      wordId: data.wordId.present ? data.wordId.value : this.wordId,
+      word: data.word.present ? data.word.value : this.word,
+      definition: data.definition.present
+          ? data.definition.value
+          : this.definition,
+      translation: data.translation.present
+          ? data.translation.value
+          : this.translation,
+      emoji: data.emoji.present ? data.emoji.value : this.emoji,
+      addedAt: data.addedAt.present ? data.addedAt.value : this.addedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CustomWordRow(')
+          ..write('id: $id, ')
+          ..write('profileId: $profileId, ')
+          ..write('wordId: $wordId, ')
+          ..write('word: $word, ')
+          ..write('definition: $definition, ')
+          ..write('translation: $translation, ')
+          ..write('emoji: $emoji, ')
+          ..write('addedAt: $addedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    profileId,
+    wordId,
+    word,
+    definition,
+    translation,
+    emoji,
+    addedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CustomWordRow &&
+          other.id == this.id &&
+          other.profileId == this.profileId &&
+          other.wordId == this.wordId &&
+          other.word == this.word &&
+          other.definition == this.definition &&
+          other.translation == this.translation &&
+          other.emoji == this.emoji &&
+          other.addedAt == this.addedAt);
+}
+
+class CustomWordsCompanion extends UpdateCompanion<CustomWordRow> {
+  final Value<int> id;
+  final Value<int> profileId;
+  final Value<String?> wordId;
+  final Value<String> word;
+  final Value<String> definition;
+  final Value<String?> translation;
+  final Value<String?> emoji;
+  final Value<DateTime> addedAt;
+  const CustomWordsCompanion({
+    this.id = const Value.absent(),
+    this.profileId = const Value.absent(),
+    this.wordId = const Value.absent(),
+    this.word = const Value.absent(),
+    this.definition = const Value.absent(),
+    this.translation = const Value.absent(),
+    this.emoji = const Value.absent(),
+    this.addedAt = const Value.absent(),
+  });
+  CustomWordsCompanion.insert({
+    this.id = const Value.absent(),
+    required int profileId,
+    this.wordId = const Value.absent(),
+    required String word,
+    this.definition = const Value.absent(),
+    this.translation = const Value.absent(),
+    this.emoji = const Value.absent(),
+    required DateTime addedAt,
+  }) : profileId = Value(profileId),
+       word = Value(word),
+       addedAt = Value(addedAt);
+  static Insertable<CustomWordRow> custom({
+    Expression<int>? id,
+    Expression<int>? profileId,
+    Expression<String>? wordId,
+    Expression<String>? word,
+    Expression<String>? definition,
+    Expression<String>? translation,
+    Expression<String>? emoji,
+    Expression<DateTime>? addedAt,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (profileId != null) 'profile_id': profileId,
+      if (wordId != null) 'word_id': wordId,
+      if (word != null) 'word': word,
+      if (definition != null) 'definition': definition,
+      if (translation != null) 'translation': translation,
+      if (emoji != null) 'emoji': emoji,
+      if (addedAt != null) 'added_at': addedAt,
+    });
+  }
+
+  CustomWordsCompanion copyWith({
+    Value<int>? id,
+    Value<int>? profileId,
+    Value<String?>? wordId,
+    Value<String>? word,
+    Value<String>? definition,
+    Value<String?>? translation,
+    Value<String?>? emoji,
+    Value<DateTime>? addedAt,
+  }) {
+    return CustomWordsCompanion(
+      id: id ?? this.id,
+      profileId: profileId ?? this.profileId,
+      wordId: wordId ?? this.wordId,
+      word: word ?? this.word,
+      definition: definition ?? this.definition,
+      translation: translation ?? this.translation,
+      emoji: emoji ?? this.emoji,
+      addedAt: addedAt ?? this.addedAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (profileId.present) {
+      map['profile_id'] = Variable<int>(profileId.value);
+    }
+    if (wordId.present) {
+      map['word_id'] = Variable<String>(wordId.value);
+    }
+    if (word.present) {
+      map['word'] = Variable<String>(word.value);
+    }
+    if (definition.present) {
+      map['definition'] = Variable<String>(definition.value);
+    }
+    if (translation.present) {
+      map['translation'] = Variable<String>(translation.value);
+    }
+    if (emoji.present) {
+      map['emoji'] = Variable<String>(emoji.value);
+    }
+    if (addedAt.present) {
+      map['added_at'] = Variable<DateTime>(addedAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CustomWordsCompanion(')
+          ..write('id: $id, ')
+          ..write('profileId: $profileId, ')
+          ..write('wordId: $wordId, ')
+          ..write('word: $word, ')
+          ..write('definition: $definition, ')
+          ..write('translation: $translation, ')
+          ..write('emoji: $emoji, ')
+          ..write('addedAt: $addedAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $AppMetaTable extends AppMeta with TableInfo<$AppMetaTable, AppMetaRow> {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -4387,6 +4898,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $WordProgressTable wordProgress = $WordProgressTable(this);
   late final $SessionLogsTable sessionLogs = $SessionLogsTable(this);
   late final $QuizLogsTable quizLogs = $QuizLogsTable(this);
+  late final $CustomWordsTable customWords = $CustomWordsTable(this);
   late final $AppMetaTable appMeta = $AppMetaTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
@@ -4400,6 +4912,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     wordProgress,
     sessionLogs,
     quizLogs,
+    customWords,
     appMeta,
   ];
   @override
@@ -4424,6 +4937,13 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('quiz_logs', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'profiles',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('custom_words', kind: UpdateKind.delete)],
     ),
   ]);
 }
@@ -5569,6 +6089,24 @@ final class $$ProfilesTableReferences
       manager.$state.copyWith(prefetchedData: cache),
     );
   }
+
+  static MultiTypedResultKey<$CustomWordsTable, List<CustomWordRow>>
+  _customWordsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.customWords,
+    aliasName: 'profiles__id__custom_words__profile_id',
+  );
+
+  $$CustomWordsTableProcessedTableManager get customWordsRefs {
+    final manager = $$CustomWordsTableTableManager(
+      $_db,
+      $_db.customWords,
+    ).filter((f) => f.profileId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_customWordsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $$ProfilesTableFilterComposer
@@ -5728,6 +6266,31 @@ class $$ProfilesTableFilterComposer
           }) => $$QuizLogsTableFilterComposer(
             $db: $db,
             $table: $db.quizLogs,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> customWordsRefs(
+    Expression<bool> Function($$CustomWordsTableFilterComposer f) f,
+  ) {
+    final $$CustomWordsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.customWords,
+      getReferencedColumn: (t) => t.profileId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CustomWordsTableFilterComposer(
+            $db: $db,
+            $table: $db.customWords,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -5980,6 +6543,31 @@ class $$ProfilesTableAnnotationComposer
     );
     return f(composer);
   }
+
+  Expression<T> customWordsRefs<T extends Object>(
+    Expression<T> Function($$CustomWordsTableAnnotationComposer a) f,
+  ) {
+    final $$CustomWordsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.customWords,
+      getReferencedColumn: (t) => t.profileId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CustomWordsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.customWords,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
 }
 
 class $$ProfilesTableTableManager
@@ -5999,6 +6587,7 @@ class $$ProfilesTableTableManager
             bool wordProgressRefs,
             bool sessionLogsRefs,
             bool quizLogsRefs,
+            bool customWordsRefs,
           })
         > {
   $$ProfilesTableTableManager(_$AppDatabase db, $ProfilesTable table)
@@ -6097,6 +6686,7 @@ class $$ProfilesTableTableManager
                 wordProgressRefs = false,
                 sessionLogsRefs = false,
                 quizLogsRefs = false,
+                customWordsRefs = false,
               }) {
                 return PrefetchHooks(
                   db: db,
@@ -6104,6 +6694,7 @@ class $$ProfilesTableTableManager
                     if (wordProgressRefs) db.wordProgress,
                     if (sessionLogsRefs) db.sessionLogs,
                     if (quizLogsRefs) db.quizLogs,
+                    if (customWordsRefs) db.customWords,
                   ],
                   addJoins: null,
                   getPrefetchedDataCallback: (items) async {
@@ -6168,6 +6759,26 @@ class $$ProfilesTableTableManager
                           referencedColumn: 'profile_id',
                           typedResults: items,
                         ),
+                      if (customWordsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          ProfileRow,
+                          $ProfilesTable,
+                          CustomWordRow,
+                          $CustomWordsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProfilesTableReferences
+                              ._customWordsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProfilesTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).customWordsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'profile_id',
+                          typedResults: items,
+                        ),
                     ];
                   },
                 );
@@ -6192,6 +6803,7 @@ typedef $$ProfilesTableProcessedTableManager =
         bool wordProgressRefs,
         bool sessionLogsRefs,
         bool quizLogsRefs,
+        bool customWordsRefs,
       })
     >;
 typedef $$WordProgressTableCreateCompanionBuilder =
@@ -7327,6 +7939,378 @@ typedef $$QuizLogsTableProcessedTableManager =
       QuizLogRow,
       PrefetchHooks Function({bool profileId})
     >;
+typedef $$CustomWordsTableCreateCompanionBuilder =
+    CustomWordsCompanion Function({
+      Value<int> id,
+      required int profileId,
+      Value<String?> wordId,
+      required String word,
+      Value<String> definition,
+      Value<String?> translation,
+      Value<String?> emoji,
+      required DateTime addedAt,
+    });
+typedef $$CustomWordsTableUpdateCompanionBuilder =
+    CustomWordsCompanion Function({
+      Value<int> id,
+      Value<int> profileId,
+      Value<String?> wordId,
+      Value<String> word,
+      Value<String> definition,
+      Value<String?> translation,
+      Value<String?> emoji,
+      Value<DateTime> addedAt,
+    });
+
+final class $$CustomWordsTableReferences
+    extends BaseReferences<_$AppDatabase, $CustomWordsTable, CustomWordRow> {
+  $$CustomWordsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $ProfilesTable _profileIdTable(_$AppDatabase db) =>
+      db.profiles.createAlias('custom_words__profile_id__profiles__id');
+
+  $$ProfilesTableProcessedTableManager get profileId {
+    final $_column = $_itemColumn<int>('profile_id')!;
+
+    final manager = $$ProfilesTableTableManager(
+      $_db,
+      $_db.profiles,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_profileIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$CustomWordsTableFilterComposer
+    extends Composer<_$AppDatabase, $CustomWordsTable> {
+  $$CustomWordsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get wordId => $composableBuilder(
+    column: $table.wordId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get word => $composableBuilder(
+    column: $table.word,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get definition => $composableBuilder(
+    column: $table.definition,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get translation => $composableBuilder(
+    column: $table.translation,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get emoji => $composableBuilder(
+    column: $table.emoji,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get addedAt => $composableBuilder(
+    column: $table.addedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProfilesTableFilterComposer get profileId {
+    final $$ProfilesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.profileId,
+      referencedTable: $db.profiles,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProfilesTableFilterComposer(
+            $db: $db,
+            $table: $db.profiles,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$CustomWordsTableOrderingComposer
+    extends Composer<_$AppDatabase, $CustomWordsTable> {
+  $$CustomWordsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get wordId => $composableBuilder(
+    column: $table.wordId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get word => $composableBuilder(
+    column: $table.word,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get definition => $composableBuilder(
+    column: $table.definition,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get translation => $composableBuilder(
+    column: $table.translation,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get emoji => $composableBuilder(
+    column: $table.emoji,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get addedAt => $composableBuilder(
+    column: $table.addedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProfilesTableOrderingComposer get profileId {
+    final $$ProfilesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.profileId,
+      referencedTable: $db.profiles,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProfilesTableOrderingComposer(
+            $db: $db,
+            $table: $db.profiles,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$CustomWordsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $CustomWordsTable> {
+  $$CustomWordsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get wordId =>
+      $composableBuilder(column: $table.wordId, builder: (column) => column);
+
+  GeneratedColumn<String> get word =>
+      $composableBuilder(column: $table.word, builder: (column) => column);
+
+  GeneratedColumn<String> get definition => $composableBuilder(
+    column: $table.definition,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get translation => $composableBuilder(
+    column: $table.translation,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get emoji =>
+      $composableBuilder(column: $table.emoji, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get addedAt =>
+      $composableBuilder(column: $table.addedAt, builder: (column) => column);
+
+  $$ProfilesTableAnnotationComposer get profileId {
+    final $$ProfilesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.profileId,
+      referencedTable: $db.profiles,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProfilesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.profiles,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$CustomWordsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $CustomWordsTable,
+          CustomWordRow,
+          $$CustomWordsTableFilterComposer,
+          $$CustomWordsTableOrderingComposer,
+          $$CustomWordsTableAnnotationComposer,
+          $$CustomWordsTableCreateCompanionBuilder,
+          $$CustomWordsTableUpdateCompanionBuilder,
+          (CustomWordRow, $$CustomWordsTableReferences),
+          CustomWordRow,
+          PrefetchHooks Function({bool profileId})
+        > {
+  $$CustomWordsTableTableManager(_$AppDatabase db, $CustomWordsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$CustomWordsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$CustomWordsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$CustomWordsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<int> profileId = const Value.absent(),
+                Value<String?> wordId = const Value.absent(),
+                Value<String> word = const Value.absent(),
+                Value<String> definition = const Value.absent(),
+                Value<String?> translation = const Value.absent(),
+                Value<String?> emoji = const Value.absent(),
+                Value<DateTime> addedAt = const Value.absent(),
+              }) => CustomWordsCompanion(
+                id: id,
+                profileId: profileId,
+                wordId: wordId,
+                word: word,
+                definition: definition,
+                translation: translation,
+                emoji: emoji,
+                addedAt: addedAt,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required int profileId,
+                Value<String?> wordId = const Value.absent(),
+                required String word,
+                Value<String> definition = const Value.absent(),
+                Value<String?> translation = const Value.absent(),
+                Value<String?> emoji = const Value.absent(),
+                required DateTime addedAt,
+              }) => CustomWordsCompanion.insert(
+                id: id,
+                profileId: profileId,
+                wordId: wordId,
+                word: word,
+                definition: definition,
+                translation: translation,
+                emoji: emoji,
+                addedAt: addedAt,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$CustomWordsTable, CustomWordRow>(table),
+                  $$CustomWordsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({profileId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (profileId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.profileId,
+                                referencedTable: $$CustomWordsTableReferences
+                                    ._profileIdTable(db),
+                                referencedColumn: $$CustomWordsTableReferences
+                                    ._profileIdTable(db)
+                                    .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$CustomWordsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $CustomWordsTable,
+      CustomWordRow,
+      $$CustomWordsTableFilterComposer,
+      $$CustomWordsTableOrderingComposer,
+      $$CustomWordsTableAnnotationComposer,
+      $$CustomWordsTableCreateCompanionBuilder,
+      $$CustomWordsTableUpdateCompanionBuilder,
+      (CustomWordRow, $$CustomWordsTableReferences),
+      CustomWordRow,
+      PrefetchHooks Function({bool profileId})
+    >;
 typedef $$AppMetaTableCreateCompanionBuilder =
     AppMetaCompanion Function({
       required String key,
@@ -7487,6 +8471,8 @@ class $AppDatabaseManager {
       $$SessionLogsTableTableManager(_db, _db.sessionLogs);
   $$QuizLogsTableTableManager get quizLogs =>
       $$QuizLogsTableTableManager(_db, _db.quizLogs);
+  $$CustomWordsTableTableManager get customWords =>
+      $$CustomWordsTableTableManager(_db, _db.customWords);
   $$AppMetaTableTableManager get appMeta =>
       $$AppMetaTableTableManager(_db, _db.appMeta);
 }

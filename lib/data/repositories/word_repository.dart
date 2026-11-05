@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:drift/drift.dart';
 
+import '../../core/custom_words.dart';
 import '../../core/levels.dart';
 import '../db/app_database.dart';
 
@@ -140,12 +141,22 @@ class WordRepository {
     return cards(ids, language: language);
   }
 
-  /// Cards for [ids] in the same order; unknown ids are skipped.
+  /// Cards for [ids] in the same order; unknown ids are skipped. Custom
+  /// words (`custom:<n>`, feat-018) are built from the parent's content.
   Future<List<WordCard>> cards(
     List<String> ids, {
     required String language,
   }) async {
     if (ids.isEmpty) return const [];
+    final customIds = [for (final id in ids) ?parseCustomWordId(id)];
+    final custom = customIds.isEmpty
+        ? const <String, WordCard>{}
+        : {
+            for (final c in await (db.select(
+              db.customWords,
+            )..where((c) => c.id.isIn(customIds))).get())
+              customWordId(c.id): _customCard(c),
+          };
     final words = await (db.select(
       db.words,
     )..where((w) => w.id.isIn(ids))).get();
@@ -158,7 +169,28 @@ class WordRepository {
     final tr = {for (final t in translations) t.wordId: t.translation};
     return [
       for (final id in ids)
-        if (byId[id] != null) WordCard(byId[id]!, tr[id]),
+        if (byId[id] != null)
+          WordCard(byId[id]!, tr[id])
+        else if (custom[id] != null)
+          custom[id]!,
     ];
   }
+
+  static WordCard _customCard(CustomWordRow c) => WordCard(
+    WordRow(
+      id: customWordId(c.id),
+      word: c.word,
+      partOfSpeech: 'my word',
+      cefrLevel: 'custom',
+      levelIndex: 0,
+      rank: 0,
+      minAge: 0,
+      themes: const [],
+      emoji: c.emoji,
+      definition: c.definition,
+      examples: const [],
+      forms: const {},
+    ),
+    c.translation,
+  );
 }
