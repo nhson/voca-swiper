@@ -67,7 +67,7 @@
       "dependencies": [
         "feat-006"
       ],
-      "status": "not-started",
+      "status": "in-progress",
       "evidence": ""
     },
     {
@@ -87,8 +87,8 @@
       "dependencies": [
         "feat-006"
       ],
-      "status": "in-progress",
-      "evidence": "2026-11-05 (awaiting owner acceptance): ./init.sh green — analyze no issues, 110/110 tests. test/features/kid_look_test.dart: age band → look (4–6 sunny, 7+ adventure), tablet scale factor, answer/summary sounds, confetti bursts once, reduced motion → no confetti, parent sound toggle persists. test/data/settings_repository_test.dart: sound setting default on, persisted, streamed. Device: flutter drive integration_test/session_on_device_test.dart passed on iPhone 18 Pro and iPad Pro 13 simulators with real sounds + TTS; before/after screenshots in docs/design/feat-010/ (compare-phone.jpg, compare-tablet.jpg)."
+      "status": "done",
+      "evidence": "2026-11-05: owner reviewed the before/after screenshots and accepted. ./init.sh green — analyze no issues, 110/110 tests. test/features/kid_look_test.dart: age band → look (4–6 sunny, 7+ adventure), tablet scale factor, answer/summary sounds, confetti bursts once, reduced motion → no confetti, parent sound toggle persists. test/data/settings_repository_test.dart: sound setting default on, persisted, streamed. Device: flutter drive integration_test/session_on_device_test.dart passed on iPhone 18 Pro and iPad Pro 13 simulators with real sounds + TTS; before/after screenshots in docs/design/feat-010/ (compare-phone.jpg, compare-tablet.jpg)."
     },
     {
       "id": "feat-009",

@@ -5,7 +5,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ## Current State
 
 **Last Updated:** 2026-11-05
-**Active Feature:** feat-010 (visual design pass) — built and verified, awaiting owner review of the before/after screenshots
+**Active Feature:** feat-007 (daily reminder); owner asked to build all remaining features, pushing after each
 **Branch:** main
 
 ### What's Done
@@ -20,11 +20,12 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] feat-003: session builder in `lib/core/session/` (`SessionBuilder`, immutable `StudySession`, `SessionCard`), 43 tests green
 - [x] feat-004: Drift DB (`lib/data/db/`), repositories, `WordBankImporter`; content pipeline builds `assets/word_bank/word_bank.json` (392 Pre-A1 + A1 words, emoji pictures, draft Vietnamese); loads on device
 - [x] feat-005: first-run PIN setup, PIN gate (locks on exit), parent area, profile create/edit/delete/reset, profile picker, child home stub, go_router routes
+- [x] feat-010: kid-friendly visual design (owner accepted 2026-11-05)
 - [x] feat-006: swipe flashcard session (`lib/features/session/`), device TTS, session summary with stars; progress saved per answer
 
 ### What's In Progress
 
-- feat-010: kid UI kit in `lib/ui/` (look, sky, mascot, chunky button, confetti, tablet scale, sfx); child screens restyled; parent sound toggle. Owner to review `docs/design/feat-010/compare-*.jpg`.
+- feat-007 daily reminder
 
 ### What's Next
 
@@ -32,6 +33,8 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 2. Owner decides how to proceed: feat-010 (visual design pass, recommended next so feat-008 is built in the new style), feat-007 (daily reminder) or feat-008 (progress screen)
 
 ## Blockers / Risks
+
+- [ ] Repo is public at https://github.com/nhson/voca-swiper — confirm word-list licensing before wider sharing.
 
 - [ ] Vietnamese translations in `content_pipeline/source/words.psv` are drafts — owner/native speaker review needed.
 - [ ] Review backlog: reviews are uncapped, so a child back after a long break could face a very long session. Revisit with a review cap once real usage data exists.
@@ -81,7 +84,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 
 ## Log
 
-### 2026-11-05 — feat-010 Kid-friendly visual design (awaiting review)
+### 2026-11-05 — feat-010 Kid-friendly visual design (owner accepted)
 
 - Added audioplayers 6.8.1; bundled Baloo 2 + Nunito (OFL); synthesized 6 sound effects. New `lib/ui/` kit; profile picker, child home, session and summary redesigned; age-banded looks; tablet scaling; parent "Sound effects" toggle (AppMeta).
 - Device screenshots drove three fixes: greeting text lost against clouds, sun behind top-bar controls, bubble text wrapping.
