@@ -57,8 +57,8 @@
         "feat-003",
         "feat-005"
       ],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-05: ./init.sh green — analyze no issues, 99/99 tests. test/features/session_controller_test.dart: full session saves WordProgress (knew/almost/miss ease + counts, retry not scheduled), session log, quit keeps progress, next-day reviews first, daily goal across sessions. test/features/session_flow_test.dart: buttons + swipes (right/left/up), short drag springs back, flipped direction, flip shows translation, tap-to-reveal mode, quit, tablet layout. Device: flutter drive integration_test/session_on_device_test.dart (real word bank, device TTS) passed on iPhone 18 Pro and iPad Pro 13 simulators (iOS 27.2); screenshots checked; WordProgress asserted (5 words, dog wrongCount 1, bird ease 2.35). Android emulator not used (stuck on systemui update screen)."
     },
     {
       "id": "feat-007",

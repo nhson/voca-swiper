@@ -7,8 +7,18 @@ import 'package:voca_swiper/core/levels.dart';
 import 'package:voca_swiper/data/db/app_database.dart';
 import 'package:voca_swiper/data/repositories/parent_repository.dart';
 import 'package:voca_swiper/data/repositories/profile_repository.dart';
+import 'package:voca_swiper/features/session/speaker.dart';
 
 final testNow = DateTime.utc(2026, 11, 4, 9);
+
+/// Records what the app asked to say.
+class FakeSpeaker implements Speaker {
+  final said = <String>[];
+  @override
+  Future<void> say(String text) async => said.add(text);
+  @override
+  Future<void> stop() async {}
+}
 
 /// Pumps the full app on [db] with a fixed clock and a phone-sized screen.
 Future<void> pumpApp(
@@ -16,6 +26,7 @@ Future<void> pumpApp(
   AppDatabase db, {
   DateTime? now,
   Size size = const Size(400, 860),
+  FakeSpeaker? speaker,
 }) async {
   tester.view.physicalSize = size * 2;
   tester.view.devicePixelRatio = 2;
@@ -32,6 +43,7 @@ Future<void> pumpApp(
         parentRepositoryProvider.overrideWithValue(
           ParentRepository(db, run: runInline),
         ),
+        speakerProvider.overrideWithValue(speaker ?? FakeSpeaker()),
       ],
       child: const VocaSwiperApp(),
     ),
@@ -47,8 +59,17 @@ Future<int> createKid(
   String name = 'Bi',
   int age = 6,
   CefrLevel level = CefrLevel.preA1,
+  bool swipeKnownRight = true,
+  TranslationMode translationMode = TranslationMode.always,
 }) => ProfileRepository(db).create(
-  ProfileDraft(name: name, avatar: '🐯', age: age, level: level),
+  ProfileDraft(
+    name: name,
+    avatar: '🐯',
+    age: age,
+    level: level,
+    swipeKnownRight: swipeKnownRight,
+    translationMode: translationMode,
+  ),
   now: testNow,
 );
 

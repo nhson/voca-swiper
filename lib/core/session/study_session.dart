@@ -27,15 +27,21 @@ class SessionCard {
 ///   the retry is practice.
 class StudySession {
   StudySession(List<SessionCard> queue)
-    : this._(List.unmodifiable(queue), const {});
+    : this._(List.unmodifiable(queue), const {}, const []);
 
-  StudySession._(this.queue, this.firstAnswers);
+  StudySession._(this.queue, this.firstAnswers, this.seen);
 
   /// Cards still to show; [current] is the first.
   final List<SessionCard> queue;
 
   /// The answer that should be fed to the scheduler, per word.
   final Map<String, AnswerQuality> firstAnswers;
+
+  /// Cards already answered, in order (retries included).
+  final List<SessionCard> seen;
+
+  /// Total cards in this session so far: answered + still queued.
+  int get total => seen.length + queue.length;
 
   SessionCard? get current => queue.isEmpty ? null : queue.first;
 
@@ -60,6 +66,10 @@ class StudySession {
             card.wordId: quality,
           });
 
-    return StudySession._(List.unmodifiable(nextQueue), answers);
+    return StudySession._(
+      List.unmodifiable(nextQueue),
+      answers,
+      List.unmodifiable([...seen, card]),
+    );
   }
 }

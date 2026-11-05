@@ -4,8 +4,8 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 
 ## Current State
 
-**Last Updated:** 2026-11-04
-**Active Feature:** none — feat-005 done; waiting for owner decision before feat-006
+**Last Updated:** 2026-11-05
+**Active Feature:** none — feat-006 done; waiting for owner decision before feat-007/feat-008
 **Branch:** main
 
 ### What's Done
@@ -20,6 +20,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] feat-003: session builder in `lib/core/session/` (`SessionBuilder`, immutable `StudySession`, `SessionCard`), 43 tests green
 - [x] feat-004: Drift DB (`lib/data/db/`), repositories, `WordBankImporter`; content pipeline builds `assets/word_bank/word_bank.json` (392 Pre-A1 + A1 words, emoji pictures, draft Vietnamese); loads on device
 - [x] feat-005: first-run PIN setup, PIN gate (locks on exit), parent area, profile create/edit/delete/reset, profile picker, child home stub, go_router routes
+- [x] feat-006: swipe flashcard session (`lib/features/session/`), device TTS, session summary with stars; progress saved per answer
 
 ### What's In Progress
 
@@ -28,13 +29,14 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ### What's Next
 
 1. ~~First git commit~~ done
-2. Owner decides how to proceed; next in order is feat-006 (swipe flashcard session)
+2. Owner decides how to proceed; next is feat-007 (daily reminder) or feat-008 (progress screen)
 
 ## Blockers / Risks
 
 - [ ] Vietnamese translations in `content_pipeline/source/words.psv` are drafts — owner/native speaker review needed.
 - [ ] Review backlog: reviews are uncapped, so a child back after a long break could face a very long session. Revisit with a review cap once real usage data exists.
 - [ ] System Java is 1.8; sdkmanager needs `JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"` (Flutter/Gradle already use Android Studio's JDK).
+- [ ] Android emulator `Medium_Phone_API_37.0` hangs on a systemui "Updating..." screen after reinstalls and adb stops responding; feat-006 device check was done on iOS simulators instead. A cold boot / wipe of the AVD may be needed.
 - [ ] Word-list licensing (Cambridge YLE, Oxford 3000) unconfirmed — fine for family use, check before store release.
 
 ## Decisions Made
@@ -59,12 +61,26 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - **Defaults**: daily new words 5, daily minutes 10, level by age (4–6 Pre-A1, 7+ A1 — capped at A1 until more content), quiet hours 21:00–07:00, school hours Mon–Fri 07:30–16:30 blocked.
 
 - **feat-005 details**: PIN hashing runs in `Isolate.run` (10k SHA-256 rounds froze the UI for seconds in debug builds); widget tests inject `runInline`. Dart SDK constraint raised to ^3.9 (wildcard `_` params; newer formatter style). Parent-area links to Reminders and Progress are hidden until feat-007 / feat-008 add those screens.
+- **feat-006 details**:
+  - Own swipe card widget (drag + fling, rotation, hint label) instead of a package — small and keeps the buttons and swipes on one animation.
+  - Swipe up = Almost; right = Knew it unless the parent flips it. On-screen buttons (Not yet / Almost / Knew it) follow the same left-to-right order.
+  - Each first answer is saved straight away, so quitting mid-session keeps progress; the session log is written once, at the end or on quit (none if nothing was answered).
+  - Stars: ≥80% → 3, ≥50% → 2, otherwise 1 (never 0 for trying). Almost counts as correct.
+  - Word is spoken when each card appears (flutter_tts, en-US, rate 0.4); TTS failures are ignored.
+  - Device checks run as `integration_test` + `flutter drive` with screenshots (`integration_test/session_on_device_test.dart`).
 
 ## Evidence of Completion
 
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-05 — feat-006 Swipe flashcard session
+
+- Added flutter_tts 4.2.5 and integration_test. Session controller, swipe card, flash card, session screen, summary; child home shows today's count.
+- Widget tests caught a swipe card that kept its off-screen offset for the next card (fixed). On-device test first hung closing the DB under live queries (same cause as the earlier slow tests) — now unmounts first.
+- Device screenshots showed the card stretched into a tall strip on the iPad: the card now keeps a 0.72 aspect ratio, back content is centred, the swipe hint sits mid-card.
+- `./init.sh` green, 99/99 (format check now also covers `integration_test/` and `test_driver/`). On-device session passed on iPhone 18 Pro and iPad Pro 13 simulators.
 
 ### 2026-11-04 — feat-005 Parent account + child profiles
 
