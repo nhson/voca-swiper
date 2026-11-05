@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:voca_swiper/core/quiz/quiz_builder.dart';
 import 'package:voca_swiper/core/srs/word_schedule.dart';
 import 'package:voca_swiper/core/srs/word_state.dart';
 import 'package:voca_swiper/data/db/app_database.dart';
@@ -137,5 +138,57 @@ void main() {
     await t.pumpAndSettle();
     await expectBiNumbers(t);
     expect(t.takeException(), isNull);
+  });
+
+  group('remembered after 2 weeks (feat-013)', () {
+    Future<void> openProgress(WidgetTester t, int kid) async {
+      await pumpApp(t, db);
+      await t.tap(find.byKey(Key('profile-$kid')));
+      await t.pumpAndSettle();
+      await t.tap(find.byKey(const Key('open-progress')));
+      await t.pumpAndSettle();
+      await t.scrollUntilVisible(find.byKey(const Key('stat-retention')), 100);
+    }
+
+    testWidgets('numbers match the quiz log', (t) async {
+      final mi = await createKid(db, name: 'Mi');
+      final repo = ProgressRepository(db);
+      final learned = testNow.subtract(const Duration(days: 30));
+      for (final id in ['w0', 'w1', 'w2']) {
+        await repo.save(mi, id, WordSchedule.initial(), now: learned);
+      }
+      Future<void> quiz(String id, bool ok, int daysAgo) => repo.logQuiz(
+        profileId: mi,
+        wordId: id,
+        kind: QuizKind.pickPicture,
+        correct: ok,
+        at: testNow.subtract(Duration(days: daysAgo)),
+      );
+      await quiz('w0', true, 2);
+      await quiz('w1', false, 1);
+      await quiz('w2', true, 5);
+      await quiz('w2', false, 25); // 5 days after learning: too soon
+      // Another child's quiz must not count.
+      await repo.logQuiz(
+        profileId: bi,
+        wordId: 'w0',
+        kind: QuizKind.spell,
+        correct: false,
+        at: testNow,
+      );
+
+      await openProgress(t, mi);
+      expect(textOf(t, 'stat-retention'), '67%'); // 2 of 3
+      expect(find.text('2 of 3 quiz answers on 3 words'), findsOneWidget);
+    });
+
+    testWidgets('nothing to count yet', (t) async {
+      await openProgress(t, bi);
+      expect(textOf(t, 'stat-retention'), '–');
+      expect(
+        find.text('Shows up when words learned 2+ weeks ago come back'),
+        findsOneWidget,
+      );
+    });
   });
 }

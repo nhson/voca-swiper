@@ -274,6 +274,20 @@ void main() {
       expect(log.accuracy, closeTo(4 / 5, 1e-9));
     });
 
+    test('every quiz answer is logged (feat-013)', () async {
+      await seedAnimals(age: 8);
+      final c = await swipeAll(AnswerQuality.knew);
+      await c.answerQuiz(wrongOption(c.currentQuiz!)); // cat, picture ✗
+      await c.answerQuiz(c.currentQuiz!.wordId); // dog, meaning ✓
+      final rows = await db.select(db.quizLogs).get();
+      expect(rows.map((r) => (r.wordId, r.kind, r.correct)), [
+        ('cat', 'pickPicture', false),
+        ('dog', 'chooseMeaning', true),
+      ]);
+      expect(rows.every((r) => r.profileId == kid), isTrue);
+      expect(rows.first.answeredAt.toUtc(), now);
+    });
+
     test('words the child missed are not quizzed', () async {
       await seedAnimals();
       final c = await swipeAll(AnswerQuality.didntKnow);

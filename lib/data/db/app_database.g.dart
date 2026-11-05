@@ -3475,6 +3475,414 @@ class SessionLogsCompanion extends UpdateCompanion<SessionLogRow> {
   }
 }
 
+class $QuizLogsTable extends QuizLogs
+    with TableInfo<$QuizLogsTable, QuizLogRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $QuizLogsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _profileIdMeta = const VerificationMeta(
+    'profileId',
+  );
+  @override
+  late final GeneratedColumn<int> profileId = GeneratedColumn<int>(
+    'profile_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES profiles (id) ON DELETE CASCADE',
+    ),
+  );
+  static const VerificationMeta _wordIdMeta = const VerificationMeta('wordId');
+  @override
+  late final GeneratedColumn<String> wordId = GeneratedColumn<String>(
+    'word_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _kindMeta = const VerificationMeta('kind');
+  @override
+  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
+    'kind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _correctMeta = const VerificationMeta(
+    'correct',
+  );
+  @override
+  late final GeneratedColumn<bool> correct = GeneratedColumn<bool>(
+    'correct',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("correct" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _answeredAtMeta = const VerificationMeta(
+    'answeredAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> answeredAt = GeneratedColumn<DateTime>(
+    'answered_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    profileId,
+    wordId,
+    kind,
+    correct,
+    answeredAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'quiz_logs';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<QuizLogRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('profile_id')) {
+      context.handle(
+        _profileIdMeta,
+        profileId.isAcceptableOrUnknown(data['profile_id']!, _profileIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_profileIdMeta);
+    }
+    if (data.containsKey('word_id')) {
+      context.handle(
+        _wordIdMeta,
+        wordId.isAcceptableOrUnknown(data['word_id']!, _wordIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_wordIdMeta);
+    }
+    if (data.containsKey('kind')) {
+      context.handle(
+        _kindMeta,
+        kind.isAcceptableOrUnknown(data['kind']!, _kindMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_kindMeta);
+    }
+    if (data.containsKey('correct')) {
+      context.handle(
+        _correctMeta,
+        correct.isAcceptableOrUnknown(data['correct']!, _correctMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_correctMeta);
+    }
+    if (data.containsKey('answered_at')) {
+      context.handle(
+        _answeredAtMeta,
+        answeredAt.isAcceptableOrUnknown(data['answered_at']!, _answeredAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_answeredAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  QuizLogRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return QuizLogRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      profileId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}profile_id'],
+      )!,
+      wordId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}word_id'],
+      )!,
+      kind: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}kind'],
+      )!,
+      correct: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}correct'],
+      )!,
+      answeredAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}answered_at'],
+      )!,
+    );
+  }
+
+  @override
+  $QuizLogsTable createAlias(String alias) {
+    return $QuizLogsTable(attachedDatabase, alias);
+  }
+}
+
+class QuizLogRow extends DataClass implements Insertable<QuizLogRow> {
+  final int id;
+  final int profileId;
+
+  /// No FK to [Words], like [WordProgress].
+  final String wordId;
+
+  /// QuizKind name: pickPicture | chooseMeaning | spell.
+  final String kind;
+  final bool correct;
+  final DateTime answeredAt;
+  const QuizLogRow({
+    required this.id,
+    required this.profileId,
+    required this.wordId,
+    required this.kind,
+    required this.correct,
+    required this.answeredAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['profile_id'] = Variable<int>(profileId);
+    map['word_id'] = Variable<String>(wordId);
+    map['kind'] = Variable<String>(kind);
+    map['correct'] = Variable<bool>(correct);
+    map['answered_at'] = Variable<DateTime>(answeredAt);
+    return map;
+  }
+
+  QuizLogsCompanion toCompanion(bool nullToAbsent) {
+    return QuizLogsCompanion(
+      id: Value(id),
+      profileId: Value(profileId),
+      wordId: Value(wordId),
+      kind: Value(kind),
+      correct: Value(correct),
+      answeredAt: Value(answeredAt),
+    );
+  }
+
+  factory QuizLogRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return QuizLogRow(
+      id: serializer.fromJson<int>(json['id']),
+      profileId: serializer.fromJson<int>(json['profileId']),
+      wordId: serializer.fromJson<String>(json['wordId']),
+      kind: serializer.fromJson<String>(json['kind']),
+      correct: serializer.fromJson<bool>(json['correct']),
+      answeredAt: serializer.fromJson<DateTime>(json['answeredAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'profileId': serializer.toJson<int>(profileId),
+      'wordId': serializer.toJson<String>(wordId),
+      'kind': serializer.toJson<String>(kind),
+      'correct': serializer.toJson<bool>(correct),
+      'answeredAt': serializer.toJson<DateTime>(answeredAt),
+    };
+  }
+
+  QuizLogRow copyWith({
+    int? id,
+    int? profileId,
+    String? wordId,
+    String? kind,
+    bool? correct,
+    DateTime? answeredAt,
+  }) => QuizLogRow(
+    id: id ?? this.id,
+    profileId: profileId ?? this.profileId,
+    wordId: wordId ?? this.wordId,
+    kind: kind ?? this.kind,
+    correct: correct ?? this.correct,
+    answeredAt: answeredAt ?? this.answeredAt,
+  );
+  QuizLogRow copyWithCompanion(QuizLogsCompanion data) {
+    return QuizLogRow(
+      id: data.id.present ? data.id.value : this.id,
+      profileId: data.profileId.present ? data.profileId.value : this.profileId,
+      wordId: data.wordId.present ? data.wordId.value : this.wordId,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      correct: data.correct.present ? data.correct.value : this.correct,
+      answeredAt: data.answeredAt.present
+          ? data.answeredAt.value
+          : this.answeredAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('QuizLogRow(')
+          ..write('id: $id, ')
+          ..write('profileId: $profileId, ')
+          ..write('wordId: $wordId, ')
+          ..write('kind: $kind, ')
+          ..write('correct: $correct, ')
+          ..write('answeredAt: $answeredAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, profileId, wordId, kind, correct, answeredAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is QuizLogRow &&
+          other.id == this.id &&
+          other.profileId == this.profileId &&
+          other.wordId == this.wordId &&
+          other.kind == this.kind &&
+          other.correct == this.correct &&
+          other.answeredAt == this.answeredAt);
+}
+
+class QuizLogsCompanion extends UpdateCompanion<QuizLogRow> {
+  final Value<int> id;
+  final Value<int> profileId;
+  final Value<String> wordId;
+  final Value<String> kind;
+  final Value<bool> correct;
+  final Value<DateTime> answeredAt;
+  const QuizLogsCompanion({
+    this.id = const Value.absent(),
+    this.profileId = const Value.absent(),
+    this.wordId = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.correct = const Value.absent(),
+    this.answeredAt = const Value.absent(),
+  });
+  QuizLogsCompanion.insert({
+    this.id = const Value.absent(),
+    required int profileId,
+    required String wordId,
+    required String kind,
+    required bool correct,
+    required DateTime answeredAt,
+  }) : profileId = Value(profileId),
+       wordId = Value(wordId),
+       kind = Value(kind),
+       correct = Value(correct),
+       answeredAt = Value(answeredAt);
+  static Insertable<QuizLogRow> custom({
+    Expression<int>? id,
+    Expression<int>? profileId,
+    Expression<String>? wordId,
+    Expression<String>? kind,
+    Expression<bool>? correct,
+    Expression<DateTime>? answeredAt,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (profileId != null) 'profile_id': profileId,
+      if (wordId != null) 'word_id': wordId,
+      if (kind != null) 'kind': kind,
+      if (correct != null) 'correct': correct,
+      if (answeredAt != null) 'answered_at': answeredAt,
+    });
+  }
+
+  QuizLogsCompanion copyWith({
+    Value<int>? id,
+    Value<int>? profileId,
+    Value<String>? wordId,
+    Value<String>? kind,
+    Value<bool>? correct,
+    Value<DateTime>? answeredAt,
+  }) {
+    return QuizLogsCompanion(
+      id: id ?? this.id,
+      profileId: profileId ?? this.profileId,
+      wordId: wordId ?? this.wordId,
+      kind: kind ?? this.kind,
+      correct: correct ?? this.correct,
+      answeredAt: answeredAt ?? this.answeredAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (profileId.present) {
+      map['profile_id'] = Variable<int>(profileId.value);
+    }
+    if (wordId.present) {
+      map['word_id'] = Variable<String>(wordId.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(kind.value);
+    }
+    if (correct.present) {
+      map['correct'] = Variable<bool>(correct.value);
+    }
+    if (answeredAt.present) {
+      map['answered_at'] = Variable<DateTime>(answeredAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('QuizLogsCompanion(')
+          ..write('id: $id, ')
+          ..write('profileId: $profileId, ')
+          ..write('wordId: $wordId, ')
+          ..write('kind: $kind, ')
+          ..write('correct: $correct, ')
+          ..write('answeredAt: $answeredAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $AppMetaTable extends AppMeta with TableInfo<$AppMetaTable, AppMetaRow> {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -3691,6 +4099,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $ProfilesTable profiles = $ProfilesTable(this);
   late final $WordProgressTable wordProgress = $WordProgressTable(this);
   late final $SessionLogsTable sessionLogs = $SessionLogsTable(this);
+  late final $QuizLogsTable quizLogs = $QuizLogsTable(this);
   late final $AppMetaTable appMeta = $AppMetaTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
@@ -3703,6 +4112,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     profiles,
     wordProgress,
     sessionLogs,
+    quizLogs,
     appMeta,
   ];
   @override
@@ -3720,6 +4130,13 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('session_logs', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'profiles',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('quiz_logs', kind: UpdateKind.delete)],
     ),
   ]);
 }
@@ -4837,6 +5254,24 @@ final class $$ProfilesTableReferences
       manager.$state.copyWith(prefetchedData: cache),
     );
   }
+
+  static MultiTypedResultKey<$QuizLogsTable, List<QuizLogRow>>
+  _quizLogsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.quizLogs,
+    aliasName: 'profiles__id__quiz_logs__profile_id',
+  );
+
+  $$QuizLogsTableProcessedTableManager get quizLogsRefs {
+    final manager = $$QuizLogsTableTableManager(
+      $_db,
+      $_db.quizLogs,
+    ).filter((f) => f.profileId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_quizLogsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $$ProfilesTableFilterComposer
@@ -4945,6 +5380,31 @@ class $$ProfilesTableFilterComposer
           }) => $$SessionLogsTableFilterComposer(
             $db: $db,
             $table: $db.sessionLogs,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> quizLogsRefs(
+    Expression<bool> Function($$QuizLogsTableFilterComposer f) f,
+  ) {
+    final $$QuizLogsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.quizLogs,
+      getReferencedColumn: (t) => t.profileId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$QuizLogsTableFilterComposer(
+            $db: $db,
+            $table: $db.quizLogs,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -5124,6 +5584,31 @@ class $$ProfilesTableAnnotationComposer
     );
     return f(composer);
   }
+
+  Expression<T> quizLogsRefs<T extends Object>(
+    Expression<T> Function($$QuizLogsTableAnnotationComposer a) f,
+  ) {
+    final $$QuizLogsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.quizLogs,
+      getReferencedColumn: (t) => t.profileId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$QuizLogsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.quizLogs,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
 }
 
 class $$ProfilesTableTableManager
@@ -5139,7 +5624,11 @@ class $$ProfilesTableTableManager
           $$ProfilesTableUpdateCompanionBuilder,
           (ProfileRow, $$ProfilesTableReferences),
           ProfileRow,
-          PrefetchHooks Function({bool wordProgressRefs, bool sessionLogsRefs})
+          PrefetchHooks Function({
+            bool wordProgressRefs,
+            bool sessionLogsRefs,
+            bool quizLogsRefs,
+          })
         > {
   $$ProfilesTableTableManager(_$AppDatabase db, $ProfilesTable table)
     : super(
@@ -5213,12 +5702,17 @@ class $$ProfilesTableTableManager
               )
               .toList(),
           prefetchHooksCallback:
-              ({wordProgressRefs = false, sessionLogsRefs = false}) {
+              ({
+                wordProgressRefs = false,
+                sessionLogsRefs = false,
+                quizLogsRefs = false,
+              }) {
                 return PrefetchHooks(
                   db: db,
                   explicitlyWatchedTables: [
                     if (wordProgressRefs) db.wordProgress,
                     if (sessionLogsRefs) db.sessionLogs,
+                    if (quizLogsRefs) db.quizLogs,
                   ],
                   addJoins: null,
                   getPrefetchedDataCallback: (items) async {
@@ -5263,6 +5757,26 @@ class $$ProfilesTableTableManager
                           referencedColumn: 'profile_id',
                           typedResults: items,
                         ),
+                      if (quizLogsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          ProfileRow,
+                          $ProfilesTable,
+                          QuizLogRow,
+                          $QuizLogsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProfilesTableReferences
+                              ._quizLogsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProfilesTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).quizLogsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'profile_id',
+                          typedResults: items,
+                        ),
                     ];
                   },
                 );
@@ -5283,7 +5797,11 @@ typedef $$ProfilesTableProcessedTableManager =
       $$ProfilesTableUpdateCompanionBuilder,
       (ProfileRow, $$ProfilesTableReferences),
       ProfileRow,
-      PrefetchHooks Function({bool wordProgressRefs, bool sessionLogsRefs})
+      PrefetchHooks Function({
+        bool wordProgressRefs,
+        bool sessionLogsRefs,
+        bool quizLogsRefs,
+      })
     >;
 typedef $$WordProgressTableCreateCompanionBuilder =
     WordProgressCompanion Function({
@@ -6086,6 +6604,338 @@ typedef $$SessionLogsTableProcessedTableManager =
       SessionLogRow,
       PrefetchHooks Function({bool profileId})
     >;
+typedef $$QuizLogsTableCreateCompanionBuilder =
+    QuizLogsCompanion Function({
+      Value<int> id,
+      required int profileId,
+      required String wordId,
+      required String kind,
+      required bool correct,
+      required DateTime answeredAt,
+    });
+typedef $$QuizLogsTableUpdateCompanionBuilder =
+    QuizLogsCompanion Function({
+      Value<int> id,
+      Value<int> profileId,
+      Value<String> wordId,
+      Value<String> kind,
+      Value<bool> correct,
+      Value<DateTime> answeredAt,
+    });
+
+final class $$QuizLogsTableReferences
+    extends BaseReferences<_$AppDatabase, $QuizLogsTable, QuizLogRow> {
+  $$QuizLogsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $ProfilesTable _profileIdTable(_$AppDatabase db) =>
+      db.profiles.createAlias('quiz_logs__profile_id__profiles__id');
+
+  $$ProfilesTableProcessedTableManager get profileId {
+    final $_column = $_itemColumn<int>('profile_id')!;
+
+    final manager = $$ProfilesTableTableManager(
+      $_db,
+      $_db.profiles,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_profileIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$QuizLogsTableFilterComposer
+    extends Composer<_$AppDatabase, $QuizLogsTable> {
+  $$QuizLogsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get wordId => $composableBuilder(
+    column: $table.wordId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get correct => $composableBuilder(
+    column: $table.correct,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get answeredAt => $composableBuilder(
+    column: $table.answeredAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProfilesTableFilterComposer get profileId {
+    final $$ProfilesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.profileId,
+      referencedTable: $db.profiles,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProfilesTableFilterComposer(
+            $db: $db,
+            $table: $db.profiles,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$QuizLogsTableOrderingComposer
+    extends Composer<_$AppDatabase, $QuizLogsTable> {
+  $$QuizLogsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get wordId => $composableBuilder(
+    column: $table.wordId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get correct => $composableBuilder(
+    column: $table.correct,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get answeredAt => $composableBuilder(
+    column: $table.answeredAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProfilesTableOrderingComposer get profileId {
+    final $$ProfilesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.profileId,
+      referencedTable: $db.profiles,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProfilesTableOrderingComposer(
+            $db: $db,
+            $table: $db.profiles,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$QuizLogsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $QuizLogsTable> {
+  $$QuizLogsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get wordId =>
+      $composableBuilder(column: $table.wordId, builder: (column) => column);
+
+  GeneratedColumn<String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<bool> get correct =>
+      $composableBuilder(column: $table.correct, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get answeredAt => $composableBuilder(
+    column: $table.answeredAt,
+    builder: (column) => column,
+  );
+
+  $$ProfilesTableAnnotationComposer get profileId {
+    final $$ProfilesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.profileId,
+      referencedTable: $db.profiles,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProfilesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.profiles,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$QuizLogsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $QuizLogsTable,
+          QuizLogRow,
+          $$QuizLogsTableFilterComposer,
+          $$QuizLogsTableOrderingComposer,
+          $$QuizLogsTableAnnotationComposer,
+          $$QuizLogsTableCreateCompanionBuilder,
+          $$QuizLogsTableUpdateCompanionBuilder,
+          (QuizLogRow, $$QuizLogsTableReferences),
+          QuizLogRow,
+          PrefetchHooks Function({bool profileId})
+        > {
+  $$QuizLogsTableTableManager(_$AppDatabase db, $QuizLogsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$QuizLogsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$QuizLogsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$QuizLogsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<int> profileId = const Value.absent(),
+                Value<String> wordId = const Value.absent(),
+                Value<String> kind = const Value.absent(),
+                Value<bool> correct = const Value.absent(),
+                Value<DateTime> answeredAt = const Value.absent(),
+              }) => QuizLogsCompanion(
+                id: id,
+                profileId: profileId,
+                wordId: wordId,
+                kind: kind,
+                correct: correct,
+                answeredAt: answeredAt,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required int profileId,
+                required String wordId,
+                required String kind,
+                required bool correct,
+                required DateTime answeredAt,
+              }) => QuizLogsCompanion.insert(
+                id: id,
+                profileId: profileId,
+                wordId: wordId,
+                kind: kind,
+                correct: correct,
+                answeredAt: answeredAt,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$QuizLogsTable, QuizLogRow>(table),
+                  $$QuizLogsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({profileId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (profileId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.profileId,
+                                referencedTable: $$QuizLogsTableReferences
+                                    ._profileIdTable(db),
+                                referencedColumn: $$QuizLogsTableReferences
+                                    ._profileIdTable(db)
+                                    .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$QuizLogsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $QuizLogsTable,
+      QuizLogRow,
+      $$QuizLogsTableFilterComposer,
+      $$QuizLogsTableOrderingComposer,
+      $$QuizLogsTableAnnotationComposer,
+      $$QuizLogsTableCreateCompanionBuilder,
+      $$QuizLogsTableUpdateCompanionBuilder,
+      (QuizLogRow, $$QuizLogsTableReferences),
+      QuizLogRow,
+      PrefetchHooks Function({bool profileId})
+    >;
 typedef $$AppMetaTableCreateCompanionBuilder =
     AppMetaCompanion Function({
       required String key,
@@ -6244,6 +7094,8 @@ class $AppDatabaseManager {
       $$WordProgressTableTableManager(_db, _db.wordProgress);
   $$SessionLogsTableTableManager get sessionLogs =>
       $$SessionLogsTableTableManager(_db, _db.sessionLogs);
+  $$QuizLogsTableTableManager get quizLogs =>
+      $$QuizLogsTableTableManager(_db, _db.quizLogs);
   $$AppMetaTableTableManager get appMeta =>
       $$AppMetaTableTableManager(_db, _db.appMeta);
 }

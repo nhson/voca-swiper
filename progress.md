@@ -34,7 +34,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 1. Owner runs feat-009: the child uses the app 5 days a week for 2 weeks without being pushed (install on a real phone/tablet; turn on the daily reminder). Only the owner can mark it done.
 2. Before/while trialling: native-speaker review of the Vietnamese drafts (owner, alongside the trial).
 3. Trial note: at 10 min/day the cap slows new words to ~3/day after week 3 (reviews take the room). If the child wants more new words, raise "Minutes per day" to 15.
-4. Phase 2 started 2026-11-05; feat-012 done. Next: 013 retention → 014 content → 015 placement → 016 level progression → 017 dashboard → 018 custom lists → 019 weekly recap → 020 gate. Trial feedback may reorder.
+4. Phase 2 started 2026-11-05; feat-012, 013 done. Next: 014 content → 015 placement → 016 level progression → 017 dashboard → 018 custom lists → 019 weekly recap → 020 gate. Trial feedback may reorder.
 
 ## Blockers / Risks
 
@@ -95,6 +95,12 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-05 — feat-013 Retention tracking
+
+- Every quiz answer is logged (new QuizLogs table, DB schema v2 with an upgrade step). "Remembered after 2 weeks" (quiz accuracy on words learned 14+ days earlier) is computed in pure Dart and shown on each child's progress screen.
+- Upgrade checked on the Android emulator: the Phase 1 app with a PIN and a child, then the new APK over it — data kept, old 4-digit PIN works.
+- `./init.sh` green, 195/195. The metric needs 2+ weeks of real use before it shows a number.
 
 ### 2026-11-05 — APK on Google Drive
 

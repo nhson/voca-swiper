@@ -1,6 +1,8 @@
 import 'package:drift/drift.dart';
 
 import '../../core/progress/progress_stats.dart';
+import '../../core/progress/retention.dart';
+import '../../core/quiz/quiz_builder.dart';
 import '../../core/srs/word_schedule.dart';
 import '../db/app_database.dart';
 
@@ -80,8 +82,6 @@ class ProgressRepository {
         ),
       );
 
-  /// Next review date of every word the profile has progress on (UTC), for
-  /// reminder planning.
   /// Logged sessions for the progress screen, oldest first.
   Future<List<SessionStat>> sessionStats(int profileId) async {
     final rows =
@@ -100,6 +100,8 @@ class ProgressRepository {
     ];
   }
 
+  /// Next review date of every word the profile has progress on (UTC), for
+  /// reminder planning.
   Future<List<DateTime>> reviewDates(int profileId) async {
     final rows =
         await (db.select(db.wordProgress)..where(
@@ -108,6 +110,59 @@ class ProgressRepository {
             .get();
     return [for (final r in rows) r.nextReviewAt!.toUtc()];
   }
+
+  /// Records one quiz answer (feat-013).
+  Future<void> logQuiz({
+    required int profileId,
+    required String wordId,
+    required QuizKind kind,
+    required bool correct,
+    required DateTime at,
+  }) => db
+      .into(db.quizLogs)
+      .insert(
+        QuizLogsCompanion.insert(
+          profileId: profileId,
+          wordId: wordId,
+          kind: kind.name,
+          correct: correct,
+          answeredAt: at,
+        ),
+      );
+
+  /// Every quiz answer of the profile, oldest first (UTC).
+  Future<List<QuizAnswer>> quizAnswers(int profileId) async {
+    final rows =
+        await (db.select(db.quizLogs)
+              ..where((q) => q.profileId.equals(profileId))
+              ..orderBy([
+                (q) => OrderingTerm.asc(q.answeredAt),
+                (q) => OrderingTerm.asc(q.id),
+              ]))
+            .get();
+    return [
+      for (final r in rows)
+        QuizAnswer(
+          wordId: r.wordId,
+          correct: r.correct,
+          answeredAt: r.answeredAt.toUtc(),
+        ),
+    ];
+  }
+
+  /// When each word was first shown to the profile (UTC).
+  Future<Map<String, DateTime>> firstSeen(int profileId) async {
+    final rows = await (db.select(
+      db.wordProgress,
+    )..where((p) => p.profileId.equals(profileId))).get();
+    return {for (final r in rows) r.wordId: r.firstSeenAt.toUtc()};
+  }
+
+  /// "Remembered after 2 weeks" for the profile.
+  Future<Retention> retention(int profileId) async => Retention.compute(
+    answers: await quizAnswers(profileId),
+    firstSeen: await firstSeen(profileId),
+  );
 
   static WordSchedule _toSchedule(WordProgressRow r) => WordSchedule(
     state: r.state,

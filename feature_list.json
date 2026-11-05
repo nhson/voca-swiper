@@ -129,8 +129,8 @@
       "dependencies": [
         "feat-012"
       ],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-05: ./init.sh green — format 0 changed, analyze no issues, 195/195 tests. test/core/progress/retention_test.dart (6): empty, only answers 14+ days after first seen (exactly 14 counts, 13d23h doesn't), every answer counts / words once, reset words ignored, configurable age. test/data/repositories_test.dart (5): quiz log per profile oldest first with kind, firstSeen, retention, cascade delete, reset clears. test/data/migration_test.dart: v1 file DB → v2 keeps progress, quiz_logs usable. test/features/session_controller_test.dart: every quiz answer logged with kind/result/time. test/features/progress_flow_test.dart (2): screen shows 67% / '2 of 3 quiz answers on 3 words' matching seeded logs (too-soon and other-child answers excluded); empty state. Device: session_on_device_test passed on iPhone 18 Pro + iPad Pro 13 simulators. Android emulator upgrade: old release (schema v1) with PIN 1234 + child Bi → installed new release over it → Bi kept, legacy PIN unlocks, progress screen reads quiz log, no errors in logcat."
     },
     {
       "id": "feat-014",

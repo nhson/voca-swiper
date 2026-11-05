@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:voca_swiper/core/levels.dart';
+import 'package:voca_swiper/core/quiz/quiz_builder.dart';
 import 'package:voca_swiper/core/security/pin_hasher.dart';
 import 'package:voca_swiper/core/srs/sm2_scheduler.dart';
 import 'package:voca_swiper/core/srs/word_schedule.dart';
@@ -154,6 +155,63 @@ void main() {
       await ProfileRepository(db).delete(profile);
       expect(await db.select(db.wordProgress).get(), isEmpty);
       expect(await db.select(db.sessionLogs).get(), isEmpty);
+    });
+
+    group('quiz log (feat-013)', () {
+      Future<void> seedQuiz() async {
+        await repo.save(profile, 'cat', WordSchedule.initial(), now: now);
+        await repo.logQuiz(
+          profileId: profile,
+          wordId: 'cat',
+          kind: QuizKind.pickPicture,
+          correct: true,
+          at: now.add(const Duration(days: 15)),
+        );
+        await repo.logQuiz(
+          profileId: profile,
+          wordId: 'cat',
+          kind: QuizKind.spell,
+          correct: false,
+          at: now.add(const Duration(days: 20)),
+        );
+      }
+
+      test('answers are stored per profile, oldest first', () async {
+        await seedQuiz();
+        final other = await ProfileRepository(db).create(kid, now: now);
+        final back = await repo.quizAnswers(profile);
+        expect(back.map((a) => (a.wordId, a.correct)), [
+          ('cat', true),
+          ('cat', false),
+        ]);
+        expect(back.first.answeredAt, now.add(const Duration(days: 15)));
+        expect(await repo.quizAnswers(other), isEmpty);
+        final rows = await db.select(db.quizLogs).get();
+        expect(rows.map((r) => r.kind), ['pickPicture', 'spell']);
+      });
+
+      test('first-seen dates for the retention metric', () async {
+        await seedQuiz();
+        expect(await repo.firstSeen(profile), {'cat': now});
+      });
+
+      test('retention reads both together', () async {
+        await seedQuiz();
+        final r = await repo.retention(profile);
+        expect((r.asked, r.correct), (2, 1));
+      });
+
+      test('deleting a profile deletes its quiz log', () async {
+        await seedQuiz();
+        await ProfileRepository(db).delete(profile);
+        expect(await db.select(db.quizLogs).get(), isEmpty);
+      });
+
+      test('reset clears the quiz log too', () async {
+        await seedQuiz();
+        await ProfileRepository(db).resetProgress(profile);
+        expect(await repo.quizAnswers(profile), isEmpty);
+      });
     });
 
     test('reset keeps the profile but clears progress', () async {

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/providers.dart';
 import '../../core/progress/progress_stats.dart';
+import '../../core/progress/retention.dart';
 import '../../ui/chunky_button.dart';
 import '../../ui/kid_look.dart';
 import '../../ui/kid_screen.dart';
@@ -22,6 +23,12 @@ final progressStatsProvider = FutureProvider.autoDispose
       );
     });
 
+/// "Remembered after 2 weeks" from the quiz log (feat-013).
+final retentionProvider = FutureProvider.autoDispose.family<Retention, int>(
+  (ref, profileId) =>
+      ref.watch(progressRepositoryProvider).retention(profileId),
+);
+
 const _dayLetters = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
 /// "My words": a simple progress screen per profile, shared by the child
@@ -35,6 +42,7 @@ class ProgressScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final profile = ref.watch(profileProvider(profileId)).value;
     final stats = ref.watch(progressStatsProvider(profileId)).value;
+    final retention = ref.watch(retentionProvider(profileId)).value;
     final look = KidLook.forAge(profile?.age);
     final text = Theme.of(context).textTheme;
     return KidScreen(
@@ -66,7 +74,7 @@ class ProgressScreen extends ConsumerWidget {
           Expanded(
             child: stats == null
                 ? const Center(child: CircularProgressIndicator())
-                : _Body(stats: stats, look: look),
+                : _Body(stats: stats, retention: retention, look: look),
           ),
         ],
       ),
@@ -75,9 +83,10 @@ class ProgressScreen extends ConsumerWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({required this.stats, required this.look});
+  const _Body({required this.stats, required this.look, this.retention});
 
   final ProgressStats stats;
+  final Retention? retention;
   final KidLook look;
 
   @override
@@ -149,6 +158,8 @@ class _Body extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 14),
+            _RetentionPanel(retention: retention, look: look),
+            const SizedBox(height: 14),
             _Panel(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,6 +187,51 @@ class _Body extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Quiz answers on words learned 2+ weeks earlier: are words sticking?
+class _RetentionPanel extends StatelessWidget {
+  const _RetentionPanel({required this.retention, required this.look});
+
+  final Retention? retention;
+  final KidLook look;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    final r = retention;
+    final rate = r?.rate;
+    return _Panel(
+      child: Row(
+        children: [
+          const Text('🧠', style: TextStyle(fontSize: 40)),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Remembered after 2 weeks', style: text.titleMedium),
+                Text(
+                  rate == null
+                      ? 'Shows up when words learned 2+ weeks ago come back'
+                      : '${r!.correct} of ${r.asked} quiz '
+                            '${r.asked == 1 ? 'answer' : 'answers'} on '
+                            '${r.words} ${r.words == 1 ? 'word' : 'words'}',
+                  style: text.bodyMedium?.copyWith(color: KidColors.inkSoft),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            rate == null ? '–' : '${(rate * 100).round()}%',
+            key: const Key('stat-retention'),
+            style: text.displaySmall?.copyWith(color: look.accent),
+          ),
+        ],
       ),
     );
   }

@@ -255,8 +255,15 @@ class SessionController extends ChangeNotifier {
     try {
       final ok = item.isCorrect(given);
       quizResults[item.wordId] = ok;
+      final now = _clock();
+      await _progress.logQuiz(
+        profileId: profileId,
+        wordId: item.wordId,
+        kind: item.kind,
+        correct: ok,
+        at: now,
+      );
       if (!ok) {
-        final now = _clock();
         final next = scheduler.schedule(
           _before[item.wordId] ?? WordSchedule.initial(),
           AnswerQuality.quizWrong,

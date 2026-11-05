@@ -100,5 +100,6 @@ class ProfileRepository {
     await (db.delete(
       db.sessionLogs,
     )..where((p) => p.profileId.equals(id))).go();
+    await (db.delete(db.quizLogs)..where((q) => q.profileId.equals(id))).go();
   });
 }

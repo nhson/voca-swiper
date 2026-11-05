@@ -145,6 +145,22 @@ class SessionLogs extends Table {
   RealColumn get accuracy => real()();
 }
 
+/// Every quiz answer (feat-013), for the "remembered after 2 weeks" metric.
+@DataClassName('QuizLogRow')
+class QuizLogs extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get profileId =>
+      integer().references(Profiles, #id, onDelete: KeyAction.cascade)();
+
+  /// No FK to [Words], like [WordProgress].
+  TextColumn get wordId => text()();
+
+  /// QuizKind name: pickPicture | chooseMeaning | spell.
+  TextColumn get kind => text()();
+  BoolColumn get correct => boolean()();
+  DateTimeColumn get answeredAt => dateTime()();
+}
+
 /// Key–value app metadata (e.g. imported word-bank version).
 @DataClassName('AppMetaRow')
 class AppMeta extends Table {
