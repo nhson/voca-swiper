@@ -25,7 +25,10 @@ class QuizView extends StatefulWidget {
     required this.sfx,
     required this.onAnswered,
     required this.onQuit,
+    this.title = 'Quiz time!',
   });
+
+  final String title;
 
   final QuizItem item;
   final int number;
@@ -128,7 +131,7 @@ class _QuizViewState extends State<QuizView> {
               const SizedBox(width: 6),
               Expanded(
                 child: Text(
-                  'Quiz time!',
+                  widget.title,
                   style: TextStyle(
                     fontFamily: 'Baloo2',
                     fontWeight: FontWeight.w800,

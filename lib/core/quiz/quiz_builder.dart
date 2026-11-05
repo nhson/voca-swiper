@@ -113,6 +113,15 @@ class QuizBuilder {
     return items;
   }
 
+  /// One question of [kind] about [w], or null if it does not fit the word
+  /// (used by the placement check, feat-015).
+  QuizItem? question(
+    QuizKind kind,
+    QuizWord w,
+    List<QuizWord> pool,
+    Random random,
+  ) => _make(kind, w, pool, random);
+
   QuizItem? _make(QuizKind kind, QuizWord w, List<QuizWord> pool, Random r) {
     switch (kind) {
       case QuizKind.pickPicture:

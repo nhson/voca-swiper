@@ -52,7 +52,7 @@ class SessionLoader {
       Map<String, WordSchedule> schedules,
     })
   >
-  load(int profileId) async {
+  load(int profileId, {List<String>? firstWords}) async {
     final profile = (await profiles.get(profileId))!;
     final now = clock();
     final schedules = await progress.schedules(profileId);
@@ -61,18 +61,24 @@ class SessionLoader {
       localDayStart(now),
     );
     final remaining = profile.dailyNewWords - introduced;
-    final candidates = remaining <= 0
-        ? const <String>[]
-        : await words.newWordCandidates(
-            profileId: profileId,
-            levelIndex: CefrLevel.fromCode(profile.currentLevel).index,
-            age: profile.age,
-            limit: remaining,
-          );
+    final candidates =
+        firstWords ??
+        (remaining <= 0
+            ? const <String>[]
+            : await words.newWordCandidates(
+                profileId: profileId,
+                levelIndex: CefrLevel.fromCode(profile.currentLevel).index,
+                age: profile.age,
+                limit: remaining,
+                interests: profile.interests,
+              ));
     final session = builder.build(
       schedules: schedules,
       newWordIds: candidates,
-      dailyNewWords: profile.dailyNewWords,
+      // The first mini-session after placement is exactly its easy words.
+      dailyNewWords: firstWords != null
+          ? introduced + firstWords.length
+          : profile.dailyNewWords,
       newIntroducedToday: introduced,
       maxCards: SessionBuilder.cardsForMinutes(profile.dailyMinutes),
       now: now,
@@ -98,6 +104,7 @@ class SessionController extends ChangeNotifier {
     required DateTime Function() clock,
     this.scheduler = const Sm2Scheduler(),
     this.quizBuilder = const QuizBuilder(),
+    this.firstWords,
     Random? random,
   }) : _random = random ?? Random(),
        _words = words,
@@ -111,6 +118,10 @@ class SessionController extends ChangeNotifier {
        );
 
   final int profileId;
+
+  /// The first mini-session after placement (feat-015): these new words
+  /// instead of the usual ones.
+  final List<String>? firstWords;
   final Sm2Scheduler scheduler;
   final QuizBuilder quizBuilder;
   final Random _random;
@@ -165,7 +176,7 @@ class SessionController extends ChangeNotifier {
   ];
 
   Future<void> start() async {
-    final loaded = await _loader.load(profileId);
+    final loaded = await _loader.load(profileId, firstWords: firstWords);
     profile = loaded.profile;
     _schedules = Map.of(loaded.schedules);
     _before = Map.of(loaded.schedules);

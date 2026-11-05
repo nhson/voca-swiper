@@ -33,6 +33,7 @@ void main() {
       db,
     ).save(kid, 'cat', WordSchedule.initial(), now: now);
     await db.customStatement('DROP TABLE quiz_logs');
+    await _dropPlacementColumns(db);
     await db.customStatement('PRAGMA user_version = 1');
     await db.close();
 
@@ -51,4 +52,39 @@ void main() {
     );
     expect(await repo.quizAnswers(kid), hasLength(1));
   });
+
+  test('v2 → v3: existing children count as placed, no favourites', () async {
+    final dir = await Directory.systemTemp.createTemp('voca-mig');
+    addTearDown(() => dir.delete(recursive: true));
+    final file = File('${dir.path}/app.sqlite');
+    final created = DateTime.utc(2026, 11, 1, 9);
+
+    var db = AppDatabase(NativeDatabase(file));
+    final kid = await ProfileRepository(db).create(
+      const ProfileDraft(
+        name: 'Bi',
+        avatar: '🐯',
+        age: 6,
+        level: CefrLevel.preA1,
+      ),
+      now: created,
+    );
+    await _dropPlacementColumns(db);
+    await db.customStatement('PRAGMA user_version = 2');
+    await db.close();
+
+    db = AppDatabase(NativeDatabase(file));
+    addTearDown(db.close);
+    final p = (await ProfileRepository(db).get(kid))!;
+    // The trial child is not sent through placement after the update.
+    expect(p.onboardedAt?.toUtc(), created);
+    expect(p.interests, isEmpty);
+    expect(p.currentLevel, 'preA1');
+  });
+}
+
+/// Makes the profiles table look like schema 1–2 (before feat-015).
+Future<void> _dropPlacementColumns(AppDatabase db) async {
+  await db.customStatement('ALTER TABLE profiles DROP COLUMN interests');
+  await db.customStatement('ALTER TABLE profiles DROP COLUMN onboarded_at');
 }

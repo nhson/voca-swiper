@@ -150,8 +150,8 @@
         "feat-012",
         "feat-014"
       ],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "2026-11-05: ./init.sh green — format 0 changed, analyze no issues, 242/242 tests. test/core/placement/placement_test.dart (20): block at start level spread across the level; 24 words, no repeats; checkable words preferred; missing start level falls back; tiny bank finishes; knows all → top (B1); knows nothing → Pre-A1; knows ≤A1 → A1; start A2, knows Pre-A1 → Pre-A1; 70% boundary (5/6 passes, 4/6 fails); scores pool all blocks at a level; anti-guessing: first checkable 'know' checked at once, then ≥4 words apart, none after 'not yet'/uncheckable, failed check → word unknown, 'know' to everything + failing checks → lowest level, failed checks discount unchecked 'knows', cannotCheck; result known words; firstSessionWords. test/core/themes_test.dart: kid-friendly themes with ≥8 words in appeal order, limit 12, no ZWJ emoji. test/data/repositories_test.dart: favourite-theme words first within a level; 'toy' does not match 'toys'; placementWords/themeCounts by age and level; finish/skip/redo placement; default translation follows the new level, parent's choice kept; editing keeps placement. test/data/migration_test.dart: v2 → v3 keeps children, marks them placed (onboardedAt = createdAt), no favourites. test/features/placement_flow_test.dart (whole flow): kid home → word check (20–30 words, ≥3 picture checks, words spoken) → themes (non-kid tags hidden, pick/unpick) → level/interests/onboardedAt saved → first mini-session of 5 known Pre-A1 words saved as progress; quitting saves nothing; parent adds a child → 'Hand to An' opens the child home; parent skip/redo; parent sets favourite topics. Device: flutter drive integration_test/placement_on_device_test.dart (real bank, age 8, knows Pre-A1+A1) passed on iPhone 18 Pro and iPad Pro 13 simulators → placed at A1, interests [animals, sports]; screenshots build/screenshots/{phone,tablet}-f15-*.png checked. session_on_device_test and levels_on_device_test still pass on iPhone 18 Pro."
     },
     {
       "id": "feat-016",

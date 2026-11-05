@@ -5,7 +5,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 ## Current State
 
 **Last Updated:** 2026-11-05
-**Active Feature:** none — all buildable Phase 1 features done. Next is feat-009, the owner-run 2-week trial (human gate)
+**Active Feature:** none — feat-015 done; waiting for the owner before feat-016. feat-009 (owner trial) runs alongside
 **Branch:** main
 
 ### What's Done
@@ -24,6 +24,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] feat-007: daily reminder — planned a week ahead, re-planned on changes; parent Reminders screen
 - [x] feat-010: kid-friendly visual design (owner accepted 2026-11-05)
 - [x] feat-014: word bank v2 — 1,497 words (Pre-A1 364, A1 611, A2 255, B1 267), grammar forms, all four levels selectable, translation fades by level
+- [x] feat-015: placement test + favourite themes — word check on first open (24 words, staircase, picture/meaning checks against guessing), up to 3 favourite topics preferred for new words, first 5-word mini-session; parent can start now / later / skip, redo; DB schema v3
 - [x] feat-006: swipe flashcard session (`lib/features/session/`), device TTS, session summary with stars; progress saved per answer
 
 ### What's In Progress
@@ -35,7 +36,7 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 1. Owner runs feat-009: the child uses the app 5 days a week for 2 weeks without being pushed (install on a real phone/tablet; turn on the daily reminder). Only the owner can mark it done.
 2. Before/while trialling: native-speaker review of the Vietnamese drafts (owner, alongside the trial).
 3. Trial note: at 10 min/day the cap slows new words to ~3/day after week 3 (reviews take the room). If the child wants more new words, raise "Minutes per day" to 15.
-4. Phase 2 started 2026-11-05; feat-012, 013, 014 done. Next: 015 placement → 016 level progression → 017 dashboard → 018 custom lists → 019 weekly recap → 020 gate. Trial feedback may reorder.
+4. Phase 2 started 2026-11-05; feat-012, 013, 014, 015 done. Next: 016 level progression → 017 dashboard → 018 custom lists → 019 weekly recap → 020 gate. Trial feedback may reorder.
 
 ## Blockers / Risks
 
@@ -97,6 +98,15 @@ Append a new dated entry at the top of **Log** each session. Keep **Current Stat
 - [x] `./init.sh` — 2026-11-04: pub get OK, format 0 changed, analyze no issues, 1/1 test passed
 
 ## Log
+
+### 2026-11-05 — feat-015 placement test + favourite themes
+
+- Domain: `lib/core/placement/placement.dart` (`PlacementTest`, `PlacementResult`) and `lib/core/themes.dart` (curated topics, `themeChoices`), test-first.
+- Data: schema v3 adds `profiles.interests` and `profiles.onboardedAt`; upgrade marks existing children as placed so the trial child is not sent through it. `newWordCandidates` puts favourite-topic words first within a level.
+- UI: `lib/features/placement/` (intro → word check → picture/meaning checks via `QuizView` → topic picker → first 5-word session). Kid home starts the word check when not placed. Profile form: post-create dialog (hand over now / later / skip), favourite topics chips and skip/redo in edit.
+- Topic picker keeps a kid-appeal order instead of biggest-first (Sports was cut off by Food/Home/School on device). 👪 swapped for ❤️ (renders as a framed silhouette on iOS).
+- Older device tests now mark their children placed. Device check on iPhone + iPad simulators (`integration_test/placement_on_device_test.dart`).
+- Trial note: a new profile made during the trial will now get the word check; the existing child will not.
 
 ### 2026-11-05 — feat-014 word bank v2
 

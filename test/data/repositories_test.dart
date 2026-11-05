@@ -84,6 +84,145 @@ void main() {
     });
   });
 
+  group('favourite themes and placement (feat-015)', () {
+    late AppDatabase db;
+    setUp(() async {
+      db = await seededDb([
+        w('p1', rank: 1, themes: ['food']),
+        w('p2', rank: 2, themes: ['animals'], emoji: '🐶'),
+        w('p3', rank: 3, themes: ['toys', 'animals']),
+        w('p4', rank: 4, minAge: 10, themes: ['animals']),
+        w('a1', cefr: 'A1', rank: 1, themes: ['food']),
+        w('a2', cefr: 'A1', rank: 2, themes: ['sports']),
+        w('b1', cefr: 'B1', rank: 1, minAge: 7, themes: ['animals']),
+      ]);
+    });
+    tearDown(() => db.close());
+
+    test('favourite-theme words come first within each level', () async {
+      final repo = ProfileRepository(db);
+      final id = await repo.create(
+        const ProfileDraft(
+          name: 'Bi',
+          avatar: '🐯',
+          age: 12,
+          level: CefrLevel.a1,
+          interests: ['animals', 'sports'],
+        ),
+        now: now,
+      );
+      final ids = await WordRepository(db).newWordCandidates(
+        profileId: id,
+        levelIndex: CefrLevel.a1.index,
+        age: 12,
+        limit: 10,
+        interests: const ['animals', 'sports'],
+      );
+      expect(ids, ['a2', 'a1', 'p2', 'p3', 'p4', 'p1']);
+    });
+
+    test('a theme name inside another is not a match', () async {
+      final ids = await WordRepository(db).newWordCandidates(
+        profileId: await ProfileRepository(db).create(kid, now: now),
+        levelIndex: CefrLevel.preA1.index,
+        age: 6,
+        limit: 10,
+        interests: const ['toy', 'anim'],
+      );
+      expect(ids, ['p1', 'p2', 'p3']);
+    });
+
+    test('placement words: allowed for the age, by level then rank', () async {
+      final repo = WordRepository(db);
+      final young = await repo.placementWords(age: 6, language: 'vi');
+      expect(young.map((c) => c.word.id), ['p1', 'p2', 'p3', 'a1', 'a2']);
+      expect(young[1].word.emoji, '🐶');
+      expect(young[1].translation, 'vi');
+      final older = await repo.placementWords(age: 10, language: 'vi');
+      expect(older.map((c) => c.word.id), contains('b1'));
+    });
+
+    test('theme counts up to a level, for the age', () async {
+      final counts = await WordRepository(
+        db,
+      ).themeCounts(levelIndex: CefrLevel.a1.index, age: 6);
+      expect(counts, {'food': 2, 'animals': 2, 'toys': 1, 'sports': 1});
+    });
+
+    test('a new profile has no placement yet; finish, skip and redo', () async {
+      final repo = ProfileRepository(db);
+      final id = await repo.create(kid, now: now);
+      var p = (await repo.get(id))!;
+      expect(p.onboardedAt, isNull);
+      expect(p.interests, isEmpty);
+
+      final later = now.add(const Duration(minutes: 3));
+      await repo.finishPlacement(
+        id,
+        level: CefrLevel.a1,
+        interests: const ['animals'],
+        now: later,
+      );
+      p = (await repo.get(id))!;
+      expect(p.currentLevel, 'A1');
+      expect(p.interests, ['animals']);
+      expect(p.onboardedAt?.toUtc(), later);
+      expect(p.translationMode, TranslationMode.always);
+
+      await repo.redoPlacement(id);
+      expect((await repo.get(id))!.onboardedAt, isNull);
+      await repo.skipPlacement(id, now: later);
+      p = (await repo.get(id))!;
+      expect(p.onboardedAt?.toUtc(), later);
+      expect(p.currentLevel, 'A1');
+    });
+
+    test('placing at A2 moves a default translation to "tap"', () async {
+      final repo = ProfileRepository(db);
+      final id = await repo.create(kid, now: now);
+      await repo.finishPlacement(
+        id,
+        level: CefrLevel.a2,
+        interests: const [],
+        now: now,
+      );
+      expect((await repo.get(id))!.translationMode, TranslationMode.tap);
+
+      // A translation the parent chose is left alone.
+      final hidden = await repo.create(
+        const ProfileDraft(
+          name: 'An',
+          avatar: '🐼',
+          age: 8,
+          level: CefrLevel.a1,
+          translationMode: TranslationMode.hidden,
+        ),
+        now: now,
+      );
+      await repo.finishPlacement(
+        hidden,
+        level: CefrLevel.a2,
+        interests: const [],
+        now: now,
+      );
+      expect((await repo.get(hidden))!.translationMode, TranslationMode.hidden);
+    });
+
+    test('editing a profile keeps its placement', () async {
+      final repo = ProfileRepository(db);
+      final id = await repo.create(kid, now: now);
+      await repo.skipPlacement(id, now: now);
+      final row = (await repo.get(id))!;
+      await repo.update(
+        id,
+        ProfileDraft.fromRow(row).copyWith(interests: const ['food']),
+      );
+      final p = (await repo.get(id))!;
+      expect(p.onboardedAt?.toUtc(), now);
+      expect(p.interests, ['food']);
+    });
+  });
+
   group('ProgressRepository', () {
     late AppDatabase db;
     late ProgressRepository repo;

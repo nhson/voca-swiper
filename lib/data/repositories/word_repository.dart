@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:drift/drift.dart';
 
 import '../db/app_database.dart';
@@ -17,13 +19,14 @@ class WordRepository {
   Future<int> count() => db.words.count().getSingle();
 
   /// Candidate new words for a profile: never seen by the profile, allowed for
-  /// its age, at its level first, then lower levels; teaching order within a
-  /// level.
+  /// its age, at its level first, then lower levels; within a level, words in
+  /// a favourite theme ([interests]) first (feat-015), then teaching order.
   Future<List<String>> newWordCandidates({
     required int profileId,
     required int levelIndex,
     required int age,
     required int limit,
+    List<String> interests = const [],
   }) async {
     final seen = db.selectOnly(db.wordProgress)
       ..addColumns([db.wordProgress.wordId])
@@ -37,10 +40,63 @@ class WordRepository {
       )
       ..orderBy([
         (w) => OrderingTerm.desc(w.levelIndex),
+        if (interests.isNotEmpty)
+          (w) => OrderingTerm.desc(_inAnyTheme(w, interests)),
         (w) => OrderingTerm.asc(w.rank),
       ])
       ..limit(limit);
     return (await q.get()).map((w) => w.id).toList();
+  }
+
+  /// Themes are stored as a JSON list, e.g. `["toys","animals"]`; match the
+  /// quoted id so "toy" does not match "toys".
+  static Expression<bool> _inAnyTheme($WordsTable w, List<String> themes) =>
+      themes
+          .map((t) => w.themes.like('%${jsonEncode(t)}%'))
+          .reduce((a, b) => a | b);
+
+  /// Every word allowed for [age], by level then teaching order, with its
+  /// translation: the placement test's pool and check options (feat-015).
+  Future<List<WordCard>> placementWords({
+    required int age,
+    required String language,
+  }) async {
+    final words =
+        await (db.select(db.words)
+              ..where((w) => w.minAge.isSmallerOrEqualValue(age))
+              ..orderBy([
+                (w) => OrderingTerm.asc(w.levelIndex),
+                (w) => OrderingTerm.asc(w.rank),
+              ]))
+            .get();
+    final tr = {
+      for (final t in await (db.select(
+        db.translations,
+      )..where((t) => t.languageCode.equals(language))).get())
+        t.wordId: t.translation,
+    };
+    return [for (final w in words) WordCard(w, tr[w.id])];
+  }
+
+  /// Words per theme up to [levelIndex], allowed for [age].
+  Future<Map<String, int>> themeCounts({
+    required int levelIndex,
+    required int age,
+  }) async {
+    final words =
+        await (db.select(db.words)..where(
+              (w) =>
+                  w.minAge.isSmallerOrEqualValue(age) &
+                  w.levelIndex.isSmallerOrEqualValue(levelIndex),
+            ))
+            .get();
+    final counts = <String, int>{};
+    for (final w in words) {
+      for (final t in w.themes) {
+        counts[t] = (counts[t] ?? 0) + 1;
+      }
+    }
+    return counts;
   }
 
   /// Words to draw wrong quiz options from: allowed for the age, up to the

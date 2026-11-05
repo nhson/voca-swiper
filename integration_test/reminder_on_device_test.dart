@@ -52,6 +52,7 @@ void main() {
       ),
       now: now,
     );
+    await ProfileRepository(db).skipPlacement(kid, now: now);
 
     final plugin = FlutterLocalNotificationsPlugin();
     final notifier = LocalReminderNotifier(plugin);

@@ -106,6 +106,15 @@ class Profiles extends Table {
   BoolColumn get swipeKnownRight =>
       boolean().withDefault(const Constant(true))();
   DateTimeColumn get createdAt => dateTime()();
+
+  /// Favourite themes (word-bank theme ids), preferred for new words.
+  TextColumn get interests => text()
+      .map(const StringListConverter())
+      .withDefault(const Constant('[]'))();
+
+  /// When placement finished or was skipped (feat-015). Null = the child
+  /// takes the placement test on next open.
+  DateTimeColumn get onboardedAt => dateTime().nullable()();
 }
 
 // ---------- Per-profile progress ----------

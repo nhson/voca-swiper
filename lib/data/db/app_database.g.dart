@@ -1759,6 +1759,27 @@ class $ProfilesTable extends Profiles
     requiredDuringInsert: true,
   );
   @override
+  late final GeneratedColumnWithTypeConverter<List<String>, String> interests =
+      GeneratedColumn<String>(
+        'interests',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: const Constant('[]'),
+      ).withConverter<List<String>>($ProfilesTable.$converterinterests);
+  static const VerificationMeta _onboardedAtMeta = const VerificationMeta(
+    'onboardedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> onboardedAt = GeneratedColumn<DateTime>(
+    'onboarded_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
   List<GeneratedColumn> get $columns => [
     id,
     name,
@@ -1771,6 +1792,8 @@ class $ProfilesTable extends Profiles
     translationMode,
     swipeKnownRight,
     createdAt,
+    interests,
+    onboardedAt,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1866,6 +1889,15 @@ class $ProfilesTable extends Profiles
     } else if (isInserting) {
       context.missing(_createdAtMeta);
     }
+    if (data.containsKey('onboarded_at')) {
+      context.handle(
+        _onboardedAtMeta,
+        onboardedAt.isAcceptableOrUnknown(
+          data['onboarded_at']!,
+          _onboardedAtMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -1921,6 +1953,16 @@ class $ProfilesTable extends Profiles
         DriftSqlType.dateTime,
         data['${effectivePrefix}created_at'],
       )!,
+      interests: $ProfilesTable.$converterinterests.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}interests'],
+        )!,
+      ),
+      onboardedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}onboarded_at'],
+      ),
     );
   }
 
@@ -1933,6 +1975,8 @@ class $ProfilesTable extends Profiles
   $convertertranslationMode = const EnumNameConverter<TranslationMode>(
     TranslationMode.values,
   );
+  static TypeConverter<List<String>, String> $converterinterests =
+      const StringListConverter();
 }
 
 class ProfileRow extends DataClass implements Insertable<ProfileRow> {
@@ -1949,6 +1993,13 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
   /// true: swipe right = "knew it" (default); false: flipped.
   final bool swipeKnownRight;
   final DateTime createdAt;
+
+  /// Favourite themes (word-bank theme ids), preferred for new words.
+  final List<String> interests;
+
+  /// When placement finished or was skipped (feat-015). Null = the child
+  /// takes the placement test on next open.
+  final DateTime? onboardedAt;
   const ProfileRow({
     required this.id,
     required this.name,
@@ -1961,6 +2012,8 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
     required this.translationMode,
     required this.swipeKnownRight,
     required this.createdAt,
+    required this.interests,
+    this.onboardedAt,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1980,6 +2033,14 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
     }
     map['swipe_known_right'] = Variable<bool>(swipeKnownRight);
     map['created_at'] = Variable<DateTime>(createdAt);
+    {
+      map['interests'] = Variable<String>(
+        $ProfilesTable.$converterinterests.toSql(interests),
+      );
+    }
+    if (!nullToAbsent || onboardedAt != null) {
+      map['onboarded_at'] = Variable<DateTime>(onboardedAt);
+    }
     return map;
   }
 
@@ -1996,6 +2057,10 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
       translationMode: Value(translationMode),
       swipeKnownRight: Value(swipeKnownRight),
       createdAt: Value(createdAt),
+      interests: Value(interests),
+      onboardedAt: onboardedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(onboardedAt),
     );
   }
 
@@ -2018,6 +2083,8 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
       ),
       swipeKnownRight: serializer.fromJson<bool>(json['swipeKnownRight']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      interests: serializer.fromJson<List<String>>(json['interests']),
+      onboardedAt: serializer.fromJson<DateTime?>(json['onboardedAt']),
     );
   }
   @override
@@ -2037,6 +2104,8 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
       ),
       'swipeKnownRight': serializer.toJson<bool>(swipeKnownRight),
       'createdAt': serializer.toJson<DateTime>(createdAt),
+      'interests': serializer.toJson<List<String>>(interests),
+      'onboardedAt': serializer.toJson<DateTime?>(onboardedAt),
     };
   }
 
@@ -2052,6 +2121,8 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
     TranslationMode? translationMode,
     bool? swipeKnownRight,
     DateTime? createdAt,
+    List<String>? interests,
+    Value<DateTime?> onboardedAt = const Value.absent(),
   }) => ProfileRow(
     id: id ?? this.id,
     name: name ?? this.name,
@@ -2064,6 +2135,8 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
     translationMode: translationMode ?? this.translationMode,
     swipeKnownRight: swipeKnownRight ?? this.swipeKnownRight,
     createdAt: createdAt ?? this.createdAt,
+    interests: interests ?? this.interests,
+    onboardedAt: onboardedAt.present ? onboardedAt.value : this.onboardedAt,
   );
   ProfileRow copyWithCompanion(ProfilesCompanion data) {
     return ProfileRow(
@@ -2090,6 +2163,10 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
           ? data.swipeKnownRight.value
           : this.swipeKnownRight,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      interests: data.interests.present ? data.interests.value : this.interests,
+      onboardedAt: data.onboardedAt.present
+          ? data.onboardedAt.value
+          : this.onboardedAt,
     );
   }
 
@@ -2106,7 +2183,9 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
           ..write('dailyMinutes: $dailyMinutes, ')
           ..write('translationMode: $translationMode, ')
           ..write('swipeKnownRight: $swipeKnownRight, ')
-          ..write('createdAt: $createdAt')
+          ..write('createdAt: $createdAt, ')
+          ..write('interests: $interests, ')
+          ..write('onboardedAt: $onboardedAt')
           ..write(')'))
         .toString();
   }
@@ -2124,6 +2203,8 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
     translationMode,
     swipeKnownRight,
     createdAt,
+    interests,
+    onboardedAt,
   );
   @override
   bool operator ==(Object other) =>
@@ -2139,7 +2220,9 @@ class ProfileRow extends DataClass implements Insertable<ProfileRow> {
           other.dailyMinutes == this.dailyMinutes &&
           other.translationMode == this.translationMode &&
           other.swipeKnownRight == this.swipeKnownRight &&
-          other.createdAt == this.createdAt);
+          other.createdAt == this.createdAt &&
+          other.interests == this.interests &&
+          other.onboardedAt == this.onboardedAt);
 }
 
 class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
@@ -2154,6 +2237,8 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
   final Value<TranslationMode> translationMode;
   final Value<bool> swipeKnownRight;
   final Value<DateTime> createdAt;
+  final Value<List<String>> interests;
+  final Value<DateTime?> onboardedAt;
   const ProfilesCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
@@ -2166,6 +2251,8 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
     this.translationMode = const Value.absent(),
     this.swipeKnownRight = const Value.absent(),
     this.createdAt = const Value.absent(),
+    this.interests = const Value.absent(),
+    this.onboardedAt = const Value.absent(),
   });
   ProfilesCompanion.insert({
     this.id = const Value.absent(),
@@ -2179,6 +2266,8 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
     required TranslationMode translationMode,
     this.swipeKnownRight = const Value.absent(),
     required DateTime createdAt,
+    this.interests = const Value.absent(),
+    this.onboardedAt = const Value.absent(),
   }) : name = Value(name),
        avatar = Value(avatar),
        age = Value(age),
@@ -2197,6 +2286,8 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
     Expression<String>? translationMode,
     Expression<bool>? swipeKnownRight,
     Expression<DateTime>? createdAt,
+    Expression<String>? interests,
+    Expression<DateTime>? onboardedAt,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -2210,6 +2301,8 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
       if (translationMode != null) 'translation_mode': translationMode,
       if (swipeKnownRight != null) 'swipe_known_right': swipeKnownRight,
       if (createdAt != null) 'created_at': createdAt,
+      if (interests != null) 'interests': interests,
+      if (onboardedAt != null) 'onboarded_at': onboardedAt,
     });
   }
 
@@ -2225,6 +2318,8 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
     Value<TranslationMode>? translationMode,
     Value<bool>? swipeKnownRight,
     Value<DateTime>? createdAt,
+    Value<List<String>>? interests,
+    Value<DateTime?>? onboardedAt,
   }) {
     return ProfilesCompanion(
       id: id ?? this.id,
@@ -2238,6 +2333,8 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
       translationMode: translationMode ?? this.translationMode,
       swipeKnownRight: swipeKnownRight ?? this.swipeKnownRight,
       createdAt: createdAt ?? this.createdAt,
+      interests: interests ?? this.interests,
+      onboardedAt: onboardedAt ?? this.onboardedAt,
     );
   }
 
@@ -2279,6 +2376,14 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
     if (createdAt.present) {
       map['created_at'] = Variable<DateTime>(createdAt.value);
     }
+    if (interests.present) {
+      map['interests'] = Variable<String>(
+        $ProfilesTable.$converterinterests.toSql(interests.value),
+      );
+    }
+    if (onboardedAt.present) {
+      map['onboarded_at'] = Variable<DateTime>(onboardedAt.value);
+    }
     return map;
   }
 
@@ -2295,7 +2400,9 @@ class ProfilesCompanion extends UpdateCompanion<ProfileRow> {
           ..write('dailyMinutes: $dailyMinutes, ')
           ..write('translationMode: $translationMode, ')
           ..write('swipeKnownRight: $swipeKnownRight, ')
-          ..write('createdAt: $createdAt')
+          ..write('createdAt: $createdAt, ')
+          ..write('interests: $interests, ')
+          ..write('onboardedAt: $onboardedAt')
           ..write(')'))
         .toString();
   }
@@ -5199,6 +5306,8 @@ typedef $$ProfilesTableCreateCompanionBuilder =
       required TranslationMode translationMode,
       Value<bool> swipeKnownRight,
       required DateTime createdAt,
+      Value<List<String>> interests,
+      Value<DateTime?> onboardedAt,
     });
 typedef $$ProfilesTableUpdateCompanionBuilder =
     ProfilesCompanion Function({
@@ -5213,6 +5322,8 @@ typedef $$ProfilesTableUpdateCompanionBuilder =
       Value<TranslationMode> translationMode,
       Value<bool> swipeKnownRight,
       Value<DateTime> createdAt,
+      Value<List<String>> interests,
+      Value<DateTime?> onboardedAt,
     });
 
 final class $$ProfilesTableReferences
@@ -5336,6 +5447,17 @@ class $$ProfilesTableFilterComposer
 
   ColumnFilters<DateTime> get createdAt => $composableBuilder(
     column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<List<String>, List<String>, String>
+  get interests => $composableBuilder(
+    column: $table.interests,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<DateTime> get onboardedAt => $composableBuilder(
+    column: $table.onboardedAt,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -5478,6 +5600,16 @@ class $$ProfilesTableOrderingComposer
     column: $table.createdAt,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get interests => $composableBuilder(
+    column: $table.interests,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get onboardedAt => $composableBuilder(
+    column: $table.onboardedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$ProfilesTableAnnotationComposer
@@ -5534,6 +5666,14 @@ class $$ProfilesTableAnnotationComposer
 
   GeneratedColumn<DateTime> get createdAt =>
       $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<List<String>, String> get interests =>
+      $composableBuilder(column: $table.interests, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get onboardedAt => $composableBuilder(
+    column: $table.onboardedAt,
+    builder: (column) => column,
+  );
 
   Expression<T> wordProgressRefs<T extends Object>(
     Expression<T> Function($$WordProgressTableAnnotationComposer a) f,
@@ -5654,6 +5794,8 @@ class $$ProfilesTableTableManager
                 Value<TranslationMode> translationMode = const Value.absent(),
                 Value<bool> swipeKnownRight = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
+                Value<List<String>> interests = const Value.absent(),
+                Value<DateTime?> onboardedAt = const Value.absent(),
               }) => ProfilesCompanion(
                 id: id,
                 name: name,
@@ -5666,6 +5808,8 @@ class $$ProfilesTableTableManager
                 translationMode: translationMode,
                 swipeKnownRight: swipeKnownRight,
                 createdAt: createdAt,
+                interests: interests,
+                onboardedAt: onboardedAt,
               ),
           createCompanionCallback:
               ({
@@ -5680,6 +5824,8 @@ class $$ProfilesTableTableManager
                 required TranslationMode translationMode,
                 Value<bool> swipeKnownRight = const Value.absent(),
                 required DateTime createdAt,
+                Value<List<String>> interests = const Value.absent(),
+                Value<DateTime?> onboardedAt = const Value.absent(),
               }) => ProfilesCompanion.insert(
                 id: id,
                 name: name,
@@ -5692,6 +5838,8 @@ class $$ProfilesTableTableManager
                 translationMode: translationMode,
                 swipeKnownRight: swipeKnownRight,
                 createdAt: createdAt,
+                interests: interests,
+                onboardedAt: onboardedAt,
               ),
           withReferenceMapper: (p0) => p0
               .map(

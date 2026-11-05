@@ -45,10 +45,12 @@ void main() {
       ),
       now: now,
     );
+    await ProfileRepository(db).skipPlacement(kid, now: now);
     final older = await ProfileRepository(db).create(
       const ProfileDraft(name: 'An', avatar: '🦊', age: 9, level: CefrLevel.a1),
       now: now,
     );
+    await ProfileRepository(db).skipPlacement(older, now: now);
 
     await t.pumpWidget(
       ProviderScope(

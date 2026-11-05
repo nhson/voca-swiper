@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/providers.dart';
 import '../../core/levels.dart';
 import '../../core/session/session_builder.dart';
+import '../../core/themes.dart';
 import '../../data/db/app_database.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../profiles/profile_providers.dart';
@@ -64,6 +65,7 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
   late int _dailyMinutes;
   late TranslationMode _translation;
   late bool _swipeKnownRight;
+  late List<String> _interests;
   bool _levelTouched = false;
   bool _translationTouched = false;
   String? _nameError;
@@ -84,6 +86,7 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
     _translation =
         d?.translationMode ?? ProfileDraft.defaultTranslationMode(_level);
     _swipeKnownRight = d?.swipeKnownRight ?? true;
+    _interests = [...?d?.interests];
     _levelTouched = !_isNew;
     _translationTouched = !_isNew;
   }
@@ -122,17 +125,78 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
       dailyMinutes: _dailyMinutes,
       translationMode: _translation,
       swipeKnownRight: _swipeKnownRight,
+      interests: _interests,
     );
     final repo = ref.read(profileRepositoryProvider);
+    int? created;
     if (_isNew) {
-      await repo.create(draft, now: ref.read(clockProvider)());
+      created = await repo.create(draft, now: ref.read(clockProvider)());
     } else {
       await repo.update(widget.existing!.id, draft);
     }
     // Names appear in reminder text.
     unawaited(ref.read(reminderServiceProvider).refresh());
-    if (mounted) _leave();
+    if (!mounted) return;
+    if (created != null) {
+      await _offerPlacement(created, name);
+    } else {
+      _leave();
+    }
   }
+
+  /// After adding a child (feat-015): hand over for the word check now,
+  /// leave it for the child's first open, or skip it and keep the level.
+  Future<void> _offerPlacement(int id, String name) async {
+    final choice = await showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      builder: (c) => AlertDialog(
+        title: Text('Word check for $name'),
+        content: Text(
+          'A 3-minute game finds the words $name already knows and picks '
+          'the starting level. Then $name chooses favourite topics.',
+        ),
+        actions: [
+          TextButton(
+            key: const Key('placement-skip'),
+            onPressed: () => Navigator.pop(c, 'skip'),
+            child: Text('Skip, keep ${_level.label}'),
+          ),
+          TextButton(
+            key: const Key('placement-later'),
+            onPressed: () => Navigator.pop(c, 'later'),
+            child: const Text('Later'),
+          ),
+          FilledButton(
+            key: const Key('placement-now'),
+            onPressed: () => Navigator.pop(c, 'now'),
+            child: Text('Hand to $name'),
+          ),
+        ],
+      ),
+    );
+    if (!mounted) return;
+    final router = GoRouter.of(context);
+    switch (choice) {
+      case 'skip':
+        await ref
+            .read(profileRepositoryProvider)
+            .skipPlacement(id, now: ref.read(clockProvider)());
+        if (mounted) _leave();
+      case 'now':
+        // Leave the parent area (it locks) and open the child's home.
+        router.go('/');
+        router.push('/kid/$id');
+      default:
+        _leave();
+    }
+  }
+
+  void _toggleInterest(String id) => setState(() {
+    if (!_interests.remove(id) && _interests.length < maxFavouriteThemes) {
+      _interests.add(id);
+    }
+  });
 
   void _leave() => context.canPop() ? context.pop() : context.go('/parent');
 
@@ -288,6 +352,34 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
             value: _swipeKnownRight,
             onChanged: (v) => setState(() => _swipeKnownRight = v),
           ),
+          if (existing != null) ...[
+            const SizedBox(height: 8),
+            Text(
+              'Favourite topics (up to $maxFavouriteThemes)',
+              style: text.titleSmall,
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'New words from these topics come first within the level.',
+              style: text.bodySmall,
+            ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 4,
+              children: [
+                for (final t in favouriteThemes)
+                  FilterChip(
+                    key: Key('interest-${t.id}'),
+                    label: Text('${t.emoji} ${t.label}'),
+                    selected: _interests.contains(t.id),
+                    onSelected: (_) => _toggleInterest(t.id),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            _PlacementTile(profile: existing),
+          ],
           const SizedBox(height: 16),
           FilledButton(
             key: const Key('save-profile'),
@@ -326,6 +418,35 @@ class _ProfileFormState extends ConsumerState<_ProfileForm> {
             ),
           ],
         ],
+      ),
+    );
+  }
+}
+
+/// Word-check status and skip / redo (feat-015).
+class _PlacementTile extends ConsumerWidget {
+  const _PlacementTile({required this.profile});
+
+  final ProfileRow profile;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final repo = ref.read(profileRepositoryProvider);
+    final pending = profile.onboardedAt == null;
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      title: const Text('Word check'),
+      subtitle: Text(
+        pending
+            ? '${profile.name} takes it on next open.'
+            : 'Done. Redo it if the level feels wrong.',
+      ),
+      trailing: TextButton(
+        key: const Key('placement-toggle'),
+        onPressed: () => pending
+            ? repo.skipPlacement(profile.id, now: ref.read(clockProvider)())
+            : repo.redoPlacement(profile.id),
+        child: Text(pending ? 'Skip' : 'Redo'),
       ),
     );
   }

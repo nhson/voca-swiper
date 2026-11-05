@@ -46,6 +46,8 @@ void main() {
     await scrollForm(t, find.byKey(const Key('save-profile')));
     await t.tap(find.byKey(const Key('save-profile')));
     await t.pumpAndSettle();
+    await t.tap(find.byKey(const Key('placement-later')));
+    await t.pumpAndSettle();
 
     final rows = await db.select(db.profiles).get();
     expect(rows.single.name, 'Bi');
@@ -166,8 +168,11 @@ void main() {
     await scrollForm(t, find.byKey(const Key('save-profile')));
     await t.tap(find.byKey(const Key('save-profile')));
     await t.pumpAndSettle();
+    await t.tap(find.byKey(const Key('placement-skip')));
+    await t.pumpAndSettle();
 
     final row = await db.select(db.profiles).getSingle();
+    expect(row.onboardedAt, isNotNull);
     expect(row.currentLevel, 'B1');
     expect(row.translationMode, TranslationMode.tap);
     expect(row.age, 11);

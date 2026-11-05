@@ -25,9 +25,12 @@ const _missColor = KidColors.notYet;
 const _almostColor = KidColors.almost;
 
 class SessionScreen extends ConsumerStatefulWidget {
-  const SessionScreen({super.key, required this.profileId});
+  const SessionScreen({super.key, required this.profileId, this.firstWords});
 
   final int profileId;
+
+  /// New words for the first mini-session after placement (feat-015).
+  final List<String>? firstWords;
 
   @override
   ConsumerState<SessionScreen> createState() => _SessionScreenState();
@@ -40,6 +43,7 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
     progress: ref.read(progressRepositoryProvider),
     profiles: ref.read(profileRepositoryProvider),
     clock: ref.read(clockProvider),
+    firstWords: widget.firstWords,
   );
   late final Speaker _speaker = ref.read(speakerProvider);
   late final Sfx _sfx = ref.read(sfxProvider);

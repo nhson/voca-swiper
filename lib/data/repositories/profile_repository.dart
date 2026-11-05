@@ -15,6 +15,7 @@ class ProfileDraft {
     this.dailyMinutes = 10,
     TranslationMode? translationMode,
     this.swipeKnownRight = true,
+    this.interests = const [],
   }) : translationMode = translationMode ?? TranslationMode.always;
 
   final String name;
@@ -27,6 +28,22 @@ class ProfileDraft {
   final TranslationMode translationMode;
   final bool swipeKnownRight;
 
+  /// Favourite themes (feat-015).
+  final List<String> interests;
+
+  ProfileDraft copyWith({List<String>? interests}) => ProfileDraft(
+    name: name,
+    avatar: avatar,
+    age: age,
+    level: level,
+    nativeLanguage: nativeLanguage,
+    dailyNewWords: dailyNewWords,
+    dailyMinutes: dailyMinutes,
+    translationMode: translationMode,
+    swipeKnownRight: swipeKnownRight,
+    interests: interests ?? this.interests,
+  );
+
   factory ProfileDraft.fromRow(ProfileRow r) => ProfileDraft(
     name: r.name,
     avatar: r.avatar,
@@ -37,6 +54,7 @@ class ProfileDraft {
     dailyMinutes: r.dailyMinutes,
     translationMode: r.translationMode,
     swipeKnownRight: r.swipeKnownRight,
+    interests: r.interests,
   );
 
   /// Translation visibility default by level (docs/SPEC.md — Fading
@@ -58,6 +76,7 @@ class ProfileDraft {
     dailyMinutes: Value(dailyMinutes),
     translationMode: Value(translationMode),
     swipeKnownRight: Value(swipeKnownRight),
+    interests: Value(interests),
   );
 }
 
@@ -87,6 +106,43 @@ class ProfileRepository {
   Future<void> update(int id, ProfileDraft d) => (db.update(
     db.profiles,
   )..where((p) => p.id.equals(id))).write(d._companion());
+
+  /// Placement done (feat-015): sets the starting level and favourites.
+  /// A translation mode still at the old level's default follows the new
+  /// level; one the parent chose is kept.
+  Future<void> finishPlacement(
+    int id, {
+    required CefrLevel level,
+    required List<String> interests,
+    required DateTime now,
+  }) async {
+    final p = await get(id);
+    if (p == null) return;
+    final old = CefrLevel.fromCode(p.currentLevel);
+    final mode = p.translationMode == ProfileDraft.defaultTranslationMode(old)
+        ? ProfileDraft.defaultTranslationMode(level)
+        : p.translationMode;
+    await (db.update(db.profiles)..where((r) => r.id.equals(id))).write(
+      ProfilesCompanion(
+        currentLevel: Value(level.code),
+        interests: Value(interests),
+        translationMode: Value(mode),
+        onboardedAt: Value(now),
+      ),
+    );
+  }
+
+  /// The parent skips placement: the level set in the form stays.
+  Future<void> skipPlacement(int id, {required DateTime now}) =>
+      (db.update(db.profiles)..where((r) => r.id.equals(id))).write(
+        ProfilesCompanion(onboardedAt: Value(now)),
+      );
+
+  /// The child takes placement again on next open.
+  Future<void> redoPlacement(int id) =>
+      (db.update(db.profiles)..where((r) => r.id.equals(id))).write(
+        const ProfilesCompanion(onboardedAt: Value(null)),
+      );
 
   /// Deletes the profile and (by cascade) all its progress and logs.
   Future<void> delete(int id) =>

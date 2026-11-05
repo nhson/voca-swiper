@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../features/parent/change_pin_screen.dart';
 import '../features/parent/parent_screen.dart';
 import '../features/parent/profile_form_screen.dart';
+import '../features/placement/placement_screen.dart';
 import '../features/profiles/kid_home_screen.dart';
 import '../features/progress/progress_screen.dart';
 import '../features/reminders/reminders_screen.dart';
@@ -19,8 +20,15 @@ GoRouter buildRouter() => GoRouter(
     ),
     GoRoute(
       path: '/kid/:id/session',
+      builder: (_, s) => SessionScreen(
+        profileId: int.parse(s.pathParameters['id']!),
+        firstWords: s.extra is List<String> ? s.extra! as List<String> : null,
+      ),
+    ),
+    GoRoute(
+      path: '/kid/:id/placement',
       builder: (_, s) =>
-          SessionScreen(profileId: int.parse(s.pathParameters['id']!)),
+          PlacementScreen(profileId: int.parse(s.pathParameters['id']!)),
     ),
     GoRoute(
       path: '/kid/:id/progress',

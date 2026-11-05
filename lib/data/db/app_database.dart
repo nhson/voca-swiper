@@ -22,15 +22,21 @@ part 'app_database.g.dart';
 class AppDatabase extends _$AppDatabase {
   AppDatabase(super.executor);
 
+  /// 1: Phase 1. 2: QuizLogs (feat-013). 3: profile interests and
+  /// onboardedAt (feat-015).
   @override
-  /// 1: Phase 1. 2: QuizLogs (feat-013).
-  @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onUpgrade: (m, from, to) async {
       if (from < 2) await m.createTable(quizLogs);
+      if (from < 3) {
+        await m.addColumn(profiles, profiles.interests);
+        await m.addColumn(profiles, profiles.onboardedAt);
+        // Children set up before placement existed keep their level.
+        await customStatement('UPDATE profiles SET onboarded_at = created_at');
+      }
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');

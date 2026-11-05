@@ -42,6 +42,7 @@ void main() {
       ),
       now: now,
     );
+    await ProfileRepository(db).skipPlacement(kid, now: now);
 
     final container = ProviderContainer(
       overrides: [

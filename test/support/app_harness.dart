@@ -97,18 +97,25 @@ Future<int> createKid(
   bool swipeKnownRight = true,
   TranslationMode translationMode = TranslationMode.always,
   int dailyMinutes = 10,
-}) => ProfileRepository(db).create(
-  ProfileDraft(
-    name: name,
-    avatar: '🐯',
-    age: age,
-    level: level,
-    swipeKnownRight: swipeKnownRight,
-    translationMode: translationMode,
-    dailyMinutes: dailyMinutes,
-  ),
-  now: testNow,
-);
+  bool placed = true,
+}) async {
+  final repo = ProfileRepository(db);
+  final id = await repo.create(
+    ProfileDraft(
+      name: name,
+      avatar: '🐯',
+      age: age,
+      level: level,
+      swipeKnownRight: swipeKnownRight,
+      translationMode: translationMode,
+      dailyMinutes: dailyMinutes,
+    ),
+    now: testNow,
+  );
+  // Most tests are about children who already did the word check.
+  if (placed) await repo.skipPlacement(id, now: testNow);
+  return id;
+}
 
 /// The text input inside a [PinBoxes] with the given key.
 Finder pinInput(String key) => find.descendant(

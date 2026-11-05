@@ -26,7 +26,8 @@ class KidHomeScreen extends ConsumerWidget {
     final look = KidLook.forAge(profile.age);
     final text = Theme.of(context).textTheme;
     final waiting = preview?.total ?? 0;
-    final done = preview != null && waiting == 0;
+    final needsPlacement = profile.onboardedAt == null;
+    final done = !needsPlacement && preview != null && waiting == 0;
     return KidScreen(
       look: look,
       child: Column(
@@ -64,7 +65,20 @@ class KidHomeScreen extends ConsumerWidget {
                       style: text.displaySmall,
                     ),
                     const SizedBox(height: 16),
-                    if (preview != null)
+                    if (needsPlacement)
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 380),
+                        child: SpeechBubble(
+                          child: Text(
+                            "Let's play a word game and find the words "
+                            'you know! 🔎',
+                            key: const Key('waiting'),
+                            textAlign: TextAlign.center,
+                            style: text.titleLarge?.copyWith(fontSize: 19),
+                          ),
+                        ),
+                      )
+                    else if (preview != null)
                       ConstrainedBox(
                         constraints: const BoxConstraints(maxWidth: 380),
                         child: SpeechBubble(
@@ -122,7 +136,13 @@ class KidHomeScreen extends ConsumerWidget {
                       key: const Key('start-session'),
                       color: look.accent,
                       semanticLabel: 'Start',
-                      onPressed: preview == null || done
+                      onPressed: needsPlacement
+                          ? () async {
+                              await context.push('/kid/$profileId/placement');
+                              ref.invalidate(sessionPreviewProvider(profileId));
+                              await ref.read(reminderServiceProvider).refresh();
+                            }
+                          : preview == null || done
                           ? null
                           : () async {
                               await context.push('/kid/$profileId/session');
